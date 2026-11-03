@@ -10,6 +10,12 @@ python scripts/verify.py
 
 El verificador comprueba que estén presentes los archivos estáticos requeridos, que las referencias locales de HTML sean válidas y que `app.js` tenga una sintaxis aceptada por Node cuando está disponible.
 
+## GitHub Pages
+
+El workflow `.github/workflows/pages.yml` ejecuta `scripts/verify.py`, empaqueta `dist/` y la publica usando las acciones oficiales de GitHub Pages cuando hay un push a `main` o una ejecución manual. Después de crear el repositorio remoto, habilitá **Settings → Pages → Source: GitHub Actions**.
+
+La publicación no requiere secretos, porque el sitio no usa backend ni variables de runtime. La URL de despliegue queda disponible en el job `Deploy` de GitHub Actions.
+
 ## Documentación continua
 
 ```powershell

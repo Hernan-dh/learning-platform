@@ -6,6 +6,16 @@ Simulador estático de entrevista técnica y formación para QA, Playwright, ing
 
 El sitio no necesita dependencias: abrí `dist/index.html` en un navegador o servilo con la herramienta local de tu preferencia.
 
+## Publicación en GitHub Pages
+
+El workflow `.github/workflows/pages.yml` valida y publica `dist/` cada vez que hay un push a `main`.
+
+1. Creá el repositorio remoto y subí este proyecto a la rama `main`.
+2. En GitHub, abrí **Settings → Pages** y elegí **GitHub Actions** como fuente.
+3. El primer workflow exitoso mostrará la URL pública en el resumen de Actions.
+
+También podés iniciarlo manualmente desde **Actions → Deploy GitHub Pages → Run workflow**. No requiere secretos para este sitio estático.
+
 ## Automatización de documentación y entrega
 
 ```powershell
