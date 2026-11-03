@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <title>QA & AI Interview Lab</title>
+    <meta name="description" content="Simulador interactivo de entrevistas técnicas de QA Automation, IA y operaciones." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="glow glow-one"></div><div class="glow glow-two"></div>
+    <header class="topbar"><a class="brand" href="#inicio"><span class="brand-mark">Q</span><span>QA <b>&</b> AI LAB</span></a><div class="top-meta"><span class="status-dot"></span> ENTRENAMIENTO ACTIVO</div></header>
+    <main id="inicio">
+      <section class="hero">
+        <div class="eyebrow"><span></span>SIMULADOR DE ENTREVISTA TÉCNICA</div>
+        <h1>Entrená respuestas.<br /><em>Construí criterio.</em></h1>
+        <p>Un banco de desafíos basado en formación de QA, automatización con Playwright, ingeniería de IA y operaciones técnicas.</p>
+        <div class="hero-actions"><button class="primary" id="startAll">Comenzar simulación <span>→</span></button><a href="#rutas" class="secondary">Explorar temario</a></div>
+        <div class="metrics"><div><strong>40+</strong><span>preguntas prácticas</span></div><div><strong>5</strong><span>rutas de estudio</span></div><div><strong>100%</strong><span>feedback explicado</span></div></div>
+      </section>
+      <section class="routes" id="rutas"><div class="section-head"><div><span class="kicker">01 / ELEGÍ TU RUTA</span><h2>Temas que cubre el laboratorio</h2></div><p>Cada ruta mezcla fundamentos, casos reales y buenas prácticas para preparar una conversación técnica de verdad.</p></div><div class="route-grid" id="routeGrid"></div></section>
+      <section class="quiz-shell" id="simulador">
+        <aside class="quiz-sidebar"><span class="kicker">02 / SIMULACIÓN</span><h2 id="quizTitle">Tu próxima pregunta</h2><p id="quizHint">Elegí una ruta o iniciá una simulación completa.</p><div class="progress-track"><div id="progressBar"></div></div><div class="progress-copy"><span id="progressText">LISTO PARA EMPEZAR</span><span id="scoreText">0 PTS</span></div><button class="ghost" id="restart" hidden>Reiniciar ruta</button></aside>
+        <div class="question-panel" id="questionPanel"><div class="empty-state"><div class="terminal-icon">&gt;_</div><h3>Preparado para practicar</h3><p>Seleccioná un módulo para recibir preguntas multiple choice con explicaciones claras al responder.</p></div></div>
+      </section>
+      <section class="method"><span class="kicker">03 / CÓMO FUNCIONA</span><div class="method-grid"><article><i>01</i><h3>Respondé</h3><p>Leé el escenario y elegí la opción que mejor resuelve el problema.</p></article><article><i>02</i><h3>Entendé</h3><p>Recibí una explicación precisa de por qué esa decisión es la correcta.</p></article><article><i>03</i><h3>Mejorá</h3><p>Usá el resultado como guía para reforzar el tema que sigue.</p></article></div></section>
+    </main>
+    <footer><span>QA & AI INTERVIEW LAB</span><span>HECHO PARA APRENDER EN VOZ ALTA</span></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
