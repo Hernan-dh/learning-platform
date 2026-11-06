@@ -3578,7 +3578,7 @@ const guideCoverageQuestionsV12 = [
       "Defect Reporting",
       "Exploratory Testing"
     ],
-    "guide": "learning-guide.html#lab-manual-qa",
+    "guide": "learning-guide.html#qa-design",
     "topic": "Lab 1 — Manual QA: booking, to-do, e-commerce, and UI flows"
   },
   {
@@ -3598,7 +3598,7 @@ const guideCoverageQuestionsV12 = [
       "Authentication Testing",
       "API Integration"
     ],
-    "guide": "learning-guide.html#lab-api-postman",
+    "guide": "learning-guide.html#postman-collections",
     "topic": "Lab 2 — API project: authenticated CRUD workflow in Postman"
   },
   {
@@ -3618,7 +3618,7 @@ const guideCoverageQuestionsV12 = [
       "JMeter",
       "Observability"
     ],
-    "guide": "learning-guide.html#lab-jmeter",
+    "guide": "learning-guide.html#performance-jmeter-bootcamp",
     "topic": "Lab 3 — JMeter performance test from script to analysis"
   },
   {
@@ -3639,7 +3639,7 @@ const guideCoverageQuestionsV12 = [
       "TestNG",
       "Maven"
     ],
-    "guide": "learning-guide.html#lab-selenium-testng",
+    "guide": "learning-guide.html#selenium-webdriver-basics",
     "topic": "Lab 4 — Java + Selenium + TestNG automation"
   },
   {
@@ -3660,7 +3660,7 @@ const guideCoverageQuestionsV12 = [
       "BDD",
       "Test Reporting"
     ],
-    "guide": "learning-guide.html#lab-test-management",
+    "guide": "learning-guide.html#test-management-ecosystem",
     "topic": "Lab 5 — Test-management workflow in Qase or Zephyr Scale"
   },
   {
@@ -3771,3 +3771,19 @@ answer = function(choice) {
     }
   }
 };
+
+// Practice-project scenarios retained as interview questions after the lab chapter was removed.
+const handsOnProjectQuestions = [
+  {r:'qa',q:'How would you turn a small booking, to-do, or e-commerce demo into a manual QA project?',correct:'Start with requirements and risk, create critical scenarios and detailed cases, run exploratory charters, report reproducible defects, and summarize release risk.',wrong:['Write automated scripts first and skip requirement analysis.','Test only the happy path because demo applications have no risk.','Report defects without environment, evidence, or expected behavior.'],e:'A credible manual QA project demonstrates the complete quality loop: understanding behavior, designing coverage, gathering evidence, tracking defects, and communicating residual risk.',tags:['Quality Assurance','Manual Testing','Test Planning','Test Strategy','Exploratory Testing','Defect Tracking'],guide:'learning-guide.html#qa-design',topic:'Manual QA project workflow'},
+  {r:'engineering',q:'How would you design an authenticated CRUD API project in Postman?',correct:'Model login and resource lifecycle requests in a collection, use scoped variables and scripts to pass tokens and IDs, assert contracts and business data, then run it with controlled environment data.',wrong:['Put every token and ID directly into each request.','Check only that every response returns HTTP 200.','Use Production credentials so the collection feels realistic.'],e:'A useful Postman project demonstrates authentication, request chaining, reusable variables, assertions, negative paths, and safe environment separation.',tags:['API Testing','Postman','REST APIs','API Integration','JSON','Authentication Testing'],guide:'learning-guide.html#postman-collections',topic:'Authenticated CRUD API workflow'},
+  {r:'qa',q:'How would you build a JMeter performance test from script to analysis?',correct:'Define an SLO and workload profile, parameterize realistic users and data, correlate dynamic values, run controlled load stages, and interpret client, service, and infrastructure metrics together.',wrong:['Increase virtual users until the laptop becomes unresponsive.','Use one average response-time number as the only result.','Record a browser script and run it unchanged against Production.'],e:'Performance testing is an experiment. A useful result connects workload, response-time percentiles, errors, saturation signals, and the systems behavior under test.',tags:['Performance Testing','JMeter','Observability','Test Strategy','Data Analysis'],guide:'learning-guide.html#performance-jmeter-bootcamp',topic:'JMeter performance project'},
+  {r:'playwright',q:'How would you structure a Java Selenium and TestNG automation project?',correct:'Use Maven dependencies, focused page objects, explicit synchronization, isolated setup and teardown, clear test data, failure evidence, and command-line execution in CI.',wrong:['Put locators, assertions, data, and driver setup in one long test method.','Use Thread.sleep after every interaction.','Make every test depend on the previous tests completion.'],e:'The project should demonstrate reliable automation engineering: separation of concerns, deterministic waits, isolation, reporting, and repeatable CI execution.',tags:['Test Automation','Selenium','Java','TestNG','Maven','Page Object Model','CI/CD'],guide:'learning-guide.html#selenium-webdriver-basics',topic:'Selenium TestNG automation project'},
+  {r:'qa',q:'How would you run a test-management project in Qase or Zephyr Scale?',correct:'Organize cases by feature, link them to requirements and defects, parameterize reusable cases, execute release cycles, and report pass, fail, blocked, and traceability status.',wrong:['Store all test cases in one unstructured document.','Delete execution history after each release.','Treat a test-management tool as a replacement for test design.'],e:'Test-management tools support visibility and traceability; their value comes from a maintainable information model and evidence-based release reporting.',tags:['Quality Assurance','Test Traceability','Test Reporting','Defect Tracking','BDD','Test Planning'],guide:'learning-guide.html#test-management-ecosystem',topic:'Test management project workflow'}
+];
+handsOnProjectQuestions.forEach(addCoverageQuestionV12);
+const handsOnTags = [...new Set(handsOnProjectQuestions.flatMap(item => item.tags))];
+handsOnTags.forEach(tag => { if (![...tagFilter.options].some(option => option.value === tag)) tagFilter.add(new Option(tag, tag)); });
+const totalWithHandsOn = questions.length;
+if (metricStrongV12) metricStrongV12.textContent = totalWithHandsOn;
+if (heroCopyV12) heroCopyV12.textContent = `A ${totalWithHandsOn}-question bank for QA, automation, engineering, AI, and technical operations.`;
+if (countSelectV12 && ![...countSelectV12.options].some(option => Number(option.value) === totalWithHandsOn)) countSelectV12.add(new Option(`All (${totalWithHandsOn})`, String(totalWithHandsOn)));
