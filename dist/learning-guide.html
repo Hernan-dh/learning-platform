@@ -33,7 +33,73 @@
 
 .merged-reference{margin-top:56px;padding-top:42px;border-top:1px solid var(--line)}.merged-reference>h3{font-size:clamp(25px,3vw,34px);margin-bottom:10px}.merged-reference .chapter-intro{margin-bottom:24px}
 </style>
-</head>
+<style id="left-sticky-toc-fix">
+/* Keep the table of contents on the LEFT for the full desktop document. */
+@media (min-width: 981px) {
+  .layout {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    align-items: start;
+    column-gap: 54px;
+  }
+
+  .layout > .toc {
+    grid-column: 1;
+    grid-row: 1;
+    position: sticky;
+    top: 88px;
+    align-self: start;
+    height: calc(100vh - 104px);
+    max-height: calc(100vh - 104px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 14px;
+    scrollbar-gutter: stable;
+    z-index: 2;
+  }
+
+  .layout > main {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .toc h2 {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    margin: 0 0 12px;
+    padding: 4px 0 10px;
+    background: var(--bg);
+  }
+
+  .toc a {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* On narrower screens the TOC returns to normal document flow. */
+@media (max-width: 980px) {
+  .layout > .toc,
+  .layout > main {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .layout > .toc {
+    position: static;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .toc h2 {
+    position: static;
+    background: transparent;
+  }
+}
+</style></head>
 <body id="top">
 <header class="topbar"><a class="brand" href="index.html">Q QA &amp; AI LAB</a><div class="links"><a href="#contents">Contents</a><a href="#question-coverage">Question bank</a><a href="#skill-index">Skill index</a></div></header>
 <section class="hero"><div class="eyebrow">COMPLETE LEARNING GUIDE / QA · AUTOMATION · ENGINEERING · AI · OPERATIONS</div><h1>Learn concepts.<br/><em>Connect systems.</em></h1><p>A progressive reference manual built around the 530-question interview bank, the complete portfolio skill set, and the additional material identified by comparing the guide with The Complete Software Testing 2026 Bootcamp. It moves from software/testing fundamentals through manual QA, Agile, automation, APIs, databases, programming, performance/JMeter, mobile and white-box testing, delivery, AI systems, reliability, IoT, and career preparation. Cross-links connect related concepts, while technology definitions live inside the chapters where each tool is actually used.</p><div class="stats"><div><strong>530</strong><span>questions represented by topic families</span></div><div><strong>30</strong><span>major chapters</span></div><div><strong>217</strong><span>explained concepts</span></div><div><strong>100%</strong><span>requested skills indexed</span></div><div><strong>77</strong><span>integrated technology profiles</span></div></div></section>
