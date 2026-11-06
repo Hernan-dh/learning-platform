@@ -1,5 +1,16 @@
 # QA & AI Interview Lab
 
+## Content and coverage
+
+- `dist/index.html`: main interview simulator.
+- `dist/app.js` and `dist/questions-v12.js`: **741 questions** with tags, filters, configurable sessions, and study links.
+- `dist/learning-guide.html`: Learning Guide v11 covering QA, automation, APIs, data, delivery, AI, operations, and IoT.
+- `QUESTION_COVERAGE_V12.csv`: auditable map between guide topics and the question bank.
+
+The v12 coverage expansion adds 182 dedicated questions for guide topics that lacked direct or equivalent coverage. New questions retain module and technology/skill tags and link from feedback to the corresponding Learning Guide section.
+
+The guide includes advanced Selenium/TestNG, Java and algorithms, JDBC/SQL, CI/CD, Playwright, AI agents, RAG, MCP, n8n, AI evaluation and safety, reliability, IoT, and QA professional-practice topics.
+
 Simulador estático de entrevista técnica y formación para QA, Playwright, ingeniería, IA y operaciones.
 
 ## Desarrollo local
