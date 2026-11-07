@@ -102,7 +102,7 @@ For interactive diagnosis:
 npm.cmd run test:e2e:ui
 ```
 
-Playwright starts a local server for `dist/` automatically. Failed runs retain traces, screenshots, and video according to `playwright.config.js`.
+Playwright starts `scripts/test-server.js` for `dist/` automatically. Failed runs retain traces, screenshots, and video according to `playwright.config.js`.
 
 ## 8. Entry and exit criteria
 

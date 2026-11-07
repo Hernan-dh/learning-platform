@@ -17,7 +17,7 @@ A static learning platform for QA, test automation, software engineering, AI aut
 | --- | --- |
 | `dist/index.html` | Platform entry point and practice experience. |
 | `dist/app.js` | Practice flow, scoring, filters, and local progress persistence. |
-| `dist/questions-v12.js` | Extended question bank, tags, and Learning Guide links. |
+| `dist/questions.js` | Complete question bank: prompts, choices, correct answers, explanations, tags, and Learning Guide links. |
 | `dist/learning-guide.html` | Complete Learning Guide. |
 | `QUESTION_COVERAGE_V12.csv` | Auditable mapping between Learning Guide topics and questions. |
 | `docs/ARCHITECTURE.md` | Application structure and runtime design. |
@@ -25,7 +25,7 @@ A static learning platform for QA, test automation, software engineering, AI aut
 
 ## Local use
 
-The site has no dependency installation or build step. Open `dist/index.html` in a browser, or serve `dist/` with any local static-server tool.
+The site has no dependency installation or build step. Open `dist/index.html` in a browser, or serve `dist/` with any local static-server tool. The Playwright suite uses `scripts/test-server.js` only for test execution.
 
 Run the project check before sharing changes:
 

@@ -6,7 +6,7 @@ QA & AI Learning Platform is a static learning experience for QA, automation, en
 
 ## Runtime model
 
-The application is buildless and runs entirely in the browser. `index.html` loads `app.js` first and `questions-v12.js` second. The latter extends the base question bank, refreshes metrics, and adds Learning Guide references.
+The application is buildless and runs entirely in the browser. `index.html` loads `app.js` first and `questions.js` second. The first file contains only UI and practice logic; the second is the single source of truth for the complete question bank and refreshes metrics and filter tags after loading.
 
 Question progress is stored in browser `localStorage` under `qa-ai-learning-platform-progress-v1`. Each entry records attempts, whether the question has ever been answered correctly, and the latest answer timestamp. No progress data leaves the browser.
 
@@ -18,7 +18,7 @@ Question progress is stored in browser `localStorage` under `qa-ai-learning-plat
 | `dist/styles.css` | Shared visual system, responsive layout, question states, and platform typography. |
 | `dist/filters.css` | Tag, session-size, and progress-filter controls. |
 | `dist/app.js` | Session selection, randomization, scoring, answer feedback, and local progress persistence. |
-| `dist/questions-v12.js` | Additional questions, tags, Learning Guide links, and final question-count configuration. |
+| `dist/questions.js` | All prompts, answer choices, correct-answer indexes, explanations, tags, Learning Guide links, and question-bank setup. |
 | `dist/learning-guide.html` | Standalone long-form reference guide. |
 | `scripts/verify.py` | Dependency-free structural verification. |
 | `scripts/document.py` | Local changelog and ADR-draft generation. |
