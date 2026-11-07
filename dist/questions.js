@@ -1,160 +1,9235 @@
-// QA and manual testing
-add('qa','What is the main goal of regression testing?','Confirm that recent changes did not break existing behavior.','Regression testing protects previously working behavior from side effects introduced by a change.');
-add('qa','How would you explain your current project and responsibilities in an interview?','Describe product context, quality risks, your ownership, tools, and measurable outcomes.','A strong answer connects your day-to-day work to customer value, risk reduction, and collaboration.');
-add('qa','What is the difference between severity and priority?','Severity is technical impact; priority is urgency for the business to fix it.','A cosmetic error on a campaign page can be high priority but low severity, while a rare data corruption issue may be high severity.');
-add('qa','What is STLC?','A lifecycle covering requirement analysis, planning, design, environment setup, execution, and closure.','The Software Testing Life Cycle makes testing planned, traceable, and measurable rather than an ad-hoc final activity.');
-add('qa','What is the difference between a test scenario and a test case?','A scenario is a high-level behavior to validate; a test case contains detailed steps, data, and expected results.','Scenarios help coverage planning, while test cases make execution repeatable and provide evidence.');
-add('qa','What is a typical bug life cycle?','New, triaged, assigned, fixed, retested, verified, then closed or reopened.','Exact states vary by team, but a lifecycle must make ownership, evidence, and resolution status visible.');
-add('qa','Which is a useful negative login test?','Attempt login with an invalid password and verify a safe error without revealing sensitive details.','Negative cases validate error handling, security, rate limiting, and that the user cannot enter an authenticated state.');
-add('qa','What should login, payment, and search/filter scenarios cover?','Happy paths, validation, failures, state changes, boundaries, accessibility, and security-sensitive behavior.','Critical flows need both success coverage and failure behavior, especially duplicate payment prevention and data integrity.');
-add('qa','How should you handle a non-reproducible bug?','Preserve evidence, capture context and telemetry, narrow variables, and keep investigating without closing it as invalid.','Logs, timestamps, user/session identifiers, browser data, and network traces often turn an intermittent report into a reproducible case.');
-add('qa','How should a bug found in production be handled?','Assess impact, contain or mitigate it, communicate clearly, preserve evidence, and drive a root-cause follow-up.','Production incidents need customer-first mitigation and a blameless process that prevents recurrence.');
-add('qa','How do you decide test coverage when time is limited?','Prioritize by business impact, change risk, likelihood of failure, and available signals.','Risk-based testing protects the highest-value journeys first and communicates what remains untested.');
-add('qa','What makes exploratory testing valuable?','A mission-guided investigation that adapts based on observed risks and evidence.','Exploration combines learning, test design, and execution to discover issues scripts may not anticipate.');
-add('qa','What does traceability between requirements, tests, and defects provide?','Coverage and impact visibility for every requirement.','Traceability shows what was verified, which evidence exists, and which defects affect each requirement.');
-// Automation, Selenium and Playwright
-add('playwright','Why are role- or label-based Playwright locators preferred?','They represent how users and assistive technology perceive the interface.','Semantic locators are more resilient to markup changes and encourage accessible UI design.');
-add('playwright','Implicit wait versus explicit wait: which is safer for targeted synchronization?','Use explicit waits for a specific expected condition and avoid mixing waits broadly.','Explicit waits make synchronization intentional; global implicit waits can hide timing problems and compound delays.');
-add('playwright','How should WebDriverWait work with ThreadLocal in parallel tests?','Store one WebDriver and one wait per thread, then clean them up after each test.','ThreadLocal prevents concurrent tests from sharing browser state or waits, which is essential for isolation.');
-add('playwright','How do you handle multiple browser windows or tabs?','Capture the original handle, wait for the new handle, switch deliberately, then close and return.','Window handles make navigation deterministic and prevent assertions from running against the wrong page.');
-add('playwright','What is a robust dynamic XPath approach for a product rating?','Anchor it to a stable product container and relative rating attribute or label.','Avoid absolute XPath; target a semantic container and a stable attribute so layout changes do not break the locator.');
-add('playwright','Which locator type should generally be avoided?','Absolute XPath tied to a deep DOM hierarchy.','Absolute paths are brittle; prefer accessible roles, labels, test IDs, or stable relative selectors.');
-add('playwright','What is POM versus pom.xml?','Page Object Model organizes UI interactions; pom.xml defines Maven project dependencies and build configuration.','They solve different problems: POM improves test maintainability, while pom.xml manages Java project builds.');
-add('playwright','How do you handle a stale element exception?','Re-locate the element after the DOM update and wait for the required state.','A stale element points to an old DOM node; refreshing may help diagnostically but re-querying with proper waits is the durable fix.');
-add('playwright','How would you design a framework for 5,000+ test cases?','Use layered architecture, stable contracts, reusable fixtures, parallel-safe data, clear tagging, and observability.','Scale comes from isolation, maintainability, fast feedback tiers, and actionable evidence rather than one giant suite.');
-add('playwright','How could execution time drop from five hours to under one hour?','Profile bottlenecks, parallelize safely, move checks down the test pyramid, and remove unnecessary waits.','The best speed gains come from fewer slow UI tests, sharding, efficient test data, and fixing serial dependencies.');
-add('playwright','What makes an automation framework safe for parallel execution?','Isolated browser contexts, unique test data, no shared mutable state, and thread-safe reporting.','Parallelism exposes hidden coupling, so each test needs independent resources and deterministic cleanup.');
-add('playwright','How do you distinguish a product defect from a flaky test?','Use repeatable evidence: logs, traces, network data, controlled retries, and correlation with product state.','A real defect follows product behavior; a flaky test is often sensitive to timing, data, environment, or weak assertions.');
-add('playwright','How do you implement retries without hiding genuine failures?','Retry only known transient categories, retain every attempt, and alert on recurring flakes.','Retries are diagnostic safety nets, not a pass mechanism; the final report must expose instability.');
-add('playwright','How do you avoid test-data conflicts at high parallelism?','Create unique, isolated data per worker or use controlled pools with ownership and cleanup.','Shared accounts and mutable records cause nondeterminism; namespacing and API setup reduce collisions.');
-add('playwright','Which scenarios belong in UI automation versus API automation?','Use APIs for fast business-rule coverage and UI for critical user journeys and integration confidence.','The test pyramid keeps feedback fast while reserving expensive end-to-end flows for high-value behavior.');
-// Engineering: Java, APIs, Git, CI/CD
-add('engineering','Interface versus abstract class in Java: when do you choose each?','Use interfaces for contracts and multiple capabilities; abstract classes for shared state or partial implementation.','The choice is about reuse and design boundaries, not syntax alone.');
-add('engineering','How do OOP concepts appear in a test framework?','Encapsulation hides page actions, inheritance can share base setup, polymorphism supports drivers, and abstraction defines contracts.','Framework examples demonstrate that OOP should reduce coupling and make extension safer.');
-add('engineering','Why is String immutable in Java?','Immutability enables safe sharing, predictable hashing, security, and string-pool reuse.','Methods that appear to modify a String create a new object, which matters for performance and correctness.');
-add('engineering','How would you find the second most frequent character?','Count characters, track the two highest distinct frequencies, and define behavior for ties.','A correct solution clarifies edge cases such as no second frequency, case sensitivity, and whitespace.');
-add('engineering','How would you move vowels left, consonants middle, and special characters right?','Partition characters into three groups while preserving the intended order, then concatenate them.','This is a stable grouping problem; define whether digits are special characters before coding.');
-add('engineering','How do you reverse a string without built-in reverse methods?','Iterate from the final index to zero and append each character to a buffer.','This demonstrates indexing, time complexity, and an understanding that String concatenation in a loop can be inefficient.');
-add('engineering','Checked versus unchecked exceptions?','Checked exceptions require handling or declaration; unchecked exceptions extend RuntimeException.','Use checked exceptions for recoverable conditions callers should address, and unchecked exceptions for programming or invariant failures.');
-add('engineering','How do you find the longest substring without repeated characters?','Use a sliding window and a map of the latest index for each character.','Move the left boundary past a duplicate and track the largest window for O(n) time.');
-add('engineering','How do you detect a cycle in a linked list?','Use fast and slow pointers; if they meet, a cycle exists.','Floyds algorithm detects a cycle in O(n) time and O(1) extra space.');
-add('engineering','How do you find the first non-repeating character?','Count frequencies, then scan again in original order for count one.','Two passes preserve the order requirement and make the rule explicit.');
-add('engineering','How do you find duplicates in an array without an additional data structure?','Use an in-place technique only if mutation and value constraints are acceptable.','For example, sort in place then compare neighbors; always state the trade-off of modifying input.');
-add('engineering','How do you find the top K frequent elements?','Count frequencies and use a heap or bucket strategy appropriate to the input size.','The solution should explain the complexity trade-off between sorting, heaps, and buckets.');
-add('engineering','How does HashMap work internally in Java?','It hashes a key to a bucket, compares keys for collisions, and may treeify heavily-collided buckets.','Correct equals and hashCode implementations are essential for retrieval correctness and performance.');
-add('engineering','How do you implement a thread-safe Singleton?','Use an enum singleton or double-checked locking with a volatile instance.','These approaches avoid unsafe publication and protect against concurrent initialization.');
-add('engineering','HashMap versus ConcurrentHashMap?','HashMap is not thread-safe; ConcurrentHashMap supports concurrent access with atomic operations and no null keys or values.','Choose ConcurrentHashMap when shared mutable map access is required across threads.');
-add('engineering','Which HTTP status codes should an API tester know?','At minimum: 200/201/204 success, 400/401/403/404 client errors, and 409/429/500/503 important cases.','Status codes communicate protocol outcomes, but assertions must also validate business data and contracts.');
-add('engineering','GET versus POST versus PUT versus PATCH?','GET reads, POST creates or triggers processing, PUT replaces a resource representation, and PATCH applies partial changes.','Idempotency expectations and resource semantics matter more than using verbs as generic action labels.');
-add('engineering','What does a basic Rest Assured validation include?','Build the request, send it, assert status and headers, then validate the relevant body contract and values.','A 200 alone is insufficient; validate the response meaning and schema.');
-add('engineering','How do you investigate HTTP 200 with incorrect business data?','Trace the request, response, service logic, data sources, transformations, and expected business rule.','Transport success does not prove business correctness, so compare each layer against a clear oracle.');
-add('engineering','How do you chain API requests?','Extract a response value, store it safely, and pass it as path, query, header, or body input to the next request.','Chaining models real workflows while keeping each dependency explicit and observable.');
-add('engineering','How do you test API idempotency?','Repeat the same idempotent request and verify the final resource state and side effects do not change unexpectedly.','This is critical for retries, payment flows, and unreliable networks.');
-add('engineering','How do you test a downstream-service outage?','Use a controlled stub or fault injection and verify timeout, fallback, error mapping, and observability.','The service should fail safely with useful behavior instead of leaking internal errors.');
-add('engineering','How do you validate a complex nested JSON response?','Use a schema plus targeted assertions for nested values, arrays, optional fields, and business invariants.','Schemas provide structure; focused assertions prove the data is meaningful.');
-add('engineering','How do you test API rate limiting?','Send controlled traffic until the threshold and verify status, headers, reset behavior, fairness, and recovery.','Rate limiting should protect the service while communicating a usable retry contract to clients.');
-add('engineering','Merge versus rebase?','Merge preserves branch history with a merge commit; rebase rewrites commits onto a new base for a linear history.','Avoid rebasing shared public history because it changes commit identities.');
-add('engineering','Pull versus fetch?','Fetch downloads remote references; pull fetches and then integrates changes into the current branch.','Fetching first gives you a chance to inspect incoming work before merging or rebasing.');
-add('engineering','How do you handle a merge conflict?','Understand both changes, edit the intended result, test it, stage the resolution, and complete the operation.','Never resolve by blindly choosing a side; conflicts require a product and technical decision.');
-add('engineering','What are the safe steps to commit and push?','Review status and diff, verify, stage intended files, commit with a clear message, then push the correct branch.','Small, reviewed commits make history useful and reduce accidental inclusion of secrets or unrelated files.');
-add('engineering','Why can tests pass locally but fail randomly in Jenkins?','Compare environment, timing, browser versions, resources, test data, parallelism, and collected artifacts.','CI-only failures are evidence of an environmental or isolation difference until proven otherwise.');
-add('engineering','Why can a 98 percent pass rate still allow critical production bugs?','The suite may miss critical risks, have weak assertions, test the wrong layer, or lack realistic data and observability.','Pass rate is not quality; coverage must be tied to business risk and defect escape analysis.');
-add('engineering','What belongs in an effective production quality gate?','Risk-based tests, contract and security checks, deployment health signals, rollback readiness, and explicit ownership.','A gate should prevent unsafe releases without becoming a slow, noisy checklist.');
-add('engineering','Which automation and quality metrics matter?','Trend defect escapes, flaky rate, execution time, risk coverage, failure causes, and change lead time.','Metrics must guide decisions; vanity metrics such as raw test counts can hide risk.');
-add('qa','How would you test and prevent a duplicate payment on double-click?','Test rapid and repeated requests, verify idempotency keys and UI disabling, then confirm only one durable transaction exists.','Prevention needs defense in depth: client feedback, server-side idempotency, and reconciliation evidence.');
-add('qa','A critical test fails once in every 100 runs. How do you find root cause?','Correlate all attempts with traces, logs, timing, data, infrastructure, and code versions until a pattern emerges.','Intermittence is a signal; preserve artifacts and form hypotheses instead of masking it with retries.');
-add('qa','Database, API, and UI show three different values. Where do you start?','Establish the source of truth, trace timestamps and transformations across each boundary, and inspect caching or eventual consistency.','Layer disagreement usually reveals a mapping, freshness, contract, or ownership problem.');
-// AI and operations
-add('ai','What reduces invalid tool calls from an LLM?','Validate parameters against a structured schema before executing the tool.','JSON Schema or Pydantic makes model output a verifiable interface with enforceable limits.');
-add('ai','What role does MCP play in an agentic system?','It standardizes how clients discover and use server-provided tools, resources, and context.','MCP creates explicit, discoverable integration boundaries between an AI client and external capabilities.');
-add('ai','When does RAG add value?','When relevant, current, domain-specific sources must ground an LLM response.','RAG retrieves evidence at query time without requiring model retraining.');
-add('ai','How would you check whether an LLM-generated automated test means the same thing as its original manual test case?','Create a semantic-equivalence hypothesis: have an independent model or reviewer reconstruct the manual case from the generated test, compare goals, preconditions, actions, assertions, and risks, then measure agreement on a sampled set.','There is no universal metric for semantic equivalence. A strong answer states an assumption, explains why reconstruction may expose meaning drift, and defines how to validate or reject it with human-reviewed samples.');
-add('ai','What context should be given to an LLM that generates a Gherkin test?','Provide the user story, acceptance criteria, domain glossary, actors, business rules, relevant UI or API behavior, step-definition catalog, data constraints, and an explicit output schema.','Gherkin generation needs both the behavior contract and the available implementation vocabulary. That context constrains invention, reduces duplicate steps, and makes scenarios executable and reviewable.');
-add('ai','How would you design an AI test-generation pipeline with about 1,000 existing step definitions, stale automated tests, and a short deadline?','Start with a scoped hypothesis: classify reusable steps, prioritize high-risk flows, generate against an approved subset, validate compilation and execution in stages, quarantine stale tests, and review ambiguous mappings.','The constraint calls for triage rather than wholesale regeneration. Track step reuse, invalid output, execution reliability, review effort, and defect value; then adjust retrieval, prompts, or scope from evidence.');
-add('ai','How would you measure and improve an LLM-assisted test-generation pipeline without guessing?','Define measurable hypotheses and a labeled evaluation set, then compare semantic agreement, step reuse, compile rate, execution reliability, reviewer acceptance, cost, and latency across controlled changes.','A pipeline is a product: establish a baseline, change one variable, compare against a control, inspect failure categories, and retain only improvements that hold on representative data.');
-add('ops','What makes an alert useful rather than noisy?','It is actionable, tied to impact, and points to a defined response.','Useful alerts reduce time to mitigation; noisy alerts create fatigue and hide real incidents.');
-add('ops','Why is MQTT common in IoT and Home Assistant?','It is a lightweight publish-subscribe protocol suited to devices and variable networks.','Decoupled topics let sensors and automation consumers exchange state efficiently.');
-add('ops','What is the first goal of root-cause analysis after an incident?','Understand the system and prevent recurrence using evidence, without blaming individuals.','A good RCA produces verifiable improvements such as safeguards, automation, or clearer runbooks.');
-// Python, JavaScript, and TypeScript language practice.
-[
- ['What is the difference between a Python list and a tuple?','Lists are mutable; tuples are immutable sequences.','Choose tuples for fixed data and lists when in-place changes are required.'],
- ['How do Python generators help with large data sets?','They yield values lazily instead of materializing the entire result.','Generators reduce memory usage and compose well in streaming pipelines.'],
- ['What is a Python virtual environment for?','It isolates project dependencies from the system interpreter and other projects.','Dependency isolation makes builds reproducible and prevents version conflicts.'],
- ['What does a Python decorator do?','It wraps or transforms a callable while preserving a reusable definition.','Decorators are useful for cross-cutting behavior such as logging, authorization, or retries.'],
- ['How should Python exceptions be handled in production code?','Catch specific exceptions, add context, recover when possible, and never silently swallow errors.','Specific handling preserves debuggability and prevents accidental masking of defects.'],
- ['What is the purpose of a Python context manager?','It guarantees setup and cleanup around a block, commonly through the with statement.','Context managers safely release files, locks, network connections, and similar resources.'],
- ['What is the Python GIL relevant to?','It limits concurrent execution of Python bytecode in the standard CPython interpreter.','It affects CPU-bound threading; processes or native extensions may be better for parallel CPU work.'],
- ['How would you validate API data with Pydantic in Python?','Define typed models and validate incoming data against them at the application boundary.','Typed validation turns untrusted payloads into predictable objects with useful error messages.'],
- ['What is the difference between shallow and deep copy in Python?','A shallow copy shares nested objects; a deep copy recursively copies them.','The distinction matters whenever nested mutable data is modified after copying.'],
- ['How do pytest fixtures improve tests?','They provide reusable, scoped setup and cleanup dependencies for tests.','Fixtures make test data and resources explicit while reducing duplication.']
-].forEach(([q,c,e])=>add('engineering',q,c,e));
-[
- ['What is the difference between var, let, and const in JavaScript?','var is function-scoped; let and const are block-scoped, with const preventing reassignment.','Prefer const by default and let only when reassignment is intentional.'],
- ['What does the JavaScript event loop coordinate?','It schedules synchronous work, queued tasks, and microtasks around the call stack.','Understanding the event loop explains timing behavior for promises, timers, and UI responsiveness.'],
- ['Promise versus async and await in JavaScript?','async and await provide syntax over promises that makes asynchronous control flow easier to read.','Both use promises; await should still be paired with deliberate error handling and concurrency choices.'],
- ['What is a JavaScript closure?','A function paired with access to variables from its lexical scope after the outer function returns.','Closures power encapsulation, callbacks, factories, and can also retain memory unexpectedly.'],
- ['What is the difference between == and === in JavaScript?','== coerces types; === compares both value and type without coercion.','Use strict equality to avoid surprising conversions in application and test code.'],
- ['How should JavaScript errors be handled in async code?','Use try and catch around awaited operations or return a promise chain with catch.','Errors must be surfaced with context so failures do not become silent rejected promises.'],
- ['What are JavaScript modules used for?','They define explicit imports and exports to organize code and control dependencies.','Modules improve reuse, testability, bundling, and dependency boundaries.'],
- ['What does Array.map return in JavaScript?','A new array produced by applying a transformation to every input element.','Use map for transformations, not for side effects such as logging or mutation.'],
- ['How can JavaScript code avoid shared mutable state?','Favor immutable updates, clear ownership, and narrow function inputs and outputs.','Reducing shared mutation makes asynchronous and test behavior more predictable.'],
- ['What is event delegation in JavaScript?','A parent listener handles events from matching child elements through event bubbling.','It reduces listeners and supports dynamic content when used with careful target matching.']
-].forEach(([q,c,e])=>add('engineering',q,c,e));
-[
- ['Why use TypeScript instead of plain JavaScript for a large codebase?','It adds static types, safer refactoring, and clearer contracts while compiling to JavaScript.','TypeScript catches many integration mistakes before runtime without replacing runtime validation.'],
- ['What is the difference between an interface and a type alias in TypeScript?','Both describe shapes, but interfaces support declaration merging while type aliases are more flexible for unions and compositions.','Choose the construct that communicates intent; both can model most object contracts.'],
- ['What does unknown provide over any in TypeScript?','unknown requires narrowing before a value can be used, while any disables type checking.','Use unknown for untrusted input so validation and guards remain explicit.'],
- ['What is a TypeScript generic for?','It lets functions, classes, and types preserve relationships between input and output types.','Generics provide reusable abstractions without discarding compile-time type information.'],
- ['How do discriminated unions improve TypeScript code?','A shared literal field lets the compiler safely narrow each variant in conditional logic.','They make state machines and API result handling exhaustive and readable.'],
- ['What is type narrowing in TypeScript?','It refines a broad type after checks such as typeof, in, equality, or custom guards.','Narrowing lets code handle unions safely without unsafe assertions.'],
- ['Why avoid excessive TypeScript type assertions?','Assertions can silence the compiler without proving the runtime value is valid.','Prefer parsing, validation, and type guards at boundaries instead of forced casts.'],
- ['What does readonly communicate in TypeScript?','It prevents mutation through that reference at compile time.','Readonly documents ownership expectations and reduces accidental changes, though it is not runtime immutability.'],
- ['How should optional API fields be modeled in TypeScript?','Use optional properties or explicit union types, then handle the absent case before use.','Accurate optionality prevents undefined errors and mirrors the actual contract.'],
- ['What is the benefit of strict mode in TypeScript?','It enables stronger checks such as strict null handling and safer inference.','Strict settings expose unsafe assumptions early and improve refactoring confidence.']
-].forEach(([q,c,e])=>add('engineering',q,c,e));
-// Selenium, API, database, CI, and delivery interview scenarios.
-add('playwright','How should a POM class layout and helper utilities be structured?','Keep page actions and locators focused, inject dependencies through fixtures, and share only stable cross-cutting helpers.','A maintainable POM separates UI knowledge from business assertions and avoids oversized base classes.');
-add('engineering','How do you check a palindrome number such as 121 or 123?','Reverse the digits and compare with the original, while defining behavior for negatives and overflow.','A good answer preserves the original value and explains the trade-off of numeric versus string reversal.');
-add('playwright','How do you fix StaleElementReferenceException in Selenium?','Wait for the update, locate the element again with a stable locator, and act after the expected condition.','A stale reference points to a replaced DOM node; re-location is safer than masking the issue with a page refresh.');
-add('playwright','How do you test a dynamic table with sticky headers in Selenium?','Scroll the actual container, validate headers separately, and re-locate virtualized rows after scrolling.','Sticky headers and virtualization require tests to distinguish viewport behavior from data-row behavior.');
-add('playwright','How do you switch nested iframes and return to the parent in WebDriver?','Wait for and enter frames one level at a time, then use parentFrame or defaultContent deliberately.','Frame context is stateful, so explicit entry and exit prevent selectors from targeting the wrong document.');
-add('engineering','How do you pass a dynamic Bearer token in REST Assured?','Acquire it during setup, keep it scoped to the test, and attach it in the Authorization Bearer header.','Never hardcode or log tokens; parallel tests also require isolated session state.');
-add('playwright','How does a Playwright browser context differ from a Selenium session?','A Playwright context is a lightweight isolated profile inside a browser; Selenium typically isolates through separate WebDriver sessions.','Contexts make browser-state isolation fast, while both approaches still need independent test data.');
-add('engineering','How do you make a JDBC connection and assert a row count?','Use a configured connection or DataSource, parameterized SQL, try-with-resources, and controlled test data.','Database checks must close resources and never embed production credentials or destructive queries.');
-add('engineering','What SQL finds employees who joined in the last 30 days?','Filter joined_at against the current date minus an interval, using the correct database dialect and timezone.','For PostgreSQL, for example, compare joined_at to CURRENT_DATE minus INTERVAL 30 DAY.');
-add('engineering','What are the main Jenkins build pipeline steps?','Checkout, dependencies, build, layered tests, evidence publication, quality gate, artifact packaging, and controlled deployment.','Every stage should produce actionable logs or reports and fail early when a gate is not met.');
-add('engineering','How do you reverse [1,2,3,4] in place?','Swap values at two pointers moving from the ends toward the center.','This is O(n) time and O(1) extra space; state whether input mutation is allowed.');
-add('playwright','How do you switch multi-tabs with driver.getWindowHandles in Selenium?','Capture the original handle, wait for the new one, identify it by expected URL or title, then return deliberately.','Handles are unordered, so a tab should be identified by behavior rather than position.');
-add('playwright','How does ThreadLocal support parallel execution?','It gives each thread its own WebDriver, waits, and mutable state, then removes them during teardown.','It prevents browser-state sharing but does not solve shared accounts or shared test data.');
-add('playwright','How do you capture screenshots automatically on TestNG failure?','Use an ITestListener or hook to capture the current driver before teardown and attach a uniquely named file to the report.','Failure evidence needs test name, worker, timestamp, and build context to be useful.');
-add('playwright','How do you mock a 403 response in a Playwright route?','Register a route and fulfill it with status 403, representative body, and needed headers before the UI action.','Controlled authorization failures test safe UI handling without changing real permissions.');
-add('engineering','How should test-data configuration differ in QA, Staging, and Production?','Use versioned non-secret defaults plus environment variables or secret stores, synthetic QA data, controlled Staging data, and governed read-only Production checks.','Configuration must make destructive tests impossible in Production by default.');
-add('engineering','How do you debug a local pass but CI-node failure?','Compare versions, configuration, data, parallelism, resources, network, timezone, and artifacts, then reproduce the smallest difference.','Do not respond with blind waits or retries; CI failures signal an environment or isolation difference.');
-add('engineering','How do you resolve a Git rebase merge conflict?','Understand both changes, edit the intended result, verify it, stage it, and continue or abort the rebase.','Rebase rewrites history, so do not use it carelessly on shared public branches.');
-// Extend every learning path to a consistent 100-question practice bank.
-const expansionTopics={
- qa:['requirements analysis','risk-based testing','acceptance criteria','boundary value analysis','equivalence partitioning','state transition testing','decision tables','test estimation','test planning','test strategy','defect reporting','defect triage','test data management','cross-browser testing','mobile testing','accessibility testing','visual regression','performance testing','security testing','UAT collaboration','release readiness','test reporting','quality metrics','test environment management','data validation'],
- playwright:['browser contexts','test fixtures','Page Object Model','network interception','authentication state','visual snapshots','accessibility scans','cross-browser execution','mobile emulation','test sharding','parallel workers','test tagging','trace analysis','video evidence','download testing','upload testing','iframes','dialogs','browser permissions','API request context','test retries','selectors','test isolation','CI execution','framework architecture'],
- engineering:['Java collections','Java streams','Java concurrency','object-oriented design','SOLID principles','design patterns','SQL joins','database transactions','indexing','JSON Schema','REST design','API contracts','authentication','authorization','webhooks','Docker containers','Docker Compose','GitHub Actions','Jenkins pipelines','Linux troubleshooting','environment variables','logging','error handling','code review','system design'],
- ai:['prompt design','structured outputs','tool calling','function calling','MCP server design','MCP resources','MCP tools','agent planning','agent memory','multi-agent coordination','human-in-the-loop review','RAG retrieval','vector search','embedding quality','LLM evaluation','AI safety','prompt injection defense','model routing','token budgets','workflow automation','n8n orchestration','LangGraph state','LangChain tools','CrewAI delegation','observability for agents'],
- ops:['service level objectives','service level indicators','error budgets','incident response','on-call handoffs','runbooks','application logging','distributed tracing','metrics dashboards','alert tuning','capacity planning','backup recovery','disaster recovery','secrets management','reverse proxies','TLS certificates','container monitoring','infrastructure monitoring','Home Assistant','MQTT topics','IoT sensors','time-series data','data retention','root cause analysis','post-incident actions']
-};
-const approaches=[
- ['What is the strongest first step when validating', 'Define the expected behavior, risks, inputs, and observable success criteria before acting.', 'Clear expectations turn a broad topic into an objective, repeatable validation activity.'],
- ['Which practice makes', 'Use controlled inputs, isolated dependencies, and evidence that another engineer can reproduce.', 'Isolation and evidence make results reliable and speed up diagnosis when behavior changes.'],
- ['How would you make', 'Automate the repeatable checks, keep assertions meaningful, and retain a focused manual review for exploratory risk.', 'Good automation improves feedback speed without replacing human judgment where discovery matters.'],
- ['What should a production-ready approach to', 'Include monitoring, failure handling, documentation, ownership, and a safe rollback or recovery path.', 'Production readiness includes operating the capability safely, not merely implementing the happy path.'],
- ['How do you evaluate whether', 'Measure it against user impact, business risk, reliability, maintainability, and feedback time.', 'Useful engineering decisions balance customer value with sustainable delivery and operational cost.']
-];
-const minimumQuestions={qa:100,playwright:109,engineering:146,ai:104,ops:100};
-function addExpandedQuestions(route, topics){let cursor=0;while(questions.filter(item=>item.r===route).length<minimumQuestions[route]){const topic=topics[cursor%topics.length],pattern=approaches[Math.floor(cursor/topics.length)%approaches.length];add(route,`${pattern[0]} ${topic}?`,pattern[1],`${pattern[2]} In this case, apply the principle directly to ${topic} and explain the trade-offs during the interview.`);cursor++;}}
-Object.entries(expansionTopics).forEach(([route,topics])=>addExpandedQuestions(route,topics));
+// Complete QA / AI Interview Lab question bank
+// Consolidated and reviewed: 746 explicit questions.
+// This file is authoritative: it clears any legacy questions previously loaded by app.js.
 
-// Question Bank Coverage Expansion v12
-// Generated from Learning Guide v11 topic coverage audit.
-// Adds one dedicated question for each instructional topic that lacked direct question coverage.
+if (!Array.isArray(questions)) {
+  throw new Error('questions.js requires the questions array to be initialized by app.js.');
+}
+questions.length = 0;
 
-const guideCoverageQuestionsV12 = [
+const completeQuestionBank = [
+  {
+    "r": "qa",
+    "q": "What is the main goal of regression testing?",
+    "correct": "Confirm that recent changes did not break existing behavior.",
+    "e": "Regression testing protects previously working behavior from side effects introduced by a change.",
+    "wrong": [
+      "Delay clarification of ambiguous requirements in regression testing until after execution; guessing expected behavior keeps testing independent.",
+      "For regression testing, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Use the number of executed cases as the main measure of confidence in regression testing, even if several cases exercise the same behavior and important risks remain uncovered."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "regression testing"
+  },
+  {
+    "r": "qa",
+    "q": "How would you explain your current project and responsibilities in an interview?",
+    "correct": "Describe product context, quality risks, your ownership, tools, and measurable outcomes.",
+    "e": "A strong answer connects your day-to-day work to customer value, risk reduction, and collaboration.",
+    "wrong": [
+      "For explain your current project and responsibilities in an interview, answer with generic strengths rather than one concrete example, trade-off, or result that can be discussed in follow-up questions.",
+      "For explain your current project and responsibilities in an interview, describe only what the team did collectively so the interviewer cannot tell which responsibilities or results were yours.",
+      "For explain your current project and responsibilities in an interview, focus on implementation details and omit business context, quality risks, collaboration, and what changed because of your work."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "explain your current project and responsibilities in an interview"
+  },
+  {
+    "r": "qa",
+    "q": "What is the difference between severity and priority?",
+    "correct": "Severity is technical impact; priority is urgency for the business to fix it.",
+    "e": "A cosmetic error on a campaign page can be high priority but low severity, while a rare data corruption issue may be high severity.",
+    "wrong": [
+      "Resolve duplicates in severity and priority by discarding the newer report and its evidence, because one issue should have only one source of information.",
+      "Keep severity and priority reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written.",
+      "Prioritize severity and priority only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "severity and priority"
+  },
+  {
+    "r": "qa",
+    "q": "What is STLC?",
+    "correct": "A lifecycle covering requirement analysis, planning, design, environment setup, execution, and closure.",
+    "e": "The Software Testing Life Cycle makes testing planned, traceable, and measurable rather than an ad-hoc final activity.",
+    "wrong": [
+      "Consider a single successful execution sufficient evidence for sTLC, without preserving environment, data, or build context.",
+      "Use the number of executed cases as the main measure of confidence in sTLC, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Assume one representative input is enough for sTLC even when valid and invalid partitions, boundaries, or states have different rules."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Playwright"
+    ],
+    "topic": "sTLC"
+  },
+  {
+    "r": "qa",
+    "q": "What is the difference between a test scenario and a test case?",
+    "correct": "A scenario is a high-level behavior to validate; a test case contains detailed steps, data, and expected results.",
+    "e": "Scenarios help coverage planning, while test cases make execution repeatable and provide evidence.",
+    "wrong": [
+      "Delay clarification of ambiguous requirements in a test scenario and a test case until after execution; guessing expected behavior keeps testing independent.",
+      "Treat a test scenario and a test case as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Treat every scenario in a test scenario and a test case as equally important; prioritization by impact or likelihood would bias the test effort."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "a test scenario and a test case"
+  },
+  {
+    "r": "qa",
+    "q": "What is a typical bug life cycle?",
+    "correct": "New, triaged, assigned, fixed, retested, verified, then closed or reopened.",
+    "e": "Exact states vary by team, but a lifecycle must make ownership, evidence, and resolution status visible.",
+    "wrong": [
+      "Resolve duplicates in a typical bug life cycle by discarding the newer report and its evidence, because one issue should have only one source of information.",
+      "Prioritize a typical bug life cycle only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision.",
+      "Use retries until a typical bug life cycle passes and then treat the original failure as resolved without investigating the failure pattern."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "a typical bug life cycle"
+  },
+  {
+    "r": "qa",
+    "q": "Which is a useful negative login test?",
+    "correct": "Attempt login with an invalid password and verify a safe error without revealing sensitive details.",
+    "e": "Negative cases validate error handling, security, rate limiting, and that the user cannot enter an authenticated state.",
+    "wrong": [
+      "For a useful negative login test, allow unlimited rapid attempts because rate limiting can interfere with legitimate negative tests.",
+      "For a useful negative login test, treat possession of a username or email as sufficient identity proof when the password or token is invalid.",
+      "For a useful negative login test, log the submitted password or token with the failed request so authentication problems are easier to reproduce."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Security Testing"
+    ],
+    "topic": "a useful negative login test"
+  },
+  {
+    "r": "qa",
+    "q": "What should login, payment, and search/filter scenarios cover?",
+    "correct": "Happy paths, validation, failures, state changes, boundaries, accessibility, and security-sensitive behavior.",
+    "e": "Critical flows need both success coverage and failure behavior, especially duplicate payment prevention and data integrity.",
+    "wrong": [
+      "For what should login, payment, and search/filter scenarios cover, log the submitted password or token with the failed request so authentication problems are easier to reproduce.",
+      "For what should login, payment, and search/filter scenarios cover, treat possession of a username or email as sufficient identity proof when the password or token is invalid.",
+      "For what should login, payment, and search/filter scenarios cover, return a different detailed error for unknown users and wrong passwords so users receive more precise feedback."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "what should login, payment, and search/filter scenarios cover"
+  },
+  {
+    "r": "qa",
+    "q": "How should you handle a non-reproducible bug?",
+    "correct": "Preserve evidence, capture context and telemetry, narrow variables, and keep investigating without closing it as invalid.",
+    "e": "Logs, timestamps, user/session identifiers, browser data, and network traces often turn an intermittent report into a reproducible case.",
+    "wrong": [
+      "For handle a non-reproducible bug, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
+      "Keep handle a non-reproducible bug reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written.",
+      "Prioritize handle a non-reproducible bug only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Playwright"
+    ],
+    "topic": "handle a non-reproducible bug"
+  },
+  {
+    "r": "qa",
+    "q": "How should a bug found in production be handled?",
+    "correct": "Assess impact, contain or mitigate it, communicate clearly, preserve evidence, and drive a root-cause follow-up.",
+    "e": "Production incidents need customer-first mitigation and a blameless process that prevents recurrence.",
+    "wrong": [
+      "Classify every unexpected result in a bug found in production as a product defect before checking requirements, data, environment, and test behavior.",
+      "Prioritize a bug found in production only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision.",
+      "Resolve duplicates in a bug found in production by discarding the newer report and its evidence, because one issue should have only one source of information."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "a bug found in production"
+  },
+  {
+    "r": "qa",
+    "q": "How do you decide test coverage when time is limited?",
+    "correct": "Prioritize by business impact, change risk, likelihood of failure, and available signals.",
+    "e": "Risk-based testing protects the highest-value journeys first and communicates what remains untested.",
+    "wrong": [
+      "Design decide test coverage when time is limited around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
+      "Assume one representative input is enough for decide test coverage when time is limited even when valid and invalid partitions, boundaries, or states have different rules.",
+      "Treat every scenario in decide test coverage when time is limited as equally important; prioritization by impact or likelihood would bias the test effort."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "decide test coverage when time is limited"
+  },
+  {
+    "r": "qa",
+    "q": "What makes exploratory testing valuable?",
+    "correct": "A mission-guided investigation that adapts based on observed risks and evidence.",
+    "e": "Exploration combines learning, test design, and execution to discover issues scripts may not anticipate.",
+    "wrong": [
+      "Design exploratory testing around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
+      "Treat every scenario in exploratory testing as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "For exploratory testing, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "exploratory testing"
+  },
+  {
+    "r": "qa",
+    "q": "What does traceability between requirements, tests, and defects provide?",
+    "correct": "Coverage and impact visibility for every requirement.",
+    "e": "Traceability shows what was verified, which evidence exists, and which defects affect each requirement.",
+    "wrong": [
+      "Prioritize traceability between requirements, tests, and defects only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision.",
+      "Use retries until traceability between requirements, tests, and defects passes and then treat the original failure as resolved without investigating the failure pattern.",
+      "Keep traceability between requirements, tests, and defects reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Playwright"
+    ],
+    "topic": "traceability between requirements, tests, and defects"
+  },
+  {
+    "r": "playwright",
+    "q": "Why are role- or label-based Playwright locators preferred?",
+    "correct": "They represent how users and assistive technology perceive the interface.",
+    "e": "Semantic locators are more resilient to markup changes and encourage accessible UI design.",
+    "wrong": [
+      "For role- or label-based Playwright locators, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Treat browser automation timing in role- or label-based Playwright locators as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Use the first matching element in role- or label-based Playwright locators whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Accessibility Testing"
+    ],
+    "topic": "role- or label-based Playwright locators"
+  },
+  {
+    "r": "playwright",
+    "q": "Implicit wait versus explicit wait: which is safer for targeted synchronization?",
+    "correct": "Use explicit waits for a specific expected condition and avoid mixing waits broadly.",
+    "e": "Explicit waits make synchronization intentional; global implicit waits can hide timing problems and compound delays.",
+    "wrong": [
+      "When implicit versus explicit waits becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Treat browser automation timing in implicit versus explicit waits as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Use the first matching element in implicit versus explicit waits whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "implicit versus explicit waits"
+  },
+  {
+    "r": "playwright",
+    "q": "How should WebDriverWait work with ThreadLocal in parallel tests?",
+    "correct": "Store one WebDriver and one wait per thread, then clean them up after each test.",
+    "e": "ThreadLocal prevents concurrent tests from sharing browser state or waits, which is essential for isolation.",
+    "wrong": [
+      "When webDriverWait becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Assume element references remain valid after dynamic DOM updates in webDriverWait; re-locating elements only adds unnecessary work.",
+      "Treat browser automation timing in webDriverWait as independent of network, rendering, and application state, so those signals do not need inspection."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Selenium"
+    ],
+    "topic": "webDriverWait"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you handle multiple browser windows or tabs?",
+    "correct": "Capture the original handle, wait for the new handle, switch deliberately, then close and return.",
+    "e": "Window handles make navigation deterministic and prevent assertions from running against the wrong page.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in handle multiple browser windows or tabs; re-locating elements only adds unnecessary work.",
+      "Prefer absolute XPath or deep CSS structure in handle multiple browser windows or tabs; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "When handle multiple browser windows or tabs becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "handle multiple browser windows or tabs"
+  },
+  {
+    "r": "playwright",
+    "q": "What is a robust dynamic XPath approach for a product rating?",
+    "correct": "Anchor it to a stable product container and relative rating attribute or label.",
+    "e": "Avoid absolute XPath; target a semantic container and a stable attribute so layout changes do not break the locator.",
+    "wrong": [
+      "When a robust dynamic XPath approach for a product rating becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "For a robust dynamic XPath approach for a product rating, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Treat browser automation timing in a robust dynamic XPath approach for a product rating as independent of network, rendering, and application state, so those signals do not need inspection."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Selenium",
+      "Docker"
+    ],
+    "topic": "a robust dynamic XPath approach for a product rating"
+  },
+  {
+    "r": "playwright",
+    "q": "Which locator type should generally be avoided?",
+    "correct": "Absolute XPath tied to a deep DOM hierarchy.",
+    "e": "Absolute paths are brittle; prefer accessible roles, labels, test IDs, or stable relative selectors.",
+    "wrong": [
+      "Use the first matching element in locator type whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Prefer absolute XPath or deep CSS structure in locator type; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "When locator type becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Accessibility Testing"
+    ],
+    "topic": "locator type"
+  },
+  {
+    "r": "playwright",
+    "q": "What is POM versus pom.xml?",
+    "correct": "Page Object Model organizes UI interactions; pom.xml defines Maven project dependencies and build configuration.",
+    "e": "They solve different problems: POM improves test maintainability, while pom.xml manages Java project builds.",
+    "wrong": [
+      "For POM versus pom.xml, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "When POM versus pom.xml becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Assume element references remain valid after dynamic DOM updates in POM versus pom.xml; re-locating elements only adds unnecessary work."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Java"
+    ],
+    "topic": "POM versus pom.xml"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you handle a stale element exception?",
+    "correct": "Re-locate the element after the DOM update and wait for the required state.",
+    "e": "A stale element points to an old DOM node; refreshing may help diagnostically but re-querying with proper waits is the durable fix.",
+    "wrong": [
+      "Use the first matching element in handle a stale element exception whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "When handle a stale element exception becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Treat browser automation timing in handle a stale element exception as independent of network, rendering, and application state, so those signals do not need inspection."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Selenium",
+      "Java"
+    ],
+    "topic": "handle a stale element exception"
+  },
+  {
+    "r": "playwright",
+    "q": "How would you design a framework for 5,000+ test cases?",
+    "correct": "Use layered architecture, stable contracts, reusable fixtures, parallel-safe data, clear tagging, and observability.",
+    "e": "Scale comes from isolation, maintainability, fast feedback tiers, and actionable evidence rather than one giant suite.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in design a framework for 5,000+ test cases; re-locating elements only adds unnecessary work.",
+      "Treat browser automation timing in design a framework for 5,000+ test cases as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Prefer absolute XPath or deep CSS structure in design a framework for 5,000+ test cases; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "design a framework for 5,000+ test cases"
+  },
+  {
+    "r": "playwright",
+    "q": "How could execution time drop from five hours to under one hour?",
+    "correct": "Profile bottlenecks, parallelize safely, move checks down the test pyramid, and remove unnecessary waits.",
+    "e": "The best speed gains come from fewer slow UI tests, sharding, efficient test data, and fixing serial dependencies.",
+    "wrong": [
+      "Prefer absolute XPath or deep CSS structure in how could execution time drop from five hours to under one hour; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "Assume element references remain valid after dynamic DOM updates in how could execution time drop from five hours to under one hour; re-locating elements only adds unnecessary work.",
+      "Use the first matching element in how could execution time drop from five hours to under one hour whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Performance Testing"
+    ],
+    "topic": "how could execution time drop from five hours to under one hour"
+  },
+  {
+    "r": "playwright",
+    "q": "What makes an automation framework safe for parallel execution?",
+    "correct": "Isolated browser contexts, unique test data, no shared mutable state, and thread-safe reporting.",
+    "e": "Parallelism exposes hidden coupling, so each test needs independent resources and deterministic cleanup.",
+    "wrong": [
+      "Persist every piece of browser state for what makes an automation framework safe for parallel execution between runs, including stale sessions and temporary data, to maximize realism.",
+      "Treat a stored authentication state in what makes an automation framework safe for parallel execution as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "For what makes an automation framework safe for parallel execution, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "what makes an automation framework safe for parallel execution"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you distinguish a product defect from a flaky test?",
+    "correct": "Use repeatable evidence: logs, traces, network data, controlled retries, and correlation with product state.",
+    "e": "A real defect follows product behavior; a flaky test is often sensitive to timing, data, environment, or weak assertions.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in distinguish a product defect from a flaky test; re-locating elements only adds unnecessary work.",
+      "Prefer absolute XPath or deep CSS structure in distinguish a product defect from a flaky test; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "When distinguish a product defect from a flaky test becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "distinguish a product defect from a flaky test"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you implement retries without hiding genuine failures?",
+    "correct": "Retry only known transient categories, retain every attempt, and alert on recurring flakes.",
+    "e": "Retries are diagnostic safety nets, not a pass mechanism; the final report must expose instability.",
+    "wrong": [
+      "Use the first matching element in implement retries without hiding genuine failures whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Assume element references remain valid after dynamic DOM updates in implement retries without hiding genuine failures; re-locating elements only adds unnecessary work.",
+      "Prefer absolute XPath or deep CSS structure in implement retries without hiding genuine failures; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "implement retries without hiding genuine failures"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you avoid test-data conflicts at high parallelism?",
+    "correct": "Create unique, isolated data per worker or use controlled pools with ownership and cleanup.",
+    "e": "Shared accounts and mutable records cause nondeterminism; namespacing and API setup reduce collisions.",
+    "wrong": [
+      "Skip cleanup in avoid test-data conflicts at high parallelism; independent tests should adapt to whatever state earlier tests leave behind.",
+      "Treat a stored authentication state in avoid test-data conflicts at high parallelism as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "Make avoid test-data conflicts at high parallelism depend on the previous test's output; execution order is a convenient way to avoid repeated setup."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "API Testing"
+    ],
+    "topic": "avoid test-data conflicts at high parallelism"
+  },
+  {
+    "r": "playwright",
+    "q": "Which scenarios belong in UI automation versus API automation?",
+    "correct": "Use APIs for fast business-rule coverage and UI for critical user journeys and integration confidence.",
+    "e": "The test pyramid keeps feedback fast while reserving expensive end-to-end flows for high-value behavior.",
+    "wrong": [
+      "For uI automation versus API automation, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "When uI automation versus API automation becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Assume element references remain valid after dynamic DOM updates in uI automation versus API automation; re-locating elements only adds unnecessary work."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "API Testing"
+    ],
+    "topic": "uI automation versus API automation"
+  },
+  {
+    "r": "engineering",
+    "q": "Interface versus abstract class in Java: when do you choose each?",
+    "correct": "Use interfaces for contracts and multiple capabilities; abstract classes for shared state or partial implementation.",
+    "e": "The choice is about reuse and design boundaries, not syntax alone.",
+    "wrong": [
+      "For interface versus abstract class in Java, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For interface versus abstract class in Java, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For interface versus abstract class in Java, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "interface versus abstract class in Java"
+  },
+  {
+    "r": "engineering",
+    "q": "How do OOP concepts appear in a test framework?",
+    "correct": "Encapsulation hides page actions, inheritance can share base setup, polymorphism supports drivers, and abstraction defines contracts.",
+    "e": "Framework examples demonstrate that OOP should reduce coupling and make extension safer.",
+    "wrong": [
+      "Treat one successful local execution as proof that how do OOP concepts appear in a test framework satisfies reliability, security, scale, and recovery requirements.",
+      "Postpone observability and failure handling in how do OOP concepts appear in a test framework until the first production incident provides real requirements.",
+      "For how do OOP concepts appear in a test framework, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "how do OOP concepts appear in a test framework"
+  },
+  {
+    "r": "engineering",
+    "q": "Why is String immutable in Java?",
+    "correct": "Immutability enables safe sharing, predictable hashing, security, and string-pool reuse.",
+    "e": "Methods that appear to modify a String create a new object, which matters for performance and correctness.",
+    "wrong": [
+      "For string immutable in Java, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For string immutable in Java, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For string immutable in Java, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java",
+      "Performance Testing"
+    ],
+    "topic": "string immutable in Java"
+  },
+  {
+    "r": "engineering",
+    "q": "How would you find the second most frequent character?",
+    "correct": "Count characters, track the two highest distinct frequencies, and define behavior for ties.",
+    "e": "A correct solution clarifies edge cases such as no second frequency, case sensitivity, and whitespace.",
+    "wrong": [
+      "For find the second most frequent character, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For find the second most frequent character, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For find the second most frequent character, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "find the second most frequent character"
+  },
+  {
+    "r": "engineering",
+    "q": "How would you move vowels left, consonants middle, and special characters right?",
+    "correct": "Partition characters into three groups while preserving the intended order, then concatenate them.",
+    "e": "This is a stable grouping problem; define whether digits are special characters before coding.",
+    "wrong": [
+      "For move vowels left, consonants middle, and special characters right, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For move vowels left, consonants middle, and special characters right, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For move vowels left, consonants middle, and special characters right, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "move vowels left, consonants middle, and special characters right"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you reverse a string without built-in reverse methods?",
+    "correct": "Iterate from the final index to zero and append each character to a buffer.",
+    "e": "This demonstrates indexing, time complexity, and an understanding that String concatenation in a loop can be inefficient.",
+    "wrong": [
+      "For reverse a string without built-in reverse methods, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For reverse a string without built-in reverse methods, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For reverse a string without built-in reverse methods, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java",
+      "SQL"
+    ],
+    "topic": "reverse a string without built-in reverse methods"
+  },
+  {
+    "r": "engineering",
+    "q": "Checked versus unchecked exceptions?",
+    "correct": "Checked exceptions require handling or declaration; unchecked exceptions extend RuntimeException.",
+    "e": "Use checked exceptions for recoverable conditions callers should address, and unchecked exceptions for programming or invariant failures.",
+    "wrong": [
+      "For checked versus unchecked exceptions, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For checked versus unchecked exceptions, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For checked versus unchecked exceptions, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "checked versus unchecked exceptions"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you find the longest substring without repeated characters?",
+    "correct": "Use a sliding window and a map of the latest index for each character.",
+    "e": "Move the left boundary past a duplicate and track the largest window for O(n) time.",
+    "wrong": [
+      "For find the longest substring without repeated characters, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For find the longest substring without repeated characters, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For find the longest substring without repeated characters, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "find the longest substring without repeated characters"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you detect a cycle in a linked list?",
+    "correct": "Use fast and slow pointers; if they meet, a cycle exists.",
+    "e": "Floyds algorithm detects a cycle in O(n) time and O(1) extra space.",
+    "wrong": [
+      "For detect a cycle in a linked list, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For detect a cycle in a linked list, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For detect a cycle in a linked list, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "detect a cycle in a linked list"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you find the first non-repeating character?",
+    "correct": "Count frequencies, then scan again in original order for count one.",
+    "e": "Two passes preserve the order requirement and make the rule explicit.",
+    "wrong": [
+      "For find the first non-repeating character, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For find the first non-repeating character, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For find the first non-repeating character, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "find the first non-repeating character"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you find duplicates in an array without an additional data structure?",
+    "correct": "Use an in-place technique only if mutation and value constraints are acceptable.",
+    "e": "For example, sort in place then compare neighbors; always state the trade-off of modifying input.",
+    "wrong": [
+      "For find duplicates in an array without an additional data structure, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For find duplicates in an array without an additional data structure, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For find duplicates in an array without an additional data structure, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "find duplicates in an array without an additional data structure"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you find the top K frequent elements?",
+    "correct": "Count frequencies and use a heap or bucket strategy appropriate to the input size.",
+    "e": "The solution should explain the complexity trade-off between sorting, heaps, and buckets.",
+    "wrong": [
+      "For find the top K frequent elements, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Use implicit defaults and undocumented environment state in find the top K frequent elements; explicit contracts only add configuration overhead.",
+      "Treat one successful local execution as proof that find the top K frequent elements satisfies reliability, security, scale, and recovery requirements."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "find the top K frequent elements"
+  },
+  {
+    "r": "engineering",
+    "q": "How does HashMap work internally in Java?",
+    "correct": "It hashes a key to a bucket, compares keys for collisions, and may treeify heavily-collided buckets.",
+    "e": "Correct equals and hashCode implementations are essential for retrieval correctness and performance.",
+    "wrong": [
+      "For how does HashMap work internally in Java, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For how does HashMap work internally in Java, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For how does HashMap work internally in Java, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java",
+      "Performance Testing",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "how does HashMap work internally in Java"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you implement a thread-safe Singleton?",
+    "correct": "Use an enum singleton or double-checked locking with a volatile instance.",
+    "e": "These approaches avoid unsafe publication and protect against concurrent initialization.",
+    "wrong": [
+      "For implement a thread-safe Singleton, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For implement a thread-safe Singleton, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For implement a thread-safe Singleton, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "implement a thread-safe Singleton"
+  },
+  {
+    "r": "engineering",
+    "q": "HashMap versus ConcurrentHashMap?",
+    "correct": "HashMap is not thread-safe; ConcurrentHashMap supports concurrent access with atomic operations and no null keys or values.",
+    "e": "Choose ConcurrentHashMap when shared mutable map access is required across threads.",
+    "wrong": [
+      "For HashMap versus ConcurrentHashMap, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For HashMap versus ConcurrentHashMap, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For HashMap versus ConcurrentHashMap, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "HashMap versus ConcurrentHashMap"
+  },
+  {
+    "r": "engineering",
+    "q": "Which HTTP status codes should an API tester know?",
+    "correct": "At minimum: 200/201/204 success, 400/401/403/404 client errors, and 409/429/500/503 important cases.",
+    "e": "Status codes communicate protocol outcomes, but assertions must also validate business data and contracts.",
+    "wrong": [
+      "For HTTP status codes, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Validate only the happy-path endpoint in HTTP status codes; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
+      "Use production credentials and real customer data for HTTP status codes because synthetic environments cannot reveal API defects."
+    ],
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "HTTP status codes"
+  },
+  {
+    "r": "engineering",
+    "q": "GET versus POST versus PUT versus PATCH?",
+    "correct": "GET reads, POST creates or triggers processing, PUT replaces a resource representation, and PATCH applies partial changes.",
+    "e": "Idempotency expectations and resource semantics matter more than using verbs as generic action labels.",
+    "wrong": [
+      "Validate only the happy-path endpoint in HTTP method semantics; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
+      "Use production credentials and real customer data for HTTP method semantics because synthetic environments cannot reveal API defects.",
+      "Assume retries are safe for HTTP method semantics even when operations are not idempotent; duplicate side effects can be cleaned up later."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Accessibility Testing"
+    ],
+    "topic": "HTTP method semantics"
+  },
+  {
+    "r": "engineering",
+    "q": "What does a basic Rest Assured validation include?",
+    "correct": "Build the request, send it, assert status and headers, then validate the relevant body contract and values.",
+    "e": "A 200 alone is insufficient; validate the response meaning and schema.",
+    "wrong": [
+      "Hard-code tokens, IDs, and environment URLs directly into what does a basic Rest Assured validation include so every request is self-contained.",
+      "Treat the client-visible response as the entire contract for what does a basic Rest Assured validation include; downstream state and emitted events do not need verification.",
+      "For what does a basic Rest Assured validation include, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Rest Assured",
+      "API Testing"
+    ],
+    "topic": "what does a basic Rest Assured validation include"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you investigate HTTP 200 with incorrect business data?",
+    "correct": "Trace the request, response, service logic, data sources, transformations, and expected business rule.",
+    "e": "Transport success does not prove business correctness, so compare each layer against a clear oracle.",
+    "wrong": [
+      "Use production credentials and real customer data for investigate HTTP 200 with incorrect business data because synthetic environments cannot reveal API defects.",
+      "Validate only the happy-path endpoint in investigate HTTP 200 with incorrect business data; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
+      "For investigate HTTP 200 with incorrect business data, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+    ],
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "investigate HTTP 200 with incorrect business data"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you chain API requests?",
+    "correct": "Extract a response value, store it safely, and pass it as path, query, header, or body input to the next request.",
+    "e": "Chaining models real workflows while keeping each dependency explicit and observable.",
+    "wrong": [
+      "Use production credentials and real customer data for chain API requests because synthetic environments cannot reveal API defects.",
+      "Hard-code tokens, IDs, and environment URLs directly into chain API requests so every request is self-contained.",
+      "Treat the client-visible response as the entire contract for chain API requests; downstream state and emitted events do not need verification."
+    ],
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "chain API requests"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you test API idempotency?",
+    "correct": "Repeat the same idempotent request and verify the final resource state and side effects do not change unexpectedly.",
+    "e": "This is critical for retries, payment flows, and unreliable networks.",
+    "wrong": [
+      "Treat the client-visible response as the entire contract for test API idempotency; downstream state and emitted events do not need verification.",
+      "Assume retries are safe for test API idempotency even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "For test API idempotency, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+    ],
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "test API idempotency"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you test a downstream-service outage?",
+    "correct": "Use a controlled stub or fault injection and verify timeout, fallback, error mapping, and observability.",
+    "e": "The service should fail safely with useful behavior instead of leaking internal errors.",
+    "wrong": [
+      "For test a downstream-service outage, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For test a downstream-service outage, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For test a downstream-service outage, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "test a downstream-service outage"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you validate a complex nested JSON response?",
+    "correct": "Use a schema plus targeted assertions for nested values, arrays, optional fields, and business invariants.",
+    "e": "Schemas provide structure; focused assertions prove the data is meaningful.",
+    "wrong": [
+      "Use implicit defaults and undocumented environment state in validate a complex nested JSON response; explicit contracts only add configuration overhead.",
+      "Treat one successful local execution as proof that validate a complex nested JSON response satisfies reliability, security, scale, and recovery requirements.",
+      "Keep business logic coupled directly to transport, storage, and UI details in validate a complex nested JSON response so fewer interfaces need maintenance."
+    ],
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "validate a complex nested JSON response"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you test API rate limiting?",
+    "correct": "Send controlled traffic until the threshold and verify status, headers, reset behavior, fairness, and recovery.",
+    "e": "Rate limiting should protect the service while communicating a usable retry contract to clients.",
+    "wrong": [
+      "For test API rate limiting, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Hard-code tokens, IDs, and environment URLs directly into test API rate limiting so every request is self-contained.",
+      "Validate only the happy-path endpoint in test API rate limiting; authorization, malformed input, rate limits, and dependency failures belong to separate systems."
+    ],
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "test API rate limiting"
+  },
+  {
+    "r": "engineering",
+    "q": "Merge versus rebase?",
+    "correct": "Merge preserves branch history with a merge commit; rebase rewrites commits onto a new base for a linear history.",
+    "e": "Avoid rebasing shared public history because it changes commit identities.",
+    "wrong": [
+      "Push first and inspect the diff afterward in merge versus rebase; remote history is the best place to notice accidental files or secrets.",
+      "Use force push as the normal recovery mechanism for merge versus rebase instead of checking branch state and coordinating rewritten history.",
+      "Use rebase on shared public history during merge versus rebase whenever it makes the graph cleaner; rewritten commit identities are harmless to collaborators."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Git"
+    ],
+    "topic": "merge versus rebase"
+  },
+  {
+    "r": "engineering",
+    "q": "Pull versus fetch?",
+    "correct": "Fetch downloads remote references; pull fetches and then integrates changes into the current branch.",
+    "e": "Fetching first gives you a chance to inspect incoming work before merging or rebasing.",
+    "wrong": [
+      "Stage every changed file during pull versus fetch and rely on the commit message to explain unrelated modifications.",
+      "For pull versus fetch, resolve conflicts by choosing one side wholesale; understanding both changes is unnecessary if the branch compiles.",
+      "Use force push as the normal recovery mechanism for pull versus fetch instead of checking branch state and coordinating rewritten history."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "pull versus fetch"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you handle a merge conflict?",
+    "correct": "Understand both changes, edit the intended result, test it, stage the resolution, and complete the operation.",
+    "e": "Never resolve by blindly choosing a side; conflicts require a product and technical decision.",
+    "wrong": [
+      "Treat fetch and pull as interchangeable in handle a merge conflict; inspecting incoming commits before integration only slows collaboration.",
+      "Use rebase on shared public history during handle a merge conflict whenever it makes the graph cleaner; rewritten commit identities are harmless to collaborators.",
+      "Use force push as the normal recovery mechanism for handle a merge conflict instead of checking branch state and coordinating rewritten history."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Git"
+    ],
+    "topic": "handle a merge conflict"
+  },
+  {
+    "r": "engineering",
+    "q": "What are the safe steps to commit and push?",
+    "correct": "Review status and diff, verify, stage intended files, commit with a clear message, then push the correct branch.",
+    "e": "Small, reviewed commits make history useful and reduce accidental inclusion of secrets or unrelated files.",
+    "wrong": [
+      "Stage every changed file during what are the safe steps to commit and push and rely on the commit message to explain unrelated modifications.",
+      "Use force push as the normal recovery mechanism for what are the safe steps to commit and push instead of checking branch state and coordinating rewritten history.",
+      "Treat fetch and pull as interchangeable in what are the safe steps to commit and push; inspecting incoming commits before integration only slows collaboration."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Git",
+      "Security Testing"
+    ],
+    "topic": "what are the safe steps to commit and push"
+  },
+  {
+    "r": "engineering",
+    "q": "Why can tests pass locally but fail randomly in Jenkins?",
+    "correct": "Compare environment, timing, browser versions, resources, test data, parallelism, and collected artifacts.",
+    "e": "CI-only failures are evidence of an environmental or isolation difference until proven otherwise.",
+    "wrong": [
+      "Use arbitrary sleeps for dependency startup in tests pass locally but fail randomly in Jenkins; readiness checks and retryable connection logic add unnecessary complexity.",
+      "Assume local success proves tests pass locally but fail randomly in Jenkins will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "For tests pass locally but fail randomly in Jenkins, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant."
+    ],
+    "tags": [
+      "Software Engineering",
+      "CI/CD"
+    ],
+    "topic": "tests pass locally but fail randomly in Jenkins"
+  },
+  {
+    "r": "engineering",
+    "q": "Why can a 98 percent pass rate still allow critical production bugs?",
+    "correct": "The suite may miss critical risks, have weak assertions, test the wrong layer, or lack realistic data and observability.",
+    "e": "Pass rate is not quality; coverage must be tied to business risk and defect escape analysis.",
+    "wrong": [
+      "For a 98 percent pass rate still allow critical production bugs, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Postpone observability and failure handling in a 98 percent pass rate still allow critical production bugs until the first production incident provides real requirements.",
+      "Keep business logic coupled directly to transport, storage, and UI details in a 98 percent pass rate still allow critical production bugs so fewer interfaces need maintenance."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "a 98 percent pass rate still allow critical production bugs"
+  },
+  {
+    "r": "engineering",
+    "q": "What belongs in an effective production quality gate?",
+    "correct": "Risk-based tests, contract and security checks, deployment health signals, rollback readiness, and explicit ownership.",
+    "e": "A gate should prevent unsafe releases without becoming a slow, noisy checklist.",
+    "wrong": [
+      "Optimize what belongs in an effective production quality gate for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "Postpone observability and failure handling in what belongs in an effective production quality gate until the first production incident provides real requirements.",
+      "Use implicit defaults and undocumented environment state in what belongs in an effective production quality gate; explicit contracts only add configuration overhead."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "what belongs in an effective production quality gate"
+  },
+  {
+    "r": "engineering",
+    "q": "Which automation and quality metrics matter?",
+    "correct": "Trend defect escapes, flaky rate, execution time, risk coverage, failure causes, and change lead time.",
+    "e": "Metrics must guide decisions; vanity metrics such as raw test counts can hide risk.",
+    "wrong": [
+      "Optimize which automation and quality metrics matter for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "Postpone observability and failure handling in which automation and quality metrics matter until the first production incident provides real requirements.",
+      "Keep business logic coupled directly to transport, storage, and UI details in which automation and quality metrics matter so fewer interfaces need maintenance."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "which automation and quality metrics matter"
+  },
+  {
+    "r": "qa",
+    "q": "How would you test and prevent a duplicate payment on double-click?",
+    "correct": "Test rapid and repeated requests, verify idempotency keys and UI disabling, then confirm only one durable transaction exists.",
+    "e": "Prevention needs defense in depth: client feedback, server-side idempotency, and reconciliation evidence.",
+    "wrong": [
+      "Use the number of executed cases as the main measure of confidence in test and prevent a duplicate payment on double-click, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Delay clarification of ambiguous requirements in test and prevent a duplicate payment on double-click until after execution; guessing expected behavior keeps testing independent.",
+      "Design test and prevent a duplicate payment on double-click around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test and prevent a duplicate payment on double-click"
+  },
+  {
+    "r": "qa",
+    "q": "A critical test fails once in every 100 runs. How do you find root cause?",
+    "correct": "Correlate all attempts with traces, logs, timing, data, infrastructure, and code versions until a pattern emerges.",
+    "e": "Intermittence is a signal; preserve artifacts and form hypotheses instead of masking it with retries.",
+    "wrong": [
+      "Use the number of executed cases as the main measure of confidence in a critical test fails once in every 100 runs. How do you find root cause, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Consider a single successful execution sufficient evidence for a critical test fails once in every 100 runs. How do you find root cause, without preserving environment, data, or build context.",
+      "Delay clarification of ambiguous requirements in a critical test fails once in every 100 runs. How do you find root cause until after execution; guessing expected behavior keeps testing independent."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "a critical test fails once in every 100 runs. How do you find root cause"
+  },
+  {
+    "r": "qa",
+    "q": "Database, API, and UI show three different values. Where do you start?",
+    "correct": "Establish the source of truth, trace timestamps and transformations across each boundary, and inspect caching or eventual consistency.",
+    "e": "Layer disagreement usually reveals a mapping, freshness, contract, or ownership problem.",
+    "wrong": [
+      "For database, API, and UI show three different values. Where do you start, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Consider a single successful execution sufficient evidence for database, API, and UI show three different values. Where do you start, without preserving environment, data, or build context.",
+      "Treat database, API, and UI show three different values. Where do you start as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value."
+    ],
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "API Testing",
+      "SQL"
+    ],
+    "topic": "database, API, and UI show three different values. Where do you start"
+  },
+  {
+    "r": "ai",
+    "q": "What reduces invalid tool calls from an LLM?",
+    "correct": "Validate parameters against a structured schema before executing the tool.",
+    "e": "JSON Schema or Pydantic makes model output a verifiable interface with enforceable limits.",
+    "wrong": [
+      "Give what reduces invalid tool calls from an LLM access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Treat tool results in what reduces invalid tool calls from an LLM as trusted instructions because they came from an approved integration rather than from the user.",
+      "Expose broad, generic tools for what reduces invalid tool calls from an LLM with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
+    ],
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Python",
+      "API Testing"
+    ],
+    "topic": "what reduces invalid tool calls from an LLM"
+  },
+  {
+    "r": "ai",
+    "q": "What role does MCP play in an agentic system?",
+    "correct": "It standardizes how clients discover and use server-provided tools, resources, and context.",
+    "e": "MCP creates explicit, discoverable integration boundaries between an AI client and external capabilities.",
+    "wrong": [
+      "Treat tool results in what role does MCP play in an agentic system as trusted instructions because they came from an approved integration rather than from the user.",
+      "For what role does MCP play in an agentic system, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Give what role does MCP play in an agentic system access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
+    ],
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)",
+      "AI Agents"
+    ],
+    "topic": "what role does MCP play in an agentic system"
+  },
+  {
+    "r": "ai",
+    "q": "When does RAG add value?",
+    "correct": "When relevant, current, domain-specific sources must ground an LLM response.",
+    "e": "RAG retrieves evidence at query time without requiring model retraining.",
+    "wrong": [
+      "Append updated documents in when does RAG add value without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
+      "Allow retrieved documents in when does RAG add value to redefine system or tool policy because they were selected by the retriever.",
+      "Treat embedding similarity in when does RAG add value as an authorization mechanism, so metadata filters and tenant boundaries are unnecessary."
+    ],
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "when does RAG add value"
+  },
+  {
+    "r": "ai",
+    "q": "How would you check whether an LLM-generated automated test means the same thing as its original manual test case?",
+    "correct": "Create a semantic-equivalence hypothesis: have an independent model or reviewer reconstruct the manual case from the generated test, compare goals, preconditions, actions, assertions, and risks, then measure agreement on a sampled set.",
+    "e": "There is no universal metric for semantic equivalence. A strong answer states an assumption, explains why reconstruction may expose meaning drift, and defines how to validate or reject it with human-reviewed samples.",
+    "wrong": [
+      "For check whether an LLM-generated automated test means the same thing as its original…, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Treat a successful workflow execution in check whether an LLM-generated automated test means the same thing as its original… as proof that partial writes, duplicate events, retries, and resume behavior are correct.",
+      "Share the same credentials, data, and state between test and production for check whether an LLM-generated automated test means the same thing as its original… so configuration remains simple."
+    ],
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "check whether an LLM-generated automated test means the same thing as its original…"
+  },
+  {
+    "r": "ai",
+    "q": "What context should be given to an LLM that generates a Gherkin test?",
+    "correct": "Provide the user story, acceptance criteria, domain glossary, actors, business rules, relevant UI or API behavior, step-definition catalog, data constraints, and an explicit output schema.",
+    "e": "Gherkin generation needs both the behavior contract and the available implementation vocabulary. That context constrains invention, reduces duplicate steps, and makes scenarios executable and reviewable.",
+    "wrong": [
+      "For LLM-generated Gherkin tests, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once.",
+      "For LLM-generated Gherkin tests, give the model only a persona and let it infer the business rules, evidence sources, and output format from context.",
+      "For LLM-generated Gherkin tests, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself."
+    ],
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "LLM-generated Gherkin tests"
+  },
+  {
+    "r": "ai",
+    "q": "How would you design an AI test-generation pipeline with about 1,000 existing step definitions, stale automated tests, and a short deadline?",
+    "correct": "Start with a scoped hypothesis: classify reusable steps, prioritize high-risk flows, generate against an approved subset, validate compilation and execution in stages, quarantine stale tests, and review ambiguous mappings.",
+    "e": "The constraint calls for triage rather than wholesale regeneration. Track step reuse, invalid output, execution reliability, review effort, and defect value; then adjust retrieval, prompts, or scope from evidence.",
+    "wrong": [
+      "For design an AI test-generation pipeline with about 1,000 existing step definitions,…, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "For design an AI test-generation pipeline with about 1,000 existing step definitions,…, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "For design an AI test-generation pipeline with about 1,000 existing step definitions,…, give the model only a persona and let it infer the business rules, evidence sources, and output format from context."
+    ],
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "CI/CD",
+      "Retrieval-Augmented Generation (RAG)",
+      "AI Agents"
+    ],
+    "topic": "design an AI test-generation pipeline with about 1,000 existing step definitions,…"
+  },
+  {
+    "r": "ai",
+    "q": "How would you measure and improve an LLM-assisted test-generation pipeline without guessing?",
+    "correct": "Define measurable hypotheses and a labeled evaluation set, then compare semantic agreement, step reuse, compile rate, execution reliability, reviewer acceptance, cost, and latency across controlled changes.",
+    "e": "A pipeline is a product: establish a baseline, change one variable, compare against a control, inspect failure categories, and retain only improvements that hold on representative data.",
+    "wrong": [
+      "For measure and improve an LLM-assisted test-generation pipeline without guessing, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "For measure and improve an LLM-assisted test-generation pipeline without guessing, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "For measure and improve an LLM-assisted test-generation pipeline without guessing, rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively."
+    ],
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "CI/CD"
+    ],
+    "topic": "measure and improve an LLM-assisted test-generation pipeline without guessing"
+  },
+  {
+    "r": "ops",
+    "q": "What makes an alert useful rather than noisy?",
+    "correct": "It is actionable, tied to impact, and points to a defined response.",
+    "e": "Useful alerts reduce time to mitigation; noisy alerts create fatigue and hide real incidents.",
+    "wrong": [
+      "Sample telemetry in what makes an alert useful rather than noisy without checking whether rare errors and slow requests remain observable.",
+      "For what makes an alert useful rather than noisy, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Log full secrets and payloads during what makes an alert useful rather than noisy because debugging value outweighs redaction when access is restricted."
+    ],
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "what makes an alert useful rather than noisy"
+  },
+  {
+    "r": "ops",
+    "q": "Why is MQTT common in IoT and Home Assistant?",
+    "correct": "It is a lightweight publish-subscribe protocol suited to devices and variable networks.",
+    "e": "Decoupled topics let sensors and automation consumers exchange state efficiently.",
+    "wrong": [
+      "Assume a successful command in mQTT common in IoT and Home Assistant proves the physical actuator changed state; independent feedback is unnecessary.",
+      "Share unrestricted broker or device credentials across mQTT common in IoT and Home Assistant; per-topic or per-device access control complicates provisioning.",
+      "Ignore reconnects, duplicate messages, retained state, and clock drift in mQTT common in IoT and Home Assistant; reliable networks make those edge cases negligible."
+    ],
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "mQTT common in IoT and Home Assistant"
+  },
+  {
+    "r": "ops",
+    "q": "What is the first goal of root-cause analysis after an incident?",
+    "correct": "Understand the system and prevent recurrence using evidence, without blaming individuals.",
+    "e": "A good RCA produces verifiable improvements such as safeguards, automation, or clearer runbooks.",
+    "wrong": [
+      "Automate destructive recovery steps in the first goal of root-cause analysis after an incident without approval or verification because speed is the primary objective.",
+      "Store all recovery copies for the first goal of root-cause analysis after an incident in the same failure domain as the primary system to simplify access.",
+      "Define RTO and RPO for the first goal of root-cause analysis after an incident after a disaster occurs, when actual business tolerance is easier to measure."
+    ],
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "the first goal of root-cause analysis after an incident"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the difference between a Python list and a tuple?",
+    "correct": "Lists are mutable; tuples are immutable sequences.",
+    "e": "Choose tuples for fixed data and lists when in-place changes are required.",
+    "wrong": [
+      "For a Python list and a tuple, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For a Python list and a tuple, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For a Python list and a tuple, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python"
+    ],
+    "topic": "a Python list and a tuple"
+  },
+  {
+    "r": "engineering",
+    "q": "How do Python generators help with large data sets?",
+    "correct": "They yield values lazily instead of materializing the entire result.",
+    "e": "Generators reduce memory usage and compose well in streaming pipelines.",
+    "wrong": [
+      "For how do Python generators help with large data sets, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For how do Python generators help with large data sets, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For how do Python generators help with large data sets, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python",
+      "CI/CD",
+      "Docker"
+    ],
+    "topic": "how do Python generators help with large data sets"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a Python virtual environment for?",
+    "correct": "It isolates project dependencies from the system interpreter and other projects.",
+    "e": "Dependency isolation makes builds reproducible and prevents version conflicts.",
+    "wrong": [
+      "For a Python virtual environment, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For a Python virtual environment, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For a Python virtual environment, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python"
+    ],
+    "topic": "a Python virtual environment"
+  },
+  {
+    "r": "engineering",
+    "q": "What does a Python decorator do?",
+    "correct": "It wraps or transforms a callable while preserving a reusable definition.",
+    "e": "Decorators are useful for cross-cutting behavior such as logging, authorization, or retries.",
+    "wrong": [
+      "For what does a Python decorator do, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For what does a Python decorator do, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For what does a Python decorator do, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python",
+      "Security Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "what does a Python decorator do"
+  },
+  {
+    "r": "engineering",
+    "q": "How should Python exceptions be handled in production code?",
+    "correct": "Catch specific exceptions, add context, recover when possible, and never silently swallow errors.",
+    "e": "Specific handling preserves debuggability and prevents accidental masking of defects.",
+    "wrong": [
+      "For how should Python exceptions be handled in production code, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For how should Python exceptions be handled in production code, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For how should Python exceptions be handled in production code, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python",
+      "Java"
+    ],
+    "topic": "how should Python exceptions be handled in production code"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the purpose of a Python context manager?",
+    "correct": "It guarantees setup and cleanup around a block, commonly through the with statement.",
+    "e": "Context managers safely release files, locks, network connections, and similar resources.",
+    "wrong": [
+      "For the purpose of a Python context manager, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For the purpose of a Python context manager, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For the purpose of a Python context manager, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python"
+    ],
+    "topic": "the purpose of a Python context manager"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the Python GIL relevant to?",
+    "correct": "It limits concurrent execution of Python bytecode in the standard CPython interpreter.",
+    "e": "It affects CPU-bound threading; processes or native extensions may be better for parallel CPU work.",
+    "wrong": [
+      "For the Python GIL, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For the Python GIL, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For the Python GIL, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python"
+    ],
+    "topic": "the Python GIL"
+  },
+  {
+    "r": "engineering",
+    "q": "How would you validate API data with Pydantic in Python?",
+    "correct": "Define typed models and validate incoming data against them at the application boundary.",
+    "e": "Typed validation turns untrusted payloads into predictable objects with useful error messages.",
+    "wrong": [
+      "For validate API data with Pydantic in Python, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For validate API data with Pydantic in Python, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For validate API data with Pydantic in Python, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python",
+      "API Testing"
+    ],
+    "topic": "validate API data with Pydantic in Python"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the difference between shallow and deep copy in Python?",
+    "correct": "A shallow copy shares nested objects; a deep copy recursively copies them.",
+    "e": "The distinction matters whenever nested mutable data is modified after copying.",
+    "wrong": [
+      "For shallow and deep copy in Python, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For shallow and deep copy in Python, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For shallow and deep copy in Python, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python"
+    ],
+    "topic": "shallow and deep copy in Python"
+  },
+  {
+    "r": "engineering",
+    "q": "How do pytest fixtures improve tests?",
+    "correct": "They provide reusable, scoped setup and cleanup dependencies for tests.",
+    "e": "Fixtures make test data and resources explicit while reducing duplication.",
+    "wrong": [
+      "Postpone observability and failure handling in how do pytest fixtures improve tests until the first production incident provides real requirements.",
+      "Optimize how do pytest fixtures improve tests for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "Keep business logic coupled directly to transport, storage, and UI details in how do pytest fixtures improve tests so fewer interfaces need maintenance."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Python"
+    ],
+    "topic": "how do pytest fixtures improve tests"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the difference between var, let, and const in JavaScript?",
+    "correct": "var is function-scoped; let and const are block-scoped, with const preventing reassignment.",
+    "e": "Prefer const by default and let only when reassignment is intentional.",
+    "wrong": [
+      "For var, let, and const in JavaScript, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For var, let, and const in JavaScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For var, let, and const in JavaScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript"
+    ],
+    "topic": "var, let, and const in JavaScript"
+  },
+  {
+    "r": "engineering",
+    "q": "What does the JavaScript event loop coordinate?",
+    "correct": "It schedules synchronous work, queued tasks, and microtasks around the call stack.",
+    "e": "Understanding the event loop explains timing behavior for promises, timers, and UI responsiveness.",
+    "wrong": [
+      "For the JavaScript event loop, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For the JavaScript event loop, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For the JavaScript event loop, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript",
+      "Java"
+    ],
+    "topic": "the JavaScript event loop"
+  },
+  {
+    "r": "engineering",
+    "q": "Promise versus async and await in JavaScript?",
+    "correct": "async and await provide syntax over promises that makes asynchronous control flow easier to read.",
+    "e": "Both use promises; await should still be paired with deliberate error handling and concurrency choices.",
+    "wrong": [
+      "For promise versus async/await in JavaScript, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For promise versus async/await in JavaScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For promise versus async/await in JavaScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript"
+    ],
+    "topic": "promise versus async/await in JavaScript"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a JavaScript closure?",
+    "correct": "A function paired with access to variables from its lexical scope after the outer function returns.",
+    "e": "Closures power encapsulation, callbacks, factories, and can also retain memory unexpectedly.",
+    "wrong": [
+      "For a JavaScript closure, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For a JavaScript closure, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For a JavaScript closure, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript"
+    ],
+    "topic": "a JavaScript closure"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the difference between == and === in JavaScript?",
+    "correct": "== coerces types; === compares both value and type without coercion.",
+    "e": "Use strict equality to avoid surprising conversions in application and test code.",
+    "wrong": [
+      "For == and === in JavaScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For == and === in JavaScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For == and === in JavaScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript"
+    ],
+    "topic": "== and === in JavaScript"
+  },
+  {
+    "r": "engineering",
+    "q": "How should JavaScript errors be handled in async code?",
+    "correct": "Use try and catch around awaited operations or return a promise chain with catch.",
+    "e": "Errors must be surfaced with context so failures do not become silent rejected promises.",
+    "wrong": [
+      "For how should JavaScript errors be handled in async code, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For how should JavaScript errors be handled in async code, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For how should JavaScript errors be handled in async code, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript"
+    ],
+    "topic": "how should JavaScript errors be handled in async code"
+  },
+  {
+    "r": "engineering",
+    "q": "What are JavaScript modules used for?",
+    "correct": "They define explicit imports and exports to organize code and control dependencies.",
+    "e": "Modules improve reuse, testability, bundling, and dependency boundaries.",
+    "wrong": [
+      "For what are JavaScript modules used for, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For what are JavaScript modules used for, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For what are JavaScript modules used for, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript"
+    ],
+    "topic": "what are JavaScript modules used for"
+  },
+  {
+    "r": "engineering",
+    "q": "What does Array.map return in JavaScript?",
+    "correct": "A new array produced by applying a transformation to every input element.",
+    "e": "Use map for transformations, not for side effects such as logging or mutation.",
+    "wrong": [
+      "For Array.map, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For Array.map, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For Array.map, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript",
+      "Reliability Engineering"
+    ],
+    "topic": "Array.map"
+  },
+  {
+    "r": "engineering",
+    "q": "How can JavaScript code avoid shared mutable state?",
+    "correct": "Favor immutable updates, clear ownership, and narrow function inputs and outputs.",
+    "e": "Reducing shared mutation makes asynchronous and test behavior more predictable.",
+    "wrong": [
+      "For how can JavaScript code avoid shared mutable state, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For how can JavaScript code avoid shared mutable state, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For how can JavaScript code avoid shared mutable state, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript"
+    ],
+    "topic": "how can JavaScript code avoid shared mutable state"
+  },
+  {
+    "r": "engineering",
+    "q": "What is event delegation in JavaScript?",
+    "correct": "A parent listener handles events from matching child elements through event bubbling.",
+    "e": "It reduces listeners and supports dynamic content when used with careful target matching.",
+    "wrong": [
+      "For event delegation in JavaScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For event delegation in JavaScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For event delegation in JavaScript, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JavaScript"
+    ],
+    "topic": "event delegation in JavaScript"
+  },
+  {
+    "r": "engineering",
+    "q": "Why use TypeScript instead of plain JavaScript for a large codebase?",
+    "correct": "It adds static types, safer refactoring, and clearer contracts while compiling to JavaScript.",
+    "e": "TypeScript catches many integration mistakes before runtime without replacing runtime validation.",
+    "wrong": [
+      "For why use TypeScript instead of plain JavaScript for a large codebase, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For why use TypeScript instead of plain JavaScript for a large codebase, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For why use TypeScript instead of plain JavaScript for a large codebase, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript",
+      "JavaScript"
+    ],
+    "topic": "why use TypeScript instead of plain JavaScript for a large codebase"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the difference between an interface and a type alias in TypeScript?",
+    "correct": "Both describe shapes, but interfaces support declaration merging while type aliases are more flexible for unions and compositions.",
+    "e": "Choose the construct that communicates intent; both can model most object contracts.",
+    "wrong": [
+      "For an interface and a type alias in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For an interface and a type alias in TypeScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For an interface and a type alias in TypeScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript"
+    ],
+    "topic": "an interface and a type alias in TypeScript"
+  },
+  {
+    "r": "engineering",
+    "q": "What does unknown provide over any in TypeScript?",
+    "correct": "unknown requires narrowing before a value can be used, while any disables type checking.",
+    "e": "Use unknown for untrusted input so validation and guards remain explicit.",
+    "wrong": [
+      "For what does unknown provide over any in TypeScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For what does unknown provide over any in TypeScript, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For what does unknown provide over any in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript"
+    ],
+    "topic": "what does unknown provide over any in TypeScript"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a TypeScript generic for?",
+    "correct": "It lets functions, classes, and types preserve relationships between input and output types.",
+    "e": "Generics provide reusable abstractions without discarding compile-time type information.",
+    "wrong": [
+      "For a TypeScript generic, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For a TypeScript generic, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For a TypeScript generic, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript"
+    ],
+    "topic": "a TypeScript generic"
+  },
+  {
+    "r": "engineering",
+    "q": "How do discriminated unions improve TypeScript code?",
+    "correct": "A shared literal field lets the compiler safely narrow each variant in conditional logic.",
+    "e": "They make state machines and API result handling exhaustive and readable.",
+    "wrong": [
+      "For how do discriminated unions improve TypeScript code, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For how do discriminated unions improve TypeScript code, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For how do discriminated unions improve TypeScript code, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript",
+      "API Testing"
+    ],
+    "topic": "how do discriminated unions improve TypeScript code"
+  },
+  {
+    "r": "engineering",
+    "q": "What is type narrowing in TypeScript?",
+    "correct": "It refines a broad type after checks such as typeof, in, equality, or custom guards.",
+    "e": "Narrowing lets code handle unions safely without unsafe assertions.",
+    "wrong": [
+      "For type narrowing in TypeScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For type narrowing in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For type narrowing in TypeScript, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript"
+    ],
+    "topic": "type narrowing in TypeScript"
+  },
+  {
+    "r": "engineering",
+    "q": "Why avoid excessive TypeScript type assertions?",
+    "correct": "Assertions can silence the compiler without proving the runtime value is valid.",
+    "e": "Prefer parsing, validation, and type guards at boundaries instead of forced casts.",
+    "wrong": [
+      "For why avoid excessive TypeScript type assertions, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For why avoid excessive TypeScript type assertions, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For why avoid excessive TypeScript type assertions, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript"
+    ],
+    "topic": "why avoid excessive TypeScript type assertions"
+  },
+  {
+    "r": "engineering",
+    "q": "What does readonly communicate in TypeScript?",
+    "correct": "It prevents mutation through that reference at compile time.",
+    "e": "Readonly documents ownership expectations and reduces accidental changes, though it is not runtime immutability.",
+    "wrong": [
+      "For what does readonly communicate in TypeScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For what does readonly communicate in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For what does readonly communicate in TypeScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript"
+    ],
+    "topic": "what does readonly communicate in TypeScript"
+  },
+  {
+    "r": "engineering",
+    "q": "How should optional API fields be modeled in TypeScript?",
+    "correct": "Use optional properties or explicit union types, then handle the absent case before use.",
+    "e": "Accurate optionality prevents undefined errors and mirrors the actual contract.",
+    "wrong": [
+      "For how should optional API fields be modeled in TypeScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For how should optional API fields be modeled in TypeScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For how should optional API fields be modeled in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript",
+      "API Testing"
+    ],
+    "topic": "how should optional API fields be modeled in TypeScript"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the benefit of strict mode in TypeScript?",
+    "correct": "It enables stronger checks such as strict null handling and safer inference.",
+    "e": "Strict settings expose unsafe assumptions early and improve refactoring confidence.",
+    "wrong": [
+      "For the benefit of strict mode in TypeScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For the benefit of strict mode in TypeScript, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For the benefit of strict mode in TypeScript, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "tags": [
+      "Software Engineering",
+      "TypeScript"
+    ],
+    "topic": "the benefit of strict mode in TypeScript"
+  },
+  {
+    "r": "playwright",
+    "q": "How should a POM class layout and helper utilities be structured?",
+    "correct": "Keep page actions and locators focused, inject dependencies through fixtures, and share only stable cross-cutting helpers.",
+    "e": "A maintainable POM separates UI knowledge from business assertions and avoids oversized base classes.",
+    "wrong": [
+      "Treat browser automation timing in how should a POM class layout and helper utilities be structured as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "When how should a POM class layout and helper utilities be structured becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Use the first matching element in how should a POM class layout and helper utilities be structured whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "how should a POM class layout and helper utilities be structured"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you check a palindrome number such as 121 or 123?",
+    "correct": "Reverse the digits and compare with the original, while defining behavior for negatives and overflow.",
+    "e": "A good answer preserves the original value and explains the trade-off of numeric versus string reversal.",
+    "wrong": [
+      "For check a palindrome number such as 121 or 123, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For check a palindrome number such as 121 or 123, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For check a palindrome number such as 121 or 123, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "check a palindrome number such as 121 or 123"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you fix StaleElementReferenceException in Selenium?",
+    "correct": "Wait for the update, locate the element again with a stable locator, and act after the expected condition.",
+    "e": "A stale reference points to a replaced DOM node; re-location is safer than masking the issue with a page refresh.",
+    "wrong": [
+      "Use the first matching element in fix StaleElementReferenceException in Selenium whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Assume element references remain valid after dynamic DOM updates in fix StaleElementReferenceException in Selenium; re-locating elements only adds unnecessary work.",
+      "For fix StaleElementReferenceException in Selenium, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Selenium",
+      "Java"
+    ],
+    "topic": "fix StaleElementReferenceException in Selenium"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you test a dynamic table with sticky headers in Selenium?",
+    "correct": "Scroll the actual container, validate headers separately, and re-locate virtualized rows after scrolling.",
+    "e": "Sticky headers and virtualization require tests to distinguish viewport behavior from data-row behavior.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in test a dynamic table with sticky headers in Selenium; re-locating elements only adds unnecessary work.",
+      "Treat browser automation timing in test a dynamic table with sticky headers in Selenium as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Prefer absolute XPath or deep CSS structure in test a dynamic table with sticky headers in Selenium; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Selenium"
+    ],
+    "topic": "test a dynamic table with sticky headers in Selenium"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you switch nested iframes and return to the parent in WebDriver?",
+    "correct": "Wait for and enter frames one level at a time, then use parentFrame or defaultContent deliberately.",
+    "e": "Frame context is stateful, so explicit entry and exit prevent selectors from targeting the wrong document.",
+    "wrong": [
+      "Use the first matching element in switch nested iframes and return to the parent in WebDriver whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "When switch nested iframes and return to the parent in WebDriver becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Prefer absolute XPath or deep CSS structure in switch nested iframes and return to the parent in WebDriver; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Selenium"
+    ],
+    "topic": "switch nested iframes and return to the parent in WebDriver"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you pass a dynamic Bearer token in REST Assured?",
+    "correct": "Acquire it during setup, keep it scoped to the test, and attach it in the Authorization Bearer header.",
+    "e": "Never hardcode or log tokens; parallel tests also require isolated session state.",
+    "wrong": [
+      "Assume retries are safe for pass a dynamic Bearer token in REST Assured even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "Treat the client-visible response as the entire contract for pass a dynamic Bearer token in REST Assured; downstream state and emitted events do not need verification.",
+      "Validate only the happy-path endpoint in pass a dynamic Bearer token in REST Assured; authorization, malformed input, rate limits, and dependency failures belong to separate systems."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Rest Assured",
+      "API Testing",
+      "Security Testing"
+    ],
+    "topic": "pass a dynamic Bearer token in REST Assured"
+  },
+  {
+    "r": "playwright",
+    "q": "How does a Playwright browser context differ from a Selenium session?",
+    "correct": "A Playwright context is a lightweight isolated profile inside a browser; Selenium typically isolates through separate WebDriver sessions.",
+    "e": "Contexts make browser-state isolation fast, while both approaches still need independent test data.",
+    "wrong": [
+      "Treat a stored authentication state in a Playwright browser context as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "Persist every piece of browser state for a Playwright browser context between runs, including stale sessions and temporary data, to maximize realism.",
+      "Make a Playwright browser context depend on the previous test's output; execution order is a convenient way to avoid repeated setup."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Selenium"
+    ],
+    "topic": "a Playwright browser context"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you make a JDBC connection and assert a row count?",
+    "correct": "Use a configured connection or DataSource, parameterized SQL, try-with-resources, and controlled test data.",
+    "e": "Database checks must close resources and never embed production credentials or destructive queries.",
+    "wrong": [
+      "Run destructive queries for make a JDBC connection and assert a row count in shared environments as long as the transaction can theoretically be rolled back.",
+      "Assume indexes always improve make a JDBC connection and assert a row count; write cost, selectivity, query plans, and storage overhead do not need measurement.",
+      "Use string-built SQL for make a JDBC connection and assert a row count whenever values are dynamic; parameterization only affects style, not correctness or security."
+    ],
+    "tags": [
+      "Software Engineering",
+      "JDBC",
+      "SQL"
+    ],
+    "topic": "make a JDBC connection and assert a row count"
+  },
+  {
+    "r": "engineering",
+    "q": "What SQL finds employees who joined in the last 30 days?",
+    "correct": "Filter joined_at against the current date minus an interval, using the correct database dialect and timezone.",
+    "e": "For PostgreSQL, for example, compare joined_at to CURRENT_DATE minus INTERVAL 30 DAY.",
+    "wrong": [
+      "For what SQL finds employees who joined in the last 30 days, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
+      "Ignore database dialect and timezone semantics in what SQL finds employees who joined in the last 30 days; date arithmetic and isolation behavior are portable enough to assume.",
+      "Run destructive queries for what SQL finds employees who joined in the last 30 days in shared environments as long as the transaction can theoretically be rolled back."
+    ],
+    "tags": [
+      "Software Engineering",
+      "SQL"
+    ],
+    "topic": "what SQL finds employees who joined in the last 30 days"
+  },
+  {
+    "r": "engineering",
+    "q": "What are the main Jenkins build pipeline steps?",
+    "correct": "Checkout, dependencies, build, layered tests, evidence publication, quality gate, artifact packaging, and controlled deployment.",
+    "e": "Every stage should produce actionable logs or reports and fail early when a gate is not met.",
+    "wrong": [
+      "Persist test state across runs in what are the main Jenkins build pipeline steps by default; reusing volumes makes integration tests more realistic than clean startup.",
+      "Give every service in what are the main Jenkins build pipeline steps broad network and filesystem access so configuration problems cannot block the workflow.",
+      "Use arbitrary sleeps for dependency startup in what are the main Jenkins build pipeline steps; readiness checks and retryable connection logic add unnecessary complexity."
+    ],
+    "tags": [
+      "Software Engineering",
+      "CI/CD"
+    ],
+    "topic": "what are the main Jenkins build pipeline steps"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you reverse [1,2,3,4] in place?",
+    "correct": "Swap values at two pointers moving from the ends toward the center.",
+    "e": "This is O(n) time and O(1) extra space; state whether input mutation is allowed.",
+    "wrong": [
+      "Keep business logic coupled directly to transport, storage, and UI details in reverse [1,2,3,4] in place so fewer interfaces need maintenance.",
+      "For reverse [1,2,3,4] in place, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Optimize reverse [1,2,3,4] in place for the normal path and assume rare dependency failures, retries, or partial state can be handled manually."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "reverse [1,2,3,4] in place"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you switch multi-tabs with driver.getWindowHandles in Selenium?",
+    "correct": "Capture the original handle, wait for the new one, identify it by expected URL or title, then return deliberately.",
+    "e": "Handles are unordered, so a tab should be identified by behavior rather than position.",
+    "wrong": [
+      "Treat browser automation timing in switch multi-tabs with driver.getWindowHandles in Selenium as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Prefer absolute XPath or deep CSS structure in switch multi-tabs with driver.getWindowHandles in Selenium; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "For switch multi-tabs with driver.getWindowHandles in Selenium, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Selenium"
+    ],
+    "topic": "switch multi-tabs with driver.getWindowHandles in Selenium"
+  },
+  {
+    "r": "playwright",
+    "q": "How does ThreadLocal support parallel execution?",
+    "correct": "It gives each thread its own WebDriver, waits, and mutable state, then removes them during teardown.",
+    "e": "It prevents browser-state sharing but does not solve shared accounts or shared test data.",
+    "wrong": [
+      "For ThreadLocal, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Skip cleanup in ThreadLocal; independent tests should adapt to whatever state earlier tests leave behind.",
+      "Make ThreadLocal depend on the previous test's output; execution order is a convenient way to avoid repeated setup."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "ThreadLocal"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you capture screenshots automatically on TestNG failure?",
+    "correct": "Use an ITestListener or hook to capture the current driver before teardown and attach a uniquely named file to the report.",
+    "e": "Failure evidence needs test name, worker, timestamp, and build context to be useful.",
+    "wrong": [
+      "For capture screenshots automatically on TestNG failure, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables.",
+      "Change configuration files dynamically inside the pipeline for capture screenshots automatically on TestNG failure instead of mapping stable parameters to commands.",
+      "Keep reports for capture screenshots automatically on TestNG failure to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "TestNG"
+    ],
+    "topic": "capture screenshots automatically on TestNG failure"
+  },
+  {
+    "r": "playwright",
+    "q": "How do you mock a 403 response in a Playwright route?",
+    "correct": "Register a route and fulfill it with status 403, representative body, and needed headers before the UI action.",
+    "e": "Controlled authorization failures test safe UI handling without changing real permissions.",
+    "wrong": [
+      "Use the first matching element in mock a 403 response in a Playwright route whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "When mock a 403 response in a Playwright route becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Prefer absolute XPath or deep CSS structure in mock a 403 response in a Playwright route; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Security Testing"
+    ],
+    "topic": "mock a 403 response in a Playwright route"
+  },
+  {
+    "r": "engineering",
+    "q": "How should test-data configuration differ in QA, Staging, and Production?",
+    "correct": "Use versioned non-secret defaults plus environment variables or secret stores, synthetic QA data, controlled Staging data, and governed read-only Production checks.",
+    "e": "Configuration must make destructive tests impossible in Production by default.",
+    "wrong": [
+      "Treat one successful local execution as proof that how should test-data configuration differ in QA, Staging, and Production satisfies reliability, security, scale, and recovery requirements.",
+      "Optimize how should test-data configuration differ in QA, Staging, and Production for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "Keep business logic coupled directly to transport, storage, and UI details in how should test-data configuration differ in QA, Staging, and Production so fewer interfaces need maintenance."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "how should test-data configuration differ in QA, Staging, and Production"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you debug a local pass but CI-node failure?",
+    "correct": "Compare versions, configuration, data, parallelism, resources, network, timezone, and artifacts, then reproduce the smallest difference.",
+    "e": "Do not respond with blind waits or retries; CI failures signal an environment or isolation difference.",
+    "wrong": [
+      "For debug a local pass but CI-node failure, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Bake environment-specific secrets and credentials into the artifact used by debug a local pass but CI-node failure so every deployment receives identical configuration.",
+      "Persist test state across runs in debug a local pass but CI-node failure by default; reusing volumes makes integration tests more realistic than clean startup."
+    ],
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "debug a local pass but CI-node failure"
+  },
+  {
+    "r": "engineering",
+    "q": "How do you resolve a Git rebase merge conflict?",
+    "correct": "Understand both changes, edit the intended result, verify it, stage it, and continue or abort the rebase.",
+    "e": "Rebase rewrites history, so do not use it carelessly on shared public branches.",
+    "wrong": [
+      "For resolve a Git rebase merge conflict, resolve conflicts by choosing one side wholesale; understanding both changes is unnecessary if the branch compiles.",
+      "Stage every changed file during resolve a Git rebase merge conflict and rely on the commit message to explain unrelated modifications.",
+      "Push first and inspect the diff afterward in resolve a Git rebase merge conflict; remote history is the best place to notice accidental files or secrets."
+    ],
+    "tags": [
+      "Software Engineering",
+      "Git"
+    ],
+    "topic": "resolve a Git rebase merge conflict"
+  },
+  {
+    "r": "qa",
+    "q": "Which statement best describes requirements analysis?",
+    "correct": "Start by turning requirements into testable behavior: identify actors, preconditions, business rules, dependencies, ambiguities, and measurable acceptance criteria.",
+    "wrong": [
+      "Delay clarification of ambiguous requirements in requirements analysis until after execution; guessing expected behavior keeps testing independent.",
+      "Treat requirements analysis as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Treat every scenario in requirements analysis as equally important; prioritization by impact or likelihood would bias the test effort."
+    ],
+    "e": "Start by turning requirements into testable behavior: identify actors, preconditions, business rules, dependencies, ambiguities, and measurable acceptance criteria. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "requirements analysis"
+  },
+  {
+    "r": "qa",
+    "q": "What is the core idea behind risk-based testing?",
+    "correct": "Risk-based testing prioritizes coverage using impact and likelihood, so the most damaging or probable failures receive attention before low-value permutations.",
+    "wrong": [
+      "Delay clarification of ambiguous requirements in risk-based testing until after execution; guessing expected behavior keeps testing independent.",
+      "Use the number of executed cases as the main measure of confidence in risk-based testing, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "For risk-based testing, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
+    ],
+    "e": "Risk-based testing prioritizes coverage using impact and likelihood, so the most damaging or probable failures receive attention before low-value permutations. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "risk-based testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of acceptance criteria is technically sound?",
+    "correct": "Acceptance criteria define observable conditions that a feature must satisfy; they should describe behavior clearly enough to support shared understanding and verification.",
+    "wrong": [
+      "Treat acceptance criteria as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Use the number of executed cases as the main measure of confidence in acceptance criteria, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Consider a single successful execution sufficient evidence for acceptance criteria, without preserving environment, data, or build context."
+    ],
+    "e": "Acceptance criteria define observable conditions that a feature must satisfy; they should describe behavior clearly enough to support shared understanding and verification. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "acceptance criteria"
+  },
+  {
+    "r": "qa",
+    "q": "What should a practitioner understand first about boundary value analysis?",
+    "correct": "Boundary value analysis concentrates tests at and around limits because defects frequently occur where valid and invalid ranges meet.",
+    "wrong": [
+      "Use the number of executed cases as the main measure of confidence in boundary value analysis, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Treat boundary value analysis as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Consider a single successful execution sufficient evidence for boundary value analysis, without preserving environment, data, or build context."
+    ],
+    "e": "Boundary value analysis concentrates tests at and around limits because defects frequently occur where valid and invalid ranges meet. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "boundary value analysis"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of equivalence partitioning is technically sound?",
+    "correct": "Equivalence partitioning groups inputs expected to behave the same so representative values can cover a class without exhaustively testing every member.",
+    "wrong": [
+      "For equivalence partitioning, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Consider a single successful execution sufficient evidence for equivalence partitioning, without preserving environment, data, or build context.",
+      "Use the number of executed cases as the main measure of confidence in equivalence partitioning, even if several cases exercise the same behavior and important risks remain uncovered."
+    ],
+    "e": "Equivalence partitioning groups inputs expected to behave the same so representative values can cover a class without exhaustively testing every member. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "equivalence partitioning"
+  },
+  {
+    "r": "qa",
+    "q": "What is the core idea behind state transition testing?",
+    "correct": "State-transition testing verifies how behavior changes with current state, including allowed transitions, forbidden transitions, repeated events, and resulting side effects.",
+    "wrong": [
+      "For state transition testing, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Design state transition testing around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
+      "Delay clarification of ambiguous requirements in state transition testing until after execution; guessing expected behavior keeps testing independent."
+    ],
+    "e": "State-transition testing verifies how behavior changes with current state, including allowed transitions, forbidden transitions, repeated events, and resulting side effects. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "state transition testing"
+  },
+  {
+    "r": "qa",
+    "q": "What should a practitioner understand first about decision tables?",
+    "correct": "Decision tables are useful when outcomes depend on combinations of conditions because they expose missing, contradictory, or redundant business-rule combinations.",
+    "wrong": [
+      "For decision tables, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Design decision tables around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
+      "Consider a single successful execution sufficient evidence for decision tables, without preserving environment, data, or build context."
+    ],
+    "e": "Decision tables are useful when outcomes depend on combinations of conditions because they expose missing, contradictory, or redundant business-rule combinations. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "decision tables"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of test estimation is technically sound?",
+    "correct": "Test estimation should reflect scope, risk, environments, data, dependencies, automation work, defect turnaround, and uncertainty rather than just counting test cases.",
+    "wrong": [
+      "Hide untested areas in test estimation so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "Keep test estimation static once written, even when scope, environment, dependencies, or release context changes.",
+      "Treat test estimation as a documentation exercise performed after testing rather than a decision input that should change scope or release actions."
+    ],
+    "e": "Test estimation should reflect scope, risk, environments, data, dependencies, automation work, defect turnaround, and uncertainty rather than just counting test cases. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test estimation"
+  },
+  {
+    "r": "qa",
+    "q": "What is the core idea behind test planning?",
+    "correct": "A test plan defines scope, objectives, approach, resources, environments, data, schedule, entry/exit criteria, responsibilities, risks, and reporting for a test effort.",
+    "wrong": [
+      "Use the same detail and metrics for every audience in test planning, regardless of whether they need diagnostic evidence or a risk decision.",
+      "Treat test planning as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "Assume more test cases always improve test planning; duplicated or low-value checks should count the same as critical coverage."
+    ],
+    "e": "A test plan defines scope, objectives, approach, resources, environments, data, schedule, entry/exit criteria, responsibilities, risks, and reporting for a test effort. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test planning"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of test strategy is technically sound?",
+    "correct": "A test strategy explains how quality risk will be addressed across test levels, techniques, environments, automation, data, non-functional concerns, and release feedback.",
+    "wrong": [
+      "Keep test strategy static once written, even when scope, environment, dependencies, or release context changes.",
+      "Assume more test cases always improve test strategy; duplicated or low-value checks should count the same as critical coverage.",
+      "Use the same detail and metrics for every audience in test strategy, regardless of whether they need diagnostic evidence or a risk decision."
+    ],
+    "e": "A test strategy explains how quality risk will be addressed across test levels, techniques, environments, automation, data, non-functional concerns, and release feedback. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test strategy"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of defect reporting is technically sound?",
+    "correct": "A useful defect report makes the problem reproducible and actionable by capturing expected versus actual behavior, environment, build, data, steps, evidence, and impact.",
+    "wrong": [
+      "For defect reporting, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
+      "Resolve duplicates in defect reporting by discarding the newer report and its evidence, because one issue should have only one source of information.",
+      "Keep defect reporting reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written."
+    ],
+    "e": "A useful defect report makes the problem reproducible and actionable by capturing expected versus actual behavior, environment, build, data, steps, evidence, and impact. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "defect reporting"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of defect triage is technically sound?",
+    "correct": "Defect triage determines whether an issue is a defect, its severity and priority, ownership, release impact, and the next action using evidence and business context.",
+    "wrong": [
+      "For defect triage, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
+      "Prioritize defect triage only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision.",
+      "Keep defect triage reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written."
+    ],
+    "e": "Defect triage determines whether an issue is a defect, its severity and priority, ownership, release impact, and the next action using evidence and business context. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "defect triage"
+  },
+  {
+    "r": "qa",
+    "q": "What should a practitioner understand first about test data management?",
+    "correct": "Test data management creates controlled, representative, isolated, and privacy-safe data that lets tests run repeatably without corrupting shared environments.",
+    "wrong": [
+      "Keep test data management static once written, even when scope, environment, dependencies, or release context changes.",
+      "Use the same detail and metrics for every audience in test data management, regardless of whether they need diagnostic evidence or a risk decision.",
+      "For test data management, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+    ],
+    "e": "Test data management creates controlled, representative, isolated, and privacy-safe data that lets tests run repeatably without corrupting shared environments. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test data management"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of cross-browser testing is technically sound?",
+    "correct": "Cross-browser testing targets meaningful differences in browser engines, versions, rendering, APIs, permissions, and user populations rather than duplicating every test everywhere.",
+    "wrong": [
+      "Treat a green automated check as proof that cross-browser testing is acceptable for every user and operating condition.",
+      "Judge cross-browser testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes.",
+      "For cross-browser testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
+    ],
+    "e": "Cross-browser testing targets meaningful differences in browser engines, versions, rendering, APIs, permissions, and user populations rather than duplicating every test everywhere. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "cross-browser testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which statement best describes mobile testing?",
+    "correct": "Mobile testing must account for viewport size, touch input, orientation, device capabilities, virtual keyboards, network variability, lifecycle interruptions, and platform-specific behavior.",
+    "wrong": [
+      "Use production-like scale or sensitive data immediately for mobile testing without first validating the test design in a controlled environment.",
+      "Treat a green automated check as proof that mobile testing is acceptable for every user and operating condition.",
+      "Run mobile testing only after functional testing is complete, because non-functional risks cannot affect architecture or release planning."
+    ],
+    "e": "Mobile testing must account for viewport size, touch input, orientation, device capabilities, virtual keyboards, network variability, lifecycle interruptions, and platform-specific behavior. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "mobile testing"
+  },
+  {
+    "r": "qa",
+    "q": "What is the core idea behind accessibility testing?",
+    "correct": "Accessibility testing verifies that people can perceive, understand, navigate, and operate the product using keyboard, assistive technologies, appropriate semantics, contrast, and clear content.",
+    "wrong": [
+      "Run accessibility testing only after functional testing is complete, because non-functional risks cannot affect architecture or release planning.",
+      "Treat a green automated check as proof that accessibility testing is acceptable for every user and operating condition.",
+      "Use production-like scale or sensitive data immediately for accessibility testing without first validating the test design in a controlled environment."
+    ],
+    "e": "Accessibility testing verifies that people can perceive, understand, navigate, and operate the product using keyboard, assistive technologies, appropriate semantics, contrast, and clear content. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Accessibility Testing"
+    ],
+    "topic": "accessibility testing"
+  },
+  {
+    "r": "qa",
+    "q": "What should a practitioner understand first about visual regression?",
+    "correct": "Visual regression testing compares rendered output against an approved baseline to detect unintended appearance changes that functional assertions may miss.",
+    "wrong": [
+      "Use production-like scale or sensitive data immediately for visual regression without first validating the test design in a controlled environment.",
+      "Treat a green automated check as proof that visual regression is acceptable for every user and operating condition.",
+      "Judge visual regression from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes."
+    ],
+    "e": "Visual regression testing compares rendered output against an approved baseline to detect unintended appearance changes that functional assertions may miss. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "visual regression"
+  },
+  {
+    "r": "qa",
+    "q": "Which statement best describes performance testing?",
+    "correct": "Performance testing measures behavior under a defined workload and service objective, including latency distributions, throughput, errors, saturation, and resource use.",
+    "wrong": [
+      "For performance testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Use production-like scale or sensitive data immediately for performance testing without first validating the test design in a controlled environment.",
+      "Treat a green automated check as proof that performance testing is acceptable for every user and operating condition."
+    ],
+    "e": "Performance testing measures behavior under a defined workload and service objective, including latency distributions, throughput, errors, saturation, and resource use. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Performance Testing"
+    ],
+    "topic": "performance testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which statement best describes security testing?",
+    "correct": "Security testing verifies confidentiality, integrity, availability, authentication, authorization, input handling, session behavior, secrets, and abuse resistance according to the system's threat model.",
+    "wrong": [
+      "Treat a green automated check as proof that security testing is acceptable for every user and operating condition.",
+      "Judge security testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes.",
+      "Use production-like scale or sensitive data immediately for security testing without first validating the test design in a controlled environment."
+    ],
+    "e": "Security testing verifies confidentiality, integrity, availability, authentication, authorization, input handling, session behavior, secrets, and abuse resistance according to the system's threat model. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Security Testing"
+    ],
+    "topic": "security testing"
+  },
+  {
+    "r": "qa",
+    "q": "What should a practitioner understand first about UAT collaboration?",
+    "correct": "User Acceptance Testing validates business suitability with product owners or representative users and should focus on real workflows and acceptance decisions rather than duplicating the entire QA suite.",
+    "wrong": [
+      "Hide untested areas in UAT collaboration so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "Keep UAT collaboration static once written, even when scope, environment, dependencies, or release context changes.",
+      "For UAT collaboration, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+    ],
+    "e": "User Acceptance Testing validates business suitability with product owners or representative users and should focus on real workflows and acceptance decisions rather than duplicating the entire QA suite. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "UAT collaboration"
+  },
+  {
+    "r": "qa",
+    "q": "What should a practitioner understand first about release readiness?",
+    "correct": "Release readiness is a risk decision based on tested scope, known defects, operational health, rollback capability, dependencies, and residual uncertainty rather than a pass-rate threshold.",
+    "wrong": [
+      "Treat release readiness as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "Assume more test cases always improve release readiness; duplicated or low-value checks should count the same as critical coverage.",
+      "Use the same detail and metrics for every audience in release readiness, regardless of whether they need diagnostic evidence or a risk decision."
+    ],
+    "e": "Release readiness is a risk decision based on tested scope, known defects, operational health, rollback capability, dependencies, and residual uncertainty rather than a pass-rate threshold. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "release readiness"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of test reporting is technically sound?",
+    "correct": "Test reporting should communicate what was tested, on which build/environment, what passed or failed, known defects, residual risk, evidence, and the resulting recommendation.",
+    "wrong": [
+      "Keep test reporting static once written, even when scope, environment, dependencies, or release context changes.",
+      "Hide untested areas in test reporting so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "For test reporting, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+    ],
+    "e": "Test reporting should communicate what was tested, on which build/environment, what passed or failed, known defects, residual risk, evidence, and the resulting recommendation. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test reporting"
+  },
+  {
+    "r": "qa",
+    "q": "What should a practitioner understand first about quality metrics?",
+    "correct": "Quality metrics are useful only when they support decisions; combine outcome, flow, reliability, and coverage signals instead of optimizing a single vanity number.",
+    "wrong": [
+      "Hide untested areas in quality metrics so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "Use the same detail and metrics for every audience in quality metrics, regardless of whether they need diagnostic evidence or a risk decision.",
+      "Treat quality metrics as a documentation exercise performed after testing rather than a decision input that should change scope or release actions."
+    ],
+    "e": "Quality metrics are useful only when they support decisions; combine outcome, flow, reliability, and coverage signals instead of optimizing a single vanity number. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "quality metrics"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of test environment management is technically sound?",
+    "correct": "Test environment management keeps application versions, services, configuration, feature flags, data, credentials, and external dependencies known enough that results are interpretable.",
+    "wrong": [
+      "Use the same detail and metrics for every audience in test environment management, regardless of whether they need diagnostic evidence or a risk decision.",
+      "Keep test environment management static once written, even when scope, environment, dependencies, or release context changes.",
+      "Assume more test cases always improve test environment management; duplicated or low-value checks should count the same as critical coverage."
+    ],
+    "e": "Test environment management keeps application versions, services, configuration, feature flags, data, credentials, and external dependencies known enough that results are interpretable. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test environment management"
+  },
+  {
+    "r": "qa",
+    "q": "Which explanation of data validation is technically sound?",
+    "correct": "Data validation checks structure, types, ranges, uniqueness, referential rules, business invariants, freshness, and reconciliation across system boundaries.",
+    "wrong": [
+      "Delay clarification of ambiguous requirements in data validation until after execution; guessing expected behavior keeps testing independent.",
+      "For data validation, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Treat every scenario in data validation as equally important; prioritization by impact or likelihood would bias the test effort."
+    ],
+    "e": "Data validation checks structure, types, ranges, uniqueness, referential rules, business invariants, freshness, and reconciliation across system boundaries. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "data validation"
+  },
+  {
+    "r": "qa",
+    "q": "Which practice is most appropriate when using requirements analysis?",
+    "correct": "Review requirements with product and engineering before execution, record assumptions and open questions, and trace each important rule to one or more tests.",
+    "wrong": [
+      "Use the number of executed cases as the main measure of confidence in requirements analysis, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "For requirements analysis, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Consider a single successful execution sufficient evidence for requirements analysis, without preserving environment, data, or build context."
+    ],
+    "e": "Review requirements with product and engineering before execution, record assumptions and open questions, and trace each important rule to one or more tests. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Playwright"
+    ],
+    "topic": "requirements analysis"
+  },
+  {
+    "r": "qa",
+    "q": "Which implementation approach is strongest for risk-based testing?",
+    "correct": "Rank features and changes by business criticality, technical complexity, change size, defect history, security/data exposure, and recoverability, then allocate depth accordingly.",
+    "wrong": [
+      "Consider a single successful execution sufficient evidence for risk-based testing, without preserving environment, data, or build context.",
+      "Assume one representative input is enough for risk-based testing even when valid and invalid partitions, boundaries, or states have different rules.",
+      "Delay clarification of ambiguous requirements in risk-based testing until after execution; guessing expected behavior keeps testing independent."
+    ],
+    "e": "Rank features and changes by business criticality, technical complexity, change size, defect history, security/data exposure, and recoverability, then allocate depth accordingly. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Security Testing"
+    ],
+    "topic": "risk-based testing"
+  },
+  {
+    "r": "qa",
+    "q": "What is a maintainable way to work with acceptance criteria?",
+    "correct": "Write criteria around user-visible outcomes, rules, boundaries, and failure behavior rather than implementation details, and clarify ambiguous examples before development is considered complete.",
+    "wrong": [
+      "Use the number of executed cases as the main measure of confidence in acceptance criteria, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Treat acceptance criteria as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Delay clarification of ambiguous requirements in acceptance criteria until after execution; guessing expected behavior keeps testing independent."
+    ],
+    "e": "Write criteria around user-visible outcomes, rules, boundaries, and failure behavior rather than implementation details, and clarify ambiguous examples before development is considered complete. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "acceptance criteria"
+  },
+  {
+    "r": "qa",
+    "q": "Which implementation approach is strongest for boundary value analysis?",
+    "correct": "Identify each ordered input range and test values such as minimum, just above minimum, nominal, just below maximum, maximum, and immediately outside the allowed range when meaningful.",
+    "wrong": [
+      "For boundary value analysis, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Treat boundary value analysis as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Assume one representative input is enough for boundary value analysis even when valid and invalid partitions, boundaries, or states have different rules."
+    ],
+    "e": "Identify each ordered input range and test values such as minimum, just above minimum, nominal, just below maximum, maximum, and immediately outside the allowed range when meaningful. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "boundary value analysis"
+  },
+  {
+    "r": "qa",
+    "q": "What is a maintainable way to work with equivalence partitioning?",
+    "correct": "Define valid and invalid partitions from business rules, select representative members from each, and combine the technique with boundary testing where partitions have numeric or ordered edges.",
+    "wrong": [
+      "Delay clarification of ambiguous requirements in equivalence partitioning until after execution; guessing expected behavior keeps testing independent.",
+      "For equivalence partitioning, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Consider a single successful execution sufficient evidence for equivalence partitioning, without preserving environment, data, or build context."
+    ],
+    "e": "Define valid and invalid partitions from business rules, select representative members from each, and combine the technique with boundary testing where partitions have numeric or ordered edges. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "equivalence partitioning"
+  },
+  {
+    "r": "qa",
+    "q": "Which practice is most appropriate when using state transition testing?",
+    "correct": "Model important states and events explicitly, then test valid paths, invalid jumps, retries, duplicate events, and recovery after partial failure.",
+    "wrong": [
+      "Assume one representative input is enough for state transition testing even when valid and invalid partitions, boundaries, or states have different rules.",
+      "Treat state transition testing as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Consider a single successful execution sufficient evidence for state transition testing, without preserving environment, data, or build context."
+    ],
+    "e": "Model important states and events explicitly, then test valid paths, invalid jumps, retries, duplicate events, and recovery after partial failure. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "state transition testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which implementation approach is strongest for decision tables?",
+    "correct": "List independent conditions, enumerate meaningful combinations, map each combination to expected actions, and collapse impossible or equivalent rules only when the business logic supports it.",
+    "wrong": [
+      "Design decision tables around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
+      "Assume one representative input is enough for decision tables even when valid and invalid partitions, boundaries, or states have different rules.",
+      "Use the number of executed cases as the main measure of confidence in decision tables, even if several cases exercise the same behavior and important risks remain uncovered."
+    ],
+    "e": "List independent conditions, enumerate meaningful combinations, map each combination to expected actions, and collapse impossible or equivalent rules only when the business logic supports it. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "decision tables"
+  },
+  {
+    "r": "qa",
+    "q": "Which implementation approach is strongest for test estimation?",
+    "correct": "Break work into analysis, design, setup, execution, investigation, retest, reporting, and automation tasks, then state assumptions and confidence ranges for uncertain dependencies.",
+    "wrong": [
+      "Keep test estimation static once written, even when scope, environment, dependencies, or release context changes.",
+      "Use the same detail and metrics for every audience in test estimation, regardless of whether they need diagnostic evidence or a risk decision.",
+      "Hide untested areas in test estimation so stakeholders receive a simpler status; residual risk can be inferred from the overall score."
+    ],
+    "e": "Break work into analysis, design, setup, execution, investigation, retest, reporting, and automation tasks, then state assumptions and confidence ranges for uncertain dependencies. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test estimation"
+  },
+  {
+    "r": "qa",
+    "q": "Which practice is most appropriate when using test planning?",
+    "correct": "Keep the plan proportional to the project: make dependencies, assumptions, ownership, and release decisions explicit without turning the document into static bureaucracy.",
+    "wrong": [
+      "Keep test planning static once written, even when scope, environment, dependencies, or release context changes.",
+      "Treat test planning as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "Use the same detail and metrics for every audience in test planning, regardless of whether they need diagnostic evidence or a risk decision."
+    ],
+    "e": "Keep the plan proportional to the project: make dependencies, assumptions, ownership, and release decisions explicit without turning the document into static bureaucracy. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test planning"
+  },
+  {
+    "r": "qa",
+    "q": "What is a maintainable way to work with test strategy?",
+    "correct": "Choose the cheapest reliable layer for each behavior, reserve E2E tests for integrated journeys, and combine deterministic checks with exploratory work for unknown risks.",
+    "wrong": [
+      "Treat test strategy as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "Hide untested areas in test strategy so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "Keep test strategy static once written, even when scope, environment, dependencies, or release context changes."
+    ],
+    "e": "Choose the cheapest reliable layer for each behavior, reserve E2E tests for integrated journeys, and combine deterministic checks with exploratory work for unknown risks. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test strategy"
+  },
+  {
+    "r": "qa",
+    "q": "Which implementation approach is strongest for defect reporting?",
+    "correct": "Use a concise title, minimal reproduction path, precise timestamps/IDs where relevant, and attachments such as screenshots, logs, traces, or requests that support diagnosis.",
+    "wrong": [
+      "Classify every unexpected result in defect reporting as a product defect before checking requirements, data, environment, and test behavior.",
+      "Keep defect reporting reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written.",
+      "Use retries until defect reporting passes and then treat the original failure as resolved without investigating the failure pattern."
+    ],
+    "e": "Use a concise title, minimal reproduction path, precise timestamps/IDs where relevant, and attachments such as screenshots, logs, traces, or requests that support diagnosis. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Playwright"
+    ],
+    "topic": "defect reporting"
+  },
+  {
+    "r": "qa",
+    "q": "Which practice is most appropriate when using defect triage?",
+    "correct": "Consider user impact, frequency, workaround, data/security implications, affected scope, regulatory concerns, and proximity to release instead of debating labels in isolation.",
+    "wrong": [
+      "Keep defect triage reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written.",
+      "For defect triage, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
+      "Prioritize defect triage only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision."
+    ],
+    "e": "Consider user impact, frequency, workaround, data/security implications, affected scope, regulatory concerns, and proximity to release instead of debating labels in isolation. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Accessibility Testing",
+      "Security Testing"
+    ],
+    "topic": "defect triage"
+  },
+  {
+    "r": "qa",
+    "q": "How should test data management be applied in practice?",
+    "correct": "Prefer API or fixture-based setup, unique identifiers, deterministic seeds, clear ownership, and cleanup; mask or synthesize sensitive production data before reuse.",
+    "wrong": [
+      "Hide untested areas in test data management so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "For test data management, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Assume more test cases always improve test data management; duplicated or low-value checks should count the same as critical coverage."
+    ],
+    "e": "Prefer API or fixture-based setup, unique identifiers, deterministic seeds, clear ownership, and cleanup; mask or synthesize sensitive production data before reuse. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "API Testing"
+    ],
+    "topic": "test data management"
+  },
+  {
+    "r": "qa",
+    "q": "What is a maintainable way to work with cross-browser testing?",
+    "correct": "Run a focused critical-path suite across supported engines and use broader single-browser coverage for behavior that is engine-independent, based on product support and analytics.",
+    "wrong": [
+      "Judge cross-browser testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes.",
+      "Assume tooling can fully validate cross-browser testing automatically; manual judgment and real-world scenarios only duplicate scanner or benchmark output.",
+      "Use production-like scale or sensitive data immediately for cross-browser testing without first validating the test design in a controlled environment."
+    ],
+    "e": "Run a focused critical-path suite across supported engines and use broader single-browser coverage for behavior that is engine-independent, based on product support and analytics. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "cross-browser testing"
+  },
+  {
+    "r": "qa",
+    "q": "What is a maintainable way to work with mobile testing?",
+    "correct": "Combine responsive-browser checks with real-device or emulator coverage for capabilities that browser emulation cannot reproduce faithfully, such as native permissions or OS lifecycle events.",
+    "wrong": [
+      "Assume tooling can fully validate mobile testing automatically; manual judgment and real-world scenarios only duplicate scanner or benchmark output.",
+      "For mobile testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Treat a green automated check as proof that mobile testing is acceptable for every user and operating condition."
+    ],
+    "e": "Combine responsive-browser checks with real-device or emulator coverage for capabilities that browser emulation cannot reproduce faithfully, such as native permissions or OS lifecycle events. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "mobile testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which practice is most appropriate when using accessibility testing?",
+    "correct": "Combine automated scans with keyboard testing, semantic/role inspection, focus-order checks, labels, error messaging, zoom/reflow, and targeted screen-reader review.",
+    "wrong": [
+      "Treat a green automated check as proof that accessibility testing is acceptable for every user and operating condition.",
+      "Use production-like scale or sensitive data immediately for accessibility testing without first validating the test design in a controlled environment.",
+      "Judge accessibility testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes."
+    ],
+    "e": "Combine automated scans with keyboard testing, semantic/role inspection, focus-order checks, labels, error messaging, zoom/reflow, and targeted screen-reader review. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Accessibility Testing"
+    ],
+    "topic": "accessibility testing"
+  },
+  {
+    "r": "qa",
+    "q": "How should visual regression be applied in practice?",
+    "correct": "Stabilize fonts, viewport, data, animations, time, and dynamic regions, then scope snapshots to components or pages whose appearance is an actual contract.",
+    "wrong": [
+      "Run visual regression only after functional testing is complete, because non-functional risks cannot affect architecture or release planning.",
+      "Use production-like scale or sensitive data immediately for visual regression without first validating the test design in a controlled environment.",
+      "Judge visual regression from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes."
+    ],
+    "e": "Stabilize fonts, viewport, data, animations, time, and dynamic regions, then scope snapshots to components or pages whose appearance is an actual contract. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "visual regression"
+  },
+  {
+    "r": "qa",
+    "q": "How should performance testing be applied in practice?",
+    "correct": "Model realistic traffic, data, concurrency, ramp patterns, think time, and critical transactions; debug scripts at low load before running controlled larger tests.",
+    "wrong": [
+      "Judge performance testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes.",
+      "Assume tooling can fully validate performance testing automatically; manual judgment and real-world scenarios only duplicate scanner or benchmark output.",
+      "For performance testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
+    ],
+    "e": "Model realistic traffic, data, concurrency, ramp patterns, think time, and critical transactions; debug scripts at low load before running controlled larger tests. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "SQL",
+      "Performance Testing"
+    ],
+    "topic": "performance testing"
+  },
+  {
+    "r": "qa",
+    "q": "How should security testing be applied in practice?",
+    "correct": "Test least privilege, negative authorization paths, malformed and malicious inputs, credential handling, rate limits, transport security, and sensitive-data exposure without relying only on scanners.",
+    "wrong": [
+      "Run security testing only after functional testing is complete, because non-functional risks cannot affect architecture or release planning.",
+      "Judge security testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes.",
+      "Use production-like scale or sensitive data immediately for security testing without first validating the test design in a controlled environment."
+    ],
+    "e": "Test least privilege, negative authorization paths, malformed and malicious inputs, credential handling, rate limits, transport security, and sensitive-data exposure without relying only on scanners. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Security Testing"
+    ],
+    "topic": "security testing"
+  },
+  {
+    "r": "qa",
+    "q": "What is a maintainable way to work with UAT collaboration?",
+    "correct": "Prepare realistic scenarios, data, environment guidance, known limitations, and a clear method for recording findings, while QA supports participants without steering them toward expected outcomes.",
+    "wrong": [
+      "Keep UAT collaboration static once written, even when scope, environment, dependencies, or release context changes.",
+      "Hide untested areas in UAT collaboration so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "Use the same detail and metrics for every audience in UAT collaboration, regardless of whether they need diagnostic evidence or a risk decision."
+    ],
+    "e": "Prepare realistic scenarios, data, environment guidance, known limitations, and a clear method for recording findings, while QA supports participants without steering them toward expected outcomes. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "UAT collaboration"
+  },
+  {
+    "r": "qa",
+    "q": "How should release readiness be applied in practice?",
+    "correct": "Summarize critical coverage, blockers, open defects, environment differences, monitoring, deployment plan, rollback, and business approvals before recommending go/no-go.",
+    "wrong": [
+      "Hide untested areas in release readiness so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "Treat release readiness as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "For release readiness, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+    ],
+    "e": "Summarize critical coverage, blockers, open defects, environment differences, monitoring, deployment plan, rollback, and business approvals before recommending go/no-go. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "release readiness"
+  },
+  {
+    "r": "qa",
+    "q": "Which practice is most appropriate when using test reporting?",
+    "correct": "Tailor detail to the audience while preserving traceability from summary metrics to individual failures, artifacts, requirements, and defects.",
+    "wrong": [
+      "Treat test reporting as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "Hide untested areas in test reporting so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "Use the same detail and metrics for every audience in test reporting, regardless of whether they need diagnostic evidence or a risk decision."
+    ],
+    "e": "Tailor detail to the audience while preserving traceability from summary metrics to individual failures, artifacts, requirements, and defects. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Playwright"
+    ],
+    "topic": "test reporting"
+  },
+  {
+    "r": "qa",
+    "q": "Which implementation approach is strongest for quality metrics?",
+    "correct": "Track measures such as defect escape rate, flaky rate, execution time, risk coverage, failure causes, change lead time, and customer-impacting incidents with clear definitions.",
+    "wrong": [
+      "Keep quality metrics static once written, even when scope, environment, dependencies, or release context changes.",
+      "Assume more test cases always improve quality metrics; duplicated or low-value checks should count the same as critical coverage.",
+      "Use the same detail and metrics for every audience in quality metrics, regardless of whether they need diagnostic evidence or a risk decision."
+    ],
+    "e": "Track measures such as defect escape rate, flaky rate, execution time, risk coverage, failure causes, change lead time, and customer-impacting incidents with clear definitions. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Performance Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "quality metrics"
+  },
+  {
+    "r": "qa",
+    "q": "Which implementation approach is strongest for test environment management?",
+    "correct": "Prefer reproducible setup through containers, infrastructure/configuration as code, seeded data, and explicit versioning, while documenting differences from production.",
+    "wrong": [
+      "Assume more test cases always improve test environment management; duplicated or low-value checks should count the same as critical coverage.",
+      "For test environment management, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use the same detail and metrics for every audience in test environment management, regardless of whether they need diagnostic evidence or a risk decision."
+    ],
+    "e": "Prefer reproducible setup through containers, infrastructure/configuration as code, seeded data, and explicit versioning, while documenting differences from production. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Docker"
+    ],
+    "topic": "test environment management"
+  },
+  {
+    "r": "qa",
+    "q": "What is a maintainable way to work with data validation?",
+    "correct": "Validate at ingestion and critical transformations, use database constraints where appropriate, and compare authoritative sources rather than only checking that a pipeline completed.",
+    "wrong": [
+      "Treat every scenario in data validation as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "Design data validation around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
+      "Consider a single successful execution sufficient evidence for data validation, without preserving environment, data, or build context."
+    ],
+    "e": "Validate at ingestion and critical transformations, use database constraints where appropriate, and compare authoritative sources rather than only checking that a pipeline completed. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "CI/CD",
+      "SQL"
+    ],
+    "topic": "data validation"
+  },
+  {
+    "r": "qa",
+    "q": "How should requirements analysis be verified or evaluated?",
+    "correct": "Validate the analysis by checking that every material requirement and risk has an explicit oracle, while contradictions or missing decisions remain visible rather than being silently guessed.",
+    "wrong": [
+      "Use the number of executed cases as the main measure of confidence in requirements analysis, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Treat requirements analysis as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Design requirements analysis around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience."
+    ],
+    "e": "Validate the analysis by checking that every material requirement and risk has an explicit oracle, while contradictions or missing decisions remain visible rather than being silently guessed. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "requirements analysis"
+  },
+  {
+    "r": "qa",
+    "q": "How should risk-based testing be verified or evaluated?",
+    "correct": "Review residual risk explicitly: confirm which high-risk behaviors were tested, which were not, and whether the remaining exposure is acceptable for release.",
+    "wrong": [
+      "Treat risk-based testing as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Treat every scenario in risk-based testing as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "Design risk-based testing around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience."
+    ],
+    "e": "Review residual risk explicitly: confirm which high-risk behaviors were tested, which were not, and whether the remaining exposure is acceptable for release. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "risk-based testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which check gives the strongest evidence for acceptance criteria?",
+    "correct": "Test each criterion with representative positive and negative examples and verify that satisfying individual criteria also produces the intended end-to-end business outcome.",
+    "wrong": [
+      "Design acceptance criteria around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
+      "Consider a single successful execution sufficient evidence for acceptance criteria, without preserving environment, data, or build context.",
+      "Use the number of executed cases as the main measure of confidence in acceptance criteria, even if several cases exercise the same behavior and important risks remain uncovered."
+    ],
+    "e": "Test each criterion with representative positive and negative examples and verify that satisfying individual criteria also produces the intended end-to-end business outcome. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "acceptance criteria"
+  },
+  {
+    "r": "qa",
+    "q": "How should boundary value analysis be verified or evaluated?",
+    "correct": "Confirm both the returned result and side effects at boundaries, especially for dates, sizes, counts, numeric limits, and pagination where off-by-one errors are common.",
+    "wrong": [
+      "Consider a single successful execution sufficient evidence for boundary value analysis, without preserving environment, data, or build context.",
+      "Delay clarification of ambiguous requirements in boundary value analysis until after execution; guessing expected behavior keeps testing independent.",
+      "Use the number of executed cases as the main measure of confidence in boundary value analysis, even if several cases exercise the same behavior and important risks remain uncovered."
+    ],
+    "e": "Confirm both the returned result and side effects at boundaries, especially for dates, sizes, counts, numeric limits, and pagination where off-by-one errors are common. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "boundary value analysis"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for equivalence partitioning?",
+    "correct": "Check that supposedly equivalent values really follow the same processing path; if behavior differs by role, state, locale, or another condition, split the partition.",
+    "wrong": [
+      "Treat every scenario in equivalence partitioning as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "Use the number of executed cases as the main measure of confidence in equivalence partitioning, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Assume one representative input is enough for equivalence partitioning even when valid and invalid partitions, boundaries, or states have different rules."
+    ],
+    "e": "Check that supposedly equivalent values really follow the same processing path; if behavior differs by role, state, locale, or another condition, split the partition. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "equivalence partitioning"
+  },
+  {
+    "r": "qa",
+    "q": "Which check gives the strongest evidence for state transition testing?",
+    "correct": "Verify the final state and durable side effects after every transition rather than checking only the immediate UI response or HTTP status.",
+    "wrong": [
+      "Treat state transition testing as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Treat every scenario in state transition testing as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "Delay clarification of ambiguous requirements in state transition testing until after execution; guessing expected behavior keeps testing independent."
+    ],
+    "e": "Verify the final state and durable side effects after every transition rather than checking only the immediate UI response or HTTP status. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "API Testing"
+    ],
+    "topic": "state transition testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for decision tables?",
+    "correct": "Validate the table against requirements and execute at least one test per distinct rule so no combination is assumed to behave like another without evidence.",
+    "wrong": [
+      "Assume one representative input is enough for decision tables even when valid and invalid partitions, boundaries, or states have different rules.",
+      "Treat every scenario in decision tables as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "Use the number of executed cases as the main measure of confidence in decision tables, even if several cases exercise the same behavior and important risks remain uncovered."
+    ],
+    "e": "Validate the table against requirements and execute at least one test per distinct rule so no combination is assumed to behave like another without evidence. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "decision tables"
+  },
+  {
+    "r": "qa",
+    "q": "Which check gives the strongest evidence for test estimation?",
+    "correct": "Track actual effort and causes of variance so future estimates improve, and renegotiate scope explicitly when fixed dates make the original coverage impossible.",
+    "wrong": [
+      "Treat test estimation as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "For test estimation, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Keep test estimation static once written, even when scope, environment, dependencies, or release context changes."
+    ],
+    "e": "Track actual effort and causes of variance so future estimates improve, and renegotiate scope explicitly when fixed dates make the original coverage impossible. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test estimation"
+  },
+  {
+    "r": "qa",
+    "q": "How should test planning be verified or evaluated?",
+    "correct": "Review the plan as conditions change and verify that execution evidence, blocked work, and residual risks still align with the agreed objectives.",
+    "wrong": [
+      "Use the same detail and metrics for every audience in test planning, regardless of whether they need diagnostic evidence or a risk decision.",
+      "Keep test planning static once written, even when scope, environment, dependencies, or release context changes.",
+      "For test planning, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+    ],
+    "e": "Review the plan as conditions change and verify that execution evidence, blocked work, and residual risks still align with the agreed objectives. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test planning"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for test strategy?",
+    "correct": "Evaluate the strategy by defect escapes, feedback speed, flakiness, risk coverage, and maintainability rather than by raw test-count growth.",
+    "wrong": [
+      "Use the same detail and metrics for every audience in test strategy, regardless of whether they need diagnostic evidence or a risk decision.",
+      "Hide untested areas in test strategy so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
+      "For test strategy, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+    ],
+    "e": "Evaluate the strategy by defect escapes, feedback speed, flakiness, risk coverage, and maintainability rather than by raw test-count growth. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test strategy"
+  },
+  {
+    "r": "qa",
+    "q": "What evidence best validates defect reporting?",
+    "correct": "Before filing, verify the requirement and environment, reproduce when possible, and preserve additional evidence even when the issue is intermittent.",
+    "wrong": [
+      "Keep defect reporting reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written.",
+      "Prioritize defect reporting only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision.",
+      "Classify every unexpected result in defect reporting as a product defect before checking requirements, data, environment, and test behavior."
+    ],
+    "e": "Before filing, verify the requirement and environment, reproduce when possible, and preserve additional evidence even when the issue is intermittent. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "defect reporting"
+  },
+  {
+    "r": "qa",
+    "q": "How should defect triage be verified or evaluated?",
+    "correct": "Record the triage decision and rationale, link duplicates without discarding unique evidence, and revisit priority if impact or release context changes.",
+    "wrong": [
+      "Keep defect triage reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written.",
+      "Resolve duplicates in defect triage by discarding the newer report and its evidence, because one issue should have only one source of information.",
+      "For defect triage, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable."
+    ],
+    "e": "Record the triage decision and rationale, link duplicates without discarding unique evidence, and revisit priority if impact or release context changes. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "defect triage"
+  },
+  {
+    "r": "qa",
+    "q": "What evidence best validates test data management?",
+    "correct": "Verify that tests do not depend on execution order or mutable shared accounts and that rerunning them from a clean state produces the same expected result.",
+    "wrong": [
+      "Keep test data management static once written, even when scope, environment, dependencies, or release context changes.",
+      "Treat test data management as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "Assume more test cases always improve test data management; duplicated or low-value checks should count the same as critical coverage."
+    ],
+    "e": "Verify that tests do not depend on execution order or mutable shared accounts and that rerunning them from a clean state produces the same expected result. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test data management"
+  },
+  {
+    "r": "qa",
+    "q": "What evidence best validates cross-browser testing?",
+    "correct": "When failures differ by browser, compare engine/version, feature support, CSS/layout, timing, storage, permissions, and network behavior before treating the issue as generic flakiness.",
+    "wrong": [
+      "For cross-browser testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Treat a green automated check as proof that cross-browser testing is acceptable for every user and operating condition.",
+      "Judge cross-browser testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes."
+    ],
+    "e": "When failures differ by browser, compare engine/version, feature support, CSS/layout, timing, storage, permissions, and network behavior before treating the issue as generic flakiness. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "cross-browser testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for mobile testing?",
+    "correct": "Verify critical journeys under rotation, background/foreground transitions, slow or interrupted networks, different input methods, and constrained screen space.",
+    "wrong": [
+      "Use production-like scale or sensitive data immediately for mobile testing without first validating the test design in a controlled environment.",
+      "Treat a green automated check as proof that mobile testing is acceptable for every user and operating condition.",
+      "For mobile testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
+    ],
+    "e": "Verify critical journeys under rotation, background/foreground transitions, slow or interrupted networks, different input methods, and constrained screen space. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "mobile testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for accessibility testing?",
+    "correct": "Treat automated rule passes as partial evidence only; verify task completion and interaction behavior because many WCAG failures require human judgment.",
+    "wrong": [
+      "Assume tooling can fully validate accessibility testing automatically; manual judgment and real-world scenarios only duplicate scanner or benchmark output.",
+      "Run accessibility testing only after functional testing is complete, because non-functional risks cannot affect architecture or release planning.",
+      "Use production-like scale or sensitive data immediately for accessibility testing without first validating the test design in a controlled environment."
+    ],
+    "e": "Treat automated rule passes as partial evidence only; verify task completion and interaction behavior because many WCAG failures require human judgment. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Accessibility Testing"
+    ],
+    "topic": "accessibility testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for visual regression?",
+    "correct": "Investigate diffs rather than blindly updating baselines, and separate expected design changes from rendering defects before accepting a new reference image.",
+    "wrong": [
+      "Assume tooling can fully validate visual regression automatically; manual judgment and real-world scenarios only duplicate scanner or benchmark output.",
+      "Treat a green automated check as proof that visual regression is acceptable for every user and operating condition.",
+      "Use production-like scale or sensitive data immediately for visual regression without first validating the test design in a controlled environment."
+    ],
+    "e": "Investigate diffs rather than blindly updating baselines, and separate expected design changes from rendering defects before accepting a new reference image. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "visual regression"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for performance testing?",
+    "correct": "Interpret response-time percentiles together with server and infrastructure metrics so a slowdown can be linked to the actual bottleneck rather than only a client-side average.",
+    "wrong": [
+      "Use production-like scale or sensitive data immediately for performance testing without first validating the test design in a controlled environment.",
+      "For performance testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Assume tooling can fully validate performance testing automatically; manual judgment and real-world scenarios only duplicate scanner or benchmark output."
+    ],
+    "e": "Interpret response-time percentiles together with server and infrastructure metrics so a slowdown can be linked to the actual bottleneck rather than only a client-side average. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Performance Testing"
+    ],
+    "topic": "performance testing"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for security testing?",
+    "correct": "Validate security controls at the authoritative backend boundary and confirm logs and error messages provide evidence without leaking secrets or internal details.",
+    "wrong": [
+      "Use production-like scale or sensitive data immediately for security testing without first validating the test design in a controlled environment.",
+      "For security testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Treat a green automated check as proof that security testing is acceptable for every user and operating condition."
+    ],
+    "e": "Validate security controls at the authoritative backend boundary and confirm logs and error messages provide evidence without leaking secrets or internal details. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Security Testing"
+    ],
+    "topic": "security testing"
+  },
+  {
+    "r": "qa",
+    "q": "What evidence best validates UAT collaboration?",
+    "correct": "Close UAT with explicit acceptance, unresolved business issues, and ownership for follow-up so informal feedback does not become an ambiguous release signal.",
+    "wrong": [
+      "For UAT collaboration, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use the same detail and metrics for every audience in UAT collaboration, regardless of whether they need diagnostic evidence or a risk decision.",
+      "Treat UAT collaboration as a documentation exercise performed after testing rather than a decision input that should change scope or release actions."
+    ],
+    "e": "Close UAT with explicit acceptance, unresolved business issues, and ownership for follow-up so informal feedback does not become an ambiguous release signal. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "UAT collaboration"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for release readiness?",
+    "correct": "Make untested or partially tested risks explicit and verify that owners understand the consequence of accepting them.",
+    "wrong": [
+      "Treat release readiness as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "Assume more test cases always improve release readiness; duplicated or low-value checks should count the same as critical coverage.",
+      "For release readiness, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+    ],
+    "e": "Make untested or partially tested risks explicit and verify that owners understand the consequence of accepting them. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "release readiness"
+  },
+  {
+    "r": "qa",
+    "q": "What evidence best validates test reporting?",
+    "correct": "Prefer trend and risk information over raw counts, and ensure a failed run can be investigated from retained evidence without requiring an immediate local rerun.",
+    "wrong": [
+      "Assume more test cases always improve test reporting; duplicated or low-value checks should count the same as critical coverage.",
+      "For test reporting, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use the same detail and metrics for every audience in test reporting, regardless of whether they need diagnostic evidence or a risk decision."
+    ],
+    "e": "Prefer trend and risk information over raw counts, and ensure a failed run can be investigated from retained evidence without requiring an immediate local rerun. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test reporting"
+  },
+  {
+    "r": "qa",
+    "q": "What evidence best validates quality metrics?",
+    "correct": "Review metric incentives and context because rising test counts or pass percentages can coexist with poor assertions and critical untested behavior.",
+    "wrong": [
+      "For quality metrics, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Treat quality metrics as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "Use the same detail and metrics for every audience in quality metrics, regardless of whether they need diagnostic evidence or a risk decision."
+    ],
+    "e": "Review metric incentives and context because rising test counts or pass percentages can coexist with poor assertions and critical untested behavior. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "quality metrics"
+  },
+  {
+    "r": "qa",
+    "q": "Which validation approach provides the strongest evidence for test environment management?",
+    "correct": "When local and CI results disagree, compare environment state systematically before changing tests or increasing timeouts.",
+    "wrong": [
+      "Use the same detail and metrics for every audience in test environment management, regardless of whether they need diagnostic evidence or a risk decision.",
+      "For test environment management, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Hide untested areas in test environment management so stakeholders receive a simpler status; residual risk can be inferred from the overall score."
+    ],
+    "e": "When local and CI results disagree, compare environment state systematically before changing tests or increasing timeouts. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test environment management"
+  },
+  {
+    "r": "qa",
+    "q": "Which check gives the strongest evidence for data validation?",
+    "correct": "Investigate mismatches with record identifiers, timestamps, lineage, transformation rules, and tolerances so data defects are distinguished from expected eventual consistency.",
+    "wrong": [
+      "Treat data validation as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Assume one representative input is enough for data validation even when valid and invalid partitions, boundaries, or states have different rules.",
+      "Design data validation around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience."
+    ],
+    "e": "Investigate mismatches with record identifiers, timestamps, lineage, transformation rules, and tolerances so data defects are distinguished from expected eventual consistency. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "data validation"
+  },
+  {
+    "r": "qa",
+    "q": "What matters most when taking requirements analysis into production?",
+    "correct": "For requirements analysis, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
+    "wrong": [
+      "Use the number of executed cases as the main measure of confidence in requirements analysis, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Assume one representative input is enough for requirements analysis even when valid and invalid partitions, boundaries, or states have different rules.",
+      "Treat requirements analysis as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value."
+    ],
+    "e": "For requirements analysis, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "requirements analysis"
+  },
+  {
+    "r": "qa",
+    "q": "Which statement best reflects production-ready use of risk-based testing?",
+    "correct": "For risk-based testing, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
+    "wrong": [
+      "Assume one representative input is enough for risk-based testing even when valid and invalid partitions, boundaries, or states have different rules.",
+      "Use the number of executed cases as the main measure of confidence in risk-based testing, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Design risk-based testing around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience."
+    ],
+    "e": "For risk-based testing, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "risk-based testing"
+  },
+  {
+    "r": "qa",
+    "q": "How should acceptance criteria be operated beyond the happy path?",
+    "correct": "For acceptance criteria, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
+    "wrong": [
+      "Delay clarification of ambiguous requirements in acceptance criteria until after execution; guessing expected behavior keeps testing independent.",
+      "Design acceptance criteria around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
+      "Assume one representative input is enough for acceptance criteria even when valid and invalid partitions, boundaries, or states have different rules."
+    ],
+    "e": "For acceptance criteria, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "acceptance criteria"
+  },
+  {
+    "r": "qa",
+    "q": "How should boundary value analysis be operated beyond the happy path?",
+    "correct": "For boundary value analysis, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
+    "wrong": [
+      "Use the number of executed cases as the main measure of confidence in boundary value analysis, even if several cases exercise the same behavior and important risks remain uncovered.",
+      "Consider a single successful execution sufficient evidence for boundary value analysis, without preserving environment, data, or build context.",
+      "For boundary value analysis, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
+    ],
+    "e": "For boundary value analysis, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "boundary value analysis"
+  },
+  {
+    "r": "qa",
+    "q": "What matters most when taking equivalence partitioning into production?",
+    "correct": "For equivalence partitioning, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
+    "wrong": [
+      "Treat every scenario in equivalence partitioning as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "For equivalence partitioning, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Use the number of executed cases as the main measure of confidence in equivalence partitioning, even if several cases exercise the same behavior and important risks remain uncovered."
+    ],
+    "e": "For equivalence partitioning, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "equivalence partitioning"
+  },
+  {
+    "r": "qa",
+    "q": "How should state transition testing be operated beyond the happy path?",
+    "correct": "For state transition testing, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
+    "wrong": [
+      "Delay clarification of ambiguous requirements in state transition testing until after execution; guessing expected behavior keeps testing independent.",
+      "Treat state transition testing as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Use the number of executed cases as the main measure of confidence in state transition testing, even if several cases exercise the same behavior and important risks remain uncovered."
+    ],
+    "e": "For state transition testing, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "state transition testing"
+  },
+  {
+    "r": "qa",
+    "q": "How should decision tables be operated beyond the happy path?",
+    "correct": "For decision tables, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
+    "wrong": [
+      "Delay clarification of ambiguous requirements in decision tables until after execution; guessing expected behavior keeps testing independent.",
+      "For decision tables, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Treat decision tables as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value."
+    ],
+    "e": "For decision tables, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "decision tables"
+  },
+  {
+    "r": "qa",
+    "q": "How should test estimation be operated beyond the happy path?",
+    "correct": "For test estimation, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
+    "wrong": [
+      "Use the same detail and metrics for every audience in test estimation, regardless of whether they need diagnostic evidence or a risk decision.",
+      "For test estimation, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Assume more test cases always improve test estimation; duplicated or low-value checks should count the same as critical coverage."
+    ],
+    "e": "For test estimation, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test estimation"
+  },
+  {
+    "r": "qa",
+    "q": "How should test planning be operated beyond the happy path?",
+    "correct": "For test planning, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
+    "wrong": [
+      "For test planning, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Keep test planning static once written, even when scope, environment, dependencies, or release context changes.",
+      "Treat test planning as a documentation exercise performed after testing rather than a decision input that should change scope or release actions."
+    ],
+    "e": "For test planning, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing"
+    ],
+    "topic": "test planning"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best describes browser contexts?",
+    "correct": "A Playwright BrowserContext is an isolated browser profile with its own cookies, storage, permissions, and pages, allowing tests to share a browser process without sharing user state.",
+    "wrong": [
+      "Skip cleanup in browser contexts; independent tests should adapt to whatever state earlier tests leave behind.",
+      "Treat a stored authentication state in browser contexts as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "Persist every piece of browser state for browser contexts between runs, including stale sessions and temporary data, to maximize realism."
+    ],
+    "e": "A Playwright BrowserContext is an isolated browser profile with its own cookies, storage, permissions, and pages, allowing tests to share a browser process without sharing user state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "browser contexts"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best describes test fixtures?",
+    "correct": "Fixtures define reusable setup, dependencies, and cleanup with explicit scope, making test prerequisites visible and composable.",
+    "wrong": [
+      "Treat a stored authentication state in test fixtures as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "Skip cleanup in test fixtures; independent tests should adapt to whatever state earlier tests leave behind.",
+      "For test fixtures, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
+    ],
+    "e": "Fixtures define reusable setup, dependencies, and cleanup with explicit scope, making test prerequisites visible and composable. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test fixtures"
+  },
+  {
+    "r": "playwright",
+    "q": "What should a practitioner understand first about Page Object Model?",
+    "correct": "Page Object Model centralizes knowledge of UI structure and interactions behind domain-oriented methods so tests express intent without duplicating locator details.",
+    "wrong": [
+      "For Page Object Model, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "When Page Object Model becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Prefer absolute XPath or deep CSS structure in Page Object Model; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "Page Object Model centralizes knowledge of UI structure and interactions behind domain-oriented methods so tests express intent without duplicating locator details. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "Page Object Model"
+  },
+  {
+    "r": "playwright",
+    "q": "What should a practitioner understand first about network interception?",
+    "correct": "Network interception lets tests observe, modify, block, or fulfill browser requests so dependency behavior and failure modes can be exercised deterministically.",
+    "wrong": [
+      "Treat browser automation timing in network interception as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "For network interception, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Assume element references remain valid after dynamic DOM updates in network interception; re-locating elements only adds unnecessary work."
+    ],
+    "e": "Network interception lets tests observe, modify, block, or fulfill browser requests so dependency behavior and failure modes can be exercised deterministically. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "network interception"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best describes authentication state?",
+    "correct": "Reusable authentication state can reduce setup cost, but it should preserve identity safely without introducing shared mutable user data across tests.",
+    "wrong": [
+      "Skip cleanup in authentication state; independent tests should adapt to whatever state earlier tests leave behind.",
+      "Share writable test data across parallel workers in authentication state; collisions are acceptable because retries can recover from them.",
+      "Persist every piece of browser state for authentication state between runs, including stale sessions and temporary data, to maximize realism."
+    ],
+    "e": "Reusable authentication state can reduce setup cost, but it should preserve identity safely without introducing shared mutable user data across tests. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Security Testing"
+    ],
+    "topic": "authentication state"
+  },
+  {
+    "r": "playwright",
+    "q": "What is the core idea behind visual snapshots?",
+    "correct": "Visual snapshots compare rendered output with a baseline and are useful when layout or appearance is part of the contract, not as a substitute for functional assertions.",
+    "wrong": [
+      "For visual snapshots, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Prefer absolute XPath or deep CSS structure in visual snapshots; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "When visual snapshots becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "e": "Visual snapshots compare rendered output with a baseline and are useful when layout or appearance is part of the contract, not as a substitute for functional assertions. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "visual snapshots"
+  },
+  {
+    "r": "playwright",
+    "q": "What should a practitioner understand first about accessibility scans?",
+    "correct": "Automated accessibility scans detect many rule-based issues, but they cannot prove that a workflow is understandable or operable with keyboard and assistive technologies.",
+    "wrong": [
+      "For accessibility scans, test only one viewport and zoom level because reflow and magnification affect layout rather than accessibility behavior.",
+      "Use aria-label everywhere in accessibility scans even when visible native labels already provide the correct accessible name.",
+      "For accessibility scans, treat a clean automated scan as proof that keyboard navigation, focus order, labels, reading order, and screen-reader interaction are all correct."
+    ],
+    "e": "Automated accessibility scans detect many rule-based issues, but they cannot prove that a workflow is understandable or operable with keyboard and assistive technologies. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Accessibility Testing"
+    ],
+    "topic": "accessibility scans"
+  },
+  {
+    "r": "playwright",
+    "q": "Which explanation of cross-browser execution is technically sound?",
+    "correct": "Cross-browser execution verifies behavior across Chromium, Firefox, and WebKit where engine differences can affect rendering, APIs, timing, storage, and permissions.",
+    "wrong": [
+      "Treat browser automation timing in cross-browser execution as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "For cross-browser execution, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Prefer absolute XPath or deep CSS structure in cross-browser execution; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "Cross-browser execution verifies behavior across Chromium, Firefox, and WebKit where engine differences can affect rendering, APIs, timing, storage, and permissions. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "cross-browser execution"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best describes mobile emulation?",
+    "correct": "Playwright mobile emulation changes viewport, user agent, touch capability, device scale, and related context settings, but it does not fully reproduce a real mobile operating system.",
+    "wrong": [
+      "Treat browser automation timing in mobile emulation as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Prefer absolute XPath or deep CSS structure in mobile emulation; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "Assume element references remain valid after dynamic DOM updates in mobile emulation; re-locating elements only adds unnecessary work."
+    ],
+    "e": "Playwright mobile emulation changes viewport, user agent, touch capability, device scale, and related context settings, but it does not fully reproduce a real mobile operating system. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "AI Agents"
+    ],
+    "topic": "mobile emulation"
+  },
+  {
+    "r": "playwright",
+    "q": "Which explanation of test sharding is technically sound?",
+    "correct": "Sharding splits a test suite across independent workers or CI jobs to reduce wall-clock time while preserving each test's independence.",
+    "wrong": [
+      "Keep reports for test sharding to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read.",
+      "Change configuration files dynamically inside the pipeline for test sharding instead of mapping stable parameters to commands.",
+      "Increase retries for test sharding until CI is green rather than preserving first-attempt failures and classifying recurring flakes."
+    ],
+    "e": "Sharding splits a test suite across independent workers or CI jobs to reduce wall-clock time while preserving each test's independence. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test sharding"
+  },
+  {
+    "r": "playwright",
+    "q": "Which explanation of parallel workers is technically sound?",
+    "correct": "Parallel workers improve execution speed only when tests, data, browser state, and external dependencies are isolated enough to run concurrently.",
+    "wrong": [
+      "Persist every piece of browser state for parallel workers between runs, including stale sessions and temporary data, to maximize realism.",
+      "Skip cleanup in parallel workers; independent tests should adapt to whatever state earlier tests leave behind.",
+      "Treat a stored authentication state in parallel workers as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage."
+    ],
+    "e": "Parallel workers improve execution speed only when tests, data, browser state, and external dependencies are isolated enough to run concurrently. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "parallel workers"
+  },
+  {
+    "r": "playwright",
+    "q": "Which explanation of test tagging is technically sound?",
+    "correct": "Tags classify tests by purpose, risk, feature, environment, or execution tier so suites can be selected intentionally without duplicating test definitions.",
+    "wrong": [
+      "Treat browser automation timing in test tagging as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "When test tagging becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Prefer absolute XPath or deep CSS structure in test tagging; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "Tags classify tests by purpose, risk, feature, environment, or execution tier so suites can be selected intentionally without duplicating test definitions. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test tagging"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best describes trace analysis?",
+    "correct": "Playwright traces preserve a timeline of actions, DOM snapshots, network activity, console output, and attachments that help reconstruct why a test failed.",
+    "wrong": [
+      "Increase retries for trace analysis until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
+      "Assume a test that passes once locally proves trace analysis is deterministic enough for parallel or cross-browser CI execution.",
+      "Change configuration files dynamically inside the pipeline for trace analysis instead of mapping stable parameters to commands."
+    ],
+    "e": "Playwright traces preserve a timeline of actions, DOM snapshots, network activity, console output, and attachments that help reconstruct why a test failed. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "trace analysis"
+  },
+  {
+    "r": "playwright",
+    "q": "What should a practitioner understand first about video evidence?",
+    "correct": "Video can provide useful temporal evidence for UI failures, but it is most valuable when paired with logs, traces, screenshots, and stable identifiers.",
+    "wrong": [
+      "Increase retries for video evidence until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
+      "Change configuration files dynamically inside the pipeline for video evidence instead of mapping stable parameters to commands.",
+      "Keep reports for video evidence to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read."
+    ],
+    "e": "Video can provide useful temporal evidence for UI failures, but it is most valuable when paired with logs, traces, screenshots, and stable identifiers. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "video evidence"
+  },
+  {
+    "r": "playwright",
+    "q": "What is the core idea behind download testing?",
+    "correct": "Download testing should validate that the expected download event occurs and, when business value requires it, verify filename, type, size, and file contents.",
+    "wrong": [
+      "Prefer absolute XPath or deep CSS structure in download testing; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "Assume element references remain valid after dynamic DOM updates in download testing; re-locating elements only adds unnecessary work.",
+      "For download testing, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+    ],
+    "e": "Download testing should validate that the expected download event occurs and, when business value requires it, verify filename, type, size, and file contents. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "download testing"
+  },
+  {
+    "r": "playwright",
+    "q": "What should a practitioner understand first about upload testing?",
+    "correct": "Upload testing should verify both file-selection behavior and server-side validation for allowed type, size, content, metadata, and failure cases.",
+    "wrong": [
+      "When upload testing becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Prefer absolute XPath or deep CSS structure in upload testing; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "Treat browser automation timing in upload testing as independent of network, rendering, and application state, so those signals do not need inspection."
+    ],
+    "e": "Upload testing should verify both file-selection behavior and server-side validation for allowed type, size, content, metadata, and failure cases. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "upload testing"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best describes iframes?",
+    "correct": "Iframes create separate document contexts, so automation must target the correct frame before locating elements inside it.",
+    "wrong": [
+      "Treat browser automation timing in iframes as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "For iframes, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Prefer absolute XPath or deep CSS structure in iframes; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "Iframes create separate document contexts, so automation must target the correct frame before locating elements inside it. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "iframes"
+  },
+  {
+    "r": "playwright",
+    "q": "What should a practitioner understand first about dialogs?",
+    "correct": "Browser dialogs such as alert, confirm, and prompt block page interaction until they are accepted or dismissed, so tests must handle the dialog event deliberately.",
+    "wrong": [
+      "For dialogs, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use the first matching element in dialogs whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Assume element references remain valid after dynamic DOM updates in dialogs; re-locating elements only adds unnecessary work."
+    ],
+    "e": "Browser dialogs such as alert, confirm, and prompt block page interaction until they are accepted or dismissed, so tests must handle the dialog event deliberately. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "AI Agents",
+      "Reliability Engineering"
+    ],
+    "topic": "dialogs"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best describes browser permissions?",
+    "correct": "Browser permissions such as geolocation, notifications, camera, or clipboard should be granted or denied explicitly in the test context so behavior is deterministic.",
+    "wrong": [
+      "Prefer absolute XPath or deep CSS structure in browser permissions; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "For browser permissions, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use the first matching element in browser permissions whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "e": "Browser permissions such as geolocation, notifications, camera, or clipboard should be granted or denied explicitly in the test context so behavior is deterministic. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "browser permissions"
+  },
+  {
+    "r": "playwright",
+    "q": "What is the core idea behind API request context?",
+    "correct": "Playwright APIRequestContext supports direct HTTP calls for setup, cleanup, contract checks, and mixed API/UI workflows without driving the browser for every prerequisite.",
+    "wrong": [
+      "Persist every piece of browser state for API request context between runs, including stale sessions and temporary data, to maximize realism.",
+      "Treat a stored authentication state in API request context as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "Make API request context depend on the previous test's output; execution order is a convenient way to avoid repeated setup."
+    ],
+    "e": "Playwright APIRequestContext supports direct HTTP calls for setup, cleanup, contract checks, and mixed API/UI workflows without driving the browser for every prerequisite. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "API Testing"
+    ],
+    "topic": "API request context"
+  },
+  {
+    "r": "playwright",
+    "q": "What should a practitioner understand first about test retries?",
+    "correct": "Retries can expose transient failures and collect additional evidence, but they should not convert an unstable test into an apparently healthy one.",
+    "wrong": [
+      "Use the first matching element in test retries whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Assume element references remain valid after dynamic DOM updates in test retries; re-locating elements only adds unnecessary work.",
+      "Treat browser automation timing in test retries as independent of network, rendering, and application state, so those signals do not need inspection."
+    ],
+    "e": "Retries can expose transient failures and collect additional evidence, but they should not convert an unstable test into an apparently healthy one. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test retries"
+  },
+  {
+    "r": "playwright",
+    "q": "What is the core idea behind selectors?",
+    "correct": "Reliable selectors express stable user-facing semantics or explicit test contracts, such as roles, labels, text, and test IDs, rather than incidental DOM structure.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in selectors; re-locating elements only adds unnecessary work.",
+      "When selectors becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Treat browser automation timing in selectors as independent of network, rendering, and application state, so those signals do not need inspection."
+    ],
+    "e": "Reliable selectors express stable user-facing semantics or explicit test contracts, such as roles, labels, text, and test IDs, rather than incidental DOM structure. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Accessibility Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "selectors"
+  },
+  {
+    "r": "playwright",
+    "q": "What is the core idea behind test isolation?",
+    "correct": "Test isolation means each test can run independently, in any order, without inheriting mutable state from another test.",
+    "wrong": [
+      "Make test isolation depend on the previous test's output; execution order is a convenient way to avoid repeated setup.",
+      "Treat a stored authentication state in test isolation as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "Persist every piece of browser state for test isolation between runs, including stale sessions and temporary data, to maximize realism."
+    ],
+    "e": "Test isolation means each test can run independently, in any order, without inheriting mutable state from another test. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test isolation"
+  },
+  {
+    "r": "playwright",
+    "q": "What should a practitioner understand first about CI execution?",
+    "correct": "Reliable CI execution requires reproducible dependencies, browser versions, configuration, secrets, artifacts, and resource assumptions rather than merely running the local command on a server.",
+    "wrong": [
+      "Keep reports for CI execution to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read.",
+      "Assume a test that passes once locally proves CI execution is deterministic enough for parallel or cross-browser CI execution.",
+      "Let parallel shards in CI execution share the same mutable data and filesystem because CI will merge their results afterward."
+    ],
+    "e": "Reliable CI execution requires reproducible dependencies, browser versions, configuration, secrets, artifacts, and resource assumptions rather than merely running the local command on a server. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Security Testing"
+    ],
+    "topic": "CI execution"
+  },
+  {
+    "r": "playwright",
+    "q": "What is the core idea behind framework architecture?",
+    "correct": "A maintainable automation framework separates test intent, domain helpers, page/API adapters, fixtures, data builders, assertions, configuration, and reporting with clear ownership.",
+    "wrong": [
+      "Use the first matching element in framework architecture whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "For framework architecture, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Prefer absolute XPath or deep CSS structure in framework architecture; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "A maintainable automation framework separates test intent, domain helpers, page/API adapters, fixtures, data builders, assertions, configuration, and reporting with clear ownership. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "API Testing"
+    ],
+    "topic": "framework architecture"
+  },
+  {
+    "r": "playwright",
+    "q": "What is a maintainable way to work with browser contexts?",
+    "correct": "Create a fresh context per independent test or worker-owned scenario, and reuse storageState only for controlled authentication setup rather than reusing mutable live context state.",
+    "wrong": [
+      "Treat a stored authentication state in browser contexts as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "Share writable test data across parallel workers in browser contexts; collisions are acceptable because retries can recover from them.",
+      "For browser contexts, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
+    ],
+    "e": "Create a fresh context per independent test or worker-owned scenario, and reuse storageState only for controlled authentication setup rather than reusing mutable live context state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Security Testing"
+    ],
+    "topic": "browser contexts"
+  },
+  {
+    "r": "playwright",
+    "q": "Which practice is most appropriate when using test fixtures?",
+    "correct": "Use test-scoped fixtures for per-test mutable resources and worker-scoped fixtures only for state that is safe to share within a worker; keep teardown paired with creation.",
+    "wrong": [
+      "Share writable test data across parallel workers in test fixtures; collisions are acceptable because retries can recover from them.",
+      "Make test fixtures depend on the previous test's output; execution order is a convenient way to avoid repeated setup.",
+      "Skip cleanup in test fixtures; independent tests should adapt to whatever state earlier tests leave behind."
+    ],
+    "e": "Use test-scoped fixtures for per-test mutable resources and worker-scoped fixtures only for state that is safe to share within a worker; keep teardown paired with creation. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test fixtures"
+  },
+  {
+    "r": "playwright",
+    "q": "Which implementation approach is strongest for Page Object Model?",
+    "correct": "Keep page objects focused, expose meaningful actions rather than raw locators everywhere, avoid deep inheritance, and keep assertions in the layer that best expresses business intent.",
+    "wrong": [
+      "For Page Object Model, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Treat browser automation timing in Page Object Model as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "When Page Object Model becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "e": "Keep page objects focused, expose meaningful actions rather than raw locators everywhere, avoid deep inheritance, and keep assertions in the layer that best expresses business intent. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "Page Object Model"
+  },
+  {
+    "r": "playwright",
+    "q": "Which implementation approach is strongest for network interception?",
+    "correct": "Use interception for controlled edge cases such as 4xx/5xx responses or latency, but retain real integration coverage so mocks do not become the only evidence that contracts work.",
+    "wrong": [
+      "When network interception becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Treat browser automation timing in network interception as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "For network interception, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+    ],
+    "e": "Use interception for controlled edge cases such as 4xx/5xx responses or latency, but retain real integration coverage so mocks do not become the only evidence that contracts work. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Performance Testing"
+    ],
+    "topic": "network interception"
+  },
+  {
+    "r": "playwright",
+    "q": "Which implementation approach is strongest for authentication state?",
+    "correct": "Authenticate through a setup project or API when appropriate, save storageState per role or account, protect the state file, and use separate accounts when tests modify user-owned data.",
+    "wrong": [
+      "Make authentication state depend on the previous test's output; execution order is a convenient way to avoid repeated setup.",
+      "Persist every piece of browser state for authentication state between runs, including stale sessions and temporary data, to maximize realism.",
+      "Share writable test data across parallel workers in authentication state; collisions are acceptable because retries can recover from them."
+    ],
+    "e": "Authenticate through a setup project or API when appropriate, save storageState per role or account, protect the state file, and use separate accounts when tests modify user-owned data. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "API Testing",
+      "Security Testing"
+    ],
+    "topic": "authentication state"
+  },
+  {
+    "r": "playwright",
+    "q": "How should visual snapshots be applied in practice?",
+    "correct": "Stabilize viewport, fonts, animations, data, time, and dynamic regions before taking snapshots, and prefer focused component/page regions over giant unstable captures.",
+    "wrong": [
+      "When visual snapshots becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "For visual snapshots, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Assume element references remain valid after dynamic DOM updates in visual snapshots; re-locating elements only adds unnecessary work."
+    ],
+    "e": "Stabilize viewport, fonts, animations, data, time, and dynamic regions before taking snapshots, and prefer focused component/page regions over giant unstable captures. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "visual snapshots"
+  },
+  {
+    "r": "playwright",
+    "q": "How should accessibility scans be applied in practice?",
+    "correct": "Run automated checks alongside semantic locator use, keyboard navigation, focus checks, labels, error messaging, contrast/zoom review, and targeted screen-reader testing.",
+    "wrong": [
+      "Exclude keyboard-only interaction from accessibility scans; browser automation already proves that controls can be clicked with a mouse.",
+      "For accessibility scans, ignore focus visibility and error announcements as long as the page has no automated WCAG violations.",
+      "Use aria-label everywhere in accessibility scans even when visible native labels already provide the correct accessible name."
+    ],
+    "e": "Run automated checks alongside semantic locator use, keyboard navigation, focus checks, labels, error messaging, contrast/zoom review, and targeted screen-reader testing. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Accessibility Testing"
+    ],
+    "topic": "accessibility scans"
+  },
+  {
+    "r": "playwright",
+    "q": "How should cross-browser execution be applied in practice?",
+    "correct": "Use Playwright projects to define browser-specific configuration and run critical paths across supported engines while keeping broader coverage proportional to product risk.",
+    "wrong": [
+      "Prefer absolute XPath or deep CSS structure in cross-browser execution; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "Assume element references remain valid after dynamic DOM updates in cross-browser execution; re-locating elements only adds unnecessary work.",
+      "When cross-browser execution becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "e": "Use Playwright projects to define browser-specific configuration and run critical paths across supported engines while keeping broader coverage proportional to product risk. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "cross-browser execution"
+  },
+  {
+    "r": "playwright",
+    "q": "Which implementation approach is strongest for mobile emulation?",
+    "correct": "Use device descriptors for responsive web coverage and complement them with real-device or native testing when OS integration, hardware, browser chrome, or mobile lifecycle behavior matters.",
+    "wrong": [
+      "When mobile emulation becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Treat browser automation timing in mobile emulation as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Assume element references remain valid after dynamic DOM updates in mobile emulation; re-locating elements only adds unnecessary work."
+    ],
+    "e": "Use device descriptors for responsive web coverage and complement them with real-device or native testing when OS integration, hardware, browser chrome, or mobile lifecycle behavior matters. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "mobile emulation"
+  },
+  {
+    "r": "playwright",
+    "q": "How should test sharding be applied in practice?",
+    "correct": "Balance shards by test count or historical duration, give each shard isolated data and environment resources, and merge reports/artifacts after execution.",
+    "wrong": [
+      "Assume a test that passes once locally proves test sharding is deterministic enough for parallel or cross-browser CI execution.",
+      "Keep reports for test sharding to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read.",
+      "For test sharding, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
+    ],
+    "e": "Balance shards by test count or historical duration, give each shard isolated data and environment resources, and merge reports/artifacts after execution. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Git"
+    ],
+    "topic": "test sharding"
+  },
+  {
+    "r": "playwright",
+    "q": "Which practice is most appropriate when using parallel workers?",
+    "correct": "Assign unique accounts/data or worker-owned pools, avoid global mutable variables, and make setup/cleanup deterministic so worker order cannot affect results.",
+    "wrong": [
+      "For parallel workers, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Treat a stored authentication state in parallel workers as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "Share writable test data across parallel workers in parallel workers; collisions are acceptable because retries can recover from them."
+    ],
+    "e": "Assign unique accounts/data or worker-owned pools, avoid global mutable variables, and make setup/cleanup deterministic so worker order cannot affect results. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "parallel workers"
+  },
+  {
+    "r": "playwright",
+    "q": "Which implementation approach is strongest for test tagging?",
+    "correct": "Use a small stable taxonomy such as smoke, regression, payments, or accessibility, document tag meaning, and combine tags with projects or grep filters for CI selection.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in test tagging; re-locating elements only adds unnecessary work.",
+      "Use the first matching element in test tagging whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "For test tagging, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+    ],
+    "e": "Use a small stable taxonomy such as smoke, regression, payments, or accessibility, document tag meaning, and combine tags with projects or grep filters for CI selection. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Accessibility Testing"
+    ],
+    "topic": "test tagging"
+  },
+  {
+    "r": "playwright",
+    "q": "Which practice is most appropriate when using trace analysis?",
+    "correct": "Capture traces on failure or retry according to storage needs, then inspect the first divergence between expected and actual state rather than only the final exception.",
+    "wrong": [
+      "Increase retries for trace analysis until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
+      "Let parallel shards in trace analysis share the same mutable data and filesystem because CI will merge their results afterward.",
+      "For trace analysis, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
+    ],
+    "e": "Capture traces on failure or retry according to storage needs, then inspect the first divergence between expected and actual state rather than only the final exception. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Java"
+    ],
+    "topic": "trace analysis"
+  },
+  {
+    "r": "playwright",
+    "q": "What is a maintainable way to work with video evidence?",
+    "correct": "Record video selectively on failure or retry to control storage, and preserve filenames/metadata that tie the recording to the exact test, build, browser, and worker.",
+    "wrong": [
+      "Increase retries for video evidence until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
+      "Assume a test that passes once locally proves video evidence is deterministic enough for parallel or cross-browser CI execution.",
+      "Let parallel shards in video evidence share the same mutable data and filesystem because CI will merge their results afterward."
+    ],
+    "e": "Record video selectively on failure or retry to control storage, and preserve filenames/metadata that tie the recording to the exact test, build, browser, and worker. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "video evidence"
+  },
+  {
+    "r": "playwright",
+    "q": "How should download testing be applied in practice?",
+    "correct": "Start waiting for the download before triggering the action, save or inspect the artifact in a controlled location, and avoid relying on a machine-specific default downloads folder.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in download testing; re-locating elements only adds unnecessary work.",
+      "Prefer absolute XPath or deep CSS structure in download testing; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "Treat browser automation timing in download testing as independent of network, rendering, and application state, so those signals do not need inspection."
+    ],
+    "e": "Start waiting for the download before triggering the action, save or inspect the artifact in a controlled location, and avoid relying on a machine-specific default downloads folder. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "download testing"
+  },
+  {
+    "r": "playwright",
+    "q": "How should upload testing be applied in practice?",
+    "correct": "Use controlled fixture files with known contents, exercise valid and invalid cases, and confirm the resulting server or UI state after upload.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in upload testing; re-locating elements only adds unnecessary work.",
+      "For upload testing, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "When upload testing becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "e": "Use controlled fixture files with known contents, exercise valid and invalid cases, and confirm the resulting server or UI state after upload. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "upload testing"
+  },
+  {
+    "r": "playwright",
+    "q": "What is a maintainable way to work with iframes?",
+    "correct": "Prefer frameLocator for stable nested-frame interactions or switch deliberately through frame levels, and wait for frame availability when content loads asynchronously.",
+    "wrong": [
+      "For iframes, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Assume element references remain valid after dynamic DOM updates in iframes; re-locating elements only adds unnecessary work.",
+      "When iframes becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "e": "Prefer frameLocator for stable nested-frame interactions or switch deliberately through frame levels, and wait for frame availability when content loads asynchronously. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "iframes"
+  },
+  {
+    "r": "playwright",
+    "q": "How should dialogs be applied in practice?",
+    "correct": "Register the dialog handler before the action that opens it, assert message/type where relevant, and choose accept, dismiss, or prompt text according to expected behavior.",
+    "wrong": [
+      "For dialogs, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Assume element references remain valid after dynamic DOM updates in dialogs; re-locating elements only adds unnecessary work.",
+      "Use the first matching element in dialogs whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "e": "Register the dialog handler before the action that opens it, assert message/type where relevant, and choose accept, dismiss, or prompt text according to expected behavior. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "AI Agents"
+    ],
+    "topic": "dialogs"
+  },
+  {
+    "r": "playwright",
+    "q": "Which implementation approach is strongest for browser permissions?",
+    "correct": "Configure only the permissions needed for the scenario and test denial or revocation paths when the application must handle them gracefully.",
+    "wrong": [
+      "Prefer absolute XPath or deep CSS structure in browser permissions; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "Use the first matching element in browser permissions whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Assume element references remain valid after dynamic DOM updates in browser permissions; re-locating elements only adds unnecessary work."
+    ],
+    "e": "Configure only the permissions needed for the scenario and test denial or revocation paths when the application must handle them gracefully. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "browser permissions"
+  },
+  {
+    "r": "playwright",
+    "q": "Which implementation approach is strongest for API request context?",
+    "correct": "Use API calls to create deterministic preconditions or clean data, preserve authentication safely, and keep UI coverage focused on behavior users actually need to exercise.",
+    "wrong": [
+      "Make API request context depend on the previous test's output; execution order is a convenient way to avoid repeated setup.",
+      "Persist every piece of browser state for API request context between runs, including stale sessions and temporary data, to maximize realism.",
+      "Share writable test data across parallel workers in API request context; collisions are acceptable because retries can recover from them."
+    ],
+    "e": "Use API calls to create deterministic preconditions or clean data, preserve authentication safely, and keep UI coverage focused on behavior users actually need to exercise. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "API Testing",
+      "Security Testing"
+    ],
+    "topic": "API request context"
+  },
+  {
+    "r": "playwright",
+    "q": "Which practice is most appropriate when using test retries?",
+    "correct": "Retry only at the runner level with all attempts retained, classify recurring flakes, and fix root causes instead of adding arbitrary local retry loops.",
+    "wrong": [
+      "Use the first matching element in test retries whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Treat browser automation timing in test retries as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "When test retries becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "e": "Retry only at the runner level with all attempts retained, classify recurring flakes, and fix root causes instead of adding arbitrary local retry loops. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Java"
+    ],
+    "topic": "test retries"
+  },
+  {
+    "r": "playwright",
+    "q": "Which implementation approach is strongest for selectors?",
+    "correct": "Narrow locators by meaningful containers and filters, avoid absolute XPath and fragile CSS chains, and use nth only when order itself is part of the contract.",
+    "wrong": [
+      "Use the first matching element in selectors whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Treat browser automation timing in selectors as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Prefer absolute XPath or deep CSS structure in selectors; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "Narrow locators by meaningful containers and filters, avoid absolute XPath and fragile CSS chains, and use nth only when order itself is part of the contract. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Selenium",
+      "Docker"
+    ],
+    "topic": "selectors"
+  },
+  {
+    "r": "playwright",
+    "q": "What is a maintainable way to work with test isolation?",
+    "correct": "Create fresh browser context and data ownership per test or controlled fixture scope, clean durable side effects, and avoid dependencies on previous test execution.",
+    "wrong": [
+      "Make test isolation depend on the previous test's output; execution order is a convenient way to avoid repeated setup.",
+      "Skip cleanup in test isolation; independent tests should adapt to whatever state earlier tests leave behind.",
+      "Share writable test data across parallel workers in test isolation; collisions are acceptable because retries can recover from them."
+    ],
+    "e": "Create fresh browser context and data ownership per test or controlled fixture scope, clean durable side effects, and avoid dependencies on previous test execution. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test isolation"
+  },
+  {
+    "r": "playwright",
+    "q": "Which implementation approach is strongest for CI execution?",
+    "correct": "Install dependencies deterministically, cache only safe reusable assets, publish reports/traces/screenshots, and map CI parameters to stable Playwright commands.",
+    "wrong": [
+      "For CI execution, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables.",
+      "Increase retries for CI execution until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
+      "Assume a test that passes once locally proves CI execution is deterministic enough for parallel or cross-browser CI execution."
+    ],
+    "e": "Install dependencies deterministically, cache only safe reusable assets, publish reports/traces/screenshots, and map CI parameters to stable Playwright commands. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "CI execution"
+  },
+  {
+    "r": "playwright",
+    "q": "Which practice is most appropriate when using framework architecture?",
+    "correct": "Favor composition and small focused modules, centralize cross-cutting concerns deliberately, and keep business rules out of giant base classes or generic helper files.",
+    "wrong": [
+      "Use the first matching element in framework architecture whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Assume element references remain valid after dynamic DOM updates in framework architecture; re-locating elements only adds unnecessary work.",
+      "Prefer absolute XPath or deep CSS structure in framework architecture; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "Favor composition and small focused modules, centralize cross-cutting concerns deliberately, and keep business rules out of giant base classes or generic helper files. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "framework architecture"
+  },
+  {
+    "r": "playwright",
+    "q": "Which validation approach provides the strongest evidence for browser contexts?",
+    "correct": "Verify isolation by running tests in parallel and confirming cookies, local storage, permissions, and created data do not leak between contexts.",
+    "wrong": [
+      "Treat a stored authentication state in browser contexts as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "Share writable test data across parallel workers in browser contexts; collisions are acceptable because retries can recover from them.",
+      "Skip cleanup in browser contexts; independent tests should adapt to whatever state earlier tests leave behind."
+    ],
+    "e": "Verify isolation by running tests in parallel and confirming cookies, local storage, permissions, and created data do not leak between contexts. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "browser contexts"
+  },
+  {
+    "r": "playwright",
+    "q": "Which check gives the strongest evidence for test fixtures?",
+    "correct": "Check fixture design by running tests independently and in parallel, ensuring failures or retries do not leave shared state that changes later tests.",
+    "wrong": [
+      "Make test fixtures depend on the previous test's output; execution order is a convenient way to avoid repeated setup.",
+      "Share writable test data across parallel workers in test fixtures; collisions are acceptable because retries can recover from them.",
+      "Persist every piece of browser state for test fixtures between runs, including stale sessions and temporary data, to maximize realism."
+    ],
+    "e": "Check fixture design by running tests independently and in parallel, ensuring failures or retries do not leave shared state that changes later tests. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test fixtures"
+  },
+  {
+    "r": "playwright",
+    "q": "Which validation approach provides the strongest evidence for Page Object Model?",
+    "correct": "Evaluate a page object by how easily a UI change can be updated in one place without hiding important workflow logic or turning the object into a giant utility class.",
+    "wrong": [
+      "Treat browser automation timing in Page Object Model as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Use the first matching element in Page Object Model whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Prefer absolute XPath or deep CSS structure in Page Object Model; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "Evaluate a page object by how easily a UI change can be updated in one place without hiding important workflow logic or turning the object into a giant utility class. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "Page Object Model"
+  },
+  {
+    "r": "playwright",
+    "q": "How should network interception be verified or evaluated?",
+    "correct": "Verify both the intercepted request and the user-visible/system response, including payload, status, retry or fallback behavior, and resulting application state.",
+    "wrong": [
+      "Use the first matching element in network interception whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "Prefer absolute XPath or deep CSS structure in network interception; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "Treat browser automation timing in network interception as independent of network, rendering, and application state, so those signals do not need inspection."
+    ],
+    "e": "Verify both the intercepted request and the user-visible/system response, including payload, status, retry or fallback behavior, and resulting application state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "network interception"
+  },
+  {
+    "r": "playwright",
+    "q": "Which check gives the strongest evidence for authentication state?",
+    "correct": "Validate that expired sessions, logout, role changes, and parallel execution behave correctly instead of assuming a stored state remains valid forever.",
+    "wrong": [
+      "For authentication state, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Skip cleanup in authentication state; independent tests should adapt to whatever state earlier tests leave behind.",
+      "Share writable test data across parallel workers in authentication state; collisions are acceptable because retries can recover from them."
+    ],
+    "e": "Validate that expired sessions, logout, role changes, and parallel execution behave correctly instead of assuming a stored state remains valid forever. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Security Testing"
+    ],
+    "topic": "authentication state"
+  },
+  {
+    "r": "playwright",
+    "q": "How should visual snapshots be verified or evaluated?",
+    "correct": "Review every diff to determine whether it is an intended design change, environment noise, or a real regression before updating the baseline.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in visual snapshots; re-locating elements only adds unnecessary work.",
+      "Treat browser automation timing in visual snapshots as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Prefer absolute XPath or deep CSS structure in visual snapshots; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "Review every diff to determine whether it is an intended design change, environment noise, or a real regression before updating the baseline. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "visual snapshots"
+  },
+  {
+    "r": "playwright",
+    "q": "Which check gives the strongest evidence for accessibility scans?",
+    "correct": "Treat zero automated violations as partial evidence and verify critical tasks manually because context, reading order, and interaction quality often require human judgment.",
+    "wrong": [
+      "For accessibility scans, ignore focus visibility and error announcements as long as the page has no automated WCAG violations.",
+      "For accessibility scans, test only one viewport and zoom level because reflow and magnification affect layout rather than accessibility behavior.",
+      "For accessibility scans, treat a clean automated scan as proof that keyboard navigation, focus order, labels, reading order, and screen-reader interaction are all correct."
+    ],
+    "e": "Treat zero automated violations as partial evidence and verify critical tasks manually because context, reading order, and interaction quality often require human judgment. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Accessibility Testing"
+    ],
+    "topic": "accessibility scans"
+  },
+  {
+    "r": "playwright",
+    "q": "What evidence best validates cross-browser execution?",
+    "correct": "When a failure is browser-specific, compare engine behavior, versions, CSS/layout, feature support, storage, permissions, and network details before labeling it flaky.",
+    "wrong": [
+      "Prefer absolute XPath or deep CSS structure in cross-browser execution; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "When cross-browser execution becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Use the first matching element in cross-browser execution whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "e": "When a failure is browser-specific, compare engine behavior, versions, CSS/layout, feature support, storage, permissions, and network details before labeling it flaky. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Accessibility Testing"
+    ],
+    "topic": "cross-browser execution"
+  },
+  {
+    "r": "playwright",
+    "q": "What evidence best validates mobile emulation?",
+    "correct": "Verify orientation, touch targets, virtual-keyboard effects, responsive layout, permissions, and constrained viewport behavior instead of checking only that the page loads.",
+    "wrong": [
+      "When mobile emulation becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Use the first matching element in mobile emulation whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "For mobile emulation, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+    ],
+    "e": "Verify orientation, touch targets, virtual-keyboard effects, responsive layout, permissions, and constrained viewport behavior instead of checking only that the page loads. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "mobile emulation"
+  },
+  {
+    "r": "playwright",
+    "q": "How should test sharding be verified or evaluated?",
+    "correct": "Check that sharding does not change outcomes by comparing retries, shared-resource contention, report identity, and total executed tests against an unsharded baseline.",
+    "wrong": [
+      "Keep reports for test sharding to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read.",
+      "For test sharding, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables.",
+      "Increase retries for test sharding until CI is green rather than preserving first-attempt failures and classifying recurring flakes."
+    ],
+    "e": "Check that sharding does not change outcomes by comparing retries, shared-resource contention, report identity, and total executed tests against an unsharded baseline. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test sharding"
+  },
+  {
+    "r": "playwright",
+    "q": "Which validation approach provides the strongest evidence for parallel workers?",
+    "correct": "Stress the suite with different worker counts and repeat runs to expose hidden coupling, race conditions, and resource saturation.",
+    "wrong": [
+      "Persist every piece of browser state for parallel workers between runs, including stale sessions and temporary data, to maximize realism.",
+      "Treat a stored authentication state in parallel workers as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
+      "For parallel workers, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
+    ],
+    "e": "Stress the suite with different worker counts and repeat runs to expose hidden coupling, race conditions, and resource saturation. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "parallel workers"
+  },
+  {
+    "r": "playwright",
+    "q": "What evidence best validates test tagging?",
+    "correct": "Audit tags periodically to ensure critical tests are not accidentally excluded and that tag names still map to a clear execution or reporting decision.",
+    "wrong": [
+      "Use the first matching element in test tagging whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "When test tagging becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Assume element references remain valid after dynamic DOM updates in test tagging; re-locating elements only adds unnecessary work."
+    ],
+    "e": "Audit tags periodically to ensure critical tests are not accidentally excluded and that tag names still map to a clear execution or reporting decision. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test tagging"
+  },
+  {
+    "r": "playwright",
+    "q": "How should trace analysis be verified or evaluated?",
+    "correct": "Correlate trace events with application logs, request IDs, screenshots, and test data to distinguish product defects from synchronization or environment issues.",
+    "wrong": [
+      "Assume a test that passes once locally proves trace analysis is deterministic enough for parallel or cross-browser CI execution.",
+      "Let parallel shards in trace analysis share the same mutable data and filesystem because CI will merge their results afterward.",
+      "For trace analysis, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
+    ],
+    "e": "Correlate trace events with application logs, request IDs, screenshots, and test data to distinguish product defects from synchronization or environment issues. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "trace analysis"
+  },
+  {
+    "r": "playwright",
+    "q": "How should video evidence be verified or evaluated?",
+    "correct": "Use video to understand visible sequence and timing, then confirm root cause with stronger evidence such as traces, network requests, or backend logs.",
+    "wrong": [
+      "Change configuration files dynamically inside the pipeline for video evidence instead of mapping stable parameters to commands.",
+      "Assume a test that passes once locally proves video evidence is deterministic enough for parallel or cross-browser CI execution.",
+      "Keep reports for video evidence to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read."
+    ],
+    "e": "Use video to understand visible sequence and timing, then confirm root cause with stronger evidence such as traces, network requests, or backend logs. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "video evidence"
+  },
+  {
+    "r": "playwright",
+    "q": "Which check gives the strongest evidence for download testing?",
+    "correct": "Confirm the downloaded content matches the operation and current data rather than treating the presence of any file as success.",
+    "wrong": [
+      "Use the first matching element in download testing whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "When download testing becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "For download testing, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+    ],
+    "e": "Confirm the downloaded content matches the operation and current data rather than treating the presence of any file as success. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "download testing"
+  },
+  {
+    "r": "playwright",
+    "q": "How should upload testing be verified or evaluated?",
+    "correct": "Check duplicate uploads, malformed files, boundary sizes, permissions, and cleanup because a successful file-picker interaction does not prove backend acceptance.",
+    "wrong": [
+      "For upload testing, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Treat browser automation timing in upload testing as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Assume element references remain valid after dynamic DOM updates in upload testing; re-locating elements only adds unnecessary work."
+    ],
+    "e": "Check duplicate uploads, malformed files, boundary sizes, permissions, and cleanup because a successful file-picker interaction does not prove backend acceptance. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "upload testing"
+  },
+  {
+    "r": "playwright",
+    "q": "What evidence best validates iframes?",
+    "correct": "Verify frame identity using expected URL/name/content and avoid assuming index order, especially when ads or third-party frames can appear dynamically.",
+    "wrong": [
+      "Treat browser automation timing in iframes as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Assume element references remain valid after dynamic DOM updates in iframes; re-locating elements only adds unnecessary work.",
+      "Use the first matching element in iframes whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "e": "Verify frame identity using expected URL/name/content and avoid assuming index order, especially when ads or third-party frames can appear dynamically. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "iframes"
+  },
+  {
+    "r": "playwright",
+    "q": "Which check gives the strongest evidence for dialogs?",
+    "correct": "Test both confirmation and cancellation paths when they change business state rather than always auto-accepting every dialog.",
+    "wrong": [
+      "Treat browser automation timing in dialogs as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Assume element references remain valid after dynamic DOM updates in dialogs; re-locating elements only adds unnecessary work.",
+      "For dialogs, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+    ],
+    "e": "Test both confirmation and cancellation paths when they change business state rather than always auto-accepting every dialog. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "dialogs"
+  },
+  {
+    "r": "playwright",
+    "q": "What evidence best validates browser permissions?",
+    "correct": "Verify user-facing fallback, persisted state, and security boundaries instead of assuming permission APIs behave the same after a successful grant.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in browser permissions; re-locating elements only adds unnecessary work.",
+      "Treat browser automation timing in browser permissions as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Use the first matching element in browser permissions whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "e": "Verify user-facing fallback, persisted state, and security boundaries instead of assuming permission APIs behave the same after a successful grant. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Security Testing"
+    ],
+    "topic": "browser permissions"
+  },
+  {
+    "r": "playwright",
+    "q": "How should API request context be verified or evaluated?",
+    "correct": "Assert status, headers, schema, business values, and side effects; a successful HTTP code alone is not enough evidence.",
+    "wrong": [
+      "Persist every piece of browser state for API request context between runs, including stale sessions and temporary data, to maximize realism.",
+      "For API request context, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Treat a stored authentication state in API request context as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage."
+    ],
+    "e": "Assert status, headers, schema, business values, and side effects; a successful HTTP code alone is not enough evidence. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "API Testing"
+    ],
+    "topic": "API request context"
+  },
+  {
+    "r": "playwright",
+    "q": "What evidence best validates test retries?",
+    "correct": "Track retry frequency and compare first-attempt versus final-pass rates so instability remains visible in quality reporting.",
+    "wrong": [
+      "When test retries becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "For test retries, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Prefer absolute XPath or deep CSS structure in test retries; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "Track retry frequency and compare first-attempt versus final-pass rates so instability remains visible in quality reporting. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test retries"
+  },
+  {
+    "r": "playwright",
+    "q": "Which check gives the strongest evidence for selectors?",
+    "correct": "Test selector resilience by changing non-semantic markup or layout and confirming the locator still identifies the intended element uniquely.",
+    "wrong": [
+      "Use the first matching element in selectors whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "When selectors becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Treat browser automation timing in selectors as independent of network, rendering, and application state, so those signals do not need inspection."
+    ],
+    "e": "Test selector resilience by changing non-semantic markup or layout and confirming the locator still identifies the intended element uniquely. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "selectors"
+  },
+  {
+    "r": "playwright",
+    "q": "How should test isolation be verified or evaluated?",
+    "correct": "Prove isolation by shuffling order, running single tests, enabling parallelism, and repeating failures without requiring a preceding scenario.",
+    "wrong": [
+      "For test isolation, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Persist every piece of browser state for test isolation between runs, including stale sessions and temporary data, to maximize realism.",
+      "Treat a stored authentication state in test isolation as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage."
+    ],
+    "e": "Prove isolation by shuffling order, running single tests, enabling parallelism, and repeating failures without requiring a preceding scenario. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test isolation"
+  },
+  {
+    "r": "playwright",
+    "q": "Which check gives the strongest evidence for CI execution?",
+    "correct": "When CI-only failures occur, compare environment, versions, data, parallelism, networking, filesystem, timezone, and resources before increasing timeouts.",
+    "wrong": [
+      "Increase retries for CI execution until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
+      "Let parallel shards in CI execution share the same mutable data and filesystem because CI will merge their results afterward.",
+      "Assume a test that passes once locally proves CI execution is deterministic enough for parallel or cross-browser CI execution."
+    ],
+    "e": "When CI-only failures occur, compare environment, versions, data, parallelism, networking, filesystem, timezone, and resources before increasing timeouts. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "CI execution"
+  },
+  {
+    "r": "playwright",
+    "q": "Which check gives the strongest evidence for framework architecture?",
+    "correct": "Evaluate architecture by change cost, failure diagnosis, parallel safety, onboarding, and the ease of testing components independently rather than by abstraction count.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in framework architecture; re-locating elements only adds unnecessary work.",
+      "Prefer absolute XPath or deep CSS structure in framework architecture; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "When framework architecture becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "e": "Evaluate architecture by change cost, failure diagnosis, parallel safety, onboarding, and the ease of testing components independently rather than by abstraction count. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "framework architecture"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best reflects production-ready use of browser contexts?",
+    "correct": "For browser contexts, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "Share writable test data across parallel workers in browser contexts; collisions are acceptable because retries can recover from them.",
+      "For browser contexts, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Skip cleanup in browser contexts; independent tests should adapt to whatever state earlier tests leave behind."
+    ],
+    "e": "For browser contexts, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "browser contexts"
+  },
+  {
+    "r": "playwright",
+    "q": "What matters most when taking test fixtures into production?",
+    "correct": "For test fixtures, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "Skip cleanup in test fixtures; independent tests should adapt to whatever state earlier tests leave behind.",
+      "Persist every piece of browser state for test fixtures between runs, including stale sessions and temporary data, to maximize realism.",
+      "Treat a stored authentication state in test fixtures as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage."
+    ],
+    "e": "For test fixtures, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test fixtures"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best reflects production-ready use of Page Object Model?",
+    "correct": "For Page Object Model, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "Assume element references remain valid after dynamic DOM updates in Page Object Model; re-locating elements only adds unnecessary work.",
+      "When Page Object Model becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Use the first matching element in Page Object Model whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "e": "For Page Object Model, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "Page Object Model"
+  },
+  {
+    "r": "playwright",
+    "q": "Which production concern is most important for network interception?",
+    "correct": "For network interception, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "When network interception becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Treat browser automation timing in network interception as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "Prefer absolute XPath or deep CSS structure in network interception; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "For network interception, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "network interception"
+  },
+  {
+    "r": "playwright",
+    "q": "Which production concern is most important for authentication state?",
+    "correct": "For authentication state, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "For authentication state, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Skip cleanup in authentication state; independent tests should adapt to whatever state earlier tests leave behind.",
+      "Persist every piece of browser state for authentication state between runs, including stale sessions and temporary data, to maximize realism."
+    ],
+    "e": "For authentication state, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Security Testing"
+    ],
+    "topic": "authentication state"
+  },
+  {
+    "r": "playwright",
+    "q": "Which production concern is most important for visual snapshots?",
+    "correct": "For visual snapshots, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "Prefer absolute XPath or deep CSS structure in visual snapshots; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "Assume element references remain valid after dynamic DOM updates in visual snapshots; re-locating elements only adds unnecessary work.",
+      "When visual snapshots becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
+    ],
+    "e": "For visual snapshots, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "visual snapshots"
+  },
+  {
+    "r": "playwright",
+    "q": "What matters most when taking accessibility scans into production?",
+    "correct": "For accessibility scans, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "Exclude keyboard-only interaction from accessibility scans; browser automation already proves that controls can be clicked with a mouse.",
+      "For accessibility scans, prefer CSS structure over semantic roles and labels because accessibility metadata is less stable than the DOM.",
+      "For accessibility scans, test only one viewport and zoom level because reflow and magnification affect layout rather than accessibility behavior."
+    ],
+    "e": "For accessibility scans, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright",
+      "Accessibility Testing"
+    ],
+    "topic": "accessibility scans"
+  },
+  {
+    "r": "playwright",
+    "q": "How should cross-browser execution be operated beyond the happy path?",
+    "correct": "For cross-browser execution, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "When cross-browser execution becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "For cross-browser execution, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use the first matching element in cross-browser execution whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
+    ],
+    "e": "For cross-browser execution, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "cross-browser execution"
+  },
+  {
+    "r": "playwright",
+    "q": "Which statement best reflects production-ready use of mobile emulation?",
+    "correct": "For mobile emulation, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "Use the first matching element in mobile emulation whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
+      "When mobile emulation becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
+      "Prefer absolute XPath or deep CSS structure in mobile emulation; selectors tied closely to the current DOM are more precise and therefore more maintainable."
+    ],
+    "e": "For mobile emulation, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "mobile emulation"
+  },
+  {
+    "r": "playwright",
+    "q": "How should test sharding be operated beyond the happy path?",
+    "correct": "For test sharding, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
+    "wrong": [
+      "Change configuration files dynamically inside the pipeline for test sharding instead of mapping stable parameters to commands.",
+      "Assume a test that passes once locally proves test sharding is deterministic enough for parallel or cross-browser CI execution.",
+      "Keep reports for test sharding to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read."
+    ],
+    "e": "For test sharding, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
+    "tags": [
+      "Test Automation",
+      "Playwright"
+    ],
+    "topic": "test sharding"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the core idea behind Java collections?",
+    "correct": "Choose Java collection types by semantics: List for ordered duplicates, Set for uniqueness, Map for key-value lookup, and specialized implementations for ordering, concurrency, or performance needs.",
+    "wrong": [
+      "For Java collections, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For Java collections, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For Java collections, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "e": "Choose Java collection types by semantics: List for ordered duplicates, Set for uniqueness, Map for key-value lookup, and specialized implementations for ordering, concurrency, or performance needs. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Java",
+      "Performance Testing"
+    ],
+    "topic": "Java collections"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the core idea behind Java streams?",
+    "correct": "Java Streams express bulk transformations such as filter, map, reduce, and grouping over data sources without requiring manual iteration state.",
+    "wrong": [
+      "For Java streams, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For Java streams, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For Java streams, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+    ],
+    "e": "Java Streams express bulk transformations such as filter, map, reduce, and grouping over data sources without requiring manual iteration state. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "Java streams"
+  },
+  {
+    "r": "engineering",
+    "q": "Which explanation of Java concurrency is technically sound?",
+    "correct": "Java concurrency requires explicit control of shared mutable state, visibility, atomicity, ordering, and resource ownership across threads.",
+    "wrong": [
+      "For Java concurrency, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For Java concurrency, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For Java concurrency, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+    ],
+    "e": "Java concurrency requires explicit control of shared mutable state, visibility, atomicity, ordering, and resource ownership across threads. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "Java concurrency"
+  },
+  {
+    "r": "engineering",
+    "q": "What should a practitioner understand first about object-oriented design?",
+    "correct": "Object-oriented design uses encapsulation, abstraction, composition, and polymorphism to model responsibilities and reduce coupling, not merely to create class hierarchies.",
+    "wrong": [
+      "Optimize object-oriented design for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "For object-oriented design, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Treat one successful local execution as proof that object-oriented design satisfies reliability, security, scale, and recovery requirements."
+    ],
+    "e": "Object-oriented design uses encapsulation, abstraction, composition, and polymorphism to model responsibilities and reduce coupling, not merely to create class hierarchies. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "object-oriented design"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the core idea behind SOLID principles?",
+    "correct": "SOLID is a set of design heuristics—single responsibility, open/closed, Liskov substitution, interface segregation, and dependency inversion—used to manage change and coupling.",
+    "wrong": [
+      "For SOLID principles, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Use implicit defaults and undocumented environment state in SOLID principles; explicit contracts only add configuration overhead.",
+      "Postpone observability and failure handling in SOLID principles until the first production incident provides real requirements."
+    ],
+    "e": "SOLID is a set of design heuristics—single responsibility, open/closed, Liskov substitution, interface segregation, and dependency inversion—used to manage change and coupling. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "SOLID principles"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the core idea behind design patterns?",
+    "correct": "Design patterns are reusable solution structures for recurring design problems, but they are vocabulary and guidance rather than requirements to add abstraction.",
+    "wrong": [
+      "Treat one successful local execution as proof that design patterns satisfies reliability, security, scale, and recovery requirements.",
+      "Optimize design patterns for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "For design patterns, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+    ],
+    "e": "Design patterns are reusable solution structures for recurring design problems, but they are vocabulary and guidance rather than requirements to add abstraction. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "design patterns"
+  },
+  {
+    "r": "engineering",
+    "q": "Which explanation of SQL joins is technically sound?",
+    "correct": "SQL joins combine rows according to relational keys: INNER keeps matches, LEFT preserves all left-side rows, and other join types model different inclusion rules.",
+    "wrong": [
+      "Treat application code as the only source of integrity for SQL joins; keys, constraints, and transaction boundaries only duplicate validation.",
+      "Use string-built SQL for SQL joins whenever values are dynamic; parameterization only affects style, not correctness or security.",
+      "Run destructive queries for SQL joins in shared environments as long as the transaction can theoretically be rolled back."
+    ],
+    "e": "SQL joins combine rows according to relational keys: INNER keeps matches, LEFT preserves all left-side rows, and other join types model different inclusion rules. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "SQL"
+    ],
+    "topic": "SQL joins"
+  },
+  {
+    "r": "engineering",
+    "q": "Which explanation of database transactions is technically sound?",
+    "correct": "A database transaction groups operations into an atomic consistency boundary so committed work succeeds together and failures can roll back according to the database's isolation guarantees.",
+    "wrong": [
+      "Use string-built SQL for database transactions whenever values are dynamic; parameterization only affects style, not correctness or security.",
+      "Ignore database dialect and timezone semantics in database transactions; date arithmetic and isolation behavior are portable enough to assume.",
+      "Run destructive queries for database transactions in shared environments as long as the transaction can theoretically be rolled back."
+    ],
+    "e": "A database transaction groups operations into an atomic consistency boundary so committed work succeeds together and failures can roll back according to the database's isolation guarantees. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Git",
+      "SQL"
+    ],
+    "topic": "database transactions"
+  },
+  {
+    "r": "engineering",
+    "q": "Which statement best describes indexing?",
+    "correct": "Database indexes trade additional storage and write cost for faster access paths on queries that match the indexed keys and selectivity.",
+    "wrong": [
+      "Assume indexes always improve indexing; write cost, selectivity, query plans, and storage overhead do not need measurement.",
+      "Run destructive queries for indexing in shared environments as long as the transaction can theoretically be rolled back.",
+      "For indexing, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys."
+    ],
+    "e": "Database indexes trade additional storage and write cost for faster access paths on queries that match the indexed keys and selectivity. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "SQL"
+    ],
+    "topic": "indexing"
+  },
+  {
+    "r": "engineering",
+    "q": "Which statement best describes JSON Schema?",
+    "correct": "JSON Schema describes structural constraints such as required properties, types, formats, enums, nested objects, and arrays for JSON documents.",
+    "wrong": [
+      "Use production credentials and real customer data for JSON Schema because synthetic environments cannot reveal API defects.",
+      "Hard-code tokens, IDs, and environment URLs directly into JSON Schema so every request is self-contained.",
+      "Assume retries are safe for JSON Schema even when operations are not idempotent; duplicate side effects can be cleaned up later."
+    ],
+    "e": "JSON Schema describes structural constraints such as required properties, types, formats, enums, nested objects, and arrays for JSON documents. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "JSON Schema"
+  },
+  {
+    "r": "engineering",
+    "q": "Which statement best describes REST design?",
+    "correct": "RESTful API design centers on resources, representations, HTTP semantics, stateless interactions, and consistent use of methods and status codes rather than RPC-style verbs everywhere.",
+    "wrong": [
+      "Assume retries are safe for REST design even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "Hard-code tokens, IDs, and environment URLs directly into REST design so every request is self-contained.",
+      "Validate only the happy-path endpoint in REST design; authorization, malformed input, rate limits, and dependency failures belong to separate systems."
+    ],
+    "e": "RESTful API design centers on resources, representations, HTTP semantics, stateless interactions, and consistent use of methods and status codes rather than RPC-style verbs everywhere. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "REST design"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the core idea behind API contracts?",
+    "correct": "An API contract defines the request and response structures, semantics, errors, authentication, and compatibility expectations that producers and consumers rely on.",
+    "wrong": [
+      "Hard-code tokens, IDs, and environment URLs directly into API contracts so every request is self-contained.",
+      "Use production credentials and real customer data for API contracts because synthetic environments cannot reveal API defects.",
+      "Validate only the happy-path endpoint in API contracts; authorization, malformed input, rate limits, and dependency failures belong to separate systems."
+    ],
+    "e": "An API contract defines the request and response structures, semantics, errors, authentication, and compatibility expectations that producers and consumers rely on. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing",
+      "Security Testing"
+    ],
+    "topic": "API contracts"
+  },
+  {
+    "r": "engineering",
+    "q": "What should a practitioner understand first about authentication?",
+    "correct": "Authentication establishes who or what a caller is; it does not by itself decide what that identity is allowed to do.",
+    "wrong": [
+      "Put authorization rules for authentication only in the UI so prohibited actions are hidden from ordinary users.",
+      "For authentication, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Treat public or model-generated identifiers in authentication as sufficient proof that the caller owns the referenced object."
+    ],
+    "e": "Authentication establishes who or what a caller is; it does not by itself decide what that identity is allowed to do. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "authentication"
+  },
+  {
+    "r": "engineering",
+    "q": "What should a practitioner understand first about authorization?",
+    "correct": "Authorization determines whether an authenticated identity may perform a specific action on a specific resource, role, tenant, or data scope.",
+    "wrong": [
+      "Assume TLS or a private network makes authorization safe from application-level privilege and input-validation failures.",
+      "Put authorization rules for authorization only in the UI so prohibited actions are hidden from ordinary users.",
+      "For authorization, trust any authenticated caller to access all related resources; authentication already proves authorization."
+    ],
+    "e": "Authorization determines whether an authenticated identity may perform a specific action on a specific resource, role, tenant, or data scope. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "authorization"
+  },
+  {
+    "r": "engineering",
+    "q": "What should a practitioner understand first about webhooks?",
+    "correct": "Webhooks are inbound event notifications from external systems and must be treated as untrusted, retryable, potentially duplicated messages.",
+    "wrong": [
+      "Validate only the happy-path endpoint in webhooks; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
+      "Hard-code tokens, IDs, and environment URLs directly into webhooks so every request is self-contained.",
+      "Treat the client-visible response as the entire contract for webhooks; downstream state and emitted events do not need verification."
+    ],
+    "e": "Webhooks are inbound event notifications from external systems and must be treated as untrusted, retryable, potentially duplicated messages. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "webhooks"
+  },
+  {
+    "r": "engineering",
+    "q": "What should a practitioner understand first about Docker containers?",
+    "correct": "A Docker image is an immutable build artifact, while a container is a runtime instance of that image; a running process does not necessarily mean the service is ready.",
+    "wrong": [
+      "Use arbitrary sleeps for dependency startup in Docker containers; readiness checks and retryable connection logic add unnecessary complexity.",
+      "Assume local success proves Docker containers will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "Persist test state across runs in Docker containers by default; reusing volumes makes integration tests more realistic than clean startup."
+    ],
+    "e": "A Docker image is an immutable build artifact, while a container is a runtime instance of that image; a running process does not necessarily mean the service is ready. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Docker"
+    ],
+    "topic": "Docker containers"
+  },
+  {
+    "r": "engineering",
+    "q": "What should a practitioner understand first about Docker Compose?",
+    "correct": "Docker Compose defines a multi-service environment—such as application, database, cache, and broker—but startup ordering is not the same as application readiness.",
+    "wrong": [
+      "Bake environment-specific secrets and credentials into the artifact used by Docker Compose so every deployment receives identical configuration.",
+      "Assume local success proves Docker Compose will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "For Docker Compose, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant."
+    ],
+    "e": "Docker Compose defines a multi-service environment—such as application, database, cache, and broker—but startup ordering is not the same as application readiness. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "SQL",
+      "Docker"
+    ],
+    "topic": "Docker Compose"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the core idea behind GitHub Actions?",
+    "correct": "GitHub Actions workflows react to events and run jobs made of steps on isolated runners, with matrices, artifacts, caches, environments, and concurrency controls for delivery automation.",
+    "wrong": [
+      "For GitHub Actions, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Give every service in GitHub Actions broad network and filesystem access so configuration problems cannot block the workflow.",
+      "Assume local success proves GitHub Actions will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored."
+    ],
+    "e": "GitHub Actions workflows react to events and run jobs made of steps on isolated runners, with matrices, artifacts, caches, environments, and concurrency controls for delivery automation. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "CI/CD"
+    ],
+    "topic": "GitHub Actions"
+  },
+  {
+    "r": "engineering",
+    "q": "Which explanation of Jenkins pipelines is technically sound?",
+    "correct": "Jenkins pipelines encode build and delivery stages in a Jenkinsfile so checkout, build, tests, artifacts, gates, and deployment behavior are repeatable and reviewable.",
+    "wrong": [
+      "For Jenkins pipelines, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Bake environment-specific secrets and credentials into the artifact used by Jenkins pipelines so every deployment receives identical configuration.",
+      "Use arbitrary sleeps for dependency startup in Jenkins pipelines; readiness checks and retryable connection logic add unnecessary complexity."
+    ],
+    "e": "Jenkins pipelines encode build and delivery stages in a Jenkinsfile so checkout, build, tests, artifacts, gates, and deployment behavior are repeatable and reviewable. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "CI/CD"
+    ],
+    "topic": "Jenkins pipelines"
+  },
+  {
+    "r": "engineering",
+    "q": "Which explanation of Linux troubleshooting is technically sound?",
+    "correct": "Linux troubleshooting is evidence-driven: identify the failing layer, inspect process state, logs, resources, files, permissions, networking, and recent changes before changing configuration.",
+    "wrong": [
+      "Persist test state across runs in Linux troubleshooting by default; reusing volumes makes integration tests more realistic than clean startup.",
+      "Give every service in Linux troubleshooting broad network and filesystem access so configuration problems cannot block the workflow.",
+      "Use arbitrary sleeps for dependency startup in Linux troubleshooting; readiness checks and retryable connection logic add unnecessary complexity."
+    ],
+    "e": "Linux troubleshooting is evidence-driven: identify the failing layer, inspect process state, logs, resources, files, permissions, networking, and recent changes before changing configuration. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "Linux troubleshooting"
+  },
+  {
+    "r": "engineering",
+    "q": "Which statement best describes environment variables?",
+    "correct": "Environment variables externalize runtime configuration, but they are plain process inputs rather than inherently secure secret storage.",
+    "wrong": [
+      "Assume local success proves environment variables will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "Give every service in environment variables broad network and filesystem access so configuration problems cannot block the workflow.",
+      "Bake environment-specific secrets and credentials into the artifact used by environment variables so every deployment receives identical configuration."
+    ],
+    "e": "Environment variables externalize runtime configuration, but they are plain process inputs rather than inherently secure secret storage. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "environment variables"
+  },
+  {
+    "r": "engineering",
+    "q": "What is the core idea behind logging?",
+    "correct": "Application logging should capture structured, contextual events that support diagnosis and audit without exposing sensitive data or flooding storage with noise.",
+    "wrong": [
+      "Use implicit defaults and undocumented environment state in logging; explicit contracts only add configuration overhead.",
+      "Treat one successful local execution as proof that logging satisfies reliability, security, scale, and recovery requirements.",
+      "Postpone observability and failure handling in logging until the first production incident provides real requirements."
+    ],
+    "e": "Application logging should capture structured, contextual events that support diagnosis and audit without exposing sensitive data or flooding storage with noise. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Reliability Engineering"
+    ],
+    "topic": "logging"
+  },
+  {
+    "r": "engineering",
+    "q": "What should a practitioner understand first about error handling?",
+    "correct": "Good error handling preserves useful context, distinguishes expected from unexpected failure, and returns a safe contract without silently converting failures into success.",
+    "wrong": [
+      "Use implicit defaults and undocumented environment state in error handling; explicit contracts only add configuration overhead.",
+      "Postpone observability and failure handling in error handling until the first production incident provides real requirements.",
+      "For error handling, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+    ],
+    "e": "Good error handling preserves useful context, distinguishes expected from unexpected failure, and returns a safe contract without silently converting failures into success. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "error handling"
+  },
+  {
+    "r": "engineering",
+    "q": "What should a practitioner understand first about code review?",
+    "correct": "Code review is a risk-reduction and knowledge-sharing activity that checks correctness, maintainability, security, tests, and design—not just style.",
+    "wrong": [
+      "For code review, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Keep business logic coupled directly to transport, storage, and UI details in code review so fewer interfaces need maintenance.",
+      "Optimize code review for the normal path and assume rare dependency failures, retries, or partial state can be handled manually."
+    ],
+    "e": "Code review is a risk-reduction and knowledge-sharing activity that checks correctness, maintainability, security, tests, and design—not just style. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "code review"
+  },
+  {
+    "r": "engineering",
+    "q": "What should a practitioner understand first about system design?",
+    "correct": "System design balances functional requirements with scale, reliability, consistency, security, cost, operability, and changeability across clear component boundaries.",
+    "wrong": [
+      "Keep business logic coupled directly to transport, storage, and UI details in system design so fewer interfaces need maintenance.",
+      "For system design, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Optimize system design for the normal path and assume rare dependency failures, retries, or partial state can be handled manually."
+    ],
+    "e": "System design balances functional requirements with scale, reliability, consistency, security, cost, operability, and changeability across clear component boundaries. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "system design"
+  },
+  {
+    "r": "engineering",
+    "q": "Which practice is most appropriate when using Java collections?",
+    "correct": "Program to interfaces where practical, select implementations deliberately, and avoid exposing mutable collections when callers should not own the underlying state.",
+    "wrong": [
+      "For Java collections, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For Java collections, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For Java collections, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+    ],
+    "e": "Program to interfaces where practical, select implementations deliberately, and avoid exposing mutable collections when callers should not own the underlying state. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "Java collections"
+  },
+  {
+    "r": "engineering",
+    "q": "How should Java streams be applied in practice?",
+    "correct": "Keep stream pipelines side-effect-light, use terminal operations intentionally, and prefer ordinary loops when control flow or mutation would make the stream harder to understand.",
+    "wrong": [
+      "For Java streams, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For Java streams, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For Java streams, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+    ],
+    "e": "Keep stream pipelines side-effect-light, use terminal operations intentionally, and prefer ordinary loops when control flow or mutation would make the stream harder to understand. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Java",
+      "CI/CD"
+    ],
+    "topic": "Java streams"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a maintainable way to work with Java concurrency?",
+    "correct": "Prefer immutable data, thread-safe collections, executors, locks or atomic primitives only where needed, and avoid ad-hoc thread creation for managed workloads.",
+    "wrong": [
+      "For Java concurrency, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "For Java concurrency, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For Java concurrency, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+    ],
+    "e": "Prefer immutable data, thread-safe collections, executors, locks or atomic primitives only where needed, and avoid ad-hoc thread creation for managed workloads. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "Java concurrency"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a maintainable way to work with object-oriented design?",
+    "correct": "Give classes focused responsibilities, hide unstable implementation details, favor composition when inheritance does not express a true substitutable relationship, and keep dependencies explicit.",
+    "wrong": [
+      "Keep business logic coupled directly to transport, storage, and UI details in object-oriented design so fewer interfaces need maintenance.",
+      "Postpone observability and failure handling in object-oriented design until the first production incident provides real requirements.",
+      "Optimize object-oriented design for the normal path and assume rare dependency failures, retries, or partial state can be handled manually."
+    ],
+    "e": "Give classes focused responsibilities, hide unstable implementation details, favor composition when inheritance does not express a true substitutable relationship, and keep dependencies explicit. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "object-oriented design"
+  },
+  {
+    "r": "engineering",
+    "q": "Which practice is most appropriate when using SOLID principles?",
+    "correct": "Apply the principles to concrete design problems rather than mechanically adding interfaces or classes; the goal is clearer boundaries and safer evolution.",
+    "wrong": [
+      "For SOLID principles, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Optimize SOLID principles for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "Treat one successful local execution as proof that SOLID principles satisfies reliability, security, scale, and recovery requirements."
+    ],
+    "e": "Apply the principles to concrete design problems rather than mechanically adding interfaces or classes; the goal is clearer boundaries and safer evolution. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "SOLID principles"
+  },
+  {
+    "r": "engineering",
+    "q": "Which practice is most appropriate when using design patterns?",
+    "correct": "Choose a pattern only when the problem matches its trade-offs, such as Strategy for interchangeable behavior, Factory for creation decisions, or Observer for event notification.",
+    "wrong": [
+      "Treat one successful local execution as proof that design patterns satisfies reliability, security, scale, and recovery requirements.",
+      "Use implicit defaults and undocumented environment state in design patterns; explicit contracts only add configuration overhead.",
+      "Postpone observability and failure handling in design patterns until the first production incident provides real requirements."
+    ],
+    "e": "Choose a pattern only when the problem matches its trade-offs, such as Strategy for interchangeable behavior, Factory for creation decisions, or Observer for event notification. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "design patterns"
+  },
+  {
+    "r": "engineering",
+    "q": "Which practice is most appropriate when using SQL joins?",
+    "correct": "Choose the join from the business question, qualify ambiguous columns, understand one-to-many cardinality, and aggregate only after confirming how the join changes row counts.",
+    "wrong": [
+      "Assume indexes always improve SQL joins; write cost, selectivity, query plans, and storage overhead do not need measurement.",
+      "Run destructive queries for SQL joins in shared environments as long as the transaction can theoretically be rolled back.",
+      "Treat application code as the only source of integrity for SQL joins; keys, constraints, and transaction boundaries only duplicate validation."
+    ],
+    "e": "Choose the join from the business question, qualify ambiguous columns, understand one-to-many cardinality, and aggregate only after confirming how the join changes row counts. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "SQL"
+    ],
+    "topic": "SQL joins"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a maintainable way to work with database transactions?",
+    "correct": "Keep transactions as short as practical, define isolation according to contention and correctness needs, and avoid external network calls inside long transactions when possible.",
+    "wrong": [
+      "For database transactions, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
+      "Assume indexes always improve database transactions; write cost, selectivity, query plans, and storage overhead do not need measurement.",
+      "Treat application code as the only source of integrity for database transactions; keys, constraints, and transaction boundaries only duplicate validation."
+    ],
+    "e": "Keep transactions as short as practical, define isolation according to contention and correctness needs, and avoid external network calls inside long transactions when possible. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "SQL"
+    ],
+    "topic": "database transactions"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a maintainable way to work with indexing?",
+    "correct": "Design indexes from real query predicates, joins, ordering, and workload patterns, then inspect query plans instead of indexing every column preemptively.",
+    "wrong": [
+      "Run destructive queries for indexing in shared environments as long as the transaction can theoretically be rolled back.",
+      "Treat application code as the only source of integrity for indexing; keys, constraints, and transaction boundaries only duplicate validation.",
+      "Ignore database dialect and timezone semantics in indexing; date arithmetic and isolation behavior are portable enough to assume."
+    ],
+    "e": "Design indexes from real query predicates, joins, ordering, and workload patterns, then inspect query plans instead of indexing every column preemptively. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "SQL"
+    ],
+    "topic": "indexing"
+  },
+  {
+    "r": "engineering",
+    "q": "Which implementation approach is strongest for JSON Schema?",
+    "correct": "Use schemas at system boundaries to validate payload shape, version contracts deliberately, and combine structural validation with business-rule assertions that schemas cannot express alone.",
+    "wrong": [
+      "Validate only the happy-path endpoint in JSON Schema; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
+      "Treat the client-visible response as the entire contract for JSON Schema; downstream state and emitted events do not need verification.",
+      "Assume retries are safe for JSON Schema even when operations are not idempotent; duplicate side effects can be cleaned up later."
+    ],
+    "e": "Use schemas at system boundaries to validate payload shape, version contracts deliberately, and combine structural validation with business-rule assertions that schemas cannot express alone. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "JSON Schema"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a maintainable way to work with REST design?",
+    "correct": "Model stable resource URLs, choose methods by semantics and idempotency, return useful errors, support pagination/filtering where needed, and keep contracts consistent across endpoints.",
+    "wrong": [
+      "Treat the client-visible response as the entire contract for REST design; downstream state and emitted events do not need verification.",
+      "For REST design, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Use production credentials and real customer data for REST design because synthetic environments cannot reveal API defects."
+    ],
+    "e": "Model stable resource URLs, choose methods by semantics and idempotency, return useful errors, support pagination/filtering where needed, and keep contracts consistent across endpoints. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "REST design"
+  },
+  {
+    "r": "engineering",
+    "q": "How should API contracts be applied in practice?",
+    "correct": "Version or evolve contracts with backward compatibility in mind, validate schemas in CI, and communicate deprecations before removing fields or changing meaning.",
+    "wrong": [
+      "Assume retries are safe for API contracts even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "Use production credentials and real customer data for API contracts because synthetic environments cannot reveal API defects.",
+      "Hard-code tokens, IDs, and environment URLs directly into API contracts so every request is self-contained."
+    ],
+    "e": "Version or evolve contracts with backward compatibility in mind, validate schemas in CI, and communicate deprecations before removing fields or changing meaning. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "API contracts"
+  },
+  {
+    "r": "engineering",
+    "q": "Which implementation approach is strongest for authentication?",
+    "correct": "Use proven identity protocols, protect credentials and sessions, rotate secrets, handle expiry and revocation, and separate service identity from end-user identity where appropriate.",
+    "wrong": [
+      "Put authorization rules for authentication only in the UI so prohibited actions are hidden from ordinary users.",
+      "For authentication, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Log full tokens, credentials, or personal data during authentication to simplify debugging; operational access is already trusted."
+    ],
+    "e": "Use proven identity protocols, protect credentials and sessions, rotate secrets, handle expiry and revocation, and separate service identity from end-user identity where appropriate. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "authentication"
+  },
+  {
+    "r": "engineering",
+    "q": "How should authorization be applied in practice?",
+    "correct": "Enforce authorization server-side at every protected boundary using least privilege and object-level checks instead of trusting UI visibility or client-supplied role data.",
+    "wrong": [
+      "For authorization, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Put authorization rules for authorization only in the UI so prohibited actions are hidden from ordinary users.",
+      "Treat public or model-generated identifiers in authorization as sufficient proof that the caller owns the referenced object."
+    ],
+    "e": "Enforce authorization server-side at every protected boundary using least privilege and object-level checks instead of trusting UI visibility or client-supplied role data. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "authorization"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a maintainable way to work with webhooks?",
+    "correct": "Verify signatures, validate schema, acknowledge quickly, process idempotently, persist enough state for retries, and handle out-of-order or repeated deliveries.",
+    "wrong": [
+      "Treat the client-visible response as the entire contract for webhooks; downstream state and emitted events do not need verification.",
+      "Use production credentials and real customer data for webhooks because synthetic environments cannot reveal API defects.",
+      "Hard-code tokens, IDs, and environment URLs directly into webhooks so every request is self-contained."
+    ],
+    "e": "Verify signatures, validate schema, acknowledge quickly, process idempotently, persist enough state for retries, and handle out-of-order or repeated deliveries. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "webhooks"
+  },
+  {
+    "r": "engineering",
+    "q": "Which practice is most appropriate when using Docker containers?",
+    "correct": "Use small reproducible images, non-root execution where feasible, explicit configuration, health checks, controlled volumes, and networks that expose only required dependencies.",
+    "wrong": [
+      "Assume local success proves Docker containers will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "Use arbitrary sleeps for dependency startup in Docker containers; readiness checks and retryable connection logic add unnecessary complexity.",
+      "Bake environment-specific secrets and credentials into the artifact used by Docker containers so every deployment receives identical configuration."
+    ],
+    "e": "Use small reproducible images, non-root execution where feasible, explicit configuration, health checks, controlled volumes, and networks that expose only required dependencies. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Docker"
+    ],
+    "topic": "Docker containers"
+  },
+  {
+    "r": "engineering",
+    "q": "How should Docker Compose be applied in practice?",
+    "correct": "Declare services, networks, volumes, environment values, and health checks explicitly, and use disposable state for tests unless persistence is intentional.",
+    "wrong": [
+      "Bake environment-specific secrets and credentials into the artifact used by Docker Compose so every deployment receives identical configuration.",
+      "Assume local success proves Docker Compose will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "Give every service in Docker Compose broad network and filesystem access so configuration problems cannot block the workflow."
+    ],
+    "e": "Declare services, networks, volumes, environment values, and health checks explicitly, and use disposable state for tests unless persistence is intentional. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Docker"
+    ],
+    "topic": "Docker Compose"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a maintainable way to work with GitHub Actions?",
+    "correct": "Pin or review third-party actions, use least-privilege permissions, store secrets safely, publish diagnostic artifacts, and distinguish dependency caches from run-specific artifacts.",
+    "wrong": [
+      "Persist test state across runs in GitHub Actions by default; reusing volumes makes integration tests more realistic than clean startup.",
+      "Give every service in GitHub Actions broad network and filesystem access so configuration problems cannot block the workflow.",
+      "Assume local success proves GitHub Actions will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored."
+    ],
+    "e": "Pin or review third-party actions, use least-privilege permissions, store secrets safely, publish diagnostic artifacts, and distinguish dependency caches from run-specific artifacts. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "CI/CD",
+      "Security Testing"
+    ],
+    "topic": "GitHub Actions"
+  },
+  {
+    "r": "engineering",
+    "q": "Which practice is most appropriate when using Jenkins pipelines?",
+    "correct": "Keep agents reproducible, credentials scoped, stages observable, and shared libraries versioned; publish failure evidence instead of rerunning until green.",
+    "wrong": [
+      "For Jenkins pipelines, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Persist test state across runs in Jenkins pipelines by default; reusing volumes makes integration tests more realistic than clean startup.",
+      "Assume local success proves Jenkins pipelines will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored."
+    ],
+    "e": "Keep agents reproducible, credentials scoped, stages observable, and shared libraries versioned; publish failure evidence instead of rerunning until green. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "CI/CD",
+      "AI Agents"
+    ],
+    "topic": "Jenkins pipelines"
+  },
+  {
+    "r": "engineering",
+    "q": "What is a maintainable way to work with Linux troubleshooting?",
+    "correct": "Use targeted tools such as ps/systemctl, journalctl, df/du, free/top, ss/curl/dig, ls/stat, and environment inspection according to the symptom.",
+    "wrong": [
+      "Assume local success proves Linux troubleshooting will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "Use arbitrary sleeps for dependency startup in Linux troubleshooting; readiness checks and retryable connection logic add unnecessary complexity.",
+      "Persist test state across runs in Linux troubleshooting by default; reusing volumes makes integration tests more realistic than clean startup."
+    ],
+    "e": "Use targeted tools such as ps/systemctl, journalctl, df/du, free/top, ss/curl/dig, ls/stat, and environment inspection according to the symptom. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "Linux troubleshooting"
+  },
+  {
+    "r": "engineering",
+    "q": "Which implementation approach is strongest for environment variables?",
+    "correct": "Define required variables explicitly, provide safe non-secret defaults where appropriate, inject secrets from protected stores, and avoid scattering configuration reads through business logic.",
+    "wrong": [
+      "Persist test state across runs in environment variables by default; reusing volumes makes integration tests more realistic than clean startup.",
+      "Assume local success proves environment variables will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "Use arbitrary sleeps for dependency startup in environment variables; readiness checks and retryable connection logic add unnecessary complexity."
+    ],
+    "e": "Define required variables explicitly, provide safe non-secret defaults where appropriate, inject secrets from protected stores, and avoid scattering configuration reads through business logic. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "environment variables"
+  },
+  {
+    "r": "engineering",
+    "q": "Which practice is most appropriate when using logging?",
+    "correct": "Use levels consistently, include correlation or request IDs, record important state transitions and errors, and redact tokens, passwords, personal data, and large payloads.",
+    "wrong": [
+      "Optimize logging for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "Postpone observability and failure handling in logging until the first production incident provides real requirements.",
+      "Treat one successful local execution as proof that logging satisfies reliability, security, scale, and recovery requirements."
+    ],
+    "e": "Use levels consistently, include correlation or request IDs, record important state transitions and errors, and redact tokens, passwords, personal data, and large payloads. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "logging"
+  },
+  {
+    "r": "engineering",
+    "q": "Which implementation approach is strongest for error handling?",
+    "correct": "Catch errors at boundaries that can add context or recover, propagate or wrap them deliberately, log once at the appropriate layer, and keep user-facing messages separate from internal details.",
+    "wrong": [
+      "For error handling, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Use implicit defaults and undocumented environment state in error handling; explicit contracts only add configuration overhead.",
+      "Treat one successful local execution as proof that error handling satisfies reliability, security, scale, and recovery requirements."
+    ],
+    "e": "Catch errors at boundaries that can add context or recover, propagate or wrap them deliberately, log once at the appropriate layer, and keep user-facing messages separate from internal details. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "error handling"
+  },
+  {
+    "r": "engineering",
+    "q": "How should code review be applied in practice?",
+    "correct": "Keep changes focused, explain intent, review behavior and edge cases before formatting details, and use automation for mechanical checks so human attention stays on judgment.",
+    "wrong": [
+      "Keep business logic coupled directly to transport, storage, and UI details in code review so fewer interfaces need maintenance.",
+      "Use implicit defaults and undocumented environment state in code review; explicit contracts only add configuration overhead.",
+      "Treat one successful local execution as proof that code review satisfies reliability, security, scale, and recovery requirements."
+    ],
+    "e": "Keep changes focused, explain intent, review behavior and edge cases before formatting details, and use automation for mechanical checks so human attention stays on judgment. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "code review"
+  },
+  {
+    "r": "engineering",
+    "q": "Which practice is most appropriate when using system design?",
+    "correct": "Start from workloads and failure modes, define data ownership and APIs, choose state and communication models deliberately, and design observability, recovery, and capacity alongside the happy path.",
+    "wrong": [
+      "Treat one successful local execution as proof that system design satisfies reliability, security, scale, and recovery requirements.",
+      "Use implicit defaults and undocumented environment state in system design; explicit contracts only add configuration overhead.",
+      "For system design, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+    ],
+    "e": "Start from workloads and failure modes, define data ownership and APIs, choose state and communication models deliberately, and design observability, recovery, and capacity alongside the happy path. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Performance Testing"
+    ],
+    "topic": "system design"
+  },
+  {
+    "r": "engineering",
+    "q": "What evidence best validates Java collections?",
+    "correct": "Validate collection behavior around nulls, duplicates, ordering, equality/hashCode, mutation, and concurrent access because implementation choice changes those contracts.",
+    "wrong": [
+      "For Java collections, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For Java collections, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "For Java collections, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+    ],
+    "e": "Validate collection behavior around nulls, duplicates, ordering, equality/hashCode, mutation, and concurrent access because implementation choice changes those contracts. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "Java collections"
+  },
+  {
+    "r": "engineering",
+    "q": "Which check gives the strongest evidence for Java streams?",
+    "correct": "Check correctness with empty inputs, ordering requirements, duplicate values, parallel execution assumptions, and reductions that need associative operations.",
+    "wrong": [
+      "For Java streams, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "For Java streams, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "For Java streams, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+    ],
+    "e": "Check correctness with empty inputs, ordering requirements, duplicate values, parallel execution assumptions, and reductions that need associative operations. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "Java streams"
+  },
+  {
+    "r": "engineering",
+    "q": "Which check gives the strongest evidence for Java concurrency?",
+    "correct": "Test race-prone code repeatedly under contention and verify invariants rather than assuming a single successful run proves thread safety.",
+    "wrong": [
+      "For Java concurrency, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "For Java concurrency, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "For Java concurrency, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+    ],
+    "e": "Test race-prone code repeatedly under contention and verify invariants rather than assuming a single successful run proves thread safety. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Java"
+    ],
+    "topic": "Java concurrency"
+  },
+  {
+    "r": "engineering",
+    "q": "How should object-oriented design be verified or evaluated?",
+    "correct": "Review designs for change hotspots, hidden shared state, duplicated rules, and violations of substitutability or ownership that make testing and extension difficult.",
+    "wrong": [
+      "Treat one successful local execution as proof that object-oriented design satisfies reliability, security, scale, and recovery requirements.",
+      "Use implicit defaults and undocumented environment state in object-oriented design; explicit contracts only add configuration overhead.",
+      "Postpone observability and failure handling in object-oriented design until the first production incident provides real requirements."
+    ],
+    "e": "Review designs for change hotspots, hidden shared state, duplicated rules, and violations of substitutability or ownership that make testing and extension difficult. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "object-oriented design"
+  },
+  {
+    "r": "engineering",
+    "q": "Which validation approach provides the strongest evidence for SOLID principles?",
+    "correct": "Evaluate whether a proposed abstraction actually reduces reasons to change, preserves substitutability, narrows dependencies, and keeps clients from depending on unused behavior.",
+    "wrong": [
+      "Keep business logic coupled directly to transport, storage, and UI details in SOLID principles so fewer interfaces need maintenance.",
+      "Optimize SOLID principles for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "Use implicit defaults and undocumented environment state in SOLID principles; explicit contracts only add configuration overhead."
+    ],
+    "e": "Evaluate whether a proposed abstraction actually reduces reasons to change, preserves substitutability, narrows dependencies, and keeps clients from depending on unused behavior. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "SOLID principles"
+  },
+  {
+    "r": "engineering",
+    "q": "Which validation approach provides the strongest evidence for design patterns?",
+    "correct": "Review whether the pattern simplifies change and testing; if it adds indirection without solving a recurring problem, a simpler design is usually better.",
+    "wrong": [
+      "Use implicit defaults and undocumented environment state in design patterns; explicit contracts only add configuration overhead.",
+      "Treat one successful local execution as proof that design patterns satisfies reliability, security, scale, and recovery requirements.",
+      "For design patterns, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+    ],
+    "e": "Review whether the pattern simplifies change and testing; if it adds indirection without solving a recurring problem, a simpler design is usually better. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "design patterns"
+  },
+  {
+    "r": "engineering",
+    "q": "Which validation approach provides the strongest evidence for SQL joins?",
+    "correct": "Validate joins by checking unmatched records, duplicate multiplication, null behavior, and sample keys rather than assuming a plausible total means the relationship is correct.",
+    "wrong": [
+      "Ignore database dialect and timezone semantics in SQL joins; date arithmetic and isolation behavior are portable enough to assume.",
+      "Use string-built SQL for SQL joins whenever values are dynamic; parameterization only affects style, not correctness or security.",
+      "Treat application code as the only source of integrity for SQL joins; keys, constraints, and transaction boundaries only duplicate validation."
+    ],
+    "e": "Validate joins by checking unmatched records, duplicate multiplication, null behavior, and sample keys rather than assuming a plausible total means the relationship is correct. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "SQL"
+    ],
+    "topic": "SQL joins"
+  },
+  {
+    "r": "engineering",
+    "q": "Which check gives the strongest evidence for database transactions?",
+    "correct": "Test rollback, concurrent updates, duplicate requests, deadlocks or retries, and partial-failure scenarios to verify that durable state preserves business invariants.",
+    "wrong": [
+      "Assume indexes always improve database transactions; write cost, selectivity, query plans, and storage overhead do not need measurement.",
+      "For database transactions, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
+      "Use string-built SQL for database transactions whenever values are dynamic; parameterization only affects style, not correctness or security."
+    ],
+    "e": "Test rollback, concurrent updates, duplicate requests, deadlocks or retries, and partial-failure scenarios to verify that durable state preserves business invariants. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "SQL"
+    ],
+    "topic": "database transactions"
+  },
+  {
+    "r": "engineering",
+    "q": "What evidence best validates indexing?",
+    "correct": "Verify performance with representative data and both read and write workloads because an index that speeds one query can slow inserts or be ignored by the optimizer.",
+    "wrong": [
+      "Run destructive queries for indexing in shared environments as long as the transaction can theoretically be rolled back.",
+      "Ignore database dialect and timezone semantics in indexing; date arithmetic and isolation behavior are portable enough to assume.",
+      "Use string-built SQL for indexing whenever values are dynamic; parameterization only affects style, not correctness or security."
+    ],
+    "e": "Verify performance with representative data and both read and write workloads because an index that speeds one query can slow inserts or be ignored by the optimizer. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "SQL",
+      "Performance Testing"
+    ],
+    "topic": "indexing"
+  },
+  {
+    "r": "engineering",
+    "q": "How should JSON Schema be verified or evaluated?",
+    "correct": "Test required and optional fields, additional properties, nullability, nested errors, version compatibility, and representative invalid payloads.",
+    "wrong": [
+      "Use production credentials and real customer data for JSON Schema because synthetic environments cannot reveal API defects.",
+      "Treat the client-visible response as the entire contract for JSON Schema; downstream state and emitted events do not need verification.",
+      "Validate only the happy-path endpoint in JSON Schema; authorization, malformed input, rate limits, and dependency failures belong to separate systems."
+    ],
+    "e": "Test required and optional fields, additional properties, nullability, nested errors, version compatibility, and representative invalid payloads. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "JSON Schema"
+  },
+  {
+    "r": "engineering",
+    "q": "How should REST design be verified or evaluated?",
+    "correct": "Evaluate the API with normal, invalid, unauthorized, repeated, concurrent, and partial-failure requests while checking both protocol responses and durable side effects.",
+    "wrong": [
+      "Use production credentials and real customer data for REST design because synthetic environments cannot reveal API defects.",
+      "For REST design, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Assume retries are safe for REST design even when operations are not idempotent; duplicate side effects can be cleaned up later."
+    ],
+    "e": "Evaluate the API with normal, invalid, unauthorized, repeated, concurrent, and partial-failure requests while checking both protocol responses and durable side effects. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "REST design"
+  },
+  {
+    "r": "engineering",
+    "q": "Which validation approach provides the strongest evidence for API contracts?",
+    "correct": "Test both consumer expectations and provider behavior, including optional fields, unknown fields, error shapes, and compatibility across deployed versions.",
+    "wrong": [
+      "Hard-code tokens, IDs, and environment URLs directly into API contracts so every request is self-contained.",
+      "Assume retries are safe for API contracts even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "Use production credentials and real customer data for API contracts because synthetic environments cannot reveal API defects."
+    ],
+    "e": "Test both consumer expectations and provider behavior, including optional fields, unknown fields, error shapes, and compatibility across deployed versions. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "API contracts"
+  },
+  {
+    "r": "engineering",
+    "q": "How should authentication be verified or evaluated?",
+    "correct": "Test valid login, invalid credentials, lockout or rate limiting, expiry, logout, session fixation, token theft scenarios, and recovery without leaking sensitive information.",
+    "wrong": [
+      "Use long-lived shared credentials for authentication; rotation and scoped identity increase the chance of configuration mistakes.",
+      "For authentication, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Assume TLS or a private network makes authentication safe from application-level privilege and input-validation failures."
+    ],
+    "e": "Test valid login, invalid credentials, lockout or rate limiting, expiry, logout, session fixation, token theft scenarios, and recovery without leaking sensitive information. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "authentication"
+  },
+  {
+    "r": "engineering",
+    "q": "How should authorization be verified or evaluated?",
+    "correct": "Test horizontal and vertical privilege escalation, tenant isolation, direct-object access, role changes, and denied actions while confirming no unauthorized side effect occurs.",
+    "wrong": [
+      "Log full tokens, credentials, or personal data during authorization to simplify debugging; operational access is already trusted.",
+      "For authorization, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Put authorization rules for authorization only in the UI so prohibited actions are hidden from ordinary users."
+    ],
+    "e": "Test horizontal and vertical privilege escalation, tenant isolation, direct-object access, role changes, and denied actions while confirming no unauthorized side effect occurs. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "authorization"
+  },
+  {
+    "r": "engineering",
+    "q": "Which check gives the strongest evidence for webhooks?",
+    "correct": "Test invalid signatures, duplicate events, delayed delivery, retries, partial processing, and replay so one event cannot create unintended repeated side effects.",
+    "wrong": [
+      "Treat the client-visible response as the entire contract for webhooks; downstream state and emitted events do not need verification.",
+      "Validate only the happy-path endpoint in webhooks; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
+      "Hard-code tokens, IDs, and environment URLs directly into webhooks so every request is self-contained."
+    ],
+    "e": "Test invalid signatures, duplicate events, delayed delivery, retries, partial processing, and replay so one event cannot create unintended repeated side effects. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "API Testing"
+    ],
+    "topic": "webhooks"
+  },
+  {
+    "r": "engineering",
+    "q": "Which validation approach provides the strongest evidence for Docker containers?",
+    "correct": "Validate startup, health, logs, ports, environment variables, volume behavior, dependency connectivity, resource limits, and shutdown/restart behavior instead of checking only container status.",
+    "wrong": [
+      "Use arbitrary sleeps for dependency startup in Docker containers; readiness checks and retryable connection logic add unnecessary complexity.",
+      "For Docker containers, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Give every service in Docker containers broad network and filesystem access so configuration problems cannot block the workflow."
+    ],
+    "e": "Validate startup, health, logs, ports, environment variables, volume behavior, dependency connectivity, resource limits, and shutdown/restart behavior instead of checking only container status. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Docker"
+    ],
+    "topic": "Docker containers"
+  },
+  {
+    "r": "engineering",
+    "q": "What evidence best validates Docker Compose?",
+    "correct": "Bring the environment up from a clean machine and verify health, service discovery, data lifecycle, failure/restart behavior, and teardown without relying on manual local state.",
+    "wrong": [
+      "For Docker Compose, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Give every service in Docker Compose broad network and filesystem access so configuration problems cannot block the workflow.",
+      "Use arbitrary sleeps for dependency startup in Docker Compose; readiness checks and retryable connection logic add unnecessary complexity."
+    ],
+    "e": "Bring the environment up from a clean machine and verify health, service discovery, data lifecycle, failure/restart behavior, and teardown without relying on manual local state. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Docker"
+    ],
+    "topic": "Docker Compose"
+  },
+  {
+    "r": "engineering",
+    "q": "Which validation approach provides the strongest evidence for GitHub Actions?",
+    "correct": "Test pull-request and protected-branch behavior, matrix combinations, failed jobs, canceled runs, concurrency rules, and artifact/report availability.",
+    "wrong": [
+      "For GitHub Actions, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Assume local success proves GitHub Actions will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "Persist test state across runs in GitHub Actions by default; reusing volumes makes integration tests more realistic than clean startup."
+    ],
+    "e": "Test pull-request and protected-branch behavior, matrix combinations, failed jobs, canceled runs, concurrency rules, and artifact/report availability. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Git",
+      "CI/CD"
+    ],
+    "topic": "GitHub Actions"
+  },
+  {
+    "r": "engineering",
+    "q": "How should Jenkins pipelines be verified or evaluated?",
+    "correct": "For CI-only failures compare runtime versions, environment variables, filesystem, resources, parallelism, timezones, networking, test data, and secrets against the local environment.",
+    "wrong": [
+      "Use arbitrary sleeps for dependency startup in Jenkins pipelines; readiness checks and retryable connection logic add unnecessary complexity.",
+      "Assume local success proves Jenkins pipelines will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
+      "Persist test state across runs in Jenkins pipelines by default; reusing volumes makes integration tests more realistic than clean startup."
+    ],
+    "e": "For CI-only failures compare runtime versions, environment variables, filesystem, resources, parallelism, timezones, networking, test data, and secrets against the local environment. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "CI/CD",
+      "Security Testing"
+    ],
+    "topic": "Jenkins pipelines"
+  },
+  {
+    "r": "engineering",
+    "q": "What evidence best validates Linux troubleshooting?",
+    "correct": "Confirm the fix by reproducing the original failure condition and checking that services, resources, and logs return to expected behavior without introducing a new issue.",
+    "wrong": [
+      "Persist test state across runs in Linux troubleshooting by default; reusing volumes makes integration tests more realistic than clean startup.",
+      "For Linux troubleshooting, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Use arbitrary sleeps for dependency startup in Linux troubleshooting; readiness checks and retryable connection logic add unnecessary complexity."
+    ],
+    "e": "Confirm the fix by reproducing the original failure condition and checking that services, resources, and logs return to expected behavior without introducing a new issue. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "Linux troubleshooting"
+  },
+  {
+    "r": "engineering",
+    "q": "What evidence best validates environment variables?",
+    "correct": "Test missing, malformed, conflicting, and environment-specific values and verify that secrets are not echoed into logs, frontend bundles, traces, or crash output.",
+    "wrong": [
+      "Bake environment-specific secrets and credentials into the artifact used by environment variables so every deployment receives identical configuration.",
+      "Persist test state across runs in environment variables by default; reusing volumes makes integration tests more realistic than clean startup.",
+      "Use arbitrary sleeps for dependency startup in environment variables; readiness checks and retryable connection logic add unnecessary complexity."
+    ],
+    "e": "Test missing, malformed, conflicting, and environment-specific values and verify that secrets are not echoed into logs, frontend bundles, traces, or crash output. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Playwright",
+      "Security Testing"
+    ],
+    "topic": "environment variables"
+  },
+  {
+    "r": "engineering",
+    "q": "Which check gives the strongest evidence for logging?",
+    "correct": "Verify that a production failure can be traced across services from logs and that expected high-volume paths do not create excessive cost or hide important events.",
+    "wrong": [
+      "Optimize logging for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
+      "Treat one successful local execution as proof that logging satisfies reliability, security, scale, and recovery requirements.",
+      "For logging, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+    ],
+    "e": "Verify that a production failure can be traced across services from logs and that expected high-volume paths do not create excessive cost or hide important events. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Playwright",
+      "Reliability Engineering"
+    ],
+    "topic": "logging"
+  },
+  {
+    "r": "engineering",
+    "q": "Which check gives the strongest evidence for error handling?",
+    "correct": "Test invalid input, dependency failures, timeouts, retries, partial work, and cleanup to ensure the system fails safely and observably.",
+    "wrong": [
+      "Keep business logic coupled directly to transport, storage, and UI details in error handling so fewer interfaces need maintenance.",
+      "Treat one successful local execution as proof that error handling satisfies reliability, security, scale, and recovery requirements.",
+      "For error handling, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+    ],
+    "e": "Test invalid input, dependency failures, timeouts, retries, partial work, and cleanup to ensure the system fails safely and observably. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "error handling"
+  },
+  {
+    "r": "engineering",
+    "q": "Which check gives the strongest evidence for code review?",
+    "correct": "Verify reviewer concerns with tests or evidence when possible and ensure requested changes do not introduce hidden regressions or unresolved assumptions.",
+    "wrong": [
+      "Treat one successful local execution as proof that code review satisfies reliability, security, scale, and recovery requirements.",
+      "Use implicit defaults and undocumented environment state in code review; explicit contracts only add configuration overhead.",
+      "Optimize code review for the normal path and assume rare dependency failures, retries, or partial state can be handled manually."
+    ],
+    "e": "Verify reviewer concerns with tests or evidence when possible and ensure requested changes do not introduce hidden regressions or unresolved assumptions. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering"
+    ],
+    "topic": "code review"
+  },
+  {
+    "r": "engineering",
+    "q": "Which validation approach provides the strongest evidence for system design?",
+    "correct": "Evaluate the design with concrete scenarios such as traffic spikes, dependency outages, retries, data loss, regional failure, schema evolution, and security boundaries.",
+    "wrong": [
+      "For system design, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Keep business logic coupled directly to transport, storage, and UI details in system design so fewer interfaces need maintenance.",
+      "Treat one successful local execution as proof that system design satisfies reliability, security, scale, and recovery requirements."
+    ],
+    "e": "Evaluate the design with concrete scenarios such as traffic spikes, dependency outages, retries, data loss, regional failure, schema evolution, and security boundaries. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
+    "tags": [
+      "Software Engineering",
+      "Security Testing"
+    ],
+    "topic": "system design"
+  },
+  {
+    "r": "ai",
+    "q": "Which explanation of prompt design is technically sound?",
+    "correct": "Prompt design should define the task, context, constraints, evidence, output contract, and failure behavior clearly enough that the model does not have to infer critical policy.",
+    "wrong": [
+      "For prompt design, accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review.",
+      "For prompt design, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once.",
+      "For prompt design, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself."
+    ],
+    "e": "Prompt design should define the task, context, constraints, evidence, output contract, and failure behavior clearly enough that the model does not have to infer critical policy. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "prompt design"
+  },
+  {
+    "r": "ai",
+    "q": "Which statement best describes structured outputs?",
+    "correct": "Structured outputs constrain model responses to an application schema so downstream code can validate fields instead of parsing free-form prose.",
+    "wrong": [
+      "Let the LLM perform deterministic checks in structured outputs, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually.",
+      "Skip human approval in structured outputs whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
+      "Share the same credentials, data, and state between test and production for structured outputs so configuration remains simple."
+    ],
+    "e": "Structured outputs constrain model responses to an application schema so downstream code can validate fields instead of parsing free-form prose. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "structured outputs"
+  },
+  {
+    "r": "ai",
+    "q": "What should a practitioner understand first about tool calling?",
+    "correct": "Tool calling lets a model request a named capability with structured arguments, but the application remains responsible for validating, authorizing, executing, and returning tool results.",
+    "wrong": [
+      "Treat tool results in tool calling as trusted instructions because they came from an approved integration rather than from the user.",
+      "Retry every tool call in tool calling automatically, including non-idempotent actions, until the model receives a successful response.",
+      "For tool calling, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+    ],
+    "e": "Tool calling lets a model request a named capability with structured arguments, but the application remains responsible for validating, authorizing, executing, and returning tool results. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "tool calling"
+  },
+  {
+    "r": "ai",
+    "q": "What should a practitioner understand first about function calling?",
+    "correct": "Function calling is a structured model-output pattern for selecting application functions and arguments; it does not execute code by itself.",
+    "wrong": [
+      "Treat tool results in function calling as trusted instructions because they came from an approved integration rather than from the user.",
+      "Give function calling access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Expose broad, generic tools for function calling with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
+    ],
+    "e": "Function calling is a structured model-output pattern for selecting application functions and arguments; it does not execute code by itself. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "function calling"
+  },
+  {
+    "r": "ai",
+    "q": "What is the core idea behind MCP server design?",
+    "correct": "An MCP server exposes well-described tools, resources, or prompts through a standard protocol, but protocol compatibility does not replace application-level authorization and domain contracts.",
+    "wrong": [
+      "Give MCP server design access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "For MCP server design, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Return ambiguous free-form success text from tools used by MCP server design; structured results and explicit errors reduce model creativity."
+    ],
+    "e": "An MCP server exposes well-described tools, resources, or prompts through a standard protocol, but protocol compatibility does not replace application-level authorization and domain contracts. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Security Testing",
+      "Model Context Protocol (MCP)",
+      "AI Agents"
+    ],
+    "topic": "MCP server design"
+  },
+  {
+    "r": "ai",
+    "q": "What is the core idea behind MCP resources?",
+    "correct": "MCP resources expose readable context or data to clients and are different from tools because they represent retrievable information rather than model-invoked actions.",
+    "wrong": [
+      "Give MCP resources access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Treat tool results in MCP resources as trusted instructions because they came from an approved integration rather than from the user.",
+      "Return ambiguous free-form success text from tools used by MCP resources; structured results and explicit errors reduce model creativity."
+    ],
+    "e": "MCP resources expose readable context or data to clients and are different from tools because they represent retrievable information rather than model-invoked actions. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP resources"
+  },
+  {
+    "r": "ai",
+    "q": "What should a practitioner understand first about MCP tools?",
+    "correct": "MCP tools are callable capabilities exposed by a server with names, descriptions, and schemas that help an AI client decide when and how to invoke them.",
+    "wrong": [
+      "Return ambiguous free-form success text from tools used by MCP tools; structured results and explicit errors reduce model creativity.",
+      "Expose broad, generic tools for MCP tools with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "For MCP tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+    ],
+    "e": "MCP tools are callable capabilities exposed by a server with names, descriptions, and schemas that help an AI client decide when and how to invoke them. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP tools"
+  },
+  {
+    "r": "ai",
+    "q": "What is the core idea behind agent planning?",
+    "correct": "Agent planning decomposes a goal into explicit steps or subgoals, but plans should remain revisable as evidence changes rather than becoming an unquestioned script.",
+    "wrong": [
+      "Return ambiguous free-form success text from tools used by agent planning; structured results and explicit errors reduce model creativity.",
+      "For agent planning, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Retry every tool call in agent planning automatically, including non-idempotent actions, until the model receives a successful response."
+    ],
+    "e": "Agent planning decomposes a goal into explicit steps or subgoals, but plans should remain revisable as evidence changes rather than becoming an unquestioned script. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Docker",
+      "AI Agents"
+    ],
+    "topic": "agent planning"
+  },
+  {
+    "r": "ai",
+    "q": "Which statement best describes agent memory?",
+    "correct": "Agent memory stores information across turns or tasks, so it needs explicit scope, ownership, retention, correction, and privacy rules rather than unlimited persistence.",
+    "wrong": [
+      "Treat tool results in agent memory as trusted instructions because they came from an approved integration rather than from the user.",
+      "Retry every tool call in agent memory automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Return ambiguous free-form success text from tools used by agent memory; structured results and explicit errors reduce model creativity."
+    ],
+    "e": "Agent memory stores information across turns or tasks, so it needs explicit scope, ownership, retention, correction, and privacy rules rather than unlimited persistence. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "agent memory"
+  },
+  {
+    "r": "ai",
+    "q": "What is the core idea behind multi-agent coordination?",
+    "correct": "Multi-agent coordination is useful when tasks benefit from specialized roles or parallel work, but more agents do not automatically improve quality.",
+    "wrong": [
+      "Expose broad, generic tools for multi-agent coordination with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Return ambiguous free-form success text from tools used by multi-agent coordination; structured results and explicit errors reduce model creativity.",
+      "Treat tool results in multi-agent coordination as trusted instructions because they came from an approved integration rather than from the user."
+    ],
+    "e": "Multi-agent coordination is useful when tasks benefit from specialized roles or parallel work, but more agents do not automatically improve quality. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "multi-agent coordination"
+  },
+  {
+    "r": "ai",
+    "q": "What should a practitioner understand first about human-in-the-loop review?",
+    "correct": "Human-in-the-loop review inserts an enforceable approval or decision boundary where model uncertainty, risk, policy, or irreversible actions require human judgment.",
+    "wrong": [
+      "Treat a successful workflow execution in human-in-the-loop review as proof that partial writes, duplicate events, retries, and resume behavior are correct.",
+      "Skip human approval in human-in-the-loop review whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
+      "Keep human-in-the-loop review as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling."
+    ],
+    "e": "Human-in-the-loop review inserts an enforceable approval or decision boundary where model uncertainty, risk, policy, or irreversible actions require human judgment. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Java"
+    ],
+    "topic": "human-in-the-loop review"
+  },
+  {
+    "r": "ai",
+    "q": "Which statement best describes RAG retrieval?",
+    "correct": "RAG retrieval selects relevant source passages at query time so model answers can be grounded in current or domain-specific evidence without retraining the model.",
+    "wrong": [
+      "For RAG retrieval, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
+      "Use one fixed chunk size for every document type in RAG retrieval; headings, tables, code, and page structure do not affect retrieval.",
+      "Evaluate RAG retrieval only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement."
+    ],
+    "e": "RAG retrieval selects relevant source passages at query time so model answers can be grounded in current or domain-specific evidence without retraining the model. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "RAG retrieval"
+  },
+  {
+    "r": "ai",
+    "q": "Which statement best describes vector search?",
+    "correct": "Vector search retrieves semantically similar items by comparing embeddings, making it useful when wording differs but meaning is related.",
+    "wrong": [
+      "Evaluate vector search only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement.",
+      "Append updated documents in vector search without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
+      "For vector search, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary."
+    ],
+    "e": "Vector search retrieves semantically similar items by comparing embeddings, making it useful when wording differs but meaning is related. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "vector search"
+  },
+  {
+    "r": "ai",
+    "q": "Which explanation of embedding quality is technically sound?",
+    "correct": "Embedding quality determines how well semantic relationships are represented for retrieval or clustering and must be judged on the application's own data and queries.",
+    "wrong": [
+      "Append updated documents in embedding quality without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
+      "Allow retrieved documents in embedding quality to redefine system or tool policy because they were selected by the retriever.",
+      "Use one fixed chunk size for every document type in embedding quality; headings, tables, code, and page structure do not affect retrieval."
+    ],
+    "e": "Embedding quality determines how well semantic relationships are represented for retrieval or clustering and must be judged on the application's own data and queries. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "embedding quality"
+  },
+  {
+    "r": "ai",
+    "q": "What should a practitioner understand first about LLM evaluation?",
+    "correct": "LLM evaluation needs representative tasks, explicit rubrics or deterministic checks, and repeatable datasets because model quality is multidimensional and probabilistic.",
+    "wrong": [
+      "Treat an LLM grader in LLM evaluation as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Use only average scores for LLM evaluation; failure categories and worst-case examples are too noisy to guide engineering.",
+      "Compare models for LLM evaluation only by provider ranking or headline benchmark scores rather than task-specific quality, latency, cost, and data policy."
+    ],
+    "e": "LLM evaluation needs representative tasks, explicit rubrics or deterministic checks, and repeatable datasets because model quality is multidimensional and probabilistic. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "LLM evaluation"
+  },
+  {
+    "r": "ai",
+    "q": "Which statement best describes AI safety?",
+    "correct": "AI safety controls reduce harmful, unauthorized, deceptive, or unreliable behavior through layered policy, validation, permissions, monitoring, and human oversight.",
+    "wrong": [
+      "Use only average scores for AI safety; failure categories and worst-case examples are too noisy to guide engineering.",
+      "For AI safety, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Accept format-valid output as success for AI safety; factuality, task completion, safety, and downstream effects can be checked later."
+    ],
+    "e": "AI safety controls reduce harmful, unauthorized, deceptive, or unreliable behavior through layered policy, validation, permissions, monitoring, and human oversight. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "AI safety"
+  },
+  {
+    "r": "ai",
+    "q": "Which statement best describes prompt injection defense?",
+    "correct": "Prompt injection occurs when untrusted content attempts to override instructions or manipulate tool use, so retrieved text and user data must be treated as data rather than trusted policy.",
+    "wrong": [
+      "For prompt injection defense, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "For prompt injection defense, rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively.",
+      "For prompt injection defense, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once."
+    ],
+    "e": "Prompt injection occurs when untrusted content attempts to override instructions or manipulate tool use, so retrieved text and user data must be treated as data rather than trusted policy. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "prompt injection defense"
+  },
+  {
+    "r": "ai",
+    "q": "What is the core idea behind model routing?",
+    "correct": "Model routing selects a model according to task requirements such as quality, latency, cost, context length, tool support, data policy, and regional availability.",
+    "wrong": [
+      "Treat an LLM grader in model routing as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Compare models for model routing only by provider ranking or headline benchmark scores rather than task-specific quality, latency, cost, and data policy.",
+      "Accept format-valid output as success for model routing; factuality, task completion, safety, and downstream effects can be checked later."
+    ],
+    "e": "Model routing selects a model according to task requirements such as quality, latency, cost, context length, tool support, data policy, and regional availability. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Performance Testing"
+    ],
+    "topic": "model routing"
+  },
+  {
+    "r": "ai",
+    "q": "Which explanation of token budgets is technically sound?",
+    "correct": "Token budgets limit the context and generation resources an agent can consume, affecting cost, latency, and the amount of evidence or history available to the model.",
+    "wrong": [
+      "Treat an LLM grader in token budgets as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Change prompts, models, and tools together in token budgets so evaluation captures the full improvement rather than isolating variables.",
+      "Compare models for token budgets only by provider ranking or headline benchmark scores rather than task-specific quality, latency, cost, and data policy."
+    ],
+    "e": "Token budgets limit the context and generation resources an agent can consume, affecting cost, latency, and the amount of evidence or history available to the model. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Performance Testing",
+      "Security Testing",
+      "AI Agents"
+    ],
+    "topic": "token budgets"
+  },
+  {
+    "r": "ai",
+    "q": "What is the core idea behind workflow automation?",
+    "correct": "Workflow automation coordinates deterministic steps, integrations, conditions, retries, and human approvals; AI should be inserted only where semantic judgment adds value.",
+    "wrong": [
+      "Let the LLM perform deterministic checks in workflow automation, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually.",
+      "Skip human approval in workflow automation whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
+      "Share the same credentials, data, and state between test and production for workflow automation so configuration remains simple."
+    ],
+    "e": "Workflow automation coordinates deterministic steps, integrations, conditions, retries, and human approvals; AI should be inserted only where semantic judgment adds value. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "workflow automation"
+  },
+  {
+    "r": "ai",
+    "q": "What is the core idea behind n8n orchestration?",
+    "correct": "n8n orchestrates workflows as connected nodes that exchange items, invoke integrations, run code, branch, retry, and call AI components or sub-workflows.",
+    "wrong": [
+      "Keep n8n orchestration as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "Skip human approval in n8n orchestration whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
+      "For n8n orchestration, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps."
+    ],
+    "e": "n8n orchestrates workflows as connected nodes that exchange items, invoke integrations, run code, branch, retry, and call AI components or sub-workflows. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Git"
+    ],
+    "topic": "n8n orchestration"
+  },
+  {
+    "r": "ai",
+    "q": "What should a practitioner understand first about LangGraph state?",
+    "correct": "LangGraph models agent execution as a graph whose shared state is updated by nodes and routed through edges, with reducers controlling how updates are combined.",
+    "wrong": [
+      "Return ambiguous free-form success text from tools used by LangGraph state; structured results and explicit errors reduce model creativity.",
+      "Treat tool results in LangGraph state as trusted instructions because they came from an approved integration rather than from the user.",
+      "Retry every tool call in LangGraph state automatically, including non-idempotent actions, until the model receives a successful response."
+    ],
+    "e": "LangGraph models agent execution as a graph whose shared state is updated by nodes and routed through edges, with reducers controlling how updates are combined. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "LangGraph state"
+  },
+  {
+    "r": "ai",
+    "q": "What should a practitioner understand first about LangChain tools?",
+    "correct": "LangChain tools wrap callable capabilities with names, descriptions, and schemas so models or agents can invoke application functions through a consistent abstraction.",
+    "wrong": [
+      "Return ambiguous free-form success text from tools used by LangChain tools; structured results and explicit errors reduce model creativity.",
+      "Give LangChain tools access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Retry every tool call in LangChain tools automatically, including non-idempotent actions, until the model receives a successful response."
+    ],
+    "e": "LangChain tools wrap callable capabilities with names, descriptions, and schemas so models or agents can invoke application functions through a consistent abstraction. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "LangChain tools"
+  },
+  {
+    "r": "ai",
+    "q": "Which explanation of CrewAI delegation is technically sound?",
+    "correct": "CrewAI delegation lets agents assign bounded work to other agents, but delegation is useful only when roles, context, tools, and expected outputs are explicit.",
+    "wrong": [
+      "Expose broad, generic tools for CrewAI delegation with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Retry every tool call in CrewAI delegation automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Give CrewAI delegation access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
+    ],
+    "e": "CrewAI delegation lets agents assign bounded work to other agents, but delegation is useful only when roles, context, tools, and expected outputs are explicit. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "CrewAI delegation"
+  },
+  {
+    "r": "ai",
+    "q": "Which explanation of observability for agents is technically sound?",
+    "correct": "Agent observability should connect the user request to model calls, retrieval, tool invocations, handoffs, errors, and final outcome using consistent run or trace identifiers.",
+    "wrong": [
+      "Treat tool results in observability for agents as trusted instructions because they came from an approved integration rather than from the user.",
+      "For observability for agents, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Give observability for agents access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
+    ],
+    "e": "Agent observability should connect the user request to model calls, retrieval, tool invocations, handoffs, errors, and final outcome using consistent run or trace identifiers. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Playwright",
+      "Retrieval-Augmented Generation (RAG)",
+      "AI Agents"
+    ],
+    "topic": "observability for agents"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for prompt design?",
+    "correct": "Separate trusted instructions from untrusted user or retrieved content, include representative examples where ambiguity exists, and keep prompts versioned so changes can be evaluated.",
+    "wrong": [
+      "For prompt design, give the model only a persona and let it infer the business rules, evidence sources, and output format from context.",
+      "For prompt design, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "For prompt design, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer."
+    ],
+    "e": "Separate trusted instructions from untrusted user or retrieved content, include representative examples where ambiguity exists, and keep prompts versioned so changes can be evaluated. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "prompt design"
+  },
+  {
+    "r": "ai",
+    "q": "How should structured outputs be applied in practice?",
+    "correct": "Use JSON Schema, Pydantic, Zod, or equivalent typed contracts for classifications, plans, tool inputs, and handoffs, then validate again at the application boundary.",
+    "wrong": [
+      "Keep structured outputs as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "For structured outputs, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Skip human approval in structured outputs whenever the generated text sounds plausible; approval gates mainly reduce automation value."
+    ],
+    "e": "Use JSON Schema, Pydantic, Zod, or equivalent typed contracts for classifications, plans, tool inputs, and handoffs, then validate again at the application boundary. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Python",
+      "API Testing"
+    ],
+    "topic": "structured outputs"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for tool calling?",
+    "correct": "Expose narrow tools with explicit schemas, least privilege, idempotent behavior where possible, and clear errors; keep sensitive authorization decisions outside model reasoning.",
+    "wrong": [
+      "Treat tool results in tool calling as trusted instructions because they came from an approved integration rather than from the user.",
+      "Expose broad, generic tools for tool calling with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Return ambiguous free-form success text from tools used by tool calling; structured results and explicit errors reduce model creativity."
+    ],
+    "e": "Expose narrow tools with explicit schemas, least privilege, idempotent behavior where possible, and clear errors; keep sensitive authorization decisions outside model reasoning. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Security Testing",
+      "AI Agents"
+    ],
+    "topic": "tool calling"
+  },
+  {
+    "r": "ai",
+    "q": "How should function calling be applied in practice?",
+    "correct": "Define concise function schemas and descriptions, validate arguments before invocation, and map model-visible functions to stable application services rather than arbitrary code execution.",
+    "wrong": [
+      "Give function calling access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Return ambiguous free-form success text from tools used by function calling; structured results and explicit errors reduce model creativity.",
+      "Treat tool results in function calling as trusted instructions because they came from an approved integration rather than from the user."
+    ],
+    "e": "Define concise function schemas and descriptions, validate arguments before invocation, and map model-visible functions to stable application services rather than arbitrary code execution. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "function calling"
+  },
+  {
+    "r": "ai",
+    "q": "Which practice is most appropriate when using MCP server design?",
+    "correct": "Design narrow capabilities with typed inputs, meaningful descriptions, least privilege, stable errors, idempotency where relevant, and clear tenancy or data-scope boundaries.",
+    "wrong": [
+      "Retry every tool call in MCP server design automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Give MCP server design access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "For MCP server design, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+    ],
+    "e": "Design narrow capabilities with typed inputs, meaningful descriptions, least privilege, stable errors, idempotency where relevant, and clear tenancy or data-scope boundaries. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP server design"
+  },
+  {
+    "r": "ai",
+    "q": "What is a maintainable way to work with MCP resources?",
+    "correct": "Use stable resource identifiers, metadata, access control, freshness rules, and content types so clients can understand what they are reading and whether it is current.",
+    "wrong": [
+      "Give MCP resources access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Retry every tool call in MCP resources automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Return ambiguous free-form success text from tools used by MCP resources; structured results and explicit errors reduce model creativity."
+    ],
+    "e": "Use stable resource identifiers, metadata, access control, freshness rules, and content types so clients can understand what they are reading and whether it is current. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP resources"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for MCP tools?",
+    "correct": "Keep tools narrow, validate every argument, enforce permissions inside the server, and return structured results or explicit errors rather than relying on the model to infer success.",
+    "wrong": [
+      "For MCP tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Retry every tool call in MCP tools automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Give MCP tools access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
+    ],
+    "e": "Keep tools narrow, validate every argument, enforce permissions inside the server, and return structured results or explicit errors rather than relying on the model to infer success. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP tools"
+  },
+  {
+    "r": "ai",
+    "q": "What is a maintainable way to work with agent planning?",
+    "correct": "Represent plans in structured state, bound the number of steps, define completion criteria, and re-plan only when new information or failure justifies it.",
+    "wrong": [
+      "Expose broad, generic tools for agent planning with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Retry every tool call in agent planning automatically, including non-idempotent actions, until the model receives a successful response.",
+      "For agent planning, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+    ],
+    "e": "Represent plans in structured state, bound the number of steps, define completion criteria, and re-plan only when new information or failure justifies it. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "agent planning"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for agent memory?",
+    "correct": "Separate short-term conversation state from durable user or task memory, store only useful facts, attach provenance where possible, and make deletion or correction possible.",
+    "wrong": [
+      "Give agent memory access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Return ambiguous free-form success text from tools used by agent memory; structured results and explicit errors reduce model creativity.",
+      "Retry every tool call in agent memory automatically, including non-idempotent actions, until the model receives a successful response."
+    ],
+    "e": "Separate short-term conversation state from durable user or task memory, store only useful facts, attach provenance where possible, and make deletion or correction possible. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "agent memory"
+  },
+  {
+    "r": "ai",
+    "q": "What is a maintainable way to work with multi-agent coordination?",
+    "correct": "Give each agent a bounded responsibility, explicit inputs and outputs, independent tools or context where useful, and a coordinator that knows when work is complete.",
+    "wrong": [
+      "For multi-agent coordination, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Return ambiguous free-form success text from tools used by multi-agent coordination; structured results and explicit errors reduce model creativity.",
+      "Retry every tool call in multi-agent coordination automatically, including non-idempotent actions, until the model receives a successful response."
+    ],
+    "e": "Give each agent a bounded responsibility, explicit inputs and outputs, independent tools or context where useful, and a coordinator that knows when work is complete. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "multi-agent coordination"
+  },
+  {
+    "r": "ai",
+    "q": "Which practice is most appropriate when using human-in-the-loop review?",
+    "correct": "Pause before consequential actions, present the evidence and proposed operation clearly, record approval identity and decision, and prevent the model from bypassing the gate.",
+    "wrong": [
+      "Let the LLM perform deterministic checks in human-in-the-loop review, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually.",
+      "Skip human approval in human-in-the-loop review whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
+      "Share the same credentials, data, and state between test and production for human-in-the-loop review so configuration remains simple."
+    ],
+    "e": "Pause before consequential actions, present the evidence and proposed operation clearly, record approval identity and decision, and prevent the model from bypassing the gate. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Java"
+    ],
+    "topic": "human-in-the-loop review"
+  },
+  {
+    "r": "ai",
+    "q": "How should RAG retrieval be applied in practice?",
+    "correct": "Combine sensible chunking, metadata filters, lexical or vector retrieval where appropriate, reranking when useful, and source attribution to keep evidence relevant and traceable.",
+    "wrong": [
+      "Treat embedding similarity in RAG retrieval as an authorization mechanism, so metadata filters and tenant boundaries are unnecessary.",
+      "Allow retrieved documents in RAG retrieval to redefine system or tool policy because they were selected by the retriever.",
+      "Evaluate RAG retrieval only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement."
+    ],
+    "e": "Combine sensible chunking, metadata filters, lexical or vector retrieval where appropriate, reranking when useful, and source attribution to keep evidence relevant and traceable. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Playwright",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "RAG retrieval"
+  },
+  {
+    "r": "ai",
+    "q": "Which practice is most appropriate when using vector search?",
+    "correct": "Choose an embedding model and distance metric appropriate to the data, store useful metadata, filter before or during retrieval, and combine semantic search with keyword signals when exact terms matter.",
+    "wrong": [
+      "Use one fixed chunk size for every document type in vector search; headings, tables, code, and page structure do not affect retrieval.",
+      "Treat embedding similarity in vector search as an authorization mechanism, so metadata filters and tenant boundaries are unnecessary.",
+      "Append updated documents in vector search without stable IDs, deduplication, or deletion; older chunks provide useful historical context."
+    ],
+    "e": "Choose an embedding model and distance metric appropriate to the data, store useful metadata, filter before or during retrieval, and combine semantic search with keyword signals when exact terms matter. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "vector search"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for embedding quality?",
+    "correct": "Normalize preprocessing, choose a suitable embedding model, keep model/version metadata, and re-embed deliberately when the model or chunking strategy changes.",
+    "wrong": [
+      "Use one fixed chunk size for every document type in embedding quality; headings, tables, code, and page structure do not affect retrieval.",
+      "Append updated documents in embedding quality without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
+      "Evaluate embedding quality only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement."
+    ],
+    "e": "Normalize preprocessing, choose a suitable embedding model, keep model/version metadata, and re-embed deliberately when the model or chunking strategy changes. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "embedding quality"
+  },
+  {
+    "r": "ai",
+    "q": "How should LLM evaluation be applied in practice?",
+    "correct": "Combine exact checks, structured graders, human review, and model-based grading where appropriate, while versioning prompts, models, tools, and evaluation data.",
+    "wrong": [
+      "Treat an LLM grader in LLM evaluation as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Accept format-valid output as success for LLM evaluation; factuality, task completion, safety, and downstream effects can be checked later.",
+      "Use only average scores for LLM evaluation; failure categories and worst-case examples are too noisy to guide engineering."
+    ],
+    "e": "Combine exact checks, structured graders, human review, and model-based grading where appropriate, while versioning prompts, models, tools, and evaluation data. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "LLM evaluation"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for AI safety?",
+    "correct": "Constrain tools, separate trusted instructions from untrusted content, validate structured outputs, protect sensitive data, and require approval for high-impact actions.",
+    "wrong": [
+      "For AI safety, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Change prompts, models, and tools together in AI safety so evaluation captures the full improvement rather than isolating variables.",
+      "Use only average scores for AI safety; failure categories and worst-case examples are too noisy to guide engineering."
+    ],
+    "e": "Constrain tools, separate trusted instructions from untrusted content, validate structured outputs, protect sensitive data, and require approval for high-impact actions. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "AI safety"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for prompt injection defense?",
+    "correct": "Separate instruction channels, minimize tool privilege, filter or label untrusted context, validate tool arguments, and enforce authorization outside the model.",
+    "wrong": [
+      "For prompt injection defense, accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review.",
+      "For prompt injection defense, give the model only a persona and let it infer the business rules, evidence sources, and output format from context.",
+      "For prompt injection defense, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself."
+    ],
+    "e": "Separate instruction channels, minimize tool privilege, filter or label untrusted context, validate tool arguments, and enforce authorization outside the model. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Accessibility Testing",
+      "Security Testing",
+      "AI Agents"
+    ],
+    "topic": "prompt injection defense"
+  },
+  {
+    "r": "ai",
+    "q": "Which practice is most appropriate when using model routing?",
+    "correct": "Define routing rules from measured task classes and fallbacks rather than provider marketing tiers, and keep the application behind a stable provider abstraction.",
+    "wrong": [
+      "For model routing, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Treat an LLM grader in model routing as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Use only average scores for model routing; failure categories and worst-case examples are too noisy to guide engineering."
+    ],
+    "e": "Define routing rules from measured task classes and fallbacks rather than provider marketing tiers, and keep the application behind a stable provider abstraction. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "model routing"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for token budgets?",
+    "correct": "Allocate budget across instructions, conversation, retrieval, tool results, and output; summarize or offload large artifacts instead of allowing unbounded context growth.",
+    "wrong": [
+      "For token budgets, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Change prompts, models, and tools together in token budgets so evaluation captures the full improvement rather than isolating variables.",
+      "Treat an LLM grader in token budgets as a deterministic oracle once temperature is low, so calibration against human labels is optional."
+    ],
+    "e": "Allocate budget across instructions, conversation, retrieval, tool results, and output; summarize or offload large artifacts instead of allowing unbounded context growth. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Security Testing",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "token budgets"
+  },
+  {
+    "r": "ai",
+    "q": "Which practice is most appropriate when using workflow automation?",
+    "correct": "Keep business-critical state and permissions in the workflow/application layer, use idempotent operations, explicit error paths, and narrow AI steps with structured outputs.",
+    "wrong": [
+      "Let the LLM perform deterministic checks in workflow automation, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually.",
+      "Share the same credentials, data, and state between test and production for workflow automation so configuration remains simple.",
+      "For workflow automation, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps."
+    ],
+    "e": "Keep business-critical state and permissions in the workflow/application layer, use idempotent operations, explicit error paths, and narrow AI steps with structured outputs. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "workflow automation"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for n8n orchestration?",
+    "correct": "Keep item shapes explicit, move complex logic into understandable Code nodes or sub-workflows, separate credentials by environment, and design error handling and observability deliberately.",
+    "wrong": [
+      "Keep n8n orchestration as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "Skip human approval in n8n orchestration whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
+      "Let the LLM perform deterministic checks in n8n orchestration, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually."
+    ],
+    "e": "Keep item shapes explicit, move complex logic into understandable Code nodes or sub-workflows, separate credentials by environment, and design error handling and observability deliberately. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "n8n orchestration"
+  },
+  {
+    "r": "ai",
+    "q": "How should LangGraph state be applied in practice?",
+    "correct": "Define a typed state schema, make node responsibilities narrow, use checkpoints for durable execution when needed, and keep routing conditions explicit and testable.",
+    "wrong": [
+      "Treat tool results in LangGraph state as trusted instructions because they came from an approved integration rather than from the user.",
+      "For LangGraph state, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Retry every tool call in LangGraph state automatically, including non-idempotent actions, until the model receives a successful response."
+    ],
+    "e": "Define a typed state schema, make node responsibilities narrow, use checkpoints for durable execution when needed, and keep routing conditions explicit and testable. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "LangGraph state"
+  },
+  {
+    "r": "ai",
+    "q": "How should LangChain tools be applied in practice?",
+    "correct": "Keep tools small, typed, observable, and permission-aware; separate domain services from LangChain-specific wrappers so business logic remains testable without the framework.",
+    "wrong": [
+      "Return ambiguous free-form success text from tools used by LangChain tools; structured results and explicit errors reduce model creativity.",
+      "For LangChain tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Give LangChain tools access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
+    ],
+    "e": "Keep tools small, typed, observable, and permission-aware; separate domain services from LangChain-specific wrappers so business logic remains testable without the framework. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "LangChain tools"
+  },
+  {
+    "r": "ai",
+    "q": "What is a maintainable way to work with CrewAI delegation?",
+    "correct": "Give specialists clear responsibilities, limit unnecessary shared context, use structured task outputs, and keep a manager or workflow responsible for completion and policy.",
+    "wrong": [
+      "Treat tool results in CrewAI delegation as trusted instructions because they came from an approved integration rather than from the user.",
+      "For CrewAI delegation, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Expose broad, generic tools for CrewAI delegation with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
+    ],
+    "e": "Give specialists clear responsibilities, limit unnecessary shared context, use structured task outputs, and keep a manager or workflow responsible for completion and policy. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "CrewAI delegation"
+  },
+  {
+    "r": "ai",
+    "q": "Which implementation approach is strongest for observability for agents?",
+    "correct": "Record model and prompt versions, tool arguments/results with redaction, latency, token use, errors, and important decisions while protecting sensitive data.",
+    "wrong": [
+      "Expose broad, generic tools for observability for agents with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "For observability for agents, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Give observability for agents access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
+    ],
+    "e": "Record model and prompt versions, tool arguments/results with redaction, latency, token use, errors, and important decisions while protecting sensitive data. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Performance Testing",
+      "Security Testing",
+      "AI Agents"
+    ],
+    "topic": "observability for agents"
+  },
+  {
+    "r": "ai",
+    "q": "Which check gives the strongest evidence for prompt design?",
+    "correct": "Evaluate prompts on a fixed representative set plus adversarial cases, tracking task success, refusal quality, format validity, cost, and regressions rather than judging one impressive example.",
+    "wrong": [
+      "For prompt design, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "For prompt design, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "For prompt design, accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review."
+    ],
+    "e": "Evaluate prompts on a fixed representative set plus adversarial cases, tracking task success, refusal quality, format validity, cost, and regressions rather than judging one impressive example. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "prompt design"
+  },
+  {
+    "r": "ai",
+    "q": "Which validation approach provides the strongest evidence for structured outputs?",
+    "correct": "Test missing fields, invalid enums, nested structures, refusals, partial outputs, and schema changes to ensure downstream code fails safely rather than accepting malformed data.",
+    "wrong": [
+      "For structured outputs, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Keep structured outputs as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "Share the same credentials, data, and state between test and production for structured outputs so configuration remains simple."
+    ],
+    "e": "Test missing fields, invalid enums, nested structures, refusals, partial outputs, and schema changes to ensure downstream code fails safely rather than accepting malformed data. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "structured outputs"
+  },
+  {
+    "r": "ai",
+    "q": "Which validation approach provides the strongest evidence for tool calling?",
+    "correct": "Test invalid arguments, unauthorized calls, repeated calls, tool failures, timeouts, and malicious content in tool results so the agent cannot turn a tool into an uncontrolled action channel.",
+    "wrong": [
+      "Retry every tool call in tool calling automatically, including non-idempotent actions, until the model receives a successful response.",
+      "For tool calling, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Expose broad, generic tools for tool calling with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
+    ],
+    "e": "Test invalid arguments, unauthorized calls, repeated calls, tool failures, timeouts, and malicious content in tool results so the agent cannot turn a tool into an uncontrolled action channel. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "tool calling"
+  },
+  {
+    "r": "ai",
+    "q": "Which validation approach provides the strongest evidence for function calling?",
+    "correct": "Verify ambiguous requests, unsupported operations, invalid parameters, and repeated function calls, and ensure the model cannot bypass application permission checks.",
+    "wrong": [
+      "Return ambiguous free-form success text from tools used by function calling; structured results and explicit errors reduce model creativity.",
+      "Treat tool results in function calling as trusted instructions because they came from an approved integration rather than from the user.",
+      "Retry every tool call in function calling automatically, including non-idempotent actions, until the model receives a successful response."
+    ],
+    "e": "Verify ambiguous requests, unsupported operations, invalid parameters, and repeated function calls, and ensure the model cannot bypass application permission checks. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "function calling"
+  },
+  {
+    "r": "ai",
+    "q": "How should MCP server design be verified or evaluated?",
+    "correct": "Test discovery, valid and invalid calls, permissions, retries, malformed clients, transport failures, and business behavior independently of the MCP transport itself.",
+    "wrong": [
+      "Return ambiguous free-form success text from tools used by MCP server design; structured results and explicit errors reduce model creativity.",
+      "For MCP server design, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Treat tool results in MCP server design as trusted instructions because they came from an approved integration rather than from the user."
+    ],
+    "e": "Test discovery, valid and invalid calls, permissions, retries, malformed clients, transport failures, and business behavior independently of the MCP transport itself. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP server design"
+  },
+  {
+    "r": "ai",
+    "q": "Which validation approach provides the strongest evidence for MCP resources?",
+    "correct": "Verify authorization, missing resources, stale versions, large content, and concurrent updates, and ensure sensitive resources are not exposed merely because the client can discover the server.",
+    "wrong": [
+      "For MCP resources, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Expose broad, generic tools for MCP resources with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Return ambiguous free-form success text from tools used by MCP resources; structured results and explicit errors reduce model creativity."
+    ],
+    "e": "Verify authorization, missing resources, stale versions, large content, and concurrent updates, and ensure sensitive resources are not exposed merely because the client can discover the server. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Security Testing",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP resources"
+  },
+  {
+    "r": "ai",
+    "q": "Which check gives the strongest evidence for MCP tools?",
+    "correct": "Test destructive and read-only tools separately, including unauthorized access, duplicate calls, partial failure, timeouts, and untrusted data returned by downstream systems.",
+    "wrong": [
+      "Return ambiguous free-form success text from tools used by MCP tools; structured results and explicit errors reduce model creativity.",
+      "Retry every tool call in MCP tools automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Expose broad, generic tools for MCP tools with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
+    ],
+    "e": "Test destructive and read-only tools separately, including unauthorized access, duplicate calls, partial failure, timeouts, and untrusted data returned by downstream systems. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP tools"
+  },
+  {
+    "r": "ai",
+    "q": "Which validation approach provides the strongest evidence for agent planning?",
+    "correct": "Evaluate planning by task completion, unnecessary steps, recovery from failed assumptions, cost, and whether the plan respects tool and safety constraints.",
+    "wrong": [
+      "Give agent planning access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "For agent planning, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Treat tool results in agent planning as trusted instructions because they came from an approved integration rather than from the user."
+    ],
+    "e": "Evaluate planning by task completion, unnecessary steps, recovery from failed assumptions, cost, and whether the plan respects tool and safety constraints. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "agent planning"
+  },
+  {
+    "r": "ai",
+    "q": "How should agent memory be verified or evaluated?",
+    "correct": "Test cross-user isolation, stale memories, conflicting facts, sensitive-data retention, retrieval relevance, and how the agent behaves when memory is missing or wrong.",
+    "wrong": [
+      "Retry every tool call in agent memory automatically, including non-idempotent actions, until the model receives a successful response.",
+      "For agent memory, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Treat tool results in agent memory as trusted instructions because they came from an approved integration rather than from the user."
+    ],
+    "e": "Test cross-user isolation, stale memories, conflicting facts, sensitive-data retention, retrieval relevance, and how the agent behaves when memory is missing or wrong. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)",
+      "AI Agents"
+    ],
+    "topic": "agent memory"
+  },
+  {
+    "r": "ai",
+    "q": "What evidence best validates multi-agent coordination?",
+    "correct": "Measure coordination overhead, duplicate work, disagreement, latency, cost, and task success against a simpler single-agent baseline before adopting the more complex design.",
+    "wrong": [
+      "Give multi-agent coordination access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Expose broad, generic tools for multi-agent coordination with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Return ambiguous free-form success text from tools used by multi-agent coordination; structured results and explicit errors reduce model creativity."
+    ],
+    "e": "Measure coordination overhead, duplicate work, disagreement, latency, cost, and task success against a simpler single-agent baseline before adopting the more complex design. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Performance Testing",
+      "AI Agents"
+    ],
+    "topic": "multi-agent coordination"
+  },
+  {
+    "r": "ai",
+    "q": "How should human-in-the-loop review be verified or evaluated?",
+    "correct": "Test approval, rejection, timeout, changed data after approval, duplicate actions, and unauthorized approvers so the review step is a real control rather than a conversational suggestion.",
+    "wrong": [
+      "Let the LLM perform deterministic checks in human-in-the-loop review, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually.",
+      "For human-in-the-loop review, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Skip human approval in human-in-the-loop review whenever the generated text sounds plausible; approval gates mainly reduce automation value."
+    ],
+    "e": "Test approval, rejection, timeout, changed data after approval, duplicate actions, and unauthorized approvers so the review step is a real control rather than a conversational suggestion. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Java"
+    ],
+    "topic": "human-in-the-loop review"
+  },
+  {
+    "r": "ai",
+    "q": "Which validation approach provides the strongest evidence for RAG retrieval?",
+    "correct": "Evaluate retrieval separately from generation using known queries and expected sources, then inspect missed evidence, noisy chunks, permission filtering, freshness, and answer citation accuracy.",
+    "wrong": [
+      "Evaluate RAG retrieval only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement.",
+      "For RAG retrieval, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
+      "Append updated documents in RAG retrieval without stable IDs, deduplication, or deletion; older chunks provide useful historical context."
+    ],
+    "e": "Evaluate retrieval separately from generation using known queries and expected sources, then inspect missed evidence, noisy chunks, permission filtering, freshness, and answer citation accuracy. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "RAG retrieval"
+  },
+  {
+    "r": "ai",
+    "q": "What evidence best validates vector search?",
+    "correct": "Measure recall and ranking on representative queries, including near-duplicates, rare terms, permission boundaries, and domain-specific language instead of assuming similarity scores imply relevance.",
+    "wrong": [
+      "Append updated documents in vector search without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
+      "Treat embedding similarity in vector search as an authorization mechanism, so metadata filters and tenant boundaries are unnecessary.",
+      "For vector search, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary."
+    ],
+    "e": "Measure recall and ranking on representative queries, including near-duplicates, rare terms, permission boundaries, and domain-specific language instead of assuming similarity scores imply relevance. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "vector search"
+  },
+  {
+    "r": "ai",
+    "q": "Which check gives the strongest evidence for embedding quality?",
+    "correct": "Evaluate nearest-neighbor relevance, difficult negatives, multilingual or domain cases, and downstream retrieval metrics rather than relying only on generic benchmark claims.",
+    "wrong": [
+      "Append updated documents in embedding quality without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
+      "For embedding quality, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
+      "Use one fixed chunk size for every document type in embedding quality; headings, tables, code, and page structure do not affect retrieval."
+    ],
+    "e": "Evaluate nearest-neighbor relevance, difficult negatives, multilingual or domain cases, and downstream retrieval metrics rather than relying only on generic benchmark claims. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "embedding quality"
+  },
+  {
+    "r": "ai",
+    "q": "How should LLM evaluation be verified or evaluated?",
+    "correct": "Track task success, factuality, format validity, safety, latency, cost, and disagreement over time, and investigate regressions before promoting changes.",
+    "wrong": [
+      "Change prompts, models, and tools together in LLM evaluation so evaluation captures the full improvement rather than isolating variables.",
+      "Treat an LLM grader in LLM evaluation as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Use only average scores for LLM evaluation; failure categories and worst-case examples are too noisy to guide engineering."
+    ],
+    "e": "Track task success, factuality, format validity, safety, latency, cost, and disagreement over time, and investigate regressions before promoting changes. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Performance Testing"
+    ],
+    "topic": "LLM evaluation"
+  },
+  {
+    "r": "ai",
+    "q": "Which validation approach provides the strongest evidence for AI safety?",
+    "correct": "Test prompt injection, data exfiltration, privilege escalation, unsafe tool use, hallucinated commitments, and refusal edge cases instead of treating a system prompt as the only safeguard.",
+    "wrong": [
+      "Accept format-valid output as success for AI safety; factuality, task completion, safety, and downstream effects can be checked later.",
+      "Use only average scores for AI safety; failure categories and worst-case examples are too noisy to guide engineering.",
+      "Treat an LLM grader in AI safety as a deterministic oracle once temperature is low, so calibration against human labels is optional."
+    ],
+    "e": "Test prompt injection, data exfiltration, privilege escalation, unsafe tool use, hallucinated commitments, and refusal edge cases instead of treating a system prompt as the only safeguard. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Git",
+      "AI Agents"
+    ],
+    "topic": "AI safety"
+  },
+  {
+    "r": "ai",
+    "q": "What evidence best validates prompt injection defense?",
+    "correct": "Test malicious webpages, documents, emails, tool results, and indirect instructions to ensure the agent cannot leak secrets, change policy, or perform unauthorized actions.",
+    "wrong": [
+      "For prompt injection defense, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once.",
+      "For prompt injection defense, rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively.",
+      "For prompt injection defense, give the model only a persona and let it infer the business rules, evidence sources, and output format from context."
+    ],
+    "e": "Test malicious webpages, documents, emails, tool results, and indirect instructions to ensure the agent cannot leak secrets, change policy, or perform unauthorized actions. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Security Testing",
+      "AI Agents"
+    ],
+    "topic": "prompt injection defense"
+  },
+  {
+    "r": "ai",
+    "q": "What evidence best validates model routing?",
+    "correct": "Evaluate each route on representative workloads and monitor quality, latency, errors, and cost so routing can be changed when model behavior or pricing evolves.",
+    "wrong": [
+      "Accept format-valid output as success for model routing; factuality, task completion, safety, and downstream effects can be checked later.",
+      "Treat an LLM grader in model routing as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "For model routing, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
+    ],
+    "e": "Evaluate each route on representative workloads and monitor quality, latency, errors, and cost so routing can be changed when model behavior or pricing evolves. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Performance Testing"
+    ],
+    "topic": "model routing"
+  },
+  {
+    "r": "ai",
+    "q": "What evidence best validates token budgets?",
+    "correct": "Monitor token use per task, truncation, lost critical context, cost spikes, and quality changes when compaction or retrieval policies are adjusted.",
+    "wrong": [
+      "For token budgets, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Change prompts, models, and tools together in token budgets so evaluation captures the full improvement rather than isolating variables.",
+      "Accept format-valid output as success for token budgets; factuality, task completion, safety, and downstream effects can be checked later."
+    ],
+    "e": "Monitor token use per task, truncation, lost critical context, cost spikes, and quality changes when compaction or retrieval policies are adjusted. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Security Testing",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "token budgets"
+  },
+  {
+    "r": "ai",
+    "q": "Which check gives the strongest evidence for workflow automation?",
+    "correct": "Test duplicate events, retries, dependency outages, malformed inputs, partial execution, and resume behavior so the workflow remains correct under failure.",
+    "wrong": [
+      "For workflow automation, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Keep workflow automation as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "Skip human approval in workflow automation whenever the generated text sounds plausible; approval gates mainly reduce automation value."
+    ],
+    "e": "Test duplicate events, retries, dependency outages, malformed inputs, partial execution, and resume behavior so the workflow remains correct under failure. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "workflow automation"
+  },
+  {
+    "r": "ai",
+    "q": "Which validation approach provides the strongest evidence for n8n orchestration?",
+    "correct": "Inspect execution history and node inputs/outputs to diagnose failures, and test retries, duplicate events, missing fields, credential errors, and partial downstream writes.",
+    "wrong": [
+      "Keep n8n orchestration as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "Skip human approval in n8n orchestration whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
+      "Treat a successful workflow execution in n8n orchestration as proof that partial writes, duplicate events, retries, and resume behavior are correct."
+    ],
+    "e": "Inspect execution history and node inputs/outputs to diagnose failures, and test retries, duplicate events, missing fields, credential errors, and partial downstream writes. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "n8n orchestration"
+  },
+  {
+    "r": "ai",
+    "q": "Which check gives the strongest evidence for LangGraph state?",
+    "correct": "Test branching, retries, interrupted runs, concurrent updates, replay, and checkpoint recovery to ensure state transitions remain deterministic enough to operate.",
+    "wrong": [
+      "Expose broad, generic tools for LangGraph state with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Treat tool results in LangGraph state as trusted instructions because they came from an approved integration rather than from the user.",
+      "For LangGraph state, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+    ],
+    "e": "Test branching, retries, interrupted runs, concurrent updates, replay, and checkpoint recovery to ensure state transitions remain deterministic enough to operate. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Git"
+    ],
+    "topic": "LangGraph state"
+  },
+  {
+    "r": "ai",
+    "q": "How should LangChain tools be verified or evaluated?",
+    "correct": "Test tool schema generation, bad arguments, exceptions, timeouts, repeated calls, and model selection errors while verifying the underlying service independently.",
+    "wrong": [
+      "Treat tool results in LangChain tools as trusted instructions because they came from an approved integration rather than from the user.",
+      "For LangChain tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Return ambiguous free-form success text from tools used by LangChain tools; structured results and explicit errors reduce model creativity."
+    ],
+    "e": "Test tool schema generation, bad arguments, exceptions, timeouts, repeated calls, and model selection errors while verifying the underlying service independently. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Java"
+    ],
+    "topic": "LangChain tools"
+  },
+  {
+    "r": "ai",
+    "q": "Which validation approach provides the strongest evidence for CrewAI delegation?",
+    "correct": "Evaluate delegated tasks for duplicated work, circular handoffs, inconsistent conclusions, latency, and cost compared with a simpler coordinated workflow.",
+    "wrong": [
+      "Return ambiguous free-form success text from tools used by CrewAI delegation; structured results and explicit errors reduce model creativity.",
+      "Treat tool results in CrewAI delegation as trusted instructions because they came from an approved integration rather than from the user.",
+      "For CrewAI delegation, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+    ],
+    "e": "Evaluate delegated tasks for duplicated work, circular handoffs, inconsistent conclusions, latency, and cost compared with a simpler coordinated workflow. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Performance Testing"
+    ],
+    "topic": "CrewAI delegation"
+  },
+  {
+    "r": "ai",
+    "q": "What evidence best validates observability for agents?",
+    "correct": "Use traces to reconstruct failures end to end and correlate them with evaluation results and production feedback instead of relying on the final model message alone.",
+    "wrong": [
+      "Retry every tool call in observability for agents automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Treat tool results in observability for agents as trusted instructions because they came from an approved integration rather than from the user.",
+      "Expose broad, generic tools for observability for agents with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
+    ],
+    "e": "Use traces to reconstruct failures end to end and correlate them with evaluation results and production feedback instead of relying on the final model message alone. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Playwright",
+      "AI Agents"
+    ],
+    "topic": "observability for agents"
+  },
+  {
+    "r": "ai",
+    "q": "What matters most when taking prompt design into production?",
+    "correct": "For prompt design, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "For prompt design, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "For prompt design, rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively.",
+      "For prompt design, accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review."
+    ],
+    "e": "For prompt design, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "prompt design"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for structured outputs?",
+    "correct": "For structured outputs, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Share the same credentials, data, and state between test and production for structured outputs so configuration remains simple.",
+      "For structured outputs, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Let the LLM perform deterministic checks in structured outputs, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually."
+    ],
+    "e": "For structured outputs, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "structured outputs"
+  },
+  {
+    "r": "ai",
+    "q": "What matters most when taking tool calling into production?",
+    "correct": "For tool calling, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "For tool calling, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Expose broad, generic tools for tool calling with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Treat tool results in tool calling as trusted instructions because they came from an approved integration rather than from the user."
+    ],
+    "e": "For tool calling, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "tool calling"
+  },
+  {
+    "r": "ai",
+    "q": "What matters most when taking function calling into production?",
+    "correct": "For function calling, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Give function calling access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Retry every tool call in function calling automatically, including non-idempotent actions, until the model receives a successful response.",
+      "For function calling, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+    ],
+    "e": "For function calling, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "function calling"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for MCP server design?",
+    "correct": "For MCP server design, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Treat tool results in MCP server design as trusted instructions because they came from an approved integration rather than from the user.",
+      "Return ambiguous free-form success text from tools used by MCP server design; structured results and explicit errors reduce model creativity.",
+      "Give MCP server design access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
+    ],
+    "e": "For MCP server design, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP server design"
+  },
+  {
+    "r": "ai",
+    "q": "Which statement best reflects production-ready use of MCP resources?",
+    "correct": "For MCP resources, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "For MCP resources, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Expose broad, generic tools for MCP resources with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Retry every tool call in MCP resources automatically, including non-idempotent actions, until the model receives a successful response."
+    ],
+    "e": "For MCP resources, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP resources"
+  },
+  {
+    "r": "ai",
+    "q": "How should MCP tools be operated beyond the happy path?",
+    "correct": "For MCP tools, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "For MCP tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Expose broad, generic tools for MCP tools with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Give MCP tools access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
+    ],
+    "e": "For MCP tools, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Model Context Protocol (MCP)"
+    ],
+    "topic": "MCP tools"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for agent planning?",
+    "correct": "For agent planning, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Expose broad, generic tools for agent planning with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "For agent planning, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Return ambiguous free-form success text from tools used by agent planning; structured results and explicit errors reduce model creativity."
+    ],
+    "e": "For agent planning, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "agent planning"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for agent memory?",
+    "correct": "For agent memory, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Give agent memory access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Return ambiguous free-form success text from tools used by agent memory; structured results and explicit errors reduce model creativity.",
+      "For agent memory, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+    ],
+    "e": "For agent memory, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "agent memory"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for multi-agent coordination?",
+    "correct": "For multi-agent coordination, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Treat tool results in multi-agent coordination as trusted instructions because they came from an approved integration rather than from the user.",
+      "Retry every tool call in multi-agent coordination automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Give multi-agent coordination access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
+    ],
+    "e": "For multi-agent coordination, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "multi-agent coordination"
+  },
+  {
+    "r": "ai",
+    "q": "Which statement best reflects production-ready use of human-in-the-loop review?",
+    "correct": "For human-in-the-loop review, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Treat a successful workflow execution in human-in-the-loop review as proof that partial writes, duplicate events, retries, and resume behavior are correct.",
+      "Keep human-in-the-loop review as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "Let the LLM perform deterministic checks in human-in-the-loop review, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually."
+    ],
+    "e": "For human-in-the-loop review, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Java"
+    ],
+    "topic": "human-in-the-loop review"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for RAG retrieval?",
+    "correct": "For RAG retrieval, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Treat embedding similarity in RAG retrieval as an authorization mechanism, so metadata filters and tenant boundaries are unnecessary.",
+      "Allow retrieved documents in RAG retrieval to redefine system or tool policy because they were selected by the retriever.",
+      "Append updated documents in RAG retrieval without stable IDs, deduplication, or deletion; older chunks provide useful historical context."
+    ],
+    "e": "For RAG retrieval, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "RAG retrieval"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for vector search?",
+    "correct": "For vector search, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Append updated documents in vector search without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
+      "For vector search, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
+      "Evaluate vector search only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement."
+    ],
+    "e": "For vector search, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "vector search"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for embedding quality?",
+    "correct": "For embedding quality, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Allow retrieved documents in embedding quality to redefine system or tool policy because they were selected by the retriever.",
+      "Use one fixed chunk size for every document type in embedding quality; headings, tables, code, and page structure do not affect retrieval.",
+      "Append updated documents in embedding quality without stable IDs, deduplication, or deletion; older chunks provide useful historical context."
+    ],
+    "e": "For embedding quality, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "embedding quality"
+  },
+  {
+    "r": "ai",
+    "q": "Which statement best reflects production-ready use of LLM evaluation?",
+    "correct": "For LLM evaluation, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Accept format-valid output as success for LLM evaluation; factuality, task completion, safety, and downstream effects can be checked later.",
+      "Treat an LLM grader in LLM evaluation as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "For LLM evaluation, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
+    ],
+    "e": "For LLM evaluation, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "LLM evaluation"
+  },
+  {
+    "r": "ai",
+    "q": "What matters most when taking AI safety into production?",
+    "correct": "For AI safety, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Compare models for AI safety only by provider ranking or headline benchmark scores rather than task-specific quality, latency, cost, and data policy.",
+      "Accept format-valid output as success for AI safety; factuality, task completion, safety, and downstream effects can be checked later.",
+      "Use only average scores for AI safety; failure categories and worst-case examples are too noisy to guide engineering."
+    ],
+    "e": "For AI safety, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "AI safety"
+  },
+  {
+    "r": "ai",
+    "q": "How should prompt injection defense be operated beyond the happy path?",
+    "correct": "For prompt injection defense, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "For prompt injection defense, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "For prompt injection defense, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "For prompt injection defense, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once."
+    ],
+    "e": "For prompt injection defense, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "AI Agents"
+    ],
+    "topic": "prompt injection defense"
+  },
+  {
+    "r": "ai",
+    "q": "How should model routing be operated beyond the happy path?",
+    "correct": "For model routing, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Use only average scores for model routing; failure categories and worst-case examples are too noisy to guide engineering.",
+      "Change prompts, models, and tools together in model routing so evaluation captures the full improvement rather than isolating variables.",
+      "Treat an LLM grader in model routing as a deterministic oracle once temperature is low, so calibration against human labels is optional."
+    ],
+    "e": "For model routing, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "model routing"
+  },
+  {
+    "r": "ai",
+    "q": "What matters most when taking token budgets into production?",
+    "correct": "For token budgets, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Treat an LLM grader in token budgets as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Use only average scores for token budgets; failure categories and worst-case examples are too noisy to guide engineering.",
+      "Change prompts, models, and tools together in token budgets so evaluation captures the full improvement rather than isolating variables."
+    ],
+    "e": "For token budgets, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs",
+      "Security Testing"
+    ],
+    "topic": "token budgets"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for workflow automation?",
+    "correct": "For workflow automation, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Let the LLM perform deterministic checks in workflow automation, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually.",
+      "Share the same credentials, data, and state between test and production for workflow automation so configuration remains simple.",
+      "Treat a successful workflow execution in workflow automation as proof that partial writes, duplicate events, retries, and resume behavior are correct."
+    ],
+    "e": "For workflow automation, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "workflow automation"
+  },
+  {
+    "r": "ai",
+    "q": "How should n8n orchestration be operated beyond the happy path?",
+    "correct": "For n8n orchestration, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "For n8n orchestration, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Keep n8n orchestration as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "Let the LLM perform deterministic checks in n8n orchestration, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually."
+    ],
+    "e": "For n8n orchestration, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "n8n orchestration"
+  },
+  {
+    "r": "ai",
+    "q": "Which production concern is most important for LangGraph state?",
+    "correct": "For LangGraph state, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
+    "wrong": [
+      "Retry every tool call in LangGraph state automatically, including non-idempotent actions, until the model receives a successful response.",
+      "For LangGraph state, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Treat tool results in LangGraph state as trusted instructions because they came from an approved integration rather than from the user."
+    ],
+    "e": "For LangGraph state, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
+    "tags": [
+      "AI Automation",
+      "LLMs"
+    ],
+    "topic": "LangGraph state"
+  },
+  {
+    "r": "ops",
+    "q": "Which explanation of service level objectives is technically sound?",
+    "correct": "A Service Level Objective (SLO) is a target for the reliability of a user-relevant service behavior over a defined period, such as successful requests or latency.",
+    "wrong": [
+      "Judge service level objectives from one dashboard without validating that severe incidents actually move the chosen indicators.",
+      "Treat unused error budget in service level objectives as permission to create failures intentionally before the measurement window closes.",
+      "Define service level objectives from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability."
+    ],
+    "e": "A Service Level Objective (SLO) is a target for the reliability of a user-relevant service behavior over a defined period, such as successful requests or latency. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Performance Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "service level objectives"
+  },
+  {
+    "r": "ops",
+    "q": "What is the core idea behind service level indicators?",
+    "correct": "A Service Level Indicator (SLI) is the quantitative measurement used to assess a service behavior, such as availability, latency, freshness, or correctness.",
+    "wrong": [
+      "Use averages as the main signal in service level indicators; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "For service level indicators, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Keep service level indicators targets static even when measurement definitions or user journeys change, so historical graphs remain comparable."
+    ],
+    "e": "A Service Level Indicator (SLI) is the quantitative measurement used to assess a service behavior, such as availability, latency, freshness, or correctness. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Performance Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "service level indicators"
+  },
+  {
+    "r": "ops",
+    "q": "What is the core idea behind error budgets?",
+    "correct": "An error budget is the amount of unreliability permitted by an SLO, turning reliability into a shared trade-off between feature velocity and operational risk.",
+    "wrong": [
+      "Use averages as the main signal in error budgets; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "Treat unused error budget in error budgets as permission to create failures intentionally before the measurement window closes.",
+      "Judge error budgets from one dashboard without validating that severe incidents actually move the chosen indicators."
+    ],
+    "e": "An error budget is the amount of unreliability permitted by an SLO, turning reliability into a shared trade-off between feature velocity and operational risk. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "error budgets"
+  },
+  {
+    "r": "ops",
+    "q": "What should a practitioner understand first about incident response?",
+    "correct": "Incident response prioritizes restoring service and limiting impact while preserving enough evidence to understand the failure afterward.",
+    "wrong": [
+      "Store all recovery copies for incident response in the same failure domain as the primary system to simplify access.",
+      "Define RTO and RPO for incident response after a disaster occurs, when actual business tolerance is easier to measure.",
+      "Treat failover as complete for incident response once infrastructure is running, without verifying data integrity or user-facing service."
+    ],
+    "e": "Incident response prioritizes restoring service and limiting impact while preserving enough evidence to understand the failure afterward. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "incident response"
+  },
+  {
+    "r": "ops",
+    "q": "Which explanation of on-call handoffs is technically sound?",
+    "correct": "An on-call handoff transfers operational context, current risks, active incidents, maintenance, and ownership so the incoming responder can act without reconstructing everything.",
+    "wrong": [
+      "Define on-call handoffs from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
+      "Treat unused error budget in on-call handoffs as permission to create failures intentionally before the measurement window closes.",
+      "Judge on-call handoffs from one dashboard without validating that severe incidents actually move the chosen indicators."
+    ],
+    "e": "An on-call handoff transfers operational context, current risks, active incidents, maintenance, and ownership so the incoming responder can act without reconstructing everything. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "on-call handoffs"
+  },
+  {
+    "r": "ops",
+    "q": "Which explanation of runbooks is technically sound?",
+    "correct": "A runbook documents repeatable diagnostic or recovery steps for a known operational situation, including prerequisites, expected signals, safety checks, and escalation.",
+    "wrong": [
+      "Store all recovery copies for runbooks in the same failure domain as the primary system to simplify access.",
+      "Define RTO and RPO for runbooks after a disaster occurs, when actual business tolerance is easier to measure.",
+      "Automate destructive recovery steps in runbooks without approval or verification because speed is the primary objective."
+    ],
+    "e": "A runbook documents repeatable diagnostic or recovery steps for a known operational situation, including prerequisites, expected signals, safety checks, and escalation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "runbooks"
+  },
+  {
+    "r": "ops",
+    "q": "What is the core idea behind application logging?",
+    "correct": "Application logs should capture structured events with enough context to diagnose behavior while avoiding sensitive data and uncontrolled volume.",
+    "wrong": [
+      "Sample telemetry in application logging without checking whether rare errors and slow requests remain observable.",
+      "Log full secrets and payloads during application logging because debugging value outweighs redaction when access is restricted.",
+      "For application logging, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+    ],
+    "e": "Application logs should capture structured events with enough context to diagnose behavior while avoiding sensitive data and uncontrolled volume. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "application logging"
+  },
+  {
+    "r": "ops",
+    "q": "Which statement best describes distributed tracing?",
+    "correct": "Distributed tracing follows a request or job across service boundaries using trace and span identifiers, revealing latency and failure propagation that isolated logs can miss.",
+    "wrong": [
+      "Treat logs, metrics, and traces in distributed tracing as separate systems that do not need shared request or trace identifiers.",
+      "For distributed tracing, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Log full secrets and payloads during distributed tracing because debugging value outweighs redaction when access is restricted."
+    ],
+    "e": "Distributed tracing follows a request or job across service boundaries using trace and span identifiers, revealing latency and failure propagation that isolated logs can miss. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Playwright",
+      "Performance Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "distributed tracing"
+  },
+  {
+    "r": "ops",
+    "q": "Which explanation of metrics dashboards is technically sound?",
+    "correct": "Metrics dashboards summarize trends and current health, but they are useful only when the selected metrics answer operational questions rather than displaying every available signal.",
+    "wrong": [
+      "Log full secrets and payloads during metrics dashboards because debugging value outweighs redaction when access is restricted.",
+      "For metrics dashboards, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Use dashboards for metrics dashboards as decoration rather than linking panels to user impact, dependencies, and recent changes."
+    ],
+    "e": "Metrics dashboards summarize trends and current health, but they are useful only when the selected metrics answer operational questions rather than displaying every available signal. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "metrics dashboards"
+  },
+  {
+    "r": "ops",
+    "q": "Which explanation of alert tuning is technically sound?",
+    "correct": "Alert tuning aims for actionable signals that indicate meaningful user or system impact while minimizing noise and duplicate pages.",
+    "wrong": [
+      "Log full secrets and payloads during alert tuning because debugging value outweighs redaction when access is restricted.",
+      "Assume a green dashboard proves alert tuning is healthy even when customer-facing failures are reported elsewhere.",
+      "Sample telemetry in alert tuning without checking whether rare errors and slow requests remain observable."
+    ],
+    "e": "Alert tuning aims for actionable signals that indicate meaningful user or system impact while minimizing noise and duplicate pages. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "alert tuning"
+  },
+  {
+    "r": "ops",
+    "q": "Which statement best describes capacity planning?",
+    "correct": "Capacity planning estimates how workload growth, resource limits, and scaling behavior affect a system's ability to meet performance and reliability targets.",
+    "wrong": [
+      "Keep capacity planning targets static even when measurement definitions or user journeys change, so historical graphs remain comparable.",
+      "Treat unused error budget in capacity planning as permission to create failures intentionally before the measurement window closes.",
+      "Define capacity planning from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability."
+    ],
+    "e": "Capacity planning estimates how workload growth, resource limits, and scaling behavior affect a system's ability to meet performance and reliability targets. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Performance Testing"
+    ],
+    "topic": "capacity planning"
+  },
+  {
+    "r": "ops",
+    "q": "What should a practitioner understand first about backup recovery?",
+    "correct": "Backups are valuable only if they can be restored; backup recovery planning defines what is protected, how often, where copies live, and how restoration is verified.",
+    "wrong": [
+      "Define RTO and RPO for backup recovery after a disaster occurs, when actual business tolerance is easier to measure.",
+      "Automate destructive recovery steps in backup recovery without approval or verification because speed is the primary objective.",
+      "Keep recovery procedures for backup recovery undocumented so responders can adapt to the exact incident instead of following stale steps."
+    ],
+    "e": "Backups are valuable only if they can be restored; backup recovery planning defines what is protected, how often, where copies live, and how restoration is verified. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "backup recovery"
+  },
+  {
+    "r": "ops",
+    "q": "Which statement best describes disaster recovery?",
+    "correct": "Disaster recovery prepares for large-scale loss of infrastructure, data, or region availability with explicit recovery priorities, dependencies, RTOs, and RPOs.",
+    "wrong": [
+      "Automate destructive recovery steps in disaster recovery without approval or verification because speed is the primary objective.",
+      "Treat failover as complete for disaster recovery once infrastructure is running, without verifying data integrity or user-facing service.",
+      "For disaster recovery, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
+    ],
+    "e": "Disaster recovery prepares for large-scale loss of infrastructure, data, or region availability with explicit recovery priorities, dependencies, RTOs, and RPOs. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "disaster recovery"
+  },
+  {
+    "r": "ops",
+    "q": "Which explanation of secrets management is technically sound?",
+    "correct": "Secrets management protects credentials, tokens, keys, and certificates through controlled storage, scoped access, rotation, auditing, and short-lived identity where possible.",
+    "wrong": [
+      "For secrets management, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "For secrets management, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
+      "For secrets management, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted."
+    ],
+    "e": "Secrets management protects credentials, tokens, keys, and certificates through controlled storage, scoped access, rotation, auditing, and short-lived identity where possible. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Security Testing"
+    ],
+    "topic": "secrets management"
+  },
+  {
+    "r": "ops",
+    "q": "Which explanation of reverse proxies is technically sound?",
+    "correct": "A reverse proxy accepts client connections and forwards traffic to upstream services, often handling TLS, routing, headers, authentication integration, limits, and access logging.",
+    "wrong": [
+      "For reverse proxies, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "For reverse proxies, expose upstream services directly as well as through the proxy so operators have more paths during incidents.",
+      "For reverse proxies, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
+    ],
+    "e": "A reverse proxy accepts client connections and forwards traffic to upstream services, often handling TLS, routing, headers, authentication integration, limits, and access logging. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Security Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "reverse proxies"
+  },
+  {
+    "r": "ops",
+    "q": "What is the core idea behind TLS certificates?",
+    "correct": "TLS certificates bind identities to public keys so clients can authenticate endpoints and establish encrypted connections; validity, trust chain, hostname, and expiry all matter.",
+    "wrong": [
+      "For TLS certificates, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "For TLS certificates, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "For TLS certificates, expose upstream services directly as well as through the proxy so operators have more paths during incidents."
+    ],
+    "e": "TLS certificates bind identities to public keys so clients can authenticate endpoints and establish encrypted connections; validity, trust chain, hostname, and expiry all matter. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "API Testing",
+      "Security Testing"
+    ],
+    "topic": "TLS certificates"
+  },
+  {
+    "r": "ops",
+    "q": "What should a practitioner understand first about container monitoring?",
+    "correct": "Container monitoring should track workload health, restarts, CPU, memory, filesystem, network, logs, and application-level readiness rather than only whether the container process exists.",
+    "wrong": [
+      "Sample telemetry in container monitoring without checking whether rare errors and slow requests remain observable.",
+      "Log full secrets and payloads during container monitoring because debugging value outweighs redaction when access is restricted.",
+      "Use dashboards for container monitoring as decoration rather than linking panels to user impact, dependencies, and recent changes."
+    ],
+    "e": "Container monitoring should track workload health, restarts, CPU, memory, filesystem, network, logs, and application-level readiness rather than only whether the container process exists. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Docker"
+    ],
+    "topic": "container monitoring"
+  },
+  {
+    "r": "ops",
+    "q": "What is the core idea behind infrastructure monitoring?",
+    "correct": "Infrastructure monitoring observes hosts, networks, storage, cloud resources, and dependencies that application health depends on.",
+    "wrong": [
+      "Assume a green dashboard proves infrastructure monitoring is healthy even when customer-facing failures are reported elsewhere.",
+      "For infrastructure monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Log full secrets and payloads during infrastructure monitoring because debugging value outweighs redaction when access is restricted."
+    ],
+    "e": "Infrastructure monitoring observes hosts, networks, storage, cloud resources, and dependencies that application health depends on. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "infrastructure monitoring"
+  },
+  {
+    "r": "ops",
+    "q": "Which statement best describes Home Assistant?",
+    "correct": "Home Assistant integrates devices and services into entities, states, events, automations, dashboards, and integrations, with reliability depending on the underlying device protocols and connectivity.",
+    "wrong": [
+      "Treat dashboards in Home Assistant as the source of truth even when device telemetry and physical outcomes disagree.",
+      "Share unrestricted broker or device credentials across Home Assistant; per-topic or per-device access control complicates provisioning.",
+      "Assume a successful command in Home Assistant proves the physical actuator changed state; independent feedback is unnecessary."
+    ],
+    "e": "Home Assistant integrates devices and services into entities, states, events, automations, dashboards, and integrations, with reliability depending on the underlying device protocols and connectivity. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "Home Assistant"
+  },
+  {
+    "r": "ops",
+    "q": "What should a practitioner understand first about MQTT topics?",
+    "correct": "MQTT uses publish-subscribe topics to decouple producers and consumers; topic hierarchy, retained messages, QoS, and session behavior affect what subscribers observe.",
+    "wrong": [
+      "Assume a successful command in MQTT topics proves the physical actuator changed state; independent feedback is unnecessary.",
+      "Treat dashboards in MQTT topics as the source of truth even when device telemetry and physical outcomes disagree.",
+      "Share unrestricted broker or device credentials across MQTT topics; per-topic or per-device access control complicates provisioning."
+    ],
+    "e": "MQTT uses publish-subscribe topics to decouple producers and consumers; topic hierarchy, retained messages, QoS, and session behavior affect what subscribers observe. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "MQTT topics"
+  },
+  {
+    "r": "ops",
+    "q": "What should a practitioner understand first about IoT sensors?",
+    "correct": "IoT sensor readings are measurements with uncertainty, sampling intervals, calibration, connectivity, and failure modes rather than unquestionable ground truth.",
+    "wrong": [
+      "Share unrestricted broker or device credentials across IoT sensors; per-topic or per-device access control complicates provisioning.",
+      "Use one unvalidated sensor reading to trigger irreversible behavior in IoT sensors, because filtering and plausibility checks only delay automation.",
+      "Ignore reconnects, duplicate messages, retained state, and clock drift in IoT sensors; reliable networks make those edge cases negligible."
+    ],
+    "e": "IoT sensor readings are measurements with uncertainty, sampling intervals, calibration, connectivity, and failure modes rather than unquestionable ground truth. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "IoT sensors"
+  },
+  {
+    "r": "ops",
+    "q": "What should a practitioner understand first about time-series data?",
+    "correct": "Time-series data is ordered by time and requires careful treatment of timestamps, sampling intervals, gaps, aggregation, retention, and timezone semantics.",
+    "wrong": [
+      "Use one unvalidated sensor reading to trigger irreversible behavior in time-series data, because filtering and plausibility checks only delay automation.",
+      "Assume a successful command in time-series data proves the physical actuator changed state; independent feedback is unnecessary.",
+      "For time-series data, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning."
+    ],
+    "e": "Time-series data is ordered by time and requires careful treatment of timestamps, sampling intervals, gaps, aggregation, retention, and timezone semantics. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "time-series data"
+  },
+  {
+    "r": "ops",
+    "q": "Which statement best describes data retention?",
+    "correct": "Data retention defines how long different data classes are kept and should balance operational, legal, analytical, privacy, and storage requirements.",
+    "wrong": [
+      "Define RTO and RPO for data retention after a disaster occurs, when actual business tolerance is easier to measure.",
+      "Treat failover as complete for data retention once infrastructure is running, without verifying data integrity or user-facing service.",
+      "For data retention, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
+    ],
+    "e": "Data retention defines how long different data classes are kept and should balance operational, legal, analytical, privacy, and storage requirements. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "data retention"
+  },
+  {
+    "r": "ops",
+    "q": "What is the core idea behind root cause analysis?",
+    "correct": "Root cause analysis seeks the system conditions and contributing factors that allowed an incident, with the goal of preventing recurrence rather than assigning blame.",
+    "wrong": [
+      "For root cause analysis, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Use averages as the main signal in root cause analysis; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "Define root cause analysis from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability."
+    ],
+    "e": "Root cause analysis seeks the system conditions and contributing factors that allowed an incident, with the goal of preventing recurrence rather than assigning blame. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "root cause analysis"
+  },
+  {
+    "r": "ops",
+    "q": "What should a practitioner understand first about post-incident actions?",
+    "correct": "Post-incident actions convert lessons from an incident into concrete reliability improvements with owners, priorities, and measurable completion criteria.",
+    "wrong": [
+      "Keep recovery procedures for post-incident actions undocumented so responders can adapt to the exact incident instead of following stale steps.",
+      "Treat failover as complete for post-incident actions once infrastructure is running, without verifying data integrity or user-facing service.",
+      "Store all recovery copies for post-incident actions in the same failure domain as the primary system to simplify access."
+    ],
+    "e": "Post-incident actions convert lessons from an incident into concrete reliability improvements with owners, priorities, and measurable completion criteria. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "post-incident actions"
+  },
+  {
+    "r": "ops",
+    "q": "Which implementation approach is strongest for service level objectives?",
+    "correct": "Define SLOs from user outcomes, pair them with measurable SLIs and an evaluation window, and avoid choosing targets only because they are easy to measure.",
+    "wrong": [
+      "Define service level objectives from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
+      "Keep service level objectives targets static even when measurement definitions or user journeys change, so historical graphs remain comparable.",
+      "For service level objectives, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
+    ],
+    "e": "Define SLOs from user outcomes, pair them with measurable SLIs and an evaluation window, and avoid choosing targets only because they are easy to measure. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "service level objectives"
+  },
+  {
+    "r": "ops",
+    "q": "How should service level indicators be applied in practice?",
+    "correct": "Choose SLIs that approximate what users experience, define numerator/denominator or percentile logic precisely, and collect them from trustworthy telemetry.",
+    "wrong": [
+      "Judge service level indicators from one dashboard without validating that severe incidents actually move the chosen indicators.",
+      "Use averages as the main signal in service level indicators; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "Keep service level indicators targets static even when measurement definitions or user journeys change, so historical graphs remain comparable."
+    ],
+    "e": "Choose SLIs that approximate what users experience, define numerator/denominator or percentile logic precisely, and collect them from trustworthy telemetry. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "service level indicators"
+  },
+  {
+    "r": "ops",
+    "q": "Which practice is most appropriate when using error budgets?",
+    "correct": "Track budget consumption over the SLO window, distinguish slow burn from rapid burn, and use agreed policies for when reliability work should take precedence over risky changes.",
+    "wrong": [
+      "Use averages as the main signal in error budgets; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "Define error budgets from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
+      "For error budgets, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
+    ],
+    "e": "Track budget consumption over the SLO window, distinguish slow burn from rapid burn, and use agreed policies for when reliability work should take precedence over risky changes. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "error budgets"
+  },
+  {
+    "r": "ops",
+    "q": "Which practice is most appropriate when using incident response?",
+    "correct": "Establish roles, severity, communication channels, mitigation options, decision logs, and escalation paths before incidents occur, then keep updates factual and time-bounded.",
+    "wrong": [
+      "Automate destructive recovery steps in incident response without approval or verification because speed is the primary objective.",
+      "Keep recovery procedures for incident response undocumented so responders can adapt to the exact incident instead of following stale steps.",
+      "For incident response, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
+    ],
+    "e": "Establish roles, severity, communication channels, mitigation options, decision logs, and escalation paths before incidents occur, then keep updates factual and time-bounded. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "incident response"
+  },
+  {
+    "r": "ops",
+    "q": "Which practice is most appropriate when using on-call handoffs?",
+    "correct": "Include unresolved alerts, recent deployments, temporary mitigations, known noisy signals, pending changes, and contact/escalation information in a concise structured handoff.",
+    "wrong": [
+      "Define on-call handoffs from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
+      "Use averages as the main signal in on-call handoffs; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "For on-call handoffs, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
+    ],
+    "e": "Include unresolved alerts, recent deployments, temporary mitigations, known noisy signals, pending changes, and contact/escalation information in a concise structured handoff. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "on-call handoffs"
+  },
+  {
+    "r": "ops",
+    "q": "What is a maintainable way to work with runbooks?",
+    "correct": "Keep runbooks close to the systems they describe, automate safe mechanical steps, and include decision points rather than only command lists.",
+    "wrong": [
+      "Treat failover as complete for runbooks once infrastructure is running, without verifying data integrity or user-facing service.",
+      "For runbooks, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Store all recovery copies for runbooks in the same failure domain as the primary system to simplify access."
+    ],
+    "e": "Keep runbooks close to the systems they describe, automate safe mechanical steps, and include decision points rather than only command lists. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "runbooks"
+  },
+  {
+    "r": "ops",
+    "q": "What is a maintainable way to work with application logging?",
+    "correct": "Use consistent levels, timestamps, correlation IDs, error context, and domain identifiers; redact secrets and personal data and avoid logging entire payloads by default.",
+    "wrong": [
+      "Use dashboards for application logging as decoration rather than linking panels to user impact, dependencies, and recent changes.",
+      "Log full secrets and payloads during application logging because debugging value outweighs redaction when access is restricted.",
+      "Treat logs, metrics, and traces in application logging as separate systems that do not need shared request or trace identifiers."
+    ],
+    "e": "Use consistent levels, timestamps, correlation IDs, error context, and domain identifiers; redact secrets and personal data and avoid logging entire payloads by default. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Security Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "application logging"
+  },
+  {
+    "r": "ops",
+    "q": "Which practice is most appropriate when using distributed tracing?",
+    "correct": "Propagate trace context across HTTP, queues, and background jobs, create spans around meaningful operations, and attach useful attributes without leaking secrets.",
+    "wrong": [
+      "For distributed tracing, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Sample telemetry in distributed tracing without checking whether rare errors and slow requests remain observable.",
+      "Treat logs, metrics, and traces in distributed tracing as separate systems that do not need shared request or trace identifiers."
+    ],
+    "e": "Propagate trace context across HTTP, queues, and background jobs, create spans around meaningful operations, and attach useful attributes without leaking secrets. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Playwright",
+      "API Testing",
+      "Security Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "distributed tracing"
+  },
+  {
+    "r": "ops",
+    "q": "Which implementation approach is strongest for metrics dashboards?",
+    "correct": "Organize dashboards around user impact, service health, dependencies, saturation, and recent changes, with consistent units and time windows.",
+    "wrong": [
+      "Sample telemetry in metrics dashboards without checking whether rare errors and slow requests remain observable.",
+      "Log full secrets and payloads during metrics dashboards because debugging value outweighs redaction when access is restricted.",
+      "For metrics dashboards, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+    ],
+    "e": "Organize dashboards around user impact, service health, dependencies, saturation, and recent changes, with consistent units and time windows. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "metrics dashboards"
+  },
+  {
+    "r": "ops",
+    "q": "Which implementation approach is strongest for alert tuning?",
+    "correct": "Set thresholds from SLOs, baselines, and failure modes; use duration, grouping, deduplication, and severity to reduce transient or redundant alerts.",
+    "wrong": [
+      "For alert tuning, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Treat logs, metrics, and traces in alert tuning as separate systems that do not need shared request or trace identifiers.",
+      "Log full secrets and payloads during alert tuning because debugging value outweighs redaction when access is restricted."
+    ],
+    "e": "Set thresholds from SLOs, baselines, and failure modes; use duration, grouping, deduplication, and severity to reduce transient or redundant alerts. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "alert tuning"
+  },
+  {
+    "r": "ops",
+    "q": "What is a maintainable way to work with capacity planning?",
+    "correct": "Use historical demand, forecasts, headroom, load tests, resource saturation, and scaling limits rather than sizing from average traffic alone.",
+    "wrong": [
+      "For capacity planning, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Keep capacity planning targets static even when measurement definitions or user journeys change, so historical graphs remain comparable.",
+      "Treat unused error budget in capacity planning as permission to create failures intentionally before the measurement window closes."
+    ],
+    "e": "Use historical demand, forecasts, headroom, load tests, resource saturation, and scaling limits rather than sizing from average traffic alone. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Performance Testing"
+    ],
+    "topic": "capacity planning"
+  },
+  {
+    "r": "ops",
+    "q": "What is a maintainable way to work with backup recovery?",
+    "correct": "Set retention, encryption, off-site or independent copies, restore procedures, and RPO/RTO targets according to business needs.",
+    "wrong": [
+      "Store all recovery copies for backup recovery in the same failure domain as the primary system to simplify access.",
+      "For backup recovery, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Define RTO and RPO for backup recovery after a disaster occurs, when actual business tolerance is easier to measure."
+    ],
+    "e": "Set retention, encryption, off-site or independent copies, restore procedures, and RPO/RTO targets according to business needs. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "backup recovery"
+  },
+  {
+    "r": "ops",
+    "q": "Which implementation approach is strongest for disaster recovery?",
+    "correct": "Design alternate infrastructure, data replication or backups, DNS/traffic changes, credential access, communication, and recovery sequencing before a disaster.",
+    "wrong": [
+      "Store all recovery copies for disaster recovery in the same failure domain as the primary system to simplify access.",
+      "Automate destructive recovery steps in disaster recovery without approval or verification because speed is the primary objective.",
+      "Treat failover as complete for disaster recovery once infrastructure is running, without verifying data integrity or user-facing service."
+    ],
+    "e": "Design alternate infrastructure, data replication or backups, DNS/traffic changes, credential access, communication, and recovery sequencing before a disaster. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "disaster recovery"
+  },
+  {
+    "r": "ops",
+    "q": "Which practice is most appropriate when using secrets management?",
+    "correct": "Use a secret manager or protected runtime store, grant least privilege, avoid embedding secrets in code/images/config history, and rotate or revoke compromised values.",
+    "wrong": [
+      "For secrets management, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "For secrets management, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "For secrets management, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness."
+    ],
+    "e": "Use a secret manager or protected runtime store, grant least privilege, avoid embedding secrets in code/images/config history, and rotate or revoke compromised values. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Security Testing",
+      "Retrieval-Augmented Generation (RAG)"
+    ],
+    "topic": "secrets management"
+  },
+  {
+    "r": "ops",
+    "q": "How should reverse proxies be applied in practice?",
+    "correct": "Configure trusted upstreams, forwarded headers, timeouts, body limits, websocket or streaming behavior, and health handling explicitly rather than relying on defaults.",
+    "wrong": [
+      "For reverse proxies, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant.",
+      "For reverse proxies, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "For reverse proxies, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness."
+    ],
+    "e": "Configure trusted upstreams, forwarded headers, timeouts, body limits, websocket or streaming behavior, and health handling explicitly rather than relying on defaults. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "reverse proxies"
+  },
+  {
+    "r": "ops",
+    "q": "Which practice is most appropriate when using TLS certificates?",
+    "correct": "Automate issuance and renewal where possible, monitor expiry, protect private keys, and configure supported protocol/cipher versions according to current platform guidance.",
+    "wrong": [
+      "For TLS certificates, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
+      "For TLS certificates, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "For TLS certificates, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct."
+    ],
+    "e": "Automate issuance and renewal where possible, monitor expiry, protect private keys, and configure supported protocol/cipher versions according to current platform guidance. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Security Testing"
+    ],
+    "topic": "TLS certificates"
+  },
+  {
+    "r": "ops",
+    "q": "How should container monitoring be applied in practice?",
+    "correct": "Collect container and host metrics together, set resource requests/limits deliberately, and distinguish crash loops from healthy restarts or autoscaling.",
+    "wrong": [
+      "For container monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Sample telemetry in container monitoring without checking whether rare errors and slow requests remain observable.",
+      "Log full secrets and payloads during container monitoring because debugging value outweighs redaction when access is restricted."
+    ],
+    "e": "Collect container and host metrics together, set resource requests/limits deliberately, and distinguish crash loops from healthy restarts or autoscaling. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Java",
+      "Docker"
+    ],
+    "topic": "container monitoring"
+  },
+  {
+    "r": "ops",
+    "q": "How should infrastructure monitoring be applied in practice?",
+    "correct": "Track saturation, errors, capacity, availability, and configuration changes with labels that let responders map infrastructure signals to affected services.",
+    "wrong": [
+      "Assume a green dashboard proves infrastructure monitoring is healthy even when customer-facing failures are reported elsewhere.",
+      "Sample telemetry in infrastructure monitoring without checking whether rare errors and slow requests remain observable.",
+      "For infrastructure monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+    ],
+    "e": "Track saturation, errors, capacity, availability, and configuration changes with labels that let responders map infrastructure signals to affected services. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Accessibility Testing",
+      "Performance Testing"
+    ],
+    "topic": "infrastructure monitoring"
+  },
+  {
+    "r": "ops",
+    "q": "Which implementation approach is strongest for Home Assistant?",
+    "correct": "Use stable entity IDs, explicit automation conditions, useful availability signals, and local protocols or integrations where appropriate; separate device state from assumptions about physical outcome.",
+    "wrong": [
+      "Use one unvalidated sensor reading to trigger irreversible behavior in Home Assistant, because filtering and plausibility checks only delay automation.",
+      "Assume a successful command in Home Assistant proves the physical actuator changed state; independent feedback is unnecessary.",
+      "For Home Assistant, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning."
+    ],
+    "e": "Use stable entity IDs, explicit automation conditions, useful availability signals, and local protocols or integrations where appropriate; separate device state from assumptions about physical outcome. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "Home Assistant"
+  },
+  {
+    "r": "ops",
+    "q": "Which practice is most appropriate when using MQTT topics?",
+    "correct": "Design predictable topic names, distinguish command from state topics, use retained messages deliberately, and protect broker access with authentication and ACLs.",
+    "wrong": [
+      "Use one unvalidated sensor reading to trigger irreversible behavior in MQTT topics, because filtering and plausibility checks only delay automation.",
+      "Share unrestricted broker or device credentials across MQTT topics; per-topic or per-device access control complicates provisioning.",
+      "Ignore reconnects, duplicate messages, retained state, and clock drift in MQTT topics; reliable networks make those edge cases negligible."
+    ],
+    "e": "Design predictable topic names, distinguish command from state topics, use retained messages deliberately, and protect broker access with authentication and ACLs. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Security Testing",
+      "IoT"
+    ],
+    "topic": "MQTT topics"
+  },
+  {
+    "r": "ops",
+    "q": "What is a maintainable way to work with IoT sensors?",
+    "correct": "Record units, calibration, timestamp, device identity, expected range, and availability; smooth or aggregate only when the application can tolerate the resulting delay.",
+    "wrong": [
+      "Use one unvalidated sensor reading to trigger irreversible behavior in IoT sensors, because filtering and plausibility checks only delay automation.",
+      "Share unrestricted broker or device credentials across IoT sensors; per-topic or per-device access control complicates provisioning.",
+      "Ignore reconnects, duplicate messages, retained state, and clock drift in IoT sensors; reliable networks make those edge cases negligible."
+    ],
+    "e": "Record units, calibration, timestamp, device identity, expected range, and availability; smooth or aggregate only when the application can tolerate the resulting delay. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "IoT sensors"
+  },
+  {
+    "r": "ops",
+    "q": "How should time-series data be applied in practice?",
+    "correct": "Store timestamps consistently, preserve raw data when needed, downsample older data deliberately, and choose aggregation windows that match the operational question.",
+    "wrong": [
+      "Assume a successful command in time-series data proves the physical actuator changed state; independent feedback is unnecessary.",
+      "Use one unvalidated sensor reading to trigger irreversible behavior in time-series data, because filtering and plausibility checks only delay automation.",
+      "Treat dashboards in time-series data as the source of truth even when device telemetry and physical outcomes disagree."
+    ],
+    "e": "Store timestamps consistently, preserve raw data when needed, downsample older data deliberately, and choose aggregation windows that match the operational question. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "time-series data"
+  },
+  {
+    "r": "ops",
+    "q": "What is a maintainable way to work with data retention?",
+    "correct": "Classify data, set deletion or archival schedules, document exceptions and legal holds, and ensure backups and replicas follow compatible retention rules.",
+    "wrong": [
+      "Keep recovery procedures for data retention undocumented so responders can adapt to the exact incident instead of following stale steps.",
+      "Store all recovery copies for data retention in the same failure domain as the primary system to simplify access.",
+      "Automate destructive recovery steps in data retention without approval or verification because speed is the primary objective."
+    ],
+    "e": "Classify data, set deletion or archival schedules, document exceptions and legal holds, and ensure backups and replicas follow compatible retention rules. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Java"
+    ],
+    "topic": "data retention"
+  },
+  {
+    "r": "ops",
+    "q": "Which implementation approach is strongest for root cause analysis?",
+    "correct": "Build an evidence-based timeline, distinguish trigger from deeper enabling conditions, use causal reasoning, and turn findings into owned, testable corrective actions.",
+    "wrong": [
+      "Treat unused error budget in root cause analysis as permission to create failures intentionally before the measurement window closes.",
+      "Judge root cause analysis from one dashboard without validating that severe incidents actually move the chosen indicators.",
+      "Use averages as the main signal in root cause analysis; percentiles, error ratios, and burn rates add unnecessary complexity."
+    ],
+    "e": "Build an evidence-based timeline, distinguish trigger from deeper enabling conditions, use causal reasoning, and turn findings into owned, testable corrective actions. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "root cause analysis"
+  },
+  {
+    "r": "ops",
+    "q": "What is a maintainable way to work with post-incident actions?",
+    "correct": "Prioritize actions that reduce recurrence or impact, such as guardrails, tests, observability, automation, capacity, runbook changes, or architecture improvements.",
+    "wrong": [
+      "Define RTO and RPO for post-incident actions after a disaster occurs, when actual business tolerance is easier to measure.",
+      "Treat failover as complete for post-incident actions once infrastructure is running, without verifying data integrity or user-facing service.",
+      "For post-incident actions, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
+    ],
+    "e": "Prioritize actions that reduce recurrence or impact, such as guardrails, tests, observability, automation, capacity, runbook changes, or architecture improvements. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Performance Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "post-incident actions"
+  },
+  {
+    "r": "ops",
+    "q": "What evidence best validates service level objectives?",
+    "correct": "Review whether the SLO reflects customer experience, has enough measurement coverage, and drives meaningful engineering trade-offs when performance falls below target.",
+    "wrong": [
+      "Treat unused error budget in service level objectives as permission to create failures intentionally before the measurement window closes.",
+      "Define service level objectives from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
+      "Keep service level objectives targets static even when measurement definitions or user journeys change, so historical graphs remain comparable."
+    ],
+    "e": "Review whether the SLO reflects customer experience, has enough measurement coverage, and drives meaningful engineering trade-offs when performance falls below target. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Performance Testing",
+      "Reliability Engineering"
+    ],
+    "topic": "service level objectives"
+  },
+  {
+    "r": "ops",
+    "q": "Which validation approach provides the strongest evidence for service level indicators?",
+    "correct": "Validate the SLI by comparing it with real incidents and user impact; if severe failures barely change the metric, the indicator is probably poorly chosen.",
+    "wrong": [
+      "Define service level indicators from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
+      "Judge service level indicators from one dashboard without validating that severe incidents actually move the chosen indicators.",
+      "Keep service level indicators targets static even when measurement definitions or user journeys change, so historical graphs remain comparable."
+    ],
+    "e": "Validate the SLI by comparing it with real incidents and user impact; if severe failures barely change the metric, the indicator is probably poorly chosen. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "service level indicators"
+  },
+  {
+    "r": "ops",
+    "q": "Which validation approach provides the strongest evidence for error budgets?",
+    "correct": "Check whether budget burn correlates with incidents and customer impact, and avoid treating unused budget as permission to create failures intentionally.",
+    "wrong": [
+      "Treat unused error budget in error budgets as permission to create failures intentionally before the measurement window closes.",
+      "Use averages as the main signal in error budgets; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "Define error budgets from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability."
+    ],
+    "e": "Check whether budget burn correlates with incidents and customer impact, and avoid treating unused budget as permission to create failures intentionally. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "error budgets"
+  },
+  {
+    "r": "ops",
+    "q": "How should incident response be verified or evaluated?",
+    "correct": "After mitigation, verify service recovery with user-relevant signals and preserve timelines, logs, and actions for follow-up rather than declaring success from one green dashboard.",
+    "wrong": [
+      "Keep recovery procedures for incident response undocumented so responders can adapt to the exact incident instead of following stale steps.",
+      "Automate destructive recovery steps in incident response without approval or verification because speed is the primary objective.",
+      "Treat failover as complete for incident response once infrastructure is running, without verifying data integrity or user-facing service."
+    ],
+    "e": "After mitigation, verify service recovery with user-relevant signals and preserve timelines, logs, and actions for follow-up rather than declaring success from one green dashboard. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "incident response"
+  },
+  {
+    "r": "ops",
+    "q": "Which check gives the strongest evidence for on-call handoffs?",
+    "correct": "Validate the handoff by asking whether the next responder can identify current risk and first actions without private context from the outgoing person.",
+    "wrong": [
+      "Judge on-call handoffs from one dashboard without validating that severe incidents actually move the chosen indicators.",
+      "Keep on-call handoffs targets static even when measurement definitions or user journeys change, so historical graphs remain comparable.",
+      "Define on-call handoffs from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability."
+    ],
+    "e": "Validate the handoff by asking whether the next responder can identify current risk and first actions without private context from the outgoing person. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "on-call handoffs"
+  },
+  {
+    "r": "ops",
+    "q": "What evidence best validates runbooks?",
+    "correct": "Exercise runbooks during drills or real incidents and update them when commands, ownership, dependencies, or recovery assumptions change.",
+    "wrong": [
+      "Keep recovery procedures for runbooks undocumented so responders can adapt to the exact incident instead of following stale steps.",
+      "Store all recovery copies for runbooks in the same failure domain as the primary system to simplify access.",
+      "Define RTO and RPO for runbooks after a disaster occurs, when actual business tolerance is easier to measure."
+    ],
+    "e": "Exercise runbooks during drills or real incidents and update them when commands, ownership, dependencies, or recovery assumptions change. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "runbooks"
+  },
+  {
+    "r": "ops",
+    "q": "Which check gives the strongest evidence for application logging?",
+    "correct": "Test whether a real failure can be traced from logs alone to the affected request or job, and verify rotation, retention, and ingestion continue under high volume.",
+    "wrong": [
+      "Assume a green dashboard proves application logging is healthy even when customer-facing failures are reported elsewhere.",
+      "Log full secrets and payloads during application logging because debugging value outweighs redaction when access is restricted.",
+      "For application logging, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+    ],
+    "e": "Test whether a real failure can be traced from logs alone to the affected request or job, and verify rotation, retention, and ingestion continue under high volume. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Playwright",
+      "Reliability Engineering"
+    ],
+    "topic": "application logging"
+  },
+  {
+    "r": "ops",
+    "q": "Which validation approach provides the strongest evidence for distributed tracing?",
+    "correct": "Use traces to identify the first failing or slow dependency and confirm sampling still preserves enough anomalous requests for diagnosis.",
+    "wrong": [
+      "Assume a green dashboard proves distributed tracing is healthy even when customer-facing failures are reported elsewhere.",
+      "Log full secrets and payloads during distributed tracing because debugging value outweighs redaction when access is restricted.",
+      "Use dashboards for distributed tracing as decoration rather than linking panels to user impact, dependencies, and recent changes."
+    ],
+    "e": "Use traces to identify the first failing or slow dependency and confirm sampling still preserves enough anomalous requests for diagnosis. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Playwright",
+      "Reliability Engineering"
+    ],
+    "topic": "distributed tracing"
+  },
+  {
+    "r": "ops",
+    "q": "How should metrics dashboards be verified or evaluated?",
+    "correct": "Review dashboards during incidents and normal operation to remove misleading panels, add missing context, and ensure important failures are visible without manual correlation across dozens of charts.",
+    "wrong": [
+      "Assume a green dashboard proves metrics dashboards is healthy even when customer-facing failures are reported elsewhere.",
+      "Use dashboards for metrics dashboards as decoration rather than linking panels to user impact, dependencies, and recent changes.",
+      "Log full secrets and payloads during metrics dashboards because debugging value outweighs redaction when access is restricted."
+    ],
+    "e": "Review dashboards during incidents and normal operation to remove misleading panels, add missing context, and ensure important failures are visible without manual correlation across dozens of charts. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "metrics dashboards"
+  },
+  {
+    "r": "ops",
+    "q": "Which validation approach provides the strongest evidence for alert tuning?",
+    "correct": "Measure false positives, missed incidents, page volume, and response outcomes, then adjust alerts that responders routinely ignore or cannot act on.",
+    "wrong": [
+      "Sample telemetry in alert tuning without checking whether rare errors and slow requests remain observable.",
+      "Use dashboards for alert tuning as decoration rather than linking panels to user impact, dependencies, and recent changes.",
+      "Log full secrets and payloads during alert tuning because debugging value outweighs redaction when access is restricted."
+    ],
+    "e": "Measure false positives, missed incidents, page volume, and response outcomes, then adjust alerts that responders routinely ignore or cannot act on. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "alert tuning"
+  },
+  {
+    "r": "ops",
+    "q": "What evidence best validates capacity planning?",
+    "correct": "Validate plans against peak scenarios, dependency quotas, failure of one zone or node, and time-to-scale so capacity remains adequate under realistic stress.",
+    "wrong": [
+      "Define capacity planning from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
+      "For capacity planning, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Judge capacity planning from one dashboard without validating that severe incidents actually move the chosen indicators."
+    ],
+    "e": "Validate plans against peak scenarios, dependency quotas, failure of one zone or node, and time-to-scale so capacity remains adequate under realistic stress. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Performance Testing"
+    ],
+    "topic": "capacity planning"
+  },
+  {
+    "r": "ops",
+    "q": "What evidence best validates backup recovery?",
+    "correct": "Run restore tests on representative data and document duration, missing dependencies, and integrity checks instead of assuming successful backup jobs imply recoverability.",
+    "wrong": [
+      "Treat failover as complete for backup recovery once infrastructure is running, without verifying data integrity or user-facing service.",
+      "Keep recovery procedures for backup recovery undocumented so responders can adapt to the exact incident instead of following stale steps.",
+      "Define RTO and RPO for backup recovery after a disaster occurs, when actual business tolerance is easier to measure."
+    ],
+    "e": "Run restore tests on representative data and document duration, missing dependencies, and integrity checks instead of assuming successful backup jobs imply recoverability. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "backup recovery"
+  },
+  {
+    "r": "ops",
+    "q": "How should disaster recovery be verified or evaluated?",
+    "correct": "Exercise failover and failback scenarios periodically, including degraded dependencies and partial data loss, and compare actual recovery time and data loss with targets.",
+    "wrong": [
+      "Treat failover as complete for disaster recovery once infrastructure is running, without verifying data integrity or user-facing service.",
+      "Store all recovery copies for disaster recovery in the same failure domain as the primary system to simplify access.",
+      "Define RTO and RPO for disaster recovery after a disaster occurs, when actual business tolerance is easier to measure."
+    ],
+    "e": "Exercise failover and failback scenarios periodically, including degraded dependencies and partial data loss, and compare actual recovery time and data loss with targets. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "disaster recovery"
+  },
+  {
+    "r": "ops",
+    "q": "Which check gives the strongest evidence for secrets management?",
+    "correct": "Test secret expiry, rotation, missing access, audit trails, and redaction in logs, traces, crash dumps, and backups so operational tooling does not become a leakage path.",
+    "wrong": [
+      "For secrets management, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "For secrets management, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "For secrets management, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
+    ],
+    "e": "Test secret expiry, rotation, missing access, audit trails, and redaction in logs, traces, crash dumps, and backups so operational tooling does not become a leakage path. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Playwright",
+      "Security Testing"
+    ],
+    "topic": "secrets management"
+  },
+  {
+    "r": "ops",
+    "q": "Which check gives the strongest evidence for reverse proxies?",
+    "correct": "Test redirects, certificate behavior, large requests, upstream failures, client IP/scheme preservation, and malicious forwarded headers to verify the proxy boundary.",
+    "wrong": [
+      "For reverse proxies, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted.",
+      "For reverse proxies, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant.",
+      "For reverse proxies, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness."
+    ],
+    "e": "Test redirects, certificate behavior, large requests, upstream failures, client IP/scheme preservation, and malicious forwarded headers to verify the proxy boundary. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "reverse proxies"
+  },
+  {
+    "r": "ops",
+    "q": "Which validation approach provides the strongest evidence for TLS certificates?",
+    "correct": "Test hostname mismatch, expired or untrusted certificates, renewal, intermediate-chain delivery, redirects, and service restart behavior before an expiry becomes an outage.",
+    "wrong": [
+      "For TLS certificates, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "For TLS certificates, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted.",
+      "For TLS certificates, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
+    ],
+    "e": "Test hostname mismatch, expired or untrusted certificates, renewal, intermediate-chain delivery, redirects, and service restart behavior before an expiry becomes an outage. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Security Testing"
+    ],
+    "topic": "TLS certificates"
+  },
+  {
+    "r": "ops",
+    "q": "What evidence best validates container monitoring?",
+    "correct": "Correlate container signals with service latency and errors so a resource spike can be linked to user impact and the responsible workload.",
+    "wrong": [
+      "Assume a green dashboard proves container monitoring is healthy even when customer-facing failures are reported elsewhere.",
+      "Use dashboards for container monitoring as decoration rather than linking panels to user impact, dependencies, and recent changes.",
+      "For container monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+    ],
+    "e": "Correlate container signals with service latency and errors so a resource spike can be linked to user impact and the responsible workload. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Docker",
+      "Performance Testing"
+    ],
+    "topic": "container monitoring"
+  },
+  {
+    "r": "ops",
+    "q": "How should infrastructure monitoring be verified or evaluated?",
+    "correct": "Validate monitoring during failure drills such as disk exhaustion, network loss, CPU pressure, or node termination to ensure critical infrastructure failures are detected and diagnosable.",
+    "wrong": [
+      "Log full secrets and payloads during infrastructure monitoring because debugging value outweighs redaction when access is restricted.",
+      "Sample telemetry in infrastructure monitoring without checking whether rare errors and slow requests remain observable.",
+      "Treat logs, metrics, and traces in infrastructure monitoring as separate systems that do not need shared request or trace identifiers."
+    ],
+    "e": "Validate monitoring during failure drills such as disk exhaustion, network loss, CPU pressure, or node termination to ensure critical infrastructure failures are detected and diagnosable. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "infrastructure monitoring"
+  },
+  {
+    "r": "ops",
+    "q": "How should Home Assistant be verified or evaluated?",
+    "correct": "Test sensor unavailability, stale values, restart recovery, network loss, automation concurrency, and manual override so a dashboard state is not mistaken for guaranteed real-world behavior.",
+    "wrong": [
+      "Assume a successful command in Home Assistant proves the physical actuator changed state; independent feedback is unnecessary.",
+      "Use one unvalidated sensor reading to trigger irreversible behavior in Home Assistant, because filtering and plausibility checks only delay automation.",
+      "Treat dashboards in Home Assistant as the source of truth even when device telemetry and physical outcomes disagree."
+    ],
+    "e": "Test sensor unavailability, stale values, restart recovery, network loss, automation concurrency, and manual override so a dashboard state is not mistaken for guaranteed real-world behavior. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "Home Assistant"
+  },
+  {
+    "r": "ops",
+    "q": "Which validation approach provides the strongest evidence for MQTT topics?",
+    "correct": "Test reconnects, duplicate or delayed delivery, retained stale state, wildcard subscriptions, QoS behavior, and unauthorized publishing before relying on MQTT for automation.",
+    "wrong": [
+      "Treat dashboards in MQTT topics as the source of truth even when device telemetry and physical outcomes disagree.",
+      "For MQTT topics, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning.",
+      "Share unrestricted broker or device credentials across MQTT topics; per-topic or per-device access control complicates provisioning."
+    ],
+    "e": "Test reconnects, duplicate or delayed delivery, retained stale state, wildcard subscriptions, QoS behavior, and unauthorized publishing before relying on MQTT for automation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "MQTT topics"
+  },
+  {
+    "r": "ops",
+    "q": "Which check gives the strongest evidence for IoT sensors?",
+    "correct": "Test disconnected, stuck, noisy, out-of-range, and implausibly fast-changing sensors and compare against a reference when calibration or drift matters.",
+    "wrong": [
+      "For IoT sensors, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning.",
+      "Ignore reconnects, duplicate messages, retained state, and clock drift in IoT sensors; reliable networks make those edge cases negligible.",
+      "Use one unvalidated sensor reading to trigger irreversible behavior in IoT sensors, because filtering and plausibility checks only delay automation."
+    ],
+    "e": "Test disconnected, stuck, noisy, out-of-range, and implausibly fast-changing sensors and compare against a reference when calibration or drift matters. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "IoT sensors"
+  },
+  {
+    "r": "ops",
+    "q": "Which check gives the strongest evidence for time-series data?",
+    "correct": "Validate missing intervals, duplicate timestamps, clock drift, timezone conversions, late arrivals, and aggregation boundaries so charts do not hide data-quality problems.",
+    "wrong": [
+      "Assume a successful command in time-series data proves the physical actuator changed state; independent feedback is unnecessary.",
+      "Ignore reconnects, duplicate messages, retained state, and clock drift in time-series data; reliable networks make those edge cases negligible.",
+      "Use one unvalidated sensor reading to trigger irreversible behavior in time-series data, because filtering and plausibility checks only delay automation."
+    ],
+    "e": "Validate missing intervals, duplicate timestamps, clock drift, timezone conversions, late arrivals, and aggregation boundaries so charts do not hide data-quality problems. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "time-series data"
+  },
+  {
+    "r": "ops",
+    "q": "Which validation approach provides the strongest evidence for data retention?",
+    "correct": "Test deletion end to end, including indexes, caches, backups, and derived stores, and verify expired data is not silently reintroduced by restore or synchronization.",
+    "wrong": [
+      "Store all recovery copies for data retention in the same failure domain as the primary system to simplify access.",
+      "For data retention, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Keep recovery procedures for data retention undocumented so responders can adapt to the exact incident instead of following stale steps."
+    ],
+    "e": "Test deletion end to end, including indexes, caches, backups, and derived stores, and verify expired data is not silently reintroduced by restore or synchronization. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "data retention"
+  },
+  {
+    "r": "ops",
+    "q": "Which check gives the strongest evidence for root cause analysis?",
+    "correct": "Follow up on actions and verify they reduce recurrence risk; a document that identifies 'human error' without changing the system is not a complete RCA.",
+    "wrong": [
+      "Use averages as the main signal in root cause analysis; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "For root cause analysis, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Judge root cause analysis from one dashboard without validating that severe incidents actually move the chosen indicators."
+    ],
+    "e": "Follow up on actions and verify they reduce recurrence risk; a document that identifies 'human error' without changing the system is not a complete RCA. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "root cause analysis"
+  },
+  {
+    "r": "ops",
+    "q": "Which check gives the strongest evidence for post-incident actions?",
+    "correct": "Track actions to completion and verify their effectiveness through drills, regression tests, or monitoring rather than closing them when a ticket is merely created.",
+    "wrong": [
+      "Store all recovery copies for post-incident actions in the same failure domain as the primary system to simplify access.",
+      "For post-incident actions, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Treat failover as complete for post-incident actions once infrastructure is running, without verifying data integrity or user-facing service."
+    ],
+    "e": "Track actions to completion and verify their effectiveness through drills, regression tests, or monitoring rather than closing them when a ticket is merely created. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "post-incident actions"
+  },
+  {
+    "r": "ops",
+    "q": "How should service level objectives be operated beyond the happy path?",
+    "correct": "For service level objectives, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Define service level objectives from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
+      "Keep service level objectives targets static even when measurement definitions or user journeys change, so historical graphs remain comparable.",
+      "Use averages as the main signal in service level objectives; percentiles, error ratios, and burn rates add unnecessary complexity."
+    ],
+    "e": "For service level objectives, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "service level objectives"
+  },
+  {
+    "r": "ops",
+    "q": "What matters most when taking service level indicators into production?",
+    "correct": "For service level indicators, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Judge service level indicators from one dashboard without validating that severe incidents actually move the chosen indicators.",
+      "Use averages as the main signal in service level indicators; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "For service level indicators, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
+    ],
+    "e": "For service level indicators, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "service level indicators"
+  },
+  {
+    "r": "ops",
+    "q": "Which production concern is most important for error budgets?",
+    "correct": "For error budgets, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Use averages as the main signal in error budgets; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "For error budgets, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Keep error budgets targets static even when measurement definitions or user journeys change, so historical graphs remain comparable."
+    ],
+    "e": "For error budgets, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "error budgets"
+  },
+  {
+    "r": "ops",
+    "q": "Which statement best reflects production-ready use of incident response?",
+    "correct": "For incident response, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "For incident response, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Define RTO and RPO for incident response after a disaster occurs, when actual business tolerance is easier to measure.",
+      "Store all recovery copies for incident response in the same failure domain as the primary system to simplify access."
+    ],
+    "e": "For incident response, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "incident response"
+  },
+  {
+    "r": "ops",
+    "q": "How should on-call handoffs be operated beyond the happy path?",
+    "correct": "For on-call handoffs, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Judge on-call handoffs from one dashboard without validating that severe incidents actually move the chosen indicators.",
+      "Define on-call handoffs from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
+      "Treat unused error budget in on-call handoffs as permission to create failures intentionally before the measurement window closes."
+    ],
+    "e": "For on-call handoffs, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "on-call handoffs"
+  },
+  {
+    "r": "ops",
+    "q": "What matters most when taking runbooks into production?",
+    "correct": "For runbooks, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Store all recovery copies for runbooks in the same failure domain as the primary system to simplify access.",
+      "Automate destructive recovery steps in runbooks without approval or verification because speed is the primary objective.",
+      "Keep recovery procedures for runbooks undocumented so responders can adapt to the exact incident instead of following stale steps."
+    ],
+    "e": "For runbooks, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "runbooks"
+  },
+  {
+    "r": "ops",
+    "q": "Which statement best reflects production-ready use of application logging?",
+    "correct": "For application logging, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "For application logging, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Sample telemetry in application logging without checking whether rare errors and slow requests remain observable.",
+      "Log full secrets and payloads during application logging because debugging value outweighs redaction when access is restricted."
+    ],
+    "e": "For application logging, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "application logging"
+  },
+  {
+    "r": "ops",
+    "q": "How should distributed tracing be operated beyond the happy path?",
+    "correct": "For distributed tracing, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "For distributed tracing, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Assume a green dashboard proves distributed tracing is healthy even when customer-facing failures are reported elsewhere.",
+      "Treat logs, metrics, and traces in distributed tracing as separate systems that do not need shared request or trace identifiers."
+    ],
+    "e": "For distributed tracing, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "distributed tracing"
+  },
+  {
+    "r": "ops",
+    "q": "How should metrics dashboards be operated beyond the happy path?",
+    "correct": "For metrics dashboards, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Assume a green dashboard proves metrics dashboards is healthy even when customer-facing failures are reported elsewhere.",
+      "Sample telemetry in metrics dashboards without checking whether rare errors and slow requests remain observable.",
+      "Log full secrets and payloads during metrics dashboards because debugging value outweighs redaction when access is restricted."
+    ],
+    "e": "For metrics dashboards, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "metrics dashboards"
+  },
+  {
+    "r": "ops",
+    "q": "What matters most when taking alert tuning into production?",
+    "correct": "For alert tuning, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Log full secrets and payloads during alert tuning because debugging value outweighs redaction when access is restricted.",
+      "For alert tuning, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Use dashboards for alert tuning as decoration rather than linking panels to user impact, dependencies, and recent changes."
+    ],
+    "e": "For alert tuning, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Reliability Engineering"
+    ],
+    "topic": "alert tuning"
+  },
+  {
+    "r": "ops",
+    "q": "Which production concern is most important for capacity planning?",
+    "correct": "For capacity planning, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "For capacity planning, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Use averages as the main signal in capacity planning; percentiles, error ratios, and burn rates add unnecessary complexity.",
+      "Define capacity planning from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability."
+    ],
+    "e": "For capacity planning, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Performance Testing"
+    ],
+    "topic": "capacity planning"
+  },
+  {
+    "r": "ops",
+    "q": "Which production concern is most important for backup recovery?",
+    "correct": "For backup recovery, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Treat failover as complete for backup recovery once infrastructure is running, without verifying data integrity or user-facing service.",
+      "Keep recovery procedures for backup recovery undocumented so responders can adapt to the exact incident instead of following stale steps.",
+      "Store all recovery copies for backup recovery in the same failure domain as the primary system to simplify access."
+    ],
+    "e": "For backup recovery, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "backup recovery"
+  },
+  {
+    "r": "ops",
+    "q": "What matters most when taking disaster recovery into production?",
+    "correct": "For disaster recovery, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Treat failover as complete for disaster recovery once infrastructure is running, without verifying data integrity or user-facing service.",
+      "Store all recovery copies for disaster recovery in the same failure domain as the primary system to simplify access.",
+      "Keep recovery procedures for disaster recovery undocumented so responders can adapt to the exact incident instead of following stale steps."
+    ],
+    "e": "For disaster recovery, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "disaster recovery"
+  },
+  {
+    "r": "ops",
+    "q": "Which production concern is most important for secrets management?",
+    "correct": "For secrets management, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "For secrets management, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted.",
+      "For secrets management, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "For secrets management, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic."
+    ],
+    "e": "For secrets management, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Security Testing"
+    ],
+    "topic": "secrets management"
+  },
+  {
+    "r": "ops",
+    "q": "Which production concern is most important for reverse proxies?",
+    "correct": "For reverse proxies, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "For reverse proxies, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant.",
+      "For reverse proxies, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
+      "For reverse proxies, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted."
+    ],
+    "e": "For reverse proxies, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "reverse proxies"
+  },
+  {
+    "r": "ops",
+    "q": "How should TLS certificates be operated beyond the happy path?",
+    "correct": "For TLS certificates, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "For TLS certificates, expose upstream services directly as well as through the proxy so operators have more paths during incidents.",
+      "For TLS certificates, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
+      "For TLS certificates, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
+    ],
+    "e": "For TLS certificates, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Security Testing"
+    ],
+    "topic": "TLS certificates"
+  },
+  {
+    "r": "ops",
+    "q": "Which production concern is most important for container monitoring?",
+    "correct": "For container monitoring, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Log full secrets and payloads during container monitoring because debugging value outweighs redaction when access is restricted.",
+      "Use dashboards for container monitoring as decoration rather than linking panels to user impact, dependencies, and recent changes.",
+      "Sample telemetry in container monitoring without checking whether rare errors and slow requests remain observable."
+    ],
+    "e": "For container monitoring, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "Docker"
+    ],
+    "topic": "container monitoring"
+  },
+  {
+    "r": "ops",
+    "q": "What matters most when taking infrastructure monitoring into production?",
+    "correct": "For infrastructure monitoring, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Treat logs, metrics, and traces in infrastructure monitoring as separate systems that do not need shared request or trace identifiers.",
+      "For infrastructure monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Sample telemetry in infrastructure monitoring without checking whether rare errors and slow requests remain observable."
+    ],
+    "e": "For infrastructure monitoring, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "infrastructure monitoring"
+  },
+  {
+    "r": "ops",
+    "q": "Which statement best reflects production-ready use of Home Assistant?",
+    "correct": "For Home Assistant, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Share unrestricted broker or device credentials across Home Assistant; per-topic or per-device access control complicates provisioning.",
+      "Treat dashboards in Home Assistant as the source of truth even when device telemetry and physical outcomes disagree.",
+      "For Home Assistant, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning."
+    ],
+    "e": "For Home Assistant, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "Home Assistant"
+  },
+  {
+    "r": "ops",
+    "q": "Which production concern is most important for MQTT topics?",
+    "correct": "For MQTT topics, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Ignore reconnects, duplicate messages, retained state, and clock drift in MQTT topics; reliable networks make those edge cases negligible.",
+      "Treat dashboards in MQTT topics as the source of truth even when device telemetry and physical outcomes disagree.",
+      "Assume a successful command in MQTT topics proves the physical actuator changed state; independent feedback is unnecessary."
+    ],
+    "e": "For MQTT topics, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "MQTT topics"
+  },
+  {
+    "r": "ops",
+    "q": "What matters most when taking IoT sensors into production?",
+    "correct": "For IoT sensors, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Ignore reconnects, duplicate messages, retained state, and clock drift in IoT sensors; reliable networks make those edge cases negligible.",
+      "Use one unvalidated sensor reading to trigger irreversible behavior in IoT sensors, because filtering and plausibility checks only delay automation.",
+      "Treat dashboards in IoT sensors as the source of truth even when device telemetry and physical outcomes disagree."
+    ],
+    "e": "For IoT sensors, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability",
+      "IoT"
+    ],
+    "topic": "IoT sensors"
+  },
+  {
+    "r": "ops",
+    "q": "Which statement best reflects production-ready use of time-series data?",
+    "correct": "For time-series data, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
+    "wrong": [
+      "Ignore reconnects, duplicate messages, retained state, and clock drift in time-series data; reliable networks make those edge cases negligible.",
+      "Use one unvalidated sensor reading to trigger irreversible behavior in time-series data, because filtering and plausibility checks only delay automation.",
+      "Treat dashboards in time-series data as the source of truth even when device telemetry and physical outcomes disagree."
+    ],
+    "e": "For time-series data, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
+    "tags": [
+      "Technical Operations",
+      "Observability"
+    ],
+    "topic": "time-series data"
+  },
   {
     "r": "playwright",
     "q": "When working with “BDD, Gherkin, and Cucumber”, which practice is technically sound?",
@@ -179,9 +9254,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option best captures the engineering takeaway from “Postman, collections, scripts, and command-line execution”?",
     "correct": "Postman organizes requests, environments, variables, examples, and scripts into reusable collections that can model real workflows. Those collections can also be executed from CI with command-line tooling rather than being limited to the desktop UI.",
     "wrong": [
-      "Postman does not organize requests, environments, variables, examples, and scripts.",
       "Collections cannot represent real workflows such as login → create → fetch → update → delete.",
-      "In “Postman, collections, scripts, and command-line execution”, authentication inheritance is undesirable; duplicating credentials on every request is safer and easier to rotate."
+      "In “Postman, collections, scripts, and command-line execution”, authentication inheritance is undesirable; duplicating credentials on every request is safer and easier to rotate.",
+      "Treat the client-visible response as the entire contract for Postman, collections, scripts, and command-line execution; downstream state and emitted events do not need verification."
     ],
     "e": "Postman organizes requests, environments, variables, examples, and scripts. Collections can represent real workflows such as login → create → fetch → update → delete. For CI, run collections with the current Postman CLI when possible; Newman remains common in existing pipelines.",
     "tags": [
@@ -220,9 +9295,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement avoids a common mistake in “HTML, CSS, responsive design, and React”?",
     "correct": "HTML provides semantic structure and CSS controls presentation; responsive design adapts layout and interaction to available space and input conditions. React adds component/state-driven UI behavior, so asynchronous rendering and state transitions matter for testing and debugging.",
     "wrong": [
-      "HTML does not provide semantic structure; CSS controls presentation.",
       "QA should not understand async rendering, routing, forms, client-side caching, and state transitions because they influence synchronization and debugging.",
-      "Using a prototype-friendly framework in “HTML, CSS, responsive design, and React” removes the need for authentication, validation, logging, deployment controls, and observability."
+      "Using a prototype-friendly framework in “HTML, CSS, responsive design, and React” removes the need for authentication, validation, logging, deployment controls, and observability.",
+      "For HTML, CSS, responsive design, and React, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
     ],
     "e": "HTML provides semantic structure; CSS controls presentation. Responsive design adapts layout and interaction to available space, orientation, touch, and zoom rather than merely targeting named devices. React composes UI from components and state. QA should understand async rendering, routing, forms, client-side caching, and state transitions because they influence synchronization and debugging. Semantic HTML also improves accessibility and Playwright locator stability.",
     "tags": [
@@ -357,9 +9432,9 @@ const guideCoverageQuestionsV12 = [
     "q": "In practice, which description of “Tests, annotations, async/await, fixtures, and the Playwright configuration file” is accurate?",
     "correct": "Playwright Test supplies the runner, test() , expect() , fixtures, projects, reporters, retries, parallelism, and configuration. Test functions are usually async because browser and network operations complete asynchronously; forgetting await can allow a test to continue before an action or assertion has completed.",
     "wrong": [
-      "Playwright Test does not supply the runner, test() , expect() , fixtures, projects, reporters, retries, parallelism, and configuration.",
-      "Do not test functions are usually async because browser and network operations complete asynchronously; forgetting await can allow a test to continue before an action or assertion has completed.",
-      "Generated or recorded automation for “Tests, annotations, async/await, fixtures” can be committed unchanged because the tooling already understands the business intent and the correct oracle."
+      "Generated or recorded automation for “Tests, annotations, async/await, fixtures” can be committed unchanged because the tooling already understands the business intent and the correct oracle.",
+      "Let parallel shards in Tests, annotations, async/await, fixtures, and the Playwright configuration file share the same mutable data and filesystem because CI will merge their results afterward.",
+      "Assume a test that passes once locally proves Tests, annotations, async/await, fixtures, and the Playwright configuration file is deterministic enough for parallel or cross-browser CI execution."
     ],
     "e": "Playwright Test supplies the runner, test() , expect() , fixtures, projects, reporters, retries, parallelism, and configuration. Test functions are usually async because browser and network operations complete asynchronously; forgetting await can allow a test to continue before an action or assertion has completed. Built-in annotations include test.skip() , test.fail() , test.fixme() , and test.slow() . Tags and custom annotations can classify tests for execution or reporting.",
     "tags": [
@@ -395,9 +9470,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When working with “Lists, dropdowns, radio buttons, checkboxes, attributes, hidden elements, and autosuggest controls”, which practice is technically sound?",
     "correct": "A modern automation suite must handle collections and stateful controls without assuming DOM order. When a locator matches multiple elements, use semantic filtering, filter() , nth() only when order is genuinely the contract, or iterate over the collection after asserting the expected count.",
     "wrong": [
-      "A modern automation suite must handle collections and stateful does not control without assuming DOM order.",
-      "When a locator matches multiple elements, do not use semantic filtering, filter() , nth() only when order is genuinely the contract, or iterate over the collection after asserting the expected count.",
-      "For “Lists, dropdowns, radio buttons, checkboxes, attributes”, selectors should mirror the current CSS/XPath structure as closely as possible; roles, labels, and stable test IDs are less reliable."
+      "Assume a test that passes once locally proves Lists, dropdowns, radio buttons, checkboxes, attributes, hidden elements, and autosuggest controls is deterministic enough for parallel or cross-browser CI execution.",
+      "Increase retries for Lists, dropdowns, radio buttons, checkboxes, attributes, hidden elements, and autosuggest controls until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
+      "For Lists, dropdowns, radio buttons, checkboxes, attributes, hidden elements, and autosuggest controls, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
     ],
     "e": "A modern automation suite must handle collections and stateful controls without assuming DOM order. When a locator matches multiple elements, use semantic filtering, filter() , nth() only when order is genuinely the contract, or iterate over the collection after asserting the expected count. Use selectOption() for native <select> elements. Custom dropdowns and autosuggest components are usually combinations of textbox/listbox/option semantics, so interact with them as the user would rather than forcing values into the DOM.",
     "tags": [
@@ -434,9 +9509,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When choosing among the options in “Playwright Inspector, UI Mode, Codegen, VS Code debugging, and traces”, which statement matters most?",
     "correct": "Playwright Inspector is an interactive debugger opened with --debug ; it lets you step through API calls, inspect actionability logs, and experiment with locators. UI Mode provides test discovery, watch mode, a timeline, DOM snapshots, network/console data, attachments, and trace-oriented debugging.",
     "wrong": [
-      "Playwright Inspector is not an interactive debugger opened with --debug ; it lets you step through API calls, inspect actionability logs, and experiment with locators.",
-      "UI Mode does not provide test discovery, watch mode, a timeline, DOM snapshots, network/console data, attachments, and trace-oriented debugging.",
-      "With “Playwright Inspector, UI Mode, Codegen, VS Code debugging, and traces”, increasing retries and timeouts until failures disappear is an adequate substitute for investigating synchronization and state."
+      "With “Playwright Inspector, UI Mode, Codegen, VS Code debugging, and traces”, increasing retries and timeouts until failures disappear is an adequate substitute for investigating synchronization and state.",
+      "Prefer absolute XPath or deep CSS structure in Playwright Inspector, UI Mode, Codegen, VS Code debugging, and traces; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
+      "For Playwright Inspector, UI Mode, Codegen, VS Code debugging, and traces, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "Playwright Inspector is an interactive debugger opened with --debug ; it lets you step through API calls, inspect actionability logs, and experiment with locators. UI Mode provides test discovery, watch mode, a timeline, DOM snapshots, network/console data, attachments, and trace-oriented debugging. Codegen records browser interactions and generates starter test code. It prioritizes role, text, and test-id locators, but generated code is still a draft: refactor naming, test data, setup, assertions, and page objects before treating it as a framework.",
     "tags": [
@@ -473,9 +9548,9 @@ const guideCoverageQuestionsV12 = [
     "q": "In practice, which description of “ExcelJS, spreadsheet-driven workflows, file downloads, uploads, and artifact validation” is accurate?",
     "correct": "The course uses ExcelJS , a Node.js library for reading and writing XLSX workbooks, to demonstrate external data manipulation. Spreadsheet-driven test data can be useful when the business genuinely exchanges spreadsheets, but JSON/CSV/builders are usually simpler for ordinary automated test configuration.",
     "wrong": [
-      "The course does not use ExcelJS , a Node.js library for reading and writing XLSX workbooks, to demonstrate external data manipulation.",
-      "Spreadsheet-driven test data cannot be useful when the business genuinely exchanges spreadsheets, but JSON/CSV/builders are usually simpler for ordinary automated test configuration.",
-      "The best way to scale “ExcelJS, spreadsheet-driven workflows, file downloads, uploads” is to make tests depend on a fixed execution order so later tests can reuse earlier state."
+      "The best way to scale “ExcelJS, spreadsheet-driven workflows, file downloads, uploads” is to make tests depend on a fixed execution order so later tests can reuse earlier state.",
+      "Treat browser automation timing in ExcelJS, spreadsheet-driven workflows, file downloads, uploads, and artifact validation as independent of network, rendering, and application state, so those signals do not need inspection.",
+      "For ExcelJS, spreadsheet-driven workflows, file downloads, uploads, and artifact validation, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "The course uses ExcelJS , a Node.js library for reading and writing XLSX workbooks, to demonstrate external data manipulation. Spreadsheet-driven test data can be useful when the business genuinely exchanges spreadsheets, but JSON/CSV/builders are usually simpler for ordinary automated test configuration. For downloads, wait for the download event before triggering the action, then validate the suggested filename and—where business value requires it—the content.",
     "tags": [
@@ -551,9 +9626,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What should an engineer or QA practitioner understand about “Cucumber.js with Playwright: World, hooks, tags, Scenario Outline, parallelism, reports, and reruns”?",
     "correct": "Cucumber.js maps Gherkin feature scenarios to JavaScript/TypeScript step definitions. The World is the scenario-scoped context used to share runtime state—such as a browser context, page, API client, or domain object—between steps without global variables.",
     "wrong": [
-      "Cucumber.js does not map Gherkin feature scenarios to JavaScript/TypeScript step definitions.",
-      "The World is not the scenario-scoped context used to share runtime state—such as a browser context, page, API client, or domain object—between steps without global variables.",
-      "Artifacts for “Cucumber.js with Playwright” should be captured indiscriminately on every step; diagnostic relevance and report size do not matter."
+      "Artifacts for “Cucumber.js with Playwright” should be captured indiscriminately on every step; diagnostic relevance and report size do not matter.",
+      "Assume a test that passes once locally proves Cucumber.js with Playwright: World, hooks, tags, Scenario Outline, parallelism, reports, and reruns is deterministic enough for parallel or cross-browser CI execution.",
+      "For Cucumber.js with Playwright: World, hooks, tags, Scenario Outline, parallelism, reports, and reruns, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
     ],
     "e": "Cucumber.js maps Gherkin feature scenarios to JavaScript/TypeScript step definitions. The World is the scenario-scoped context used to share runtime state—such as a browser context, page, API client, or domain object—between steps without global variables. Hooks such as Before and After manage scenario setup and teardown. Tags select scenarios and can also scope hooks. Scenario Outline expands one scenario template with an Examples table into multiple independently executed examples.",
     "tags": [
@@ -572,9 +9647,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement avoids a common mistake in “QAOps: integrating quality into operational delivery”?",
     "correct": "QAOps (Quality Assurance Operations) is an industry term for integrating quality activities directly into continuous delivery and operational feedback. It is not a formal universal standard and should not be confused with a new replacement for DevOps.",
     "wrong": [
-      "QAOps (Quality Assurance Operations) is not an industry term for integrating quality activities directly into continuous delivery and operational feedback.",
-      "It is a formal universal standard and should not be confused with a new replacement for DevOps.",
-      "For “QAOps: integrating quality into operational delivery”, selectors should mirror the current CSS/XPath structure as closely as possible; roles, labels, and stable test IDs are less reliable."
+      "Assume a test that passes once locally proves QAOps: integrating quality into operational delivery is deterministic enough for parallel or cross-browser CI execution.",
+      "Increase retries for QAOps: integrating quality into operational delivery until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
+      "Change configuration files dynamically inside the pipeline for QAOps: integrating quality into operational delivery instead of mapping stable parameters to commands."
     ],
     "e": "QAOps (Quality Assurance Operations) is an industry term for integrating quality activities directly into continuous delivery and operational feedback. It is not a formal universal standard and should not be confused with a new replacement for DevOps. In a Playwright framework, QAOps can mean automated tests on pull requests, risk-based test selection, environment provisioning, parallel cloud execution, artifact retention, flaky-test monitoring, quality gates, and feedback from production incidents into regression coverage.",
     "tags": [
@@ -754,9 +9829,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When choosing among the options in “PostgreSQL, MySQL, SQLite, and Redis: choosing the right store”, which statement matters most?",
     "correct": "PostgreSQL is a feature-rich relational database with strong SQL and extensibility. MySQL is another widely used client/server relational engine with its own behavior and ecosystem. SQLite is embedded and file-based, excellent for local or single-process/small-service use cases but with different concurrency characteristics.",
     "wrong": [
-      "PostgreSQL is not a feature-rich relational database with strong SQL and extensibility.",
-      "MySQL is not another widely used client/server relational engine with its own behavior and ecosystem.",
-      "For “PostgreSQL, MySQL, SQLite, and Redis: choosing the right store”, database constraints and cardinality are documentation details; application code alone should enforce all relationships."
+      "Run destructive queries for PostgreSQL, MySQL, SQLite, and Redis: choosing the right store in shared environments as long as the transaction can theoretically be rolled back.",
+      "Use string-built SQL for PostgreSQL, MySQL, SQLite, and Redis: choosing the right store whenever values are dynamic; parameterization only affects style, not correctness or security.",
+      "Ignore database dialect and timezone semantics in PostgreSQL, MySQL, SQLite, and Redis: choosing the right store; date arithmetic and isolation behavior are portable enough to assume."
     ],
     "e": "PostgreSQL is a feature-rich relational database with strong SQL and extensibility. MySQL is another widely used client/server relational engine with its own behavior and ecosystem. SQLite is embedded and file-based, excellent for local or single-process/small-service use cases but with different concurrency characteristics. Redis is an in-memory data structure store commonly used for caches, sessions, queues, locks, and rate-limit counters. It should not automatically become the durable source of truth.",
     "tags": [
@@ -794,8 +9869,8 @@ const guideCoverageQuestionsV12 = [
     "correct": "Lineage answers where a field originated, what transformations it passed through, and which outputs depend on it. This makes impact analysis possible when a schema or transformation changes.",
     "wrong": [
       "When “Data lineage, data contracts, and pipeline quality gates” changes schema, downstream consumers do not need compatibility checks if the producer deployment itself succeeds.",
-      "For “Data lineage, data contracts, and pipeline quality gates”, retries can safely repeat writes even when the operation is not idempotent because duplicate records are an observability concern rather than a correctness issue.",
-      "For “Data lineage, data contracts, and pipeline quality gates”, database constraints and cardinality are documentation details; application code alone should enforce all relationships."
+      "Postpone observability and failure handling in Data lineage, data contracts, and pipeline quality gates until the first production incident provides real requirements.",
+      "Use implicit defaults and undocumented environment state in Data lineage, data contracts, and pipeline quality gates; explicit contracts only add configuration overhead."
     ],
     "e": "Lineage answers where a field originated, what transformations it passed through, and which outputs depend on it. This makes impact analysis possible when a schema or transformation changes. A data contract specifies schema, semantics, ownership, freshness, quality expectations, and compatibility rules between producers and consumers. It brings API-contract thinking to pipelines.",
     "tags": [
@@ -815,7 +9890,7 @@ const guideCoverageQuestionsV12 = [
     "wrong": [
       "A matrix in GitHub Actions runs different steps inside one shared runner process, so matrix jobs can safely depend on the same filesystem state.",
       "Caches and artifacts are equivalent; both are intended to be restored as dependencies in later unrelated runs.",
-      "Concurrency groups only affect log ordering and cannot prevent overlapping deployments or redundant workflow runs."
+      "For GitHub Actions: workflows, matrices, caching, artifacts, environments, and concurrency, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant."
     ],
     "e": "A GitHub Actions workflow is triggered by events and contains jobs made of steps. Jobs normally run on isolated runners and can depend on other jobs. Use a matrix to run the same job across browsers, Node/Python versions, operating systems, or test shards. Caching stores reusable dependencies to speed future jobs; artifacts preserve outputs of a specific run such as Playwright traces, reports, screenshots, or build packages. They solve different problems.",
     "tags": [
@@ -852,9 +9927,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which approach to “Cloud deployment models and test implications” would be appropriate in a maintainable system?",
     "correct": "Cloud applications may run on VMs, containers, managed platforms, functions/serverless, or Kubernetes-like orchestrators. Each model changes startup, scaling, networking, logs, identity, and failure behavior.",
     "wrong": [
-      "Cloud applications cannot run on VMs, containers, managed platforms, functions/serverless, or Kubernetes-like orchestrators.",
       "QA should not understand where state lives, how environments are provisioned, how deployments roll out, and how traffic reaches versions.",
-      "Once TLS or a reverse proxy is configured for “Cloud deployment models and test implications”, upstream authentication and application authorization can be considered solved."
+      "Once TLS or a reverse proxy is configured for “Cloud deployment models and test implications”, upstream authentication and application authorization can be considered solved.",
+      "Assume local success proves Cloud deployment models and test implications will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored."
     ],
     "e": "Cloud applications may run on VMs, containers, managed platforms, functions/serverless, or Kubernetes-like orchestrators. Each model changes startup, scaling, networking, logs, identity, and failure behavior. QA should understand where state lives, how environments are provisioned, how deployments roll out, and how traffic reaches versions. Blue/green and canary deployments require tests and monitoring that can distinguish old/new versions.",
     "tags": [
@@ -890,9 +9965,9 @@ const guideCoverageQuestionsV12 = [
     "q": "For “OpenAI API and current agent integration patterns”, which option reflects sound agent/AI engineering?",
     "correct": "Provider APIs evolve quickly. Keep your application code behind a small adapter so model names, endpoints, conversation state, and tool-call formats can change without rewriting domain logic.",
     "wrong": [
-      "Do not keep your application code behind a small adapter so model names, endpoints, conversation state, and tool-call formats can change without rewriting domain logic.",
       "For OpenAI specifically, current 2026 guidance does not use the Responses API for new integrations; the older Assistants API was retired in August 2026.",
-      "Framework selection for “OpenAI API and current agent integration patterns” should be based mainly on tutorial brevity or UI polish; persistence, observability, recovery, and deployment can be decided later."
+      "For OpenAI API and current agent integration patterns, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Treat a successful workflow execution in OpenAI API and current agent integration patterns as proof that partial writes, duplicate events, retries, and resume behavior are correct."
     ],
     "e": "Provider APIs evolve quickly. Keep your application code behind a small adapter so model names, endpoints, conversation state, and tool-call formats can change without rewriting domain logic. For OpenAI specifically, current 2026 guidance uses the Responses API for new integrations; the older Assistants API was retired in August 2026. The durable engineering lesson is to separate prompt/configuration, conversation state, orchestration, tools, and business policy.",
     "tags": [
@@ -928,9 +10003,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which description of “Agentic AI project setup: uv, virtual environments, .env files, API keys, Git, Cursor, and cost awareness” is technically accurate?",
     "correct": "uv is a fast Python package and project manager from Astral. It can initialize projects, manage Python versions and virtual environments, resolve and lock dependencies, run commands, and install tools.",
     "wrong": [
-      "uv is not a fast Python package and project manager from Astral.",
-      "It cannot initialize projects, manage Python versions and virtual environments, resolve and lock dependencies, run commands, and install tools.",
-      "Adding more agents to “Agentic AI project setup” automatically improves quality; explicit roles, artifacts, stop conditions, and independent checks are optional."
+      "Treat a successful workflow execution in Agentic AI project setup: uv, virtual environments, .env files, API keys, Git, Cursor, and cost awareness as proof that partial writes, duplicate events, retries, and resume behavior are correct.",
+      "Skip human approval in Agentic AI project setup: uv, virtual environments, .env files, API keys, Git, Cursor, and cost awareness whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
+      "Share the same credentials, data, and state between test and production for Agentic AI project setup: uv, virtual environments, .env files, API keys, Git, Cursor, and cost awareness so configuration remains simple."
     ],
     "e": "uv is a fast Python package and project manager from Astral. It can initialize projects, manage Python versions and virtual environments, resolve and lock dependencies, run commands, and install tools. In agent projects it provides a reproducible alternative to a loose combination of pip, venv, pipx, and ad-hoc requirements files. Keep model/provider credentials outside source code. A local .env file is convenient for development when it is excluded from Git, while production should use the deployment platform's secret store.",
     "tags": [
@@ -949,9 +10024,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When implementing “Provider abstraction, OpenAI-compatible APIs, Claude, Gemini, Groq, Ollama, and local models”, which principle should guide the design?",
     "correct": "Agent systems should separate the model-provider adapter from business logic. Provider choice affects model quality, context window, tool calling, structured output, latency, cost, data policy, and regional availability.",
     "wrong": [
-      "Agent systems should not separate the model-provider adapter from business logic.",
       "Compatibility is equivalence: supported parameters, tool semantics, streaming, structured output, and error behavior can differ.",
-      "Once “Provider abstraction, OpenAI-compatible APIs, Claude, Gemini, Groq” works in a demo, tracing, evaluation, failure recovery, and cost controls can be deferred without affecting production reliability."
+      "Accept format-valid output as success for Provider abstraction, OpenAI-compatible APIs, Claude, Gemini, Groq, Ollama, and local models; factuality, task completion, safety, and downstream effects can be checked later.",
+      "For Provider abstraction, OpenAI-compatible APIs, Claude, Gemini, Groq, Ollama, and local models, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "Agent systems should separate the model-provider adapter from business logic. Provider choice affects model quality, context window, tool calling, structured output, latency, cost, data policy, and regional availability. Many providers expose an OpenAI-compatible API , allowing similar client code with a different base URL and credential. Compatibility is not equivalence: supported parameters, tool semantics, streaming, structured output, and error behavior can differ.",
     "tags": [
@@ -971,9 +10046,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option avoids a common misconception about “LLM-as-a-judge as an orchestration component”?",
     "correct": "An LLM judge evaluates another model's output against a rubric. It can rank candidate answers, score dimensions, classify failures, or provide feedback to an orchestrator.",
     "wrong": [
-      "An LLM judge does not evaluate another model's output against a rubric.",
-      "It cannot rank candidate answers, score dimensions, classify failures, or provide feedback to an orchestrator.",
-      "Human approval for “LLM-as-a-judge as an orchestration component” is best implemented by asking the model itself whether approval is needed instead of enforcing approval in application logic."
+      "Human approval for “LLM-as-a-judge as an orchestration component” is best implemented by asking the model itself whether approval is needed instead of enforcing approval in application logic.",
+      "Treat an LLM grader in LLM-as-a-judge as an orchestration component as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "For LLM-as-a-judge as an orchestration component, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "An LLM judge evaluates another model's output against a rubric. It can rank candidate answers, score dimensions, classify failures, or provide feedback to an orchestrator. Judges introduce their own bias, stochasticity, model dependency, and position/style preferences. Calibrate them against human labels, randomize candidate order when comparing outputs, use structured rubrics, and track agreement over time.",
     "tags": [
@@ -991,9 +10066,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement best captures the design principle behind “The agent ecosystem: model API, framework, runtime, harness, tool, protocol, builder, and deployment surface”?",
     "correct": "A model API provides inference. An agent framework/SDK provides abstractions such as agents, tools, memory, handoffs, and workflows. A runtime executes and persists the work. An agent harness adds opinionated capabilities for long-running tasks such as planning, files, subagents, compaction, approvals, and observability.",
     "wrong": [
-      "A model API does not provide inference.",
-      "An agent framework/SDK does not provide abstractions such as agents, tools, memory, handoffs, and workflows.",
-      "A private repository makes .env files and API keys used by “The agent ecosystem” safe to commit because only collaborators can read them."
+      "Retry every tool call in The agent ecosystem: model API, framework, runtime, harness, tool, protocol, builder, and deployment surface automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Treat tool results in The agent ecosystem: model API, framework, runtime, harness, tool, protocol, builder, and deployment surface as trusted instructions because they came from an approved integration rather than from the user.",
+      "Return ambiguous free-form success text from tools used by The agent ecosystem: model API, framework, runtime, harness, tool, protocol, builder, and deployment surface; structured results and explicit errors reduce model creativity."
     ],
     "e": "A model API provides inference. An agent framework/SDK provides abstractions such as agents, tools, memory, handoffs, and workflows. A runtime executes and persists the work. An agent harness adds opinionated capabilities for long-running tasks such as planning, files, subagents, compaction, approvals, and observability. A tool is a capability the agent can invoke. A protocol , such as MCP or A2A, standardizes communication. A builder or studio provides a UI for authoring/testing.",
     "tags": [
@@ -1012,9 +10087,9 @@ const guideCoverageQuestionsV12 = [
     "q": "For “Gradio agent UIs and deployment to Hugging Face Spaces”, which option reflects sound agent/AI engineering?",
     "correct": "Gradio can expose a Python function or agent through a lightweight web UI, while Hugging Face Spaces can host Gradio, Docker, or static demo applications from Git-backed repositories. Production-like deployments still need pinned dependencies and platform-managed secrets.",
     "wrong": [
-      "Gradio cannot expose a Python function or agent through a lightweight web UI, making it useful for demos, internal tools, and evaluation interfaces.",
-      "Hugging Face Spaces does not host demo applications from Git-backed repositories and supports Gradio, Docker, and static applications.",
-      "Free-form natural-language output is the most reliable contract for “Gradio agent UIs and deployment to Hugging Face Spaces” because schemas and validation only reduce model flexibility."
+      "Return ambiguous free-form success text from tools used by Gradio agent UIs and deployment to Hugging Face Spaces; structured results and explicit errors reduce model creativity.",
+      "For Gradio agent UIs and deployment to Hugging Face Spaces, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Treat tool results in Gradio agent UIs and deployment to Hugging Face Spaces as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "Gradio can expose a Python function or agent through a lightweight web UI, making it useful for demos, internal tools, and evaluation interfaces. Hugging Face Spaces hosts demo applications from Git-backed repositories and supports Gradio, Docker, and static applications. A deployment should pin dependencies, define secrets through the platform settings, and avoid committing API keys.",
     "tags": [
@@ -1033,9 +10108,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What is the key architectural takeaway from “OpenAI Agents SDK: Agent, Runner, function tools, sessions, guardrails, handoffs, and tracing”?",
     "correct": "The OpenAI Agents SDK is a production-oriented SDK for building agentic applications with a small set of primitives. An Agent combines instructions, a model, tools, handoffs, and guardrails. Runner.run() executes the agent loop until completion or another stop condition.",
     "wrong": [
-      "The OpenAI Agents SDK is not a production-oriented SDK for building agentic applications with a small set of primitives.",
-      "An Agent does not combine instructions, a model, tools, handoffs, and guardrails.",
-      "Free-form natural-language output is the most reliable contract for “OpenAI Agents SDK: Agent, Runner, function tools, sessions” because schemas and validation only reduce model flexibility."
+      "Expose broad, generic tools for OpenAI Agents SDK: Agent, Runner, function tools, sessions, guardrails, handoffs, and tracing with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Give OpenAI Agents SDK: Agent, Runner, function tools, sessions, guardrails, handoffs, and tracing access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Treat tool results in OpenAI Agents SDK: Agent, Runner, function tools, sessions, guardrails, handoffs, and tracing as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "The OpenAI Agents SDK is a production-oriented SDK for building agentic applications with a small set of primitives. An Agent combines instructions, a model, tools, handoffs, and guardrails. Runner.run() executes the agent loop until completion or another stop condition. A Python function can become a validated tool through @function_tool ; schemas are inferred and validated. The SDK supports sessions for persistent conversation history, handoffs for transferring control to a specialist agent, agents-as-tools for manager/subagent patterns, MCP tools, human-in-the-loop, and built-in tracing.",
     "tags": [
@@ -1076,9 +10151,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When implementing “OpenAI Agents SDK orchestration: code, asyncio.gather, agents-as-tools, and handoffs”, which principle should guide the design?",
     "correct": "Code orchestration gives the application explicit control: call several specialists, wait for their results, and synthesize them deterministically. Python's asyncio.gather() is useful when independent agent calls can run concurrently.",
     "wrong": [
-      "Code orchestration does not give the application explicit control: call several specialists, wait for their results, and synthesize them deterministically.",
-      "Python's asyncio.gather() is not useful when independent agent calls can run concurrently.",
-      "Retrieved documents, webpages, email bodies, and memory used by “OpenAI Agents SDK orchestration” can be trusted as instructions because the system selected them before they reached the model."
+      "Retrieved documents, webpages, email bodies, and memory used by “OpenAI Agents SDK orchestration” can be trusted as instructions because the system selected them before they reached the model.",
+      "Treat tool results in OpenAI Agents SDK orchestration: code, asyncio.gather, agents-as-tools, and handoffs as trusted instructions because they came from an approved integration rather than from the user.",
+      "Expose broad, generic tools for OpenAI Agents SDK orchestration: code, asyncio.gather, agents-as-tools, and handoffs with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
     ],
     "e": "Code orchestration gives the application explicit control: call several specialists, wait for their results, and synthesize them deterministically. Python's asyncio.gather() is useful when independent agent calls can run concurrently. With agents-as-tools , a manager agent keeps control and invokes specialist agents as capabilities. With handoffs , control transfers to another agent better suited to continue the conversation/task.",
     "tags": [
@@ -1097,9 +10172,9 @@ const guideCoverageQuestionsV12 = [
     "q": "In an OpenAI-style agent, what is the correct relationship between guardrails, structured outputs, and tool authorization?",
     "correct": "Guardrails can validate agent input or final output and stop an unsafe or irrelevant run, but they do not replace authorization inside tools. Structured outputs provide a typed contract for results such as classifications, plans, or handoffs.",
     "wrong": [
-      "Guardrails validate agent input or final output and cannot stop an unsafe or irrelevant run.",
-      "Do not use them for planner results, classifications, research plans, and task handoffs.",
-      "Once “OpenAI guardrails, structured outputs, sandboxes, MCP, hosted tools” works in a demo, tracing, evaluation, failure recovery, and cost controls can be deferred without affecting production reliability."
+      "Expose broad, generic tools for OpenAI guardrails, structured outputs, sandboxes, MCP, hosted tools, and tracing with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Give OpenAI guardrails, structured outputs, sandboxes, MCP, hosted tools, and tracing access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Treat tool results in OpenAI guardrails, structured outputs, sandboxes, MCP, hosted tools, and tracing as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "Guardrails validate agent input or final output and can stop an unsafe or irrelevant run. They supplement—not replace—authorization inside tools. Structured outputs turn model output into a typed contract, often backed by Pydantic or Zod. Use them for planner results, classifications, research plans, and task handoffs.",
     "tags": [
@@ -1119,9 +10194,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement best captures the design principle behind “Deep research agent architecture: planner, search/retrieval workers, writer, evaluator, and delivery”?",
     "correct": "A deep-research workflow decomposes an open-ended question into subquestions, collects evidence, tracks source provenance, synthesizes findings, and evaluates gaps before producing a final report.",
     "wrong": [
-      "A deep-research workflow decomposes an open-ended question into subquestions, collects evidence, does not track source provenance, synthesizes findings, and evaluates gaps before producing a final report.",
       "A planner should not output a structured research plan.",
-      "An LLM judge in “Deep research agent architecture” can be the sole oracle for exact business behavior and safety once it has agreed with a few human examples."
+      "Retry every tool call in Deep research agent architecture: planner, search/retrieval workers, writer, evaluator, and delivery automatically, including non-idempotent actions, until the model receives a successful response.",
+      "For Deep research agent architecture: planner, search/retrieval workers, writer, evaluator, and delivery, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "A deep-research workflow decomposes an open-ended question into subquestions, collects evidence, tracks source provenance, synthesizes findings, and evaluates gaps before producing a final report. A planner should output a structured research plan. Search/retrieval workers gather evidence independently. A writer synthesizes only supported claims, while an evaluator checks completeness, contradictions, and citation coverage.",
     "tags": [
@@ -1141,9 +10216,9 @@ const guideCoverageQuestionsV12 = [
     "q": "For “CrewAI: agents, tasks, crews, flows, YAML configuration, tools, and context”, which option reflects sound agent/AI engineering?",
     "correct": "CrewAI organizes work through agents, tasks, crews, and flows. A Crew describes collaborative execution; a Flow adds explicit event/state-driven orchestration around steps and crews.",
     "wrong": [
-      "CrewAI does not organize work through agents, tasks, crews, and flows.",
-      "A Crew does not describe collaborative execution; a Flow adds explicit event/state-driven orchestration around steps and crews.",
-      "Adding more agents to “CrewAI: agents, tasks, crews, flows, YAML configuration, tools” automatically improves quality; explicit roles, artifacts, stop conditions, and independent checks are optional."
+      "Treat tool results in CrewAI: agents, tasks, crews, flows, YAML configuration, tools, and context as trusted instructions because they came from an approved integration rather than from the user.",
+      "Give CrewAI: agents, tasks, crews, flows, YAML configuration, tools, and context access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Return ambiguous free-form success text from tools used by CrewAI: agents, tasks, crews, flows, YAML configuration, tools, and context; structured results and explicit errors reduce model creativity."
     ],
     "e": "CrewAI organizes work through agents, tasks, crews, and flows. A Crew describes collaborative execution; a Flow adds explicit event/state-driven orchestration around steps and crews. YAML configuration can separate role/task configuration from Python wiring, making behavior easier to review. Configuration is not validation: tool permissions, data contracts, and stop conditions still belong in code/runtime controls.",
     "tags": [
@@ -1162,9 +10237,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What is the key architectural takeaway from “CrewAI structured outputs, memory, custom tools, and hierarchical process”?",
     "correct": "CrewAI tasks can emit structured outputs that downstream code validates with Pydantic-style models. Structured contracts are especially useful in finance/research examples where downstream decisions should not parse free-form prose.",
     "wrong": [
-      "CrewAI tasks cannot emit structured outputs that downstream code validates with Pydantic-style models.",
-      "Structured contracts are not especially useful in finance/research examples where downstream decisions should not parse free-form prose.",
-      "Retrieved documents, webpages, email bodies, and memory used by “CrewAI structured outputs, memory, custom tools” can be trusted as instructions because the system selected them before they reached the model."
+      "Retrieved documents, webpages, email bodies, and memory used by “CrewAI structured outputs, memory, custom tools” can be trusted as instructions because the system selected them before they reached the model.",
+      "Expose broad, generic tools for CrewAI structured outputs, memory, custom tools, and hierarchical process with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Give CrewAI structured outputs, memory, custom tools, and hierarchical process access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
     ],
     "e": "CrewAI tasks can emit structured outputs that downstream code validates with Pydantic-style models. Structured contracts are especially useful in finance/research examples where downstream decisions should not parse free-form prose. Memory can improve continuity but also retain stale or sensitive information. Define what is remembered, who owns it, how it expires, and how a user can correct it.",
     "tags": [
@@ -1184,9 +10259,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which description of “CrewAI coding agents, Docker/uv sandboxes, engineering teams, and documentation MCP” is technically accurate?",
     "correct": "Coding agents require a safe workspace. A Docker or dedicated sandbox should isolate the filesystem and processes, pin dependencies, cap resource usage, and control network/credential access.",
     "wrong": [
-      "A Docker or dedicated sandbox should not isolate the filesystem and processes, pin dependencies, cap resource usage, and control network/credential access.",
       "An engineering crew cannot separate planning/architecture, implementation, testing/QA, and review roles.",
-      "Provider or protocol compatibility in “CrewAI coding agents, Docker/uv sandboxes, engineering teams” means identical semantics, so adapters and integration tests are unnecessary."
+      "Give CrewAI coding agents, Docker/uv sandboxes, engineering teams, and documentation MCP access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Expose broad, generic tools for CrewAI coding agents, Docker/uv sandboxes, engineering teams, and documentation MCP with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
     ],
     "e": "Coding agents require a safe workspace. A Docker or dedicated sandbox should isolate the filesystem and processes, pin dependencies, cap resource usage, and control network/credential access. An engineering crew can separate planning/architecture, implementation, testing/QA, and review roles. The value comes from independent checks and explicit artifacts—not simply having four model names.",
     "tags": [
@@ -1206,9 +10281,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When implementing “LangChain agent primitives: model invocation, streaming, tools, structured outputs, and create_agent”, which principle should guide the design?",
     "correct": "LangChain provides model/provider integrations, messages, tools, structured output, retrieval components, middleware, and agent-building APIs. Direct model calls fit simple tasks, while tool binding, structured outputs, and streaming add capabilities for more agentic flows.",
     "wrong": [
-      "LangChain does not provide model/provider integrations, message abstractions, tools, structured output, retrieval components, middleware, and agent-building APIs.",
       "Direct model invocation is not appropriate for simple calls.",
-      "A private repository makes .env files and API keys used by “LangChain agent primitives” safe to commit because only collaborators can read them."
+      "Treat tool results in LangChain agent primitives: model invocation, streaming, tools, structured outputs, and create_agent as trusted instructions because they came from an approved integration rather than from the user.",
+      "For LangChain agent primitives: model invocation, streaming, tools, structured outputs, and create_agent, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "LangChain provides model/provider integrations, message abstractions, tools, structured output, retrieval components, middleware, and agent-building APIs. Direct model invocation is appropriate for simple calls. Binding tools lets the model request capabilities. Structured outputs constrain results to application schemas. Streaming exposes intermediate model output/events for responsive UIs.",
     "tags": [
@@ -1227,9 +10302,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option avoids a common misconception about “LangGraph state, nodes, edges, reducers, supersteps, checkpointers, replay, and time travel”?",
     "correct": "A LangGraph application models execution as a graph. State is shared data; nodes compute changes; edges determine routing; reducers define how concurrent/iterative updates merge.",
     "wrong": [
-      "A LangGraph application does not model execution as a graph.",
-      "State is not shared data; nodes compute changes; edges determine routing; reducers define how concurrent/iterative updates merge.",
-      "Free-form natural-language output is the most reliable contract for “LangGraph state, nodes, edges, reducers, supersteps, checkpointers” because schemas and validation only reduce model flexibility."
+      "Give LangGraph state, nodes, edges, reducers, supersteps, checkpointers, replay, and time travel access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Retry every tool call in LangGraph state, nodes, edges, reducers, supersteps, checkpointers, replay, and time travel automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Treat tool results in LangGraph state, nodes, edges, reducers, supersteps, checkpointers, replay, and time travel as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "A LangGraph application models execution as a graph. State is shared data; nodes compute changes; edges determine routing; reducers define how concurrent/iterative updates merge. A superstep is a unit of graph execution in which eligible nodes run and produce state updates before the graph advances. Thinking in supersteps is useful for parallel branches and deterministic state merging.",
     "tags": [
@@ -1269,9 +10344,9 @@ const guideCoverageQuestionsV12 = [
     "q": "For “Sidekick pattern: browser automation, middleware, evaluator, and human-in-the-loop approval”, which option reflects sound agent/AI engineering?",
     "correct": "A browser-based sidekick combines an agent loop with browser tools such as Playwright MCP, general tools, durable task state, and an evaluator that checks whether the requested work is complete.",
     "wrong": [
-      "A browser-based sidekick does not combine an agent loop with browser tools such as Playwright MCP, general tools, durable task state, and an evaluator that checks whether the requested work is complete.",
       "Middleware cannot intercept model/tool activity to add approval checks, context, logging, policy, model routing, or summarization without embedding those concerns in every tool.",
-      "An LLM judge in “Sidekick pattern: browser automation, middleware, evaluator” can be the sole oracle for exact business behavior and safety once it has agreed with a few human examples."
+      "Expose broad, generic tools for Sidekick pattern: browser automation, middleware, evaluator, and human-in-the-loop approval with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Give Sidekick pattern: browser automation, middleware, evaluator, and human-in-the-loop approval access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
     ],
     "e": "A browser-based sidekick combines an agent loop with browser tools such as Playwright MCP, general tools, durable task state, and an evaluator that checks whether the requested work is complete. Middleware can intercept model/tool activity to add approval checks, context, logging, policy, model routing, or summarization without embedding those concerns in every tool.",
     "tags": [
@@ -1291,9 +10366,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What is the key architectural takeaway from “Google ADK and A2A: agent development, tools, MCP, Agent Cards, and remote agents”?",
     "correct": "Google ADK (Agent Development Kit) is Google's framework/toolkit for building and operating agents with support for tools, sessions/state, multi-agent patterns, evaluation, and integrations such as MCP.",
     "wrong": [
-      "Google ADK (Agent Development Kit) is not Google's framework/toolkit for building and operating agents with support for tools, sessions/state, multi-agent patterns, evaluation, and integrations such as MCP.",
       "A2A (Agent2Agent) is not a protocol for agent-to-agent interoperability.",
-      "An LLM judge in “Google ADK and A2A” can be the sole oracle for exact business behavior and safety once it has agreed with a few human examples."
+      "Return ambiguous free-form success text from tools used by Google ADK and A2A: agent development, tools, MCP, Agent Cards, and remote agents; structured results and explicit errors reduce model creativity.",
+      "Treat tool results in Google ADK and A2A: agent development, tools, MCP, Agent Cards, and remote agents as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "Google ADK (Agent Development Kit) is Google's framework/toolkit for building and operating agents with support for tools, sessions/state, multi-agent patterns, evaluation, and integrations such as MCP. A2A (Agent2Agent) is a protocol for agent-to-agent interoperability. An Agent Card describes a remote agent's identity/capabilities and how a client can communicate with it.",
     "tags": [
@@ -1312,9 +10387,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which description of “Strands Agents SDK: provider-neutral agents, tools, MCP, multi-agent patterns, and observability” is technically accurate?",
     "correct": "Strands Agents is an open-source agent SDK available in Python and TypeScript. It runs in your application process rather than requiring a hosted control plane.",
     "wrong": [
-      "Strands Agents is not an open-source agent SDK available in Python and TypeScript.",
       "It does not support model providers, custom/built-in tools, MCP, structured outputs, session/conversation management, hooks, and multi-agent patterns such as swarms, graphs, workflows, and agents-as-tools.",
-      "Long-running state in “Strands Agents SDK” should live only in the active model context; durable checkpoints or external state introduce more inconsistency than they prevent."
+      "Treat tool results in Strands Agents SDK: provider-neutral agents, tools, MCP, multi-agent patterns, and observability as trusted instructions because they came from an approved integration rather than from the user.",
+      "For Strands Agents SDK: provider-neutral agents, tools, MCP, multi-agent patterns, and observability, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "Strands Agents is an open-source agent SDK available in Python and TypeScript. It runs in your application process rather than requiring a hosted control plane. It supports model providers, custom/built-in tools, MCP, structured outputs, session/conversation management, hooks, and multi-agent patterns such as swarms, graphs, workflows, and agents-as-tools.",
     "tags": [
@@ -1333,9 +10408,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When implementing “PydanticAI: typed Python agents, dependency injection, tools, and structured outputs”, which principle should guide the design?",
     "correct": "PydanticAI applies Pydantic's typed-data philosophy to agent applications. It is useful when Python teams want model interactions, tools, dependencies, and final outputs to have explicit schemas.",
     "wrong": [
-      "PydanticAI does not apply Pydantic's typed-data philosophy to agent applications.",
-      "It is not useful when Python teams want model interactions, tools, dependencies, and final outputs to have explicit schemas.",
-      "Model routing in “PydanticAI: typed Python agents, dependency injection, tools” should be based only on the provider's model ranking; task-specific evaluation, latency, cost, and data policy are secondary."
+      "Return ambiguous free-form success text from tools used by PydanticAI: typed Python agents, dependency injection, tools, and structured outputs; structured results and explicit errors reduce model creativity.",
+      "Give PydanticAI: typed Python agents, dependency injection, tools, and structured outputs access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
+      "Retry every tool call in PydanticAI: typed Python agents, dependency injection, tools, and structured outputs automatically, including non-idempotent actions, until the model receives a successful response."
     ],
     "e": "PydanticAI applies Pydantic's typed-data philosophy to agent applications. It is useful when Python teams want model interactions, tools, dependencies, and final outputs to have explicit schemas. Typed outputs reduce downstream parsing ambiguity. Dependency injection can provide services such as database clients or API wrappers without making them global state.",
     "tags": [
@@ -1354,9 +10429,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option avoids a common misconception about “Microsoft Agent Framework: the successor to AutoGen and Semantic Kernel”?",
     "correct": "Microsoft Agent Framework is Microsoft's current multi-language framework for agents and workflows. It includes agents, a long-task agent harness, graph/functional workflows, sessions/memory, middleware, tools, MCP, human-in-the-loop patterns, and integrations.",
     "wrong": [
-      "Microsoft Agent Framework is not Microsoft's current multi-language framework for agents and workflows.",
-      "It does not include agents, a long-task agent harness, graph/functional workflows, sessions/memory, middleware, tools, MCP, human-in-the-loop patterns, and integrations.",
-      "Framework selection for “Microsoft Agent Framework: the successor to AutoGen and Semantic Kernel” should be based mainly on tutorial brevity or UI polish; persistence, observability, recovery, and deployment can be decided later."
+      "Retry every tool call in Microsoft Agent Framework: the successor to AutoGen and Semantic Kernel automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Treat tool results in Microsoft Agent Framework: the successor to AutoGen and Semantic Kernel as trusted instructions because they came from an approved integration rather than from the user.",
+      "Return ambiguous free-form success text from tools used by Microsoft Agent Framework: the successor to AutoGen and Semantic Kernel; structured results and explicit errors reduce model creativity."
     ],
     "e": "Microsoft Agent Framework is Microsoft's current multi-language framework for agents and workflows. It includes agents, a long-task agent harness, graph/functional workflows, sessions/memory, middleware, tools, MCP, human-in-the-loop patterns, and integrations. Microsoft describes Agent Framework as the direct successor to AutoGen and Semantic Kernel for this generation of agentic applications. It combines AutoGen-style agent abstractions with Semantic Kernel's enterprise-oriented state, middleware, telemetry, and integration capabilities, then adds explicit graph workflows.",
     "tags": [
@@ -1375,9 +10450,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement best captures the design principle behind “Agno: agents, teams, workflows, durable AgentOS, approvals, scheduling, and MCP”?",
     "correct": "Agno is currently positioned as a self-managing agent platform. It supports agents, teams, workflows, memory/knowledge, tools, MCP, durable execution, human approvals, observability, scheduling, and service/API exposure through AgentOS.",
     "wrong": [
-      "Agno is not currently positioned as a self-managing agent platform.",
-      "It does not support agents, teams, workflows, memory/knowledge, tools, MCP, durable execution, human approvals, observability, scheduling, and service/API exposure through AgentOS.",
-      "An LLM judge in “Agno: agents, teams, workflows, durable AgentOS, approvals” can be the sole oracle for exact business behavior and safety once it has agreed with a few human examples."
+      "Share the same credentials, data, and state between test and production for Agno: agents, teams, workflows, durable AgentOS, approvals, scheduling, and MCP so configuration remains simple.",
+      "Keep Agno: agents, teams, workflows, durable AgentOS, approvals, scheduling, and MCP as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "Skip human approval in Agno: agents, teams, workflows, durable AgentOS, approvals, scheduling, and MCP whenever the generated text sounds plausible; approval gates mainly reduce automation value."
     ],
     "e": "Agno is currently positioned as a self-managing agent platform. It supports agents, teams, workflows, memory/knowledge, tools, MCP, durable execution, human approvals, observability, scheduling, and service/API exposure through AgentOS. This makes Agno broader than a small agent loop library. Decide whether you need a platform/runtime or only a lightweight SDK before adopting it.",
     "tags": [
@@ -1396,9 +10471,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which comparison of “Mastra: TypeScript-native agents, workflows, tools, Studio, model routing, and MCP” is technically accurate?",
     "correct": "Mastra is a TypeScript framework for AI applications and agents. It supports agents, tools, workflows, model routing, memory/evaluation capabilities, and an interactive development environment called Mastra Studio.",
     "wrong": [
-      "Mastra is not a TypeScript framework for AI applications and agents.",
-      "It does not support agents, tools, workflows, model routing, memory/evaluation capabilities, and an interactive development environment called Mastra Studio.",
-      "Once “Mastra: TypeScript-native agents, workflows, tools, Studio” works in a demo, tracing, evaluation, failure recovery, and cost controls can be deferred without affecting production reliability."
+      "Treat tool results in Mastra: TypeScript-native agents, workflows, tools, Studio, model routing, and MCP as trusted instructions because they came from an approved integration rather than from the user.",
+      "For Mastra: TypeScript-native agents, workflows, tools, Studio, model routing, and MCP, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Expose broad, generic tools for Mastra: TypeScript-native agents, workflows, tools, Studio, model routing, and MCP with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
     ],
     "e": "Mastra is a TypeScript framework for AI applications and agents. It supports agents, tools, workflows, model routing, memory/evaluation capabilities, and an interactive development environment called Mastra Studio. Mastra is useful when the application stack is already TypeScript/Node and the team wants agent/workflow primitives without moving the orchestration layer to Python.",
     "tags": [
@@ -1417,9 +10492,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When choosing among the options in “Choosing an agent framework: ten criteria that matter more than demos”, which statement matters most?",
     "correct": "Compare frameworks using: (1) control model , (2) state/persistence , (3) tool model , (4) structured outputs , (5) human approval , (6) durability/recovery , (7) observability/evaluation , (8) provider/protocol interoperability , (9) deployment/operations , and (10) ecosystem/team fit .",
     "wrong": [
-      "Do not compare frameworks using: (1) control model , (2) state/persistence , (3) tool model , (4) structured outputs , (5) human approval , (6) durability/recovery , (7) observability/evaluation , (8) provider/protocol interoperability , (9) deployment/operations , and (10) ecosystem/team fit .",
       "A framework that minimizes code in a tutorial cannot still maximize operational complexity later.",
-      "Provider or protocol compatibility in “Choosing an agent framework: ten criteria that matter more than demos” means identical semantics, so adapters and integration tests are unnecessary."
+      "Treat an LLM grader in Choosing an agent framework: ten criteria that matter more than demos as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Accept format-valid output as success for Choosing an agent framework: ten criteria that matter more than demos; factuality, task completion, safety, and downstream effects can be checked later."
     ],
     "e": "Compare frameworks using: (1) control model , (2) state/persistence , (3) tool model , (4) structured outputs , (5) human approval , (6) durability/recovery , (7) observability/evaluation , (8) provider/protocol interoperability , (9) deployment/operations , and (10) ecosystem/team fit . Also compare maintenance activity, license, API stability, security model, testing ergonomics, and migration cost. A framework that minimizes code in a tutorial can still maximize operational complexity later.",
     "tags": [
@@ -1501,9 +10576,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement best captures the design principle behind “Researcher-as-tool and multi-MCP orchestration”?",
     "correct": "A specialist agent can be exposed to a parent as a tool . The parent sends a bounded task and receives a structured result rather than sharing the specialist's entire internal conversation.",
     "wrong": [
-      "A specialist agent cannot be exposed to a parent as a tool .",
-      "The parent does not send a bounded task and receives a structured result rather than sharing the specialist's entire internal conversation.",
-      "Framework selection for “Researcher-as-tool and multi-MCP orchestration” should be based mainly on tutorial brevity or UI polish; persistence, observability, recovery, and deployment can be decided later."
+      "For Researcher-as-tool and multi-MCP orchestration, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Retry every tool call in Researcher-as-tool and multi-MCP orchestration automatically, including non-idempotent actions, until the model receives a successful response.",
+      "Treat tool results in Researcher-as-tool and multi-MCP orchestration as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "A specialist agent can be exposed to a parent as a tool . The parent sends a bounded task and receives a structured result rather than sharing the specialist's entire internal conversation. This pattern reduces context pollution and creates a clear contract between coordinator and researcher. It also lets the specialist use its own MCP servers, model, memory, and evaluation policy.",
     "tags": [
@@ -1522,9 +10597,9 @@ const guideCoverageQuestionsV12 = [
     "q": "For “Shipping agent applications: FastAPI backend, React frontend, traces, feedback, and operational controls”, which option reflects sound agent/AI engineering?",
     "correct": "A production agent app is still a software system. A FastAPI backend can own authentication, agent sessions, tool credentials, long-running jobs, streaming, and audit logs. A React frontend presents conversation/task state without exposing provider secrets.",
     "wrong": [
-      "A production agent app is not still a software system.",
-      "A FastAPI backend cannot own authentication, agent sessions, tool credentials, long-running jobs, streaming, and audit logs.",
-      "Long-running state in “Shipping agent applications” should live only in the active model context; durable checkpoints or external state introduce more inconsistency than they prevent."
+      "Treat an LLM grader in Shipping agent applications: FastAPI backend, React frontend, traces, feedback, and operational controls as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Use only average scores for Shipping agent applications: FastAPI backend, React frontend, traces, feedback, and operational controls; failure categories and worst-case examples are too noisy to guide engineering.",
+      "For Shipping agent applications: FastAPI backend, React frontend, traces, feedback, and operational controls, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "A production agent app is still a software system. A FastAPI backend can own authentication, agent sessions, tool credentials, long-running jobs, streaming, and audit logs. A React frontend presents conversation/task state without exposing provider secrets. Expose a stable job/session API instead of keeping all state inside a single HTTP request. Long tasks need cancellation, retry/resume, timeouts, and progress events.",
     "tags": [
@@ -1545,9 +10620,9 @@ const guideCoverageQuestionsV12 = [
     "q": "How should the capstone examples be used as reusable architecture exercises?",
     "correct": "The capstone examples are best treated as reusable architecture patterns rather than recipes to copy verbatim: for example, a source-grounded career assistant and an SDR-style agent with human approval both combine explicit evidence, bounded actions, and application-specific controls.",
     "wrong": [
-      "Model routing in “Eight capstone patterns from the course” should be based only on the provider's model ranking; task-specific evaluation, latency, cost, and data policy are secondary.",
-      "For “Eight capstone patterns from the course”, the model can authorize its own tools; application-side permission checks merely duplicate reasoning the model already performed.",
-      "Human approval for “Eight capstone patterns from the course” is best implemented by asking the model itself whether approval is needed instead of enforcing approval in application logic."
+      "Human approval for “Eight capstone patterns from the course” is best implemented by asking the model itself whether approval is needed instead of enforcing approval in application logic.",
+      "Expose broad, generic tools for Eight capstone patterns from the course, generalized into reusable architecture exercises with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
+      "Retry every tool call in Eight capstone patterns from the course, generalized into reusable architecture exercises automatically, including non-idempotent actions, until the model receives a successful response."
     ],
     "e": "1. Career digital twin: build a source-grounded personal agent from résumé/portfolio documents with a Gradio UI and strict no-invention policy. 2. SDR agent: generate outreach drafts using CRM-style data, but require human approval before sending and record the source facts used in each message.",
     "tags": [
@@ -1568,9 +10643,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which description of “Agent observability, evaluation, feedback loops, and production learning” is technically accurate?",
     "correct": "Agent observability should connect user request → model turns → retrieval → tool calls → handoffs/subagents → final outcome. Preserve trace/run IDs across backend logs and external tool calls.",
     "wrong": [
-      "Agent observability should not connect user request → model turns → retrieval → tool calls → handoffs/subagents → final outcome.",
-      "A private repository makes .env files and API keys used by “Agent observability, evaluation, feedback loops, and production learning” safe to commit because only collaborators can read them.",
-      "Long-running state in “Agent observability, evaluation, feedback loops, and production learning” should live only in the active model context; durable checkpoints or external state introduce more inconsistency than they prevent."
+      "For Agent observability, evaluation, feedback loops, and production learning, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Accept format-valid output as success for Agent observability, evaluation, feedback loops, and production learning; factuality, task completion, safety, and downstream effects can be checked later.",
+      "Change prompts, models, and tools together in Agent observability, evaluation, feedback loops, and production learning so evaluation captures the full improvement rather than isolating variables."
     ],
     "e": "Agent observability should connect user request → model turns → retrieval → tool calls → handoffs/subagents → final outcome. Preserve trace/run IDs across backend logs and external tool calls. Evaluation belongs in CI and production feedback. Maintain deterministic checks, golden cases, adversarial cases, historical incidents, and graded task-success metrics. Re-run them when changing models, prompts, tools, retrieval, or orchestration.",
     "tags": [
@@ -1590,9 +10665,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When choosing among the options in “Automation platform landscape: n8n, Make, Zapier, Flowise, and code-first frameworks”, which statement matters most?",
     "correct": "Automation platforms sit on a spectrum. n8n emphasizes visual workflows plus code, APIs, self-hosting, AI nodes, MCP, and custom integrations. Make uses visual scenarios made of modules, routers, filters, schedules, and webhooks.",
     "wrong": [
-      "Make does not use visual scenarios made of modules, routers, filters, schedules, and webhooks.",
       "Zapier does not use trigger/action workflows (Zaps) and increasingly combines visual automation with AI and code.",
-      "The most maintainable way to implement “Automation platform landscape” is to put substantial business logic inside deeply nested expressions rather than code nodes or explicit sub-workflows."
+      "The most maintainable way to implement “Automation platform landscape” is to put substantial business logic inside deeply nested expressions rather than code nodes or explicit sub-workflows.",
+      "For Automation platform landscape: n8n, Make, Zapier, Flowise, and code-first frameworks, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps."
     ],
     "e": "Automation platforms sit on a spectrum. n8n emphasizes visual workflows plus code, APIs, self-hosting, AI nodes, MCP, and custom integrations. Make uses visual scenarios made of modules, routers, filters, schedules, and webhooks. Zapier uses trigger/action workflows (Zaps) and increasingly combines visual automation with AI and code. Flowise historically provided a visual low-code environment for LLM chains and agents. However, Flowise announced a wind-down in 2026 and froze active feature development on July 29, 2026.",
     "tags": [
@@ -1610,9 +10685,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option avoids a common misconception about “LLM families in automation: ChatGPT/OpenAI, Claude, Gemini, DeepSeek, Llama, Mistral, Grok, and local/open-weight models”?",
     "correct": "A business automation should depend on a capability contract , not a model brand. Compare models for instruction following, structured output, tool calling, context length, latency, language quality, price, data controls, regional availability, and evaluation results on your own tasks.",
     "wrong": [
-      "A business automation should not depend on a capability contract , not a model brand.",
-      "Do not compare models for instruction following, structured output, tool calling, context length, latency, language quality, price, data controls, regional availability, and evaluation results on your own tasks.",
-      "Once “LLM families in automation” works in a demo, tracing, evaluation, failure recovery, and cost controls can be deferred without affecting production reliability."
+      "Skip human approval in LLM families in automation: ChatGPT/OpenAI, Claude, Gemini, DeepSeek, Llama, Mistral, Grok, and local/open-weight models whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
+      "Keep LLM families in automation: ChatGPT/OpenAI, Claude, Gemini, DeepSeek, Llama, Mistral, Grok, and local/open-weight models as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
+      "Treat a successful workflow execution in LLM families in automation: ChatGPT/OpenAI, Claude, Gemini, DeepSeek, Llama, Mistral, Grok, and local/open-weight models as proof that partial writes, duplicate events, retries, and resume behavior are correct."
     ],
     "e": "A business automation should depend on a capability contract , not a model brand. Compare models for instruction following, structured output, tool calling, context length, latency, language quality, price, data controls, regional availability, and evaluation results on your own tasks. OpenAI , Anthropic Claude , Google Gemini , and other hosted providers expose managed APIs. DeepSeek and Mistral offer their own model/API ecosystems. Llama refers to Meta's model family and is commonly run through hosted providers or local runtimes such as Ollama.",
     "tags": [
@@ -1630,9 +10705,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement best captures the design principle behind “Test-time compute, reasoning models, and why TTS is an ambiguous abbreviation”?",
     "correct": "Test-time compute means spending additional inference-time computation to improve an answer, for example through longer internal reasoning, repeated sampling, search, self-consistency, or verification. It trades latency and cost for potentially better quality on difficult tasks.",
     "wrong": [
-      "Test-time compute does not mean spending additional inference-time computation to improve an answer, for example through longer internal reasoning, repeated sampling, search, self-consistency, or verification.",
-      "The course does not use TTS for test-time compute, but this abbreviation is ambiguous because TTS very commonly means Text-to-Speech .",
-      "Model routing in “Test-time compute, reasoning models” should be based only on the provider's model ranking; task-specific evaluation, latency, cost, and data policy are secondary."
+      "Change prompts, models, and tools together in Test-time compute, reasoning models, and why TTS is an ambiguous abbreviation so evaluation captures the full improvement rather than isolating variables.",
+      "Treat an LLM grader in Test-time compute, reasoning models, and why TTS is an ambiguous abbreviation as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
+      "Use only average scores for Test-time compute, reasoning models, and why TTS is an ambiguous abbreviation; failure categories and worst-case examples are too noisy to guide engineering."
     ],
     "e": "Test-time compute means spending additional inference-time computation to improve an answer, for example through longer internal reasoning, repeated sampling, search, self-consistency, or verification. It trades latency and cost for potentially better quality on difficult tasks. The course uses TTS for test-time compute, but this abbreviation is ambiguous because TTS very commonly means Text-to-Speech . In engineering documentation, write out test-time compute or use a locally defined abbreviation such as TTC to avoid confusion.",
     "tags": [
@@ -1649,9 +10724,9 @@ const guideCoverageQuestionsV12 = [
     "q": "For “OpenAI API pricing, project setup, data controls, and what 'compliant use' actually requires”, which option reflects sound agent/AI engineering?",
     "correct": "API pricing is generally usage-based and model/tool specific. Cost can include input tokens, cached input, output/reasoning tokens, hosted tools, storage, and other services. Do not hard-code today's prices into architecture assumptions; link to the provider's current pricing page and add budget/usage alerts.",
     "wrong": [
-      "API pricing is not generally usage-based and model/tool specific.",
-      "Cost cannot include input tokens, cached input, output/reasoning tokens, hosted tools, storage, and other services.",
-      "Provider or protocol compatibility in “OpenAI API pricing, project setup, data controls” means identical semantics, so adapters and integration tests are unnecessary."
+      "Use only average scores for OpenAI API pricing, project setup, data controls, and what 'compliant use' actually requires; failure categories and worst-case examples are too noisy to guide engineering.",
+      "Compare models for OpenAI API pricing, project setup, data controls, and what 'compliant use' actually requires only by provider ranking or headline benchmark scores rather than task-specific quality, latency, cost, and data policy.",
+      "Change prompts, models, and tools together in OpenAI API pricing, project setup, data controls, and what 'compliant use' actually requires so evaluation captures the full improvement rather than isolating variables."
     ],
     "e": "API pricing is generally usage-based and model/tool specific. Cost can include input tokens, cached input, output/reasoning tokens, hosted tools, storage, and other services. Do not hard-code today's prices into architecture assumptions; link to the provider's current pricing page and add budget/usage alerts. Use separate projects or equivalent provider boundaries for environments/clients when appropriate. Scope API keys, rotate them, avoid exposing them to browsers, and record model/version and usage in observability.",
     "tags": [
@@ -1819,9 +10894,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement avoids a common mistake in “Automated RAG ingestion in n8n: Google Drive → parse → chunk → embed → vector store”?",
     "correct": "A practical RAG ingestion workflow watches or periodically scans a source such as Google Drive, identifies new/changed/deleted files, parses content, creates chunks, embeds them, and upserts them into a vector store.",
     "wrong": [
-      "A practical RAG ingestion workflow watches or periodically scans a source such as Google Drive, does not identify new/changed/deleted files, parses content, creates chunks, embeds them, and upserts them into a vector store.",
-      "Do not use a stable source document ID and content/version hash.",
-      "Production readiness for “Automated RAG ingestion in n8n” depends only on the workflow graph; persistence, encryption keys, backups, callback URLs, TLS, and upgrade procedures are hosting concerns outside the system."
+      "Production readiness for “Automated RAG ingestion in n8n” depends only on the workflow graph; persistence, encryption keys, backups, callback URLs, TLS, and upgrade procedures are hosting concerns outside the system.",
+      "Share the same credentials, data, and state between test and production for Automated RAG ingestion in n8n: Google Drive → parse → chunk → embed → vector store so configuration remains simple.",
+      "Let the LLM perform deterministic checks in Automated RAG ingestion in n8n: Google Drive → parse → chunk → embed → vector store, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually."
     ],
     "e": "A practical RAG ingestion workflow watches or periodically scans a source such as Google Drive, identifies new/changed/deleted files, parses content, creates chunks, embeds them, and upserts them into a vector store. Use a stable source document ID and content/version hash. On update, replace stale chunks; on deletion, remove the document's vectors. Blindly appending embeddings creates duplicate and outdated evidence.",
     "tags": [
@@ -1863,9 +10938,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option avoids a common misconception about “Prompt engineering for automation: role, objective, evidence, tool policy, output contract, and failure behavior”?",
     "correct": "Automation prompts should define the objective and decision boundary, not merely a persona. Include the allowed evidence, tool rules, output schema, uncertainty behavior, escalation conditions, and examples of ambiguous cases.",
     "wrong": [
-      "Automation prompts should not define the objective and decision boundary, not merely a persona.",
-      "Do not separate instructions from untrusted content.",
-      "Once “Prompt engineering for automation” works in a demo, tracing, evaluation, failure recovery, and cost controls can be deferred without affecting production reliability."
+      "For Prompt engineering for automation: role, objective, evidence, tool policy, output contract, and failure behavior, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Treat tool results in Prompt engineering for automation: role, objective, evidence, tool policy, output contract, and failure behavior as trusted instructions because they came from an approved integration rather than from the user.",
+      "Retry every tool call in Prompt engineering for automation: role, objective, evidence, tool policy, output contract, and failure behavior automatically, including non-idempotent actions, until the model receives a successful response."
     ],
     "e": "Automation prompts should define the objective and decision boundary, not merely a persona. Include the allowed evidence, tool rules, output schema, uncertainty behavior, escalation conditions, and examples of ambiguous cases. Separate instructions from untrusted content. Email bodies, webpages, retrieved documents, and chat messages belong in clearly delimited data fields and must not be allowed to redefine tool policy.",
     "tags": [
@@ -2057,9 +11132,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement correctly describes the legal or governance issue in “n8n licensing and selling workflows/services: Sustainable Use License boundaries”?",
     "correct": "n8n is fair-code , not conventional OSI open source. The self-hosted Community edition uses the Sustainable Use License (SUL), while Cloud and commercial offerings have separate terms.",
     "wrong": [
-      "n8n is not fair-code , not conventional OSI open source.",
-      "The self-hosted Community edition does not use the Sustainable Use License (SUL), while Cloud and commercial offerings have separate terms.",
-      "If data used by “n8n licensing and selling workflows/services” was publicly accessible, it can be scraped, enriched, stored, and contacted without considering purpose, platform terms, or applicable law."
+      "If data used by “n8n licensing and selling workflows/services” was publicly accessible, it can be scraped, enriched, stored, and contacted without considering purpose, platform terms, or applicable law.",
+      "For n8n licensing and selling workflows/services: Sustainable Use License boundaries, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Treat a successful workflow execution in n8n licensing and selling workflows/services: Sustainable Use License boundaries as proof that partial writes, duplicate events, retries, and resume behavior are correct."
     ],
     "e": "n8n is fair-code , not conventional OSI open source. The self-hosted Community edition uses the Sustainable Use License (SUL), while Cloud and commercial offerings have separate terms. Current n8n guidance states that you can build and run workflows for clients on your own instance and charge for that work, including letting clients connect their own accounts, provided clients cannot access/build/configure the workflow logic. Giving external users automation-building/configuration capability, white-labeling, or providing n8n itself as a service can require a commercial license.",
     "tags": [
@@ -2077,9 +11152,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement avoids a common mistake in “Market-ready RAG lead bot: qualification, retrieval, Google Sheets/CRM, and website embedding”?",
     "correct": "A lead-generation bot should combine product/company knowledge retrieval with structured lead capture. Do not let the model invent pricing, availability, guarantees, or customer-specific commitments.",
     "wrong": [
-      "A lead-generation bot should not combine product/company knowledge retrieval with structured lead capture.",
       "Let the model invent pricing, availability, guarantees, or customer-specific commitments.",
-      "For “Market-ready RAG lead bot”, appending new records or chunks without stable IDs, deduplication, update handling, or deletion handling is safer than replacing stale data."
+      "Append updated documents in Market-ready RAG lead bot: qualification, retrieval, Google Sheets/CRM, and website embedding without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
+      "Allow retrieved documents in Market-ready RAG lead bot: qualification, retrieval, Google Sheets/CRM, and website embedding to redefine system or tool policy because they were selected by the retriever."
     ],
     "e": "A lead-generation bot should combine product/company knowledge retrieval with structured lead capture. Do not let the model invent pricing, availability, guarantees, or customer-specific commitments. Collect only fields needed for the stated purpose. Validate email/phone data, record consent/source where required, and route the structured lead to Sheets, Airtable, or a CRM.",
     "tags": [
@@ -2118,9 +11193,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which approach to “Firecrawl for web ingestion: scrape, crawl, map, Markdown, structured extraction, and RAG” would be appropriate in a maintainable system?",
     "correct": "Firecrawl is a web extraction service designed to turn websites into LLM-friendly data. Scrape processes one page, Crawl recursively processes multiple pages, and Map discovers URLs.",
     "wrong": [
-      "Firecrawl is not a web extraction service designed to turn websites into LLM-friendly data.",
       "Markdown output is not useful for RAG because it strips much visual boilerplate while preserving headings, links, lists, and content structure.",
-      "For “Firecrawl for web ingestion”, retries can safely repeat writes even when the operation is not idempotent because duplicate records are an observability concern rather than a correctness issue."
+      "Use one fixed chunk size for every document type in Firecrawl for web ingestion: scrape, crawl, map, Markdown, structured extraction, and RAG; headings, tables, code, and page structure do not affect retrieval.",
+      "For Firecrawl for web ingestion: scrape, crawl, map, Markdown, structured extraction, and RAG, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary."
     ],
     "e": "Firecrawl is a web extraction service designed to turn websites into LLM-friendly data. Scrape processes one page, Crawl recursively processes multiple pages, and Map discovers URLs. Markdown output is useful for RAG because it strips much visual boilerplate while preserving headings, links, lists, and content structure. Structured extraction can produce JSON when the use case is field extraction rather than document retrieval.",
     "tags": [
@@ -2138,9 +11213,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When working with “LlamaIndex, LlamaParse, document preprocessing, PDFs/CSVs, and Google Colab”, which practice is technically sound?",
     "correct": "LlamaIndex Framework provides ingestion, indexing, retrieval, and agent/RAG abstractions in Python and TypeScript. Its ingestion pipeline applies repeatable transformations such as parsing, splitting, metadata extraction, embedding, and vector-store insertion.",
     "wrong": [
-      "LlamaIndex Framework does not provide ingestion, indexing, retrieval, and agent/RAG abstractions in Python and TypeScript.",
-      "Its ingestion pipeline does not apply repeatable transformations such as parsing, splitting, metadata extraction, embedding, and vector-store insertion.",
-      "Lineage and metadata for “LlamaIndex, LlamaParse, document preprocessing, PDFs/CSVs” can always be reconstructed later, so source, version, owner, and transformation information do not need to travel with the data."
+      "Lineage and metadata for “LlamaIndex, LlamaParse, document preprocessing, PDFs/CSVs” can always be reconstructed later, so source, version, owner, and transformation information do not need to travel with the data.",
+      "Evaluate LlamaIndex, LlamaParse, document preprocessing, PDFs/CSVs, and Google Colab only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement.",
+      "Use one fixed chunk size for every document type in LlamaIndex, LlamaParse, document preprocessing, PDFs/CSVs, and Google Colab; headings, tables, code, and page structure do not affect retrieval."
     ],
     "e": "LlamaIndex Framework provides ingestion, indexing, retrieval, and agent/RAG abstractions in Python and TypeScript. Its ingestion pipeline applies repeatable transformations such as parsing, splitting, metadata extraction, embedding, and vector-store insertion. LlamaParse is LlamaIndex's hosted document-processing platform for complex PDFs, scans, tables, charts, and many office/document formats. It can output Markdown, text, or structured JSON and is useful before chunking when raw PDF extraction destroys layout.",
     "tags": [
@@ -2222,8 +11297,8 @@ const guideCoverageQuestionsV12 = [
     "correct": "CCPA is the California Consumer Privacy Act, and CPRA amended and expanded it rather than replacing it with an unrelated law. Relevant obligations can include access/knowledge, deletion, correction, opt-out, sensitive-data limits, and non-discrimination, subject to scope and exceptions.",
     "wrong": [
       "CPRA replaced the CCPA with an unrelated statute, so CCPA terminology and rights are no longer relevant.",
-      "CCPA/CPRA applies only to data breaches and does not include access, deletion, correction, or opt-out rights.",
-      "Using an AI model automatically converts every disclosure of personal information into a permitted internal use."
+      "Using an AI model automatically converts every disclosure of personal information into a permitted internal use.",
+      "For CCPA/CPRA privacy requirements for AI automation, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "CCPA is the California Consumer Privacy Act. CPRA amended and expanded the CCPA rather than creating a completely separate replacement law. Relevant rights include knowing/accessing certain personal-information practices, deletion subject to exceptions, opting out of sale/sharing, correction, limiting certain uses of sensitive personal information, and non-discrimination for exercising rights.",
     "tags": [
@@ -2262,9 +11337,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When choosing among the options in “Alignment, censorship, bias, evaluation, and provider differences”, which statement matters most?",
     "correct": "Different models can refuse, frame, or prioritize content differently because of training data, fine-tuning, system policies, regional/legal requirements, and product safety choices.",
     "wrong": [
-      "Different does not model can refuse, frame, or prioritize content differently because of training data, fine-tuning, system policies, regional/legal requirements, and product safety choices.",
       "Prefer reducing these differences to a single 'censorship score'.",
-      "Adding more agents to “Alignment, censorship, bias, evaluation, and provider differences” automatically improves quality; explicit roles, artifacts, stop conditions, and independent checks are optional."
+      "Change prompts, models, and tools together in Alignment, censorship, bias, evaluation, and provider differences so evaluation captures the full improvement rather than isolating variables.",
+      "For Alignment, censorship, bias, evaluation, and provider differences, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "Different models can refuse, frame, or prioritize content differently because of training data, fine-tuning, system policies, regional/legal requirements, and product safety choices. Avoid reducing these differences to a single 'censorship score'. Define the application's required behavior and evaluate consistency, factuality, refusal appropriateness, demographic disparities, language performance, and failure modes.",
     "tags": [
@@ -2282,9 +11357,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When applying “Lead scraping and enrichment: data quality, consent, rate limits, and governance”, which statement is accurate?",
     "correct": "Automated lead collection combines crawling/search, extraction, deduplication, enrichment, and CRM insertion. The technical ability to collect contact information does not establish a lawful marketing basis.",
     "wrong": [
-      "Automated lead collection does not combine crawling/search, extraction, deduplication, enrichment, and CRM insertion.",
       "The technical ability to collect contact information does establish a lawful marketing basis.",
-      "Legal requirements around “Lead scraping and enrichment” can be hard-coded once because regulatory scope and product obligations do not change over time."
+      "Legal requirements around “Lead scraping and enrichment” can be hard-coded once because regulatory scope and product obligations do not change over time.",
+      "Let the LLM perform deterministic checks in Lead scraping and enrichment: data quality, consent, rate limits, and governance, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually."
     ],
     "e": "Automated lead collection combines crawling/search, extraction, deduplication, enrichment, and CRM insertion. The technical ability to collect contact information does not establish a lawful marketing basis. Store source URL, collection time, extraction confidence, and any consent/legitimate-use metadata required by the business process. Remove obvious personal/sensitive data that the workflow does not need.",
     "tags": [
@@ -2603,9 +11678,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which approach to “Web applications, client/server communication, and Internet protocol layers” would be appropriate in a maintainable system?",
     "correct": "A web application commonly has a client (browser or mobile app), one or more web/API services, persistence, and external dependencies. The client resolves a hostname through DNS, establishes a network connection, often negotiates TLS for HTTPS, sends HTTP requests, and receives representations such as HTML or JSON.",
     "wrong": [
-      "The client does not resolve a hostname through DNS, establishes a network connection, often negotiates TLS for HTTPS, sends HTTP requests, and receives representations such as HTML or JSON.",
       "QA does need to be a network engineer, but understanding DNS, TCP/IP concepts, TLS, HTTP, cookies, headers, caching, proxies, and browser storage makes failures much easier to locate. 'The website is down' can actually be a DNS, certificate, gateway, API, database, or frontend problem.",
-      "With “Web applications, client/server communication”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation."
+      "With “Web applications, client/server communication”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation.",
+      "Validate only the happy-path endpoint in Web applications, client/server communication, and Internet protocol layers; authorization, malformed input, rate limits, and dependency failures belong to separate systems."
     ],
     "e": "A web application commonly has a client (browser or mobile app), one or more web/API services, persistence, and external dependencies. The client resolves a hostname through DNS, establishes a network connection, often negotiates TLS for HTTPS, sends HTTP requests, and receives representations such as HTML or JSON. QA does not need to be a network engineer, but understanding DNS, TCP/IP concepts, TLS, HTTP, cookies, headers, caching, proxies, and browser storage makes failures much easier to locate. 'The website is down' can actually be a DNS, certificate, gateway, API, database, or frontend problem.",
     "tags": [
@@ -2622,9 +11697,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When working with “XML, JSON, SOAP, and REST-style web services”, which practice is technically sound?",
     "correct": "XML (Extensible Markup Language) represents hierarchical structured data using tagged elements and attributes. JSON (JavaScript Object Notation) represents objects, arrays, strings, numbers, booleans, and null in a compact syntax widely used by web APIs.",
     "wrong": [
-      "XML (Extensible Markup Language) does not represent hierarchical structured data using tagged elements and attributes.",
-      "JSON (JavaScript Object Notation) does not represent objects, arrays, strings, numbers, booleans, and null in a compact syntax widely used by web APIs.",
-      "For “XML, JSON, SOAP, and REST-style web services”, request documentation and error contracts become unnecessary after one successful happy-path call."
+      "For XML, JSON, SOAP, and REST-style web services, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Treat the client-visible response as the entire contract for XML, JSON, SOAP, and REST-style web services; downstream state and emitted events do not need verification.",
+      "Use production credentials and real customer data for XML, JSON, SOAP, and REST-style web services because synthetic environments cannot reveal API defects."
     ],
     "e": "XML (Extensible Markup Language) represents hierarchical structured data using tagged elements and attributes. JSON (JavaScript Object Notation) represents objects, arrays, strings, numbers, booleans, and null in a compact syntax widely used by web APIs. SOAP is a standardized XML-based messaging protocol commonly paired with WSDL contracts and enterprise web-service standards. Its historical name is Simple Object Access Protocol , although modern specifications generally treat SOAP as the protocol name.",
     "tags": [
@@ -2642,9 +11717,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option best captures the engineering takeaway from “Postman environments, authentication, assertions, dynamic data, and scheduled execution”?",
     "correct": "A maintainable Postman project separates requests from environment-specific values. Store base URLs, non-secret identifiers, and environment configuration in variables; handle credentials using protected mechanisms rather than exporting them casually.",
     "wrong": [
-      "A maintainable Postman project does not separate requests from environment-specific values.",
-      "Do not store base URLs, non-secret identifiers, and environment configuration in variables; handle credentials using protected mechanisms rather than exporting them casually.",
-      "With “Postman environments, authentication, assertions, dynamic data”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation."
+      "With “Postman environments, authentication, assertions, dynamic data”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation.",
+      "Validate only the happy-path endpoint in Postman environments, authentication, assertions, dynamic data, and scheduled execution; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
+      "For Postman environments, authentication, assertions, dynamic data, and scheduled execution, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "A maintainable Postman project separates requests from environment-specific values. Store base URLs, non-secret identifiers, and environment configuration in variables; handle credentials using protected mechanisms rather than exporting them casually. Authentication may use API keys, Basic Auth, bearer tokens, OAuth, or application-specific schemes. Assertions should validate status, headers, schema, and meaningful body values. Extract dynamic values—such as IDs or tokens—from one response and reuse them in later requests.",
     "tags": [
@@ -2661,9 +11736,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What should an engineer or QA practitioner understand about “Postman as an API client: app, web experience, request builder, response viewer, and troubleshooting”?",
     "correct": "Postman is an API development and testing platform. At the most basic level, the request builder lets you select an HTTP method, enter a URL, configure authorization, query parameters, headers, cookies, and a request body, then send the request and inspect the response.",
     "wrong": [
-      "Postman is not an API development and testing platform.",
-      "At the most basic level, the request builder does not let you select an HTTP method, enter a URL, configure authorization, query parameters, headers, cookies, and a request body, then send the request and inspect the response.",
-      "For file-oriented “Postman as an API client”, validating only the response status is enough; filename, content, encoding, and binary handling are irrelevant."
+      "For file-oriented “Postman as an API client”, validating only the response status is enough; filename, content, encoding, and binary handling are irrelevant.",
+      "Hard-code tokens, IDs, and environment URLs directly into Postman as an API client: app, web experience, request builder, response viewer, and troubleshooting so every request is self-contained.",
+      "Treat the client-visible response as the entire contract for Postman as an API client: app, web experience, request builder, response viewer, and troubleshooting; downstream state and emitted events do not need verification."
     ],
     "e": "Postman is an API development and testing platform. At the most basic level, the request builder lets you select an HTTP method, enter a URL, configure authorization, query parameters, headers, cookies, and a request body, then send the request and inspect the response. The response viewer exposes the status code, response body, headers, cookies, response size, response time, and test results. When a request fails, use the Postman Console and the actual request/response details before assuming the API is broken.",
     "tags": [
@@ -2683,7 +11758,7 @@ const guideCoverageQuestionsV12 = [
     "wrong": [
       "A resource identifier such as boardId , listId , or cardId is not usually returned by one request and becomes input to later requests.",
       "This is not the foundation of request chaining.",
-      "For “Reading API documentation, resource identifiers”, request documentation and error contracts become unnecessary after one successful happy-path call."
+      "Assume retries are safe for Reading API documentation, resource identifiers, and modeling real workflows even when operations are not idempotent; duplicate side effects can be cleaned up later."
     ],
     "e": "Before building requests, read the API documentation for base URLs, resources, identifiers, methods, required headers, authentication, request schemas, response schemas, pagination, rate limits, and error formats. A resource identifier such as boardId , listId , or cardId is usually returned by one request and becomes input to later requests. This is the foundation of request chaining.",
     "tags": [
@@ -2701,9 +11776,9 @@ const guideCoverageQuestionsV12 = [
     "q": "In practice, which description of “Collections, folders, request documentation, examples, import/export, and team ownership” is accurate?",
     "correct": "A Postman Collection groups requests, folders, scripts, examples, variables, and workflow logic into a reusable API test asset. Organize collections by domain or API capability rather than placing every endpoint into one flat list.",
     "wrong": [
-      "A Postman Collection does not group requests, folders, scripts, examples, variables, and workflow logic into a reusable API test asset.",
       "Folder- and collection-level scripts do not let you apply common setup or assertions to many requests.",
-      "Secrets used by “Collections, folders, request documentation, examples, import/export” are safe as ordinary shared variables as long as the workspace or repository is private."
+      "Secrets used by “Collections, folders, request documentation, examples, import/export” are safe as ordinary shared variables as long as the workspace or repository is private.",
+      "Assume retries are safe for Collections, folders, request documentation, examples, import/export, and team ownership even when operations are not idempotent; duplicate side effects can be cleaned up later."
     ],
     "e": "A Postman Collection groups requests, folders, scripts, examples, variables, and workflow logic into a reusable API test asset. Organize collections by domain or API capability rather than placing every endpoint into one flat list. Folder- and collection-level scripts let you apply common setup or assertions to many requests. Request descriptions and saved examples make the collection useful as executable documentation, not only as a private tester artifact.",
     "tags": [
@@ -2761,9 +11836,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option best captures the engineering takeaway from “Authentication in Postman: Basic Auth, API keys, bearer tokens, JWT, OAuth 2.0, cookies, and auth inheritance”?",
     "correct": "Basic Auth sends a username/password credential in an Authorization header using Base64 encoding; Base64 is encoding, not encryption, so HTTPS is mandatory. API key authentication sends a key in a configured header or query parameter.",
     "wrong": [
-      "Basic Auth does not send a username/password credential in an Authorization header using Base64 encoding; Base64 is encoding, not encryption, so HTTPS is mandatory.",
-      "API key authentication does not send a key in a configured header or query parameter.",
-      "A team workspace used for “Authentication in Postman” automatically defines ownership and source of truth, so permissions and change-control decisions are unnecessary."
+      "A team workspace used for “Authentication in Postman” automatically defines ownership and source of truth, so permissions and change-control decisions are unnecessary.",
+      "Assume retries are safe for Authentication in Postman: Basic Auth, API keys, bearer tokens, JWT, OAuth 2.0, cookies, and auth inheritance even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "Use production credentials and real customer data for Authentication in Postman: Basic Auth, API keys, bearer tokens, JWT, OAuth 2.0, cookies, and auth inheritance because synthetic environments cannot reveal API defects."
     ],
     "e": "Basic Auth sends a username/password credential in an Authorization header using Base64 encoding; Base64 is encoding, not encryption, so HTTPS is mandatory. API key authentication sends a key in a configured header or query parameter. Bearer authentication sends an opaque or structured access token. A JWT (JSON Web Token) is one possible token format; not every bearer token is a JWT, and a decoded JWT is not automatically trusted unless its signature and claims are validated by the server.",
     "tags": [
@@ -2864,7 +11939,7 @@ const guideCoverageQuestionsV12 = [
     "wrong": [
       "Current Postman does not use pm.execution.setNextRequest() to change the request that runs next during a collection run.",
       "The older postman.setNextRequest() API is not legacy/deprecated material and should not be used in new scripts.",
-      "For “Request chaining and workflows with pm.execution.setNextRequest()”, scripts should silently ignore assertion failures so a collection run can complete and report as successful."
+      "Treat the client-visible response as the entire contract for Request chaining and workflows with pm.execution.setNextRequest(); downstream state and emitted events do not need verification."
     ],
     "e": "A workflow extracts values from one response and passes them to later requests: authenticate → create board → create list → create card → move card → verify → delete. Variables carry state; assertions at each step make the dependency explicit. Current Postman uses pm.execution.setNextRequest() to change the request that runs next during a collection run. The older postman.setNextRequest() API is legacy/deprecated material and should not be used in new scripts.",
     "tags": [
@@ -2882,9 +11957,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option best captures the engineering takeaway from “Sending requests from scripts: pm.sendRequest() and pm.execution.runRequest()”?",
     "correct": "pm.sendRequest() sends an HTTP request defined directly in script code. It is useful for auxiliary calls such as obtaining setup data or checking a secondary service.",
     "wrong": [
-      "pm.sendRequest() does not send an HTTP request defined directly in script code.",
-      "It is not useful for auxiliary calls such as obtaining setup data or checking a secondary service. pm.execution.runRequest() executes a request already stored in a collection, avoiding duplication of its full request definition.",
-      "Client-side validation in “Sending requests from scripts” is sufficient protection for API inputs, so server-side validation would only duplicate work."
+      "Client-side validation in “Sending requests from scripts” is sufficient protection for API inputs, so server-side validation would only duplicate work.",
+      "For Sending requests from scripts: pm.sendRequest() and pm.execution.runRequest(), consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Assume retries are safe for Sending requests from scripts: pm.sendRequest() and pm.execution.runRequest() even when operations are not idempotent; duplicate side effects can be cleaned up later."
     ],
     "e": "pm.sendRequest() sends an HTTP request defined directly in script code. It is useful for auxiliary calls such as obtaining setup data or checking a secondary service. pm.execution.runRequest() executes a request already stored in a collection, avoiding duplication of its full request definition. Current Postman limits how often a referenced request can be executed from one script, so it is not a replacement for a normal collection workflow.",
     "tags": [
@@ -2901,9 +11976,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What should an engineer or QA practitioner understand about “Data-driven runs with CSV, JSON, iteration data, and current Postman datasets”?",
     "correct": "Collection runs can execute the same scenario repeatedly using rows from CSV or JSON input. Values from iteration data are available through pm.iterationData and can drive request bodies, parameters, and expected results.",
     "wrong": [
-      "Collection runs cannot execute the same scenario repeatedly using rows from CSV or JSON input.",
-      "Values from iteration data are not available through pm.iterationData and can drive request bodies, parameters, and expected results.",
-      "With “Data-driven runs with CSV, JSON, iteration data”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation."
+      "With “Data-driven runs with CSV, JSON, iteration data”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation.",
+      "For Data-driven runs with CSV, JSON, iteration data, and current Postman datasets, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Treat the client-visible response as the entire contract for Data-driven runs with CSV, JSON, iteration data, and current Postman datasets; downstream state and emitted events do not need verification."
     ],
     "e": "Collection runs can execute the same scenario repeatedly using rows from CSV or JSON input. Values from iteration data are available through pm.iterationData and can drive request bodies, parameters, and expected results. Data-driven tests are useful for boundary tables, roles, product combinations, and expected outcomes. Keep one row understandable as one scenario; a giant data file with hidden logic becomes harder to maintain than normal code.",
     "tags": [
@@ -2922,9 +11997,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement avoids a common mistake in “Collection Runner, manual runs, scheduled runs, and monitors”?",
     "correct": "Collection Runner executes multiple requests in sequence, supports iterations, environment selection, run-order control, and test result aggregation. It is the bridge between an individually sent request and a repeatable API suite.",
     "wrong": [
-      "Collection Runner does not execute multiple requests in sequence, supports iterations, environment selection, run-order control, and test result aggregation.",
-      "It is not the bridge between an individually sent request and a repeatable API suite.",
-      "A team workspace used for “Collection Runner, manual runs, scheduled runs, and monitors” automatically defines ownership and source of truth, so permissions and change-control decisions are unnecessary."
+      "A team workspace used for “Collection Runner, manual runs, scheduled runs, and monitors” automatically defines ownership and source of truth, so permissions and change-control decisions are unnecessary.",
+      "For Collection Runner, manual runs, scheduled runs, and monitors, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Validate only the happy-path endpoint in Collection Runner, manual runs, scheduled runs, and monitors; authorization, malformed input, rate limits, and dependency failures belong to separate systems."
     ],
     "e": "Collection Runner executes multiple requests in sequence, supports iterations, environment selection, run-order control, and test result aggregation. It is the bridge between an individually sent request and a repeatable API suite. Current Postman can schedule collection runs in the cloud. Scheduled functional runs are useful for recurring API regression without maintaining your own CI job.",
     "tags": [
@@ -2944,7 +12019,7 @@ const guideCoverageQuestionsV12 = [
     "wrong": [
       "Newman supports every current Postman collection feature and format, so Postman CLI has no compatibility advantage for new workflows.",
       "Postman CLI can run only from the desktop app and therefore cannot be used in CI/CD.",
-      "Collections and environments are not portable between local and CI runs; credentials and variables must be hard-coded in the command line."
+      "For Postman CLI versus Newman, collection v3, environments, reporters, and CI, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "Postman CLI is the current official command-line tool for running and managing Postman assets. It can run collections locally or in CI and supports current Postman capabilities beyond collection execution. Newman remains the open-source command-line runner used by many existing pipelines. In Postman v12, Newman runs compatible collection v2.1 JSON exports but cannot run the newer v3 collection format. Postman recommends the Postman CLI for new CI/CD workflows.",
     "tags": [
@@ -2984,9 +12059,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When working with “Postman mock servers, examples, recorded responses, and frontend/API parallel development”, which practice is technically sound?",
     "correct": "A mock server simulates an API so clients can develop and test before the real backend is available or when a specific response state is difficult to reproduce.",
     "wrong": [
-      "A mock server simulates an API so clients cannot develop and test before the real backend is available or when a specific response state is difficult to reproduce.",
       "Postman mock servers cannot be created from collections or mocks and use saved examples to determine responses.",
-      "A team workspace used for “Postman mock servers, examples, recorded responses” automatically defines ownership and source of truth, so permissions and change-control decisions are unnecessary."
+      "A team workspace used for “Postman mock servers, examples, recorded responses” automatically defines ownership and source of truth, so permissions and change-control decisions are unnecessary.",
+      "Assume retries are safe for Postman mock servers, examples, recorded responses, and frontend/API parallel development even when operations are not idempotent; duplicate side effects can be cleaned up later."
     ],
     "e": "A mock server simulates an API so clients can develop and test before the real backend is available or when a specific response state is difficult to reproduce. Postman mock servers can be created from collections or mocks and use saved examples to determine responses. This makes examples executable assets rather than documentation-only samples.",
     "tags": [
@@ -3004,9 +12079,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option best captures the engineering takeaway from “multipart/form-data, file uploads, binary bodies, working directories, and automated upload tests”?",
     "correct": "multipart/form-data is commonly used when one request contains files plus ordinary form fields. Postman can attach files to form-data parts or send a binary request body.",
     "wrong": [
-      "multipart/form-data is not commonly used when one request contains files plus ordinary form fields.",
-      "Postman cannot attach files to form-data parts or send a binary request body.",
-      "With “multipart/form-data, file uploads, binary bodies”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation."
+      "With “multipart/form-data, file uploads, binary bodies”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation.",
+      "Treat the client-visible response as the entire contract for multipart/form-data, file uploads, binary bodies, working directories, and automated upload tests; downstream state and emitted events do not need verification.",
+      "Hard-code tokens, IDs, and environment URLs directly into multipart/form-data, file uploads, binary bodies, working directories, and automated upload tests so every request is self-contained."
     ],
     "e": "multipart/form-data is commonly used when one request contains files plus ordinary form fields. Postman can attach files to form-data parts or send a binary request body. For reproducible shared collections, file paths must be handled deliberately. The Postman desktop app uses a working directory for files referenced by requests; teammates need compatible files/paths when running the same collection locally.",
     "tags": [
@@ -3026,7 +12101,7 @@ const guideCoverageQuestionsV12 = [
     "wrong": [
       "The Postman Sandbox executes scripts with unrestricted access to the local filesystem and operating-system processes.",
       "Pre-request and post-response scripts run in exactly the same phase, so either can inspect a response before the HTTP request is sent.",
-      "The pm object is available only in manually opened requests and is not present during collection or CI runs."
+      "For CSV responses, file outputs, and the boundary of the Postman Sandbox, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "Not every API returns JSON. For CSV responses, use pm.response.text() and parse the text with appropriate logic or a supported package. Assert headers, row counts, delimiters, encoding, and business values. The Postman Sandbox is restricted and should not be treated as unrestricted Node.js with arbitrary local filesystem access. Some external packages that depend on Node built-in modules may not work as they would in a normal Node process.",
     "tags": [
@@ -3044,9 +12119,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement avoids a common mistake in “Reusing tests and helpers with collection scripts and the Postman Package Library”?",
     "correct": "The simplest reuse level is a collection- or folder-level pre-request/post-response script. Common checks applied at collection level run for every request inside the collection.",
     "wrong": [
-      "The simplest reuse level is not a collection- or folder-level pre-request/post-response script.",
-      "Common does not check applied at collection level run for every request inside the collection.",
-      "With “Reusing tests and helpers with collection scripts and the Postman Package Library”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation."
+      "With “Reusing tests and helpers with collection scripts and the Postman Package Library”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation.",
+      "Assume retries are safe for Reusing tests and helpers with collection scripts and the Postman Package Library even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "For Reusing tests and helpers with collection scripts and the Postman Package Library, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "The simplest reuse level is a collection- or folder-level pre-request/post-response script. Common checks applied at collection level run for every request inside the collection. For reusable JavaScript shared across multiple collections, current Postman provides a Package Library . Teams can publish internal packages containing helper functions and tests and import them into scripts.",
     "tags": [
@@ -3064,9 +12139,9 @@ const guideCoverageQuestionsV12 = [
     "q": "In practice, which description of “Team Workspaces, collaboration, permissions, shared API assets, and source-of-truth decisions” is accurate?",
     "correct": "A Postman Workspace groups related collections, environments, API specifications, mocks, monitors, and other project elements. Shared workspaces let a team collaborate and see synchronized changes.",
     "wrong": [
-      "A Postman Workspace does not group related collections, environments, API specifications, mocks, monitors, and other project elements.",
-      "Shared workspaces do not let a team collaborate and see synchronized changes.",
-      "For “Team Workspaces, collaboration, permissions, shared API assets”, an HTTP 2xx status is sufficient evidence of correctness; schema, business values, authorization, and side effects do not need assertions."
+      "Assume retries are safe for Team Workspaces, collaboration, permissions, shared API assets, and source-of-truth decisions even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "Use production credentials and real customer data for Team Workspaces, collaboration, permissions, shared API assets, and source-of-truth decisions because synthetic environments cannot reveal API defects.",
+      "Treat the client-visible response as the entire contract for Team Workspaces, collaboration, permissions, shared API assets, and source-of-truth decisions; downstream state and emitted events do not need verification."
     ],
     "e": "A Postman Workspace groups related collections, environments, API specifications, mocks, monitors, and other project elements. Shared workspaces let a team collaborate and see synchronized changes. Current Postman supports workspace types for different collaboration models, including internal, partner, and public use cases depending on plan and organization configuration.",
     "tags": [
@@ -3084,9 +12159,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which approach to “TDD and API-first testing with Postman” would be appropriate in a maintainable system?",
     "correct": "TDD (Test-Driven Development) is the practice of writing a failing test first, implementing the smallest change that makes it pass, and then refactoring. Postman can participate in a TDD/API-first workflow when executable API expectations exist before the endpoint implementation.",
     "wrong": [
-      "TDD (Test-Driven Development) is not the practice of writing a failing test first, implementing the smallest change that makes it pass, and then refactoring.",
-      "Postman cannot participate in a TDD/API-first workflow when executable API expectations exist before the endpoint implementation.",
-      "For “TDD and API-first testing with Postman”, scripts should silently ignore assertion failures so a collection run can complete and report as successful."
+      "Assume retries are safe for TDD and API-first testing with Postman even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "Treat the client-visible response as the entire contract for TDD and API-first testing with Postman; downstream state and emitted events do not need verification.",
+      "For TDD and API-first testing with Postman, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "TDD (Test-Driven Development) is the practice of writing a failing test first, implementing the smallest change that makes it pass, and then refactoring. Postman can participate in a TDD/API-first workflow when executable API expectations exist before the endpoint implementation. A Postman collection can encode examples and contract expectations early, while mock servers allow clients to work against agreed examples before the backend exists.",
     "tags": [
@@ -3104,9 +12179,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What is the important distinction in “Testing headers, cookies, redirects, content types, and error handling”?",
     "correct": "Protocol-level assertions are often the fastest way to catch broken contracts. Validate expected Content-Type , cache headers, correlation IDs, pagination links, rate-limit headers, and security-related headers when they are part of the API contract.",
     "wrong": [
-      "Protocol-level assertions are not often the fastest way to catch broken contracts.",
-      "Do not validate expected Content-Type , cache headers, correlation IDs, pagination links, rate-limit headers, and security-related headers when they are part of the API contract.",
-      "When “Testing headers, cookies, redirects, content types, and error handling” uses React or another client framework, asynchronous rendering and state transitions can be ignored by tests because the DOM eventually settles."
+      "When “Testing headers, cookies, redirects, content types, and error handling” uses React or another client framework, asynchronous rendering and state transitions can be ignored by tests because the DOM eventually settles.",
+      "Assume retries are safe for Testing headers, cookies, redirects, content types, and error handling even when operations are not idempotent; duplicate side effects can be cleaned up later.",
+      "Use production credentials and real customer data for Testing headers, cookies, redirects, content types, and error handling because synthetic environments cannot reveal API defects."
     ],
     "e": "Protocol-level assertions are often the fastest way to catch broken contracts. Validate expected Content-Type , cache headers, correlation IDs, pagination links, rate-limit headers, and security-related headers when they are part of the API contract. Use Postman's cookie APIs or cookie manager to inspect session cookies and domain/path behavior. For security-sensitive sessions, test expiry, logout, invalidation, and whether cookies have the expected protection attributes where observable.",
     "tags": [
@@ -3124,9 +12199,9 @@ const guideCoverageQuestionsV12 = [
     "q": "For a practical exercise on “Capstone Postman lab: authenticated Trello-style API workflow with CI and mocks”, which approach is the strongest?",
     "correct": "Build a collection around a disposable Trello-style or local training API. The workflow should authenticate, create a board, create TODO and DONE lists, create a card, move the card, retrieve it, verify state, and clean up every created resource.",
     "wrong": [
-      "Do not build a collection around a disposable Trello-style or local training API.",
-      "The workflow should not authenticate, create a board, create TODO and DONE lists, create a card, move the card, retrieve it, verify state, and clean up every created resource.",
-      "For “Capstone Postman lab”, an HTTP 2xx status is sufficient evidence of correctness; schema, business values, authorization, and side effects do not need assertions."
+      "Validate only the happy-path endpoint in Capstone Postman lab: authenticated Trello-style API workflow with CI and mocks; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
+      "Treat the client-visible response as the entire contract for Capstone Postman lab: authenticated Trello-style API workflow with CI and mocks; downstream state and emitted events do not need verification.",
+      "For Capstone Postman lab: authenticated Trello-style API workflow with CI and mocks, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "Build a collection around a disposable Trello-style or local training API. The workflow should authenticate, create a board, create TODO and DONE lists, create a card, move the card, retrieve it, verify state, and clean up every created resource. Use environment variables for deployment configuration, collection variables for workflow IDs, Vault/CI secrets for credentials, and CSV/JSON iteration data for at least one data-driven scenario.",
     "tags": [
@@ -3146,9 +12221,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What should an engineer or QA practitioner understand about “Response time, throughput, utilization, median, percentiles, and standard deviation”?",
     "correct": "Response time is the elapsed time observed for an operation. Throughput is work completed per unit of time. Utilization describes resource usage such as CPU, memory, connections, or disk. Robustness is the ability to remain correct and recover under unfavorable conditions.",
     "wrong": [
-      "Response time is not the elapsed time observed for an operation.",
-      "Throughput is not work completed per unit of time.",
-      "Running “Response time, throughput, utilization, median, percentiles” directly against Production without traffic controls is preferable because lower environments can never provide useful performance evidence."
+      "Running “Response time, throughput, utilization, median, percentiles” directly against Production without traffic controls is preferable because lower environments can never provide useful performance evidence.",
+      "Treat Response time, throughput, utilization, median, percentiles, and standard deviation as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "For Response time, throughput, utilization, median, percentiles, and standard deviation, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
     ],
     "e": "Response time is the elapsed time observed for an operation. Throughput is work completed per unit of time. Utilization describes resource usage such as CPU, memory, connections, or disk. Robustness is the ability to remain correct and recover under unfavorable conditions. The arithmetic mean is sensitive to outliers; the median is the 50th percentile. Percentiles such as p90, p95, and p99 answer 'what response time was not exceeded by this percentage of observations?' Tail percentiles are often more useful than averages for user experience.",
     "tags": [
@@ -3166,9 +12241,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement avoids a common mistake in “JMeter Test Plans, Thread Groups, samplers, assertions, listeners, and CLI execution”?",
     "correct": "A JMeter Test Plan is a tree of elements. A Thread Group models virtual-user threads and controls count, ramp-up, and loops. Samplers send requests. Assertions validate results. Listeners display or save results.",
     "wrong": [
-      "A JMeter Test Plan is not a tree of elements.",
-      "A Thread Group does not model virtual-user threads and controls count, ramp-up, and loops.",
-      "Average response time is enough to evaluate “JMeter Test Plans, Thread Groups, samplers, assertions, listeners”; percentiles, throughput, error rate, and saturation signals do not materially change the conclusion."
+      "Average response time is enough to evaluate “JMeter Test Plans, Thread Groups, samplers, assertions, listeners”; percentiles, throughput, error rate, and saturation signals do not materially change the conclusion.",
+      "Treat JMeter Test Plans, Thread Groups, samplers, assertions, listeners, and CLI execution as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
+      "Hide untested areas in JMeter Test Plans, Thread Groups, samplers, assertions, listeners, and CLI execution so stakeholders receive a simpler status; residual risk can be inferred from the overall score."
     ],
     "e": "A JMeter Test Plan is a tree of elements. A Thread Group models virtual-user threads and controls count, ramp-up, and loops. Samplers send requests. Assertions validate results. Listeners display or save results. Build and debug a script with small load first. For meaningful load generation, execute in non-GUI/CLI mode and keep expensive listeners disabled, then analyze result files and server-side telemetry.",
     "tags": [
@@ -3186,9 +12261,9 @@ const guideCoverageQuestionsV12 = [
     "q": "In practice, which description of “Parameterization, correlation, dynamic data, and DRY test design” is accurate?",
     "correct": "Parameterization replaces hard-coded values with variables or datasets so virtual users can operate on realistic distinct data. In JMeter, CSV data sources and variables are common approaches.",
     "wrong": [
-      "Parameterization replaces hard-coded values with variables or datasets so virtual users cannot operate on realistic distinct data.",
-      "In JMeter, CSV data sources and variables are not common approaches.",
-      "In “Parameterization, correlation, dynamic data, and DRY test design”, GUI listeners should remain enabled during the full load test because they provide the most accurate server-side measurements."
+      "In “Parameterization, correlation, dynamic data, and DRY test design”, GUI listeners should remain enabled during the full load test because they provide the most accurate server-side measurements.",
+      "Consider a single successful execution sufficient evidence for Parameterization, correlation, dynamic data, and DRY test design, without preserving environment, data, or build context.",
+      "Treat every scenario in Parameterization, correlation, dynamic data, and DRY test design as equally important; prioritization by impact or likelihood would bias the test effort."
     ],
     "e": "Parameterization replaces hard-coded values with variables or datasets so virtual users can operate on realistic distinct data. In JMeter, CSV data sources and variables are common approaches. Correlation captures a dynamic value from an earlier response—session ID, CSRF token, resource ID, timestamp—and injects it into later requests. Without correlation, a recorded script often works only once.",
     "tags": [
@@ -3206,9 +12281,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which approach to “Timers, think time, recording, and realistic pacing” would be appropriate in a maintainable system?",
     "correct": "Real users pause between actions. Think time is the delay between business actions; pacing controls how often a virtual user repeats a journey. Without realistic pacing, a test may generate an impossible request rate.",
     "wrong": [
-      "Real users do not pause between actions.",
-      "Think time is not the delay between business actions; pacing controls how often a virtual user repeats a journey.",
-      "If “Timers, think time, recording, and realistic pacing” meets its target on the load-generator machine, service and infrastructure metrics are unnecessary."
+      "If “Timers, think time, recording, and realistic pacing” meets its target on the load-generator machine, service and infrastructure metrics are unnecessary.",
+      "Treat every scenario in Timers, think time, recording, and realistic pacing as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "Assume one representative input is enough for Timers, think time, recording, and realistic pacing even when valid and invalid partitions, boundaries, or states have different rules."
     ],
     "e": "Real users pause between actions. Think time is the delay between business actions; pacing controls how often a virtual user repeats a journey. Without realistic pacing, a test may generate an impossible request rate. JMeter timers add controlled delays. Choose constant, random, or throughput-oriented pacing based on the workload model. Keep server response time separate from artificial think time when reporting service performance.",
     "tags": [
@@ -3225,9 +12300,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When working with “Serial/parallel execution, controllers, and sampler-error behavior”, which practice is technically sound?",
     "correct": "JMeter threads execute their child elements in order unless controllers or plugins change the flow. Multiple threads run concurrently, so a test can model many independent virtual users while each user's journey remains sequential.",
     "wrong": [
-      "Multiple threads run concurrently, so a test cannot model many independent virtual users while each user's journey remains sequential.",
       "Realistic pacing is unnecessary in “Serial/parallel execution, controllers, and sampler-error behavior”; removing think time always produces a more representative workload.",
-      "Failures encountered during “Serial/parallel execution, controllers, and sampler-error behavior” should be retried until they pass so error rate does not distort the latency measurements."
+      "Failures encountered during “Serial/parallel execution, controllers, and sampler-error behavior” should be retried until they pass so error rate does not distort the latency measurements.",
+      "Design Serial/parallel execution, controllers, and sampler-error behavior around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience."
     ],
     "e": "JMeter threads execute their child elements in order unless controllers or plugins change the flow. Multiple threads run concurrently, so a test can model many independent virtual users while each user's journey remains sequential. Controllers structure execution: Simple Controller groups elements; Loop Controller repeats children; Runtime Controller runs for a duration; Throughput Controller executes a branch according to a percentage/count rule; Once Only Controller runs initialization once per thread; Interleave Controller alternates child branches.",
     "tags": [
@@ -3245,9 +12320,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option best captures the engineering takeaway from “DBMS, relational databases, SQL command families, and CRUD”?",
     "correct": "DBMS (Database Management System) is software that stores, retrieves, secures, and manages data. A relational DBMS organizes data into tables related through keys and queried with SQL.",
     "wrong": [
-      "DBMS (Database Management System) is not software that stores, retrieves, secures, and manages data.",
-      "A relational DBMS does not organize data into tables related through keys and queried with SQL.",
-      "For “DBMS, relational databases, SQL command families, and CRUD”, database constraints and cardinality are documentation details; application code alone should enforce all relationships."
+      "Run destructive queries for DBMS, relational databases, SQL command families, and CRUD in shared environments as long as the transaction can theoretically be rolled back.",
+      "For DBMS, relational databases, SQL command families, and CRUD, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
+      "Use string-built SQL for DBMS, relational databases, SQL command families, and CRUD whenever values are dynamic; parameterization only affects style, not correctness or security."
     ],
     "e": "DBMS (Database Management System) is software that stores, retrieves, secures, and manages data. A relational DBMS organizes data into tables related through keys and queried with SQL. SQL (Structured Query Language) includes several families: DDL (Data Definition Language) such as CREATE/ALTER/DROP; DML (Data Manipulation Language) such as INSERT/UPDATE/DELETE; DQL (Data Query Language) , commonly SELECT; TCL (Transaction Control Language) such as COMMIT/ROLLBACK; and DCL (Data Control Language) such as GRANT/REVOKE.",
     "tags": [
@@ -3264,9 +12339,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What should an engineer or QA practitioner understand about “Tables, rows, columns, primary keys, foreign keys, and referential integrity”?",
     "correct": "A relational table contains rows (records) and columns (attributes). A primary key (PK) uniquely identifies a row. A foreign key (FK) references a key in another table and can enforce referential integrity.",
     "wrong": [
-      "A relational table does not contain rows (records) and columns (attributes).",
-      "A primary key (PK) uniquely does not identify a row.",
-      "If “Tables, rows, columns, primary keys, foreign keys” completes without a runtime exception, schema validation and data-quality checks are redundant."
+      "If “Tables, rows, columns, primary keys, foreign keys” completes without a runtime exception, schema validation and data-quality checks are redundant.",
+      "Treat application code as the only source of integrity for Tables, rows, columns, primary keys, foreign keys, and referential integrity; keys, constraints, and transaction boundaries only duplicate validation.",
+      "Use string-built SQL for Tables, rows, columns, primary keys, foreign keys, and referential integrity whenever values are dynamic; parameterization only affects style, not correctness or security."
     ],
     "e": "A relational table contains rows (records) and columns (attributes). A primary key (PK) uniquely identifies a row. A foreign key (FK) references a key in another table and can enforce referential integrity. QA should test uniqueness, nullability, default values, constraints, cascading behavior, orphan prevention, and how application errors map to database constraints. A UI may look correct while invalid relational state is being stored.",
     "tags": [
@@ -3302,9 +12377,9 @@ const guideCoverageQuestionsV12 = [
     "q": "In practice, which description of “ERD, entities, attributes, relationships, and cardinality” is accurate?",
     "correct": "ERD (Entity-Relationship Diagram) visualizes entities, their attributes, and relationships. An entity represents a thing such as Customer or Order; an attribute is a property such as email, status, or created_at.",
     "wrong": [
-      "ERD (Entity-Relationship Diagram) does not visualize entities, their attributes, and relationships.",
-      "An entity does not represent a thing such as Customer or Order; an attribute is a property such as email, status, or created_at.",
-      "A successful transform in “ERD, entities, attributes, relationships, and cardinality” proves source and destination totals are consistent, so reconciliation checks are unnecessary."
+      "A successful transform in “ERD, entities, attributes, relationships, and cardinality” proves source and destination totals are consistent, so reconciliation checks are unnecessary.",
+      "Treat application code as the only source of integrity for ERD, entities, attributes, relationships, and cardinality; keys, constraints, and transaction boundaries only duplicate validation.",
+      "For ERD, entities, attributes, relationships, and cardinality, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys."
     ],
     "e": "ERD (Entity-Relationship Diagram) visualizes entities, their attributes, and relationships. An entity represents a thing such as Customer or Order; an attribute is a property such as email, status, or created_at. Cardinality describes how many instances can relate: one-to-one, one-to-many, or many-to-many. Many-to-many relationships are usually implemented through a junction/association table.",
     "tags": [
@@ -3340,9 +12415,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When working with “Selenium WebDriver: navigation, browser management, page information, and cleanup”, which practice is technically sound?",
     "correct": "A WebDriver session represents browser automation state. Typical operations include opening a URL, navigating back/forward/refresh, reading title or URL, resizing/maximizing the window, managing cookies/timeouts, and interacting with elements.",
     "wrong": [
-      "A WebDriver session does not represent browser automation state.",
-      "Do not use driver.close() to close the current window and driver.quit() to end the entire browser session and release the driver process.",
-      "The safest design for “Selenium WebDriver” is to share one mutable browser/page/account across the suite so setup work is minimized."
+      "The safest design for “Selenium WebDriver” is to share one mutable browser/page/account across the suite so setup work is minimized.",
+      "Assume element references remain valid after dynamic DOM updates in Selenium WebDriver: navigation, browser management, page information, and cleanup; re-locating elements only adds unnecessary work.",
+      "Use the first matching element in Selenium WebDriver: navigation, browser management, page information, and cleanup whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
     ],
     "e": "A WebDriver session represents browser automation state. Typical operations include opening a URL, navigating back/forward/refresh, reading title or URL, resizing/maximizing the window, managing cookies/timeouts, and interacting with elements. Use driver.close() to close the current window and driver.quit() to end the entire browser session and release the driver process. Framework teardown should run even when a test fails.",
     "tags": [
@@ -3361,8 +12436,8 @@ const guideCoverageQuestionsV12 = [
     "correct": "@Test marks tests; configuration annotations such as @BeforeTest and @AfterTest run around a TestNG test context. Other scopes include suite, class, method, and groups—choose scope according to resource ownership.",
     "wrong": [
       "Other does not scope include suite, class, method, and groups—choose scope according to resource ownership. testng.xml can define suites, classes, groups, parameters, and parallel execution.",
-      "Priority does not control order but should not be used to hide dependencies between tests.",
-      "In “TestNG annotations, suite configuration, priority, data, and parallelism”, browser automation should reproduce every setup action through the UI even when an API can create deterministic preconditions safely."
+      "In “TestNG annotations, suite configuration, priority, data, and parallelism”, browser automation should reproduce every setup action through the UI even when an API can create deterministic preconditions safely.",
+      "For TestNG annotations, suite configuration, priority, data, and parallelism, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
     ],
     "e": "@Test marks tests; configuration annotations such as @BeforeTest and @AfterTest run around a TestNG test context. Other scopes include suite, class, method, and groups—choose scope according to resource ownership. testng.xml can define suites, classes, groups, parameters, and parallel execution. Priority controls order but should not be used to hide dependencies between tests. Prefer independent tests with explicit setup.",
     "tags": [
@@ -3379,9 +12454,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What should an engineer or QA practitioner understand about “Katalon Studio: test cases, suites, objects, and evidence”?",
     "correct": "Katalon Studio packages many automation concerns into one interface: project setup, object repository, test cases, test suites, execution, screenshots, and reports. This can lower the entry barrier for teams that prefer an integrated tool.",
     "wrong": [
-      "This cannot lower the entry barrier for teams that prefer an integrated tool.",
       "The same engineering rules still apply: avoid brittle recorded flows, do not use meaningful abstractions, isolate test data, assert business outcomes, and keep source control/CI in the workflow.",
-      "For “Katalon Studio: test cases, suites, objects, and evidence”, fixed delays and DOM-position selectors are the preferred way to make browser automation deterministic."
+      "Assume a test that passes once locally proves Katalon Studio: test cases, suites, objects, and evidence is deterministic enough for parallel or cross-browser CI execution.",
+      "Change configuration files dynamically inside the pipeline for Katalon Studio: test cases, suites, objects, and evidence instead of mapping stable parameters to commands."
     ],
     "e": "Katalon Studio packages many automation concerns into one interface: project setup, object repository, test cases, test suites, execution, screenshots, and reports. This can lower the entry barrier for teams that prefer an integrated tool. The same engineering rules still apply: avoid brittle recorded flows, use meaningful abstractions, isolate test data, assert business outcomes, and keep source control/CI in the workflow.",
     "tags": [
@@ -3418,9 +12493,9 @@ const guideCoverageQuestionsV12 = [
     "q": "In practice, which description of “Input methods, orientation, lifecycle, and interruptions” is accurate?",
     "correct": "Test touch gestures, physical/virtual keyboards, copy/paste, autofill, voice input where relevant, back-navigation conventions, and accessibility input. Inputs can behave differently by OS, locale, keyboard, and form configuration.",
     "wrong": [
-      "Do not test touch gestures, physical/virtual keyboards, copy/paste, autofill, voice input where relevant, back-navigation conventions, and accessibility input.",
-      "Inputs cannot behave differently by OS, locale, keyboard, and form configuration.",
-      "For “Input methods, orientation, lifecycle, and interruptions”, interoperability with calls, Bluetooth, camera, GPS, or other apps matters only if the feature is explicitly mentioned in the UI."
+      "Delay clarification of ambiguous requirements in Input methods, orientation, lifecycle, and interruptions until after execution; guessing expected behavior keeps testing independent.",
+      "Treat every scenario in Input methods, orientation, lifecycle, and interruptions as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "Design Input methods, orientation, lifecycle, and interruptions around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience."
     ],
     "e": "Test touch gestures, physical/virtual keyboards, copy/paste, autofill, voice input where relevant, back-navigation conventions, and accessibility input. Inputs can behave differently by OS, locale, keyboard, and form configuration. Rotate between portrait and landscape during meaningful states and verify layout, data preservation, media, keyboard, and navigation. Also consider tablets, split-screen, and foldable transitions when supported.",
     "tags": [
@@ -3438,9 +12513,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which approach to “Permissions, notifications, device features, and power consumption” would be appropriate in a maintainable system?",
     "correct": "Request permissions only when needed and handle allow, deny, deny permanently, and later settings changes. Test camera, location, microphone, contacts, storage/media, Bluetooth, and notification permissions according to the app's features.",
     "wrong": [
-      "Do not request permissions only when needed and handle allow, deny, deny permanently, and later settings changes.",
-      "Do not test camera, location, microphone, contacts, storage/media, Bluetooth, and notification permissions according to the app's features.",
-      "Installation, update, rollback, and recovery paths in “Permissions, notifications, device features, and power consumption” can be inferred from a successful clean install."
+      "Installation, update, rollback, and recovery paths in “Permissions, notifications, device features, and power consumption” can be inferred from a successful clean install.",
+      "Treat Permissions, notifications, device features, and power consumption as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Delay clarification of ambiguous requirements in Permissions, notifications, device features, and power consumption until after execution; guessing expected behavior keeps testing independent."
     ],
     "e": "Request permissions only when needed and handle allow, deny, deny permanently, and later settings changes. Test camera, location, microphone, contacts, storage/media, Bluetooth, and notification permissions according to the app's features. Push notifications should be tested for foreground/background/terminated states, deep links, duplicate delivery, ordering, localization, sensitive content on the lock screen, opt-out behavior, and expired sessions.",
     "tags": [
@@ -3458,9 +12533,9 @@ const guideCoverageQuestionsV12 = [
     "q": "When working with “Connectivity, interoperability, co-existence, installation, update, and recovery”, which practice is technically sound?",
     "correct": "Test Wi-Fi, cellular, offline mode, transitions between networks, captive portals, high latency, packet loss, and intermittent connectivity. Verify retries, duplicate prevention, offline queues, conflict resolution, and clear user feedback.",
     "wrong": [
-      "Do not test Wi-Fi, cellular, offline mode, transitions between networks, captive portals, high latency, packet loss, and intermittent connectivity.",
       "Interoperability does not mean working correctly with related systems, OS services, accessories, and external apps.",
-      "For “Connectivity, interoperability, co-existence, installation, update”, one recent emulator at one screen size is sufficient coverage because mobile frameworks normalize device and OS differences."
+      "Treat Connectivity, interoperability, co-existence, installation, update, and recovery as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Consider a single successful execution sufficient evidence for Connectivity, interoperability, co-existence, installation, update, and recovery, without preserving environment, data, or build context."
     ],
     "e": "Test Wi-Fi, cellular, offline mode, transitions between networks, captive portals, high latency, packet loss, and intermittent connectivity. Verify retries, duplicate prevention, offline queues, conflict resolution, and clear user feedback. Interoperability means working correctly with related systems, OS services, accessories, and external apps. Co-existence means behaving correctly while other apps share resources such as audio, location, Bluetooth, storage, or network.",
     "tags": [
@@ -3478,9 +12553,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option best captures the engineering takeaway from “Mobile analytics, performance, usability, and OS preferences”?",
     "correct": "Use production analytics to prioritize device/OS coverage, common journeys, crash hotspots, network conditions, and performance problems. Analytics informs risk; it does not replace designed testing.",
     "wrong": [
-      "Do not use production analytics to prioritize device/OS coverage, common journeys, crash hotspots, network conditions, and performance problems.",
       "Analytics informs risk; it does replace designed testing.",
-      "Interruptions, background/foreground transitions, rotation, permissions, and low-connectivity states are outside the scope of “Mobile analytics, performance, usability, and OS preferences”."
+      "Interruptions, background/foreground transitions, rotation, permissions, and low-connectivity states are outside the scope of “Mobile analytics, performance, usability, and OS preferences”.",
+      "For Mobile analytics, performance, usability, and OS preferences, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
     ],
     "e": "Use production analytics to prioritize device/OS coverage, common journeys, crash hotspots, network conditions, and performance problems. Analytics informs risk; it does not replace designed testing. Mobile usability includes touch-target size, one-handed interaction, keyboard avoidance, navigation conventions, readable content, orientation, accessibility, interruptions, and graceful handling of slow networks.",
     "tags": [
@@ -3499,9 +12574,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement reflects good practice for “Black-box, white-box, and gray-box testing”?",
     "correct": "Black-box testing derives tests from externally observable behavior without requiring knowledge of internal implementation. Equivalence partitions, boundary values, decision tables, state transitions, and pairwise testing are typical black-box techniques.",
     "wrong": [
-      "Equivalence partitions, boundary values, decision tables, state transitions, and pairwise testing are not typical black-box techniques.",
       "White-box testing does not use knowledge of internal code structure or logic to design coverage, such as statements, branches, conditions, and paths.",
-      "A single testing technique used in “Black-box, white-box, and gray-box testing” can replace complementary techniques as long as its numeric coverage reaches 100%."
+      "A single testing technique used in “Black-box, white-box, and gray-box testing” can replace complementary techniques as long as its numeric coverage reaches 100%.",
+      "Use the number of executed cases as the main measure of confidence in Black-box, white-box, and gray-box testing, even if several cases exercise the same behavior and important risks remain uncovered."
     ],
     "e": "Black-box testing derives tests from externally observable behavior without requiring knowledge of internal implementation. Equivalence partitions, boundary values, decision tables, state transitions, and pairwise testing are typical black-box techniques. White-box testing uses knowledge of internal code structure or logic to design coverage, such as statements, branches, conditions, and paths. Gray-box testing informally describes testing with partial internal knowledge—for example an API tester who understands database schema and service architecture.",
     "tags": [
@@ -3520,8 +12595,8 @@ const guideCoverageQuestionsV12 = [
     "correct": "Statement coverage measures whether executable statements were run. Decision coverage (often called branch coverage) checks whether each decision outcome such as true and false was exercised.",
     "wrong": [
       "100% statement coverage automatically implies 100% decision/branch coverage.",
-      "Decision coverage checks whether each executable line ran, not whether decision outcomes were both exercised.",
-      "Coverage metrics prove the tested logic is correct even when assertions do not verify the resulting behavior."
+      "Coverage metrics prove the tested logic is correct even when assertions do not verify the resulting behavior.",
+      "For Statement coverage and decision/branch coverage, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
     ],
     "e": "Statement coverage measures whether executable statements were run. Decision coverage (often called branch coverage) checks whether each decision outcome such as true and false was exercised. 100% statement coverage does not imply 100% branch coverage. A line inside an if may execute while the false path is never tested. Coverage percentages reveal what executed, not whether assertions were correct.",
     "tags": [
@@ -3559,9 +12634,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option is accurate for “Path coverage and loop coverage”?",
     "correct": "Path coverage asks whether distinct execution paths through control flow have been exercised. Complete path coverage quickly becomes infeasible because branches multiply and loops can create an unbounded number of paths.",
     "wrong": [
-      "Complete path coverage quickly does not become infeasible because branches multiply and loops can create an unbounded number of paths.",
       "Agile use of “Path coverage and loop coverage” means planning, documentation, traceability, and explicit acceptance criteria are no longer needed.",
-      "For “Path coverage and loop coverage”, release reporting should list only pass/fail counts; blocked tests, residual risk, scope gaps, and defect severity complicate the message unnecessarily."
+      "Treat Path coverage and loop coverage as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
+      "Design Path coverage and loop coverage around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience."
     ],
     "e": "Path coverage asks whether distinct execution paths through control flow have been exercised. Complete path coverage quickly becomes infeasible because branches multiply and loops can create an unbounded number of paths. Loop coverage focuses on meaningful iteration counts: zero iterations where possible, one iteration, typical multiple iterations, boundary counts, and values around maximum/minimum limits.",
     "tags": [
@@ -3619,9 +12694,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which statement best explains “PMP, CAPM, BCS, TMMi, and adjacent professional frameworks”?",
     "correct": "PMP (Project Management Professional) and CAPM (Certified Associate in Project Management) are project-management credentials from PMI. They are adjacent to QA rather than testing certifications and are more useful when a role includes planning, coordination, risk, and delivery ownership.",
     "wrong": [
-      "PMP (Project Management Professional) and CAPM (Certified Associate in Project Management) are not project-management credentials from PMI.",
-      "They are not adjacent to QA rather than testing certifications and are more useful when a role includes planning, coordination, risk, and delivery ownership.",
-      "A passing regression suite makes exploratory testing and production feedback unnecessary for “PMP, CAPM, BCS, TMMi, and adjacent professional frameworks”."
+      "A passing regression suite makes exploratory testing and production feedback unnecessary for “PMP, CAPM, BCS, TMMi, and adjacent professional frameworks”.",
+      "Treat every scenario in PMP, CAPM, BCS, TMMi, and adjacent professional frameworks as equally important; prioritization by impact or likelihood would bias the test effort.",
+      "Design PMP, CAPM, BCS, TMMi, and adjacent professional frameworks around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience."
     ],
     "e": "PMP (Project Management Professional) and CAPM (Certified Associate in Project Management) are project-management credentials from PMI. They are adjacent to QA rather than testing certifications and are more useful when a role includes planning, coordination, risk, and delivery ownership. BCS , the Chartered Institute for IT (historically the British Computer Society), offers business-analysis and technology qualifications. Business-analysis knowledge is relevant when QA spends significant time refining requirements and business processes.",
     "tags": [
@@ -3638,9 +12713,9 @@ const guideCoverageQuestionsV12 = [
     "q": "What is the main practical takeaway from “Building a T-shaped testing profile”?",
     "correct": "A T-shaped professional has broad collaboration knowledge across adjacent disciplines and deeper expertise in one or a few areas. For QA Automation, the vertical depth might be Playwright/API automation while the horizontal breadth includes SQL, CI/CD, Linux, accessibility, performance, AI, and operations.",
     "wrong": [
-      "For QA Automation, the vertical depth might be Playwright/API automation while the horizontal breadth does not include SQL, CI/CD, Linux, accessibility, performance, AI, and operations.",
       "Breadth does not help diagnose cross-layer failures; depth makes you independently productive.",
-      "Agile use of “Building a T-shaped testing profile” means planning, documentation, traceability, and explicit acceptance criteria are no longer needed."
+      "Agile use of “Building a T-shaped testing profile” means planning, documentation, traceability, and explicit acceptance criteria are no longer needed.",
+      "Delay clarification of ambiguous requirements in Building a T-shaped testing profile until after execution; guessing expected behavior keeps testing independent."
     ],
     "e": "A T-shaped professional has broad collaboration knowledge across adjacent disciplines and deeper expertise in one or a few areas. For QA Automation, the vertical depth might be Playwright/API automation while the horizontal breadth includes SQL, CI/CD, Linux, accessibility, performance, AI, and operations. Breadth helps diagnose cross-layer failures; depth makes you independently productive. The goal is not to claim expert level in every tool, but to understand interfaces well enough to collaborate and know when specialist knowledge is required.",
     "tags": [
@@ -3658,9 +12733,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which option is accurate for “Freelance and crowdtesting platforms: workflow, evidence, and professionalism”?",
     "correct": "Crowdtesting platforms connect testers with short test cycles across devices, countries, and products. The course uses examples such as TesterWork, Test IO, Digivante, and BugFinders; platform availability, eligibility, payment rules, and project volume can change over time.",
     "wrong": [
-      "The course does not use examples such as TesterWork, Test IO, Digivante, and BugFinders; platform availability, eligibility, payment rules, and project volume can change over time.",
       "Success does not depend on reading cycle instructions carefully, matching required devices/locations, avoiding duplicate defects, providing reproducible evidence, respecting confidentiality, and submitting within the requested scope.",
-      "Metrics associated with “Freelance and crowdtesting platforms” should be used as direct measures of individual productivity and compared across teams without context."
+      "Metrics associated with “Freelance and crowdtesting platforms” should be used as direct measures of individual productivity and compared across teams without context.",
+      "Delay clarification of ambiguous requirements in Freelance and crowdtesting platforms: workflow, evidence, and professionalism until after execution; guessing expected behavior keeps testing independent."
     ],
     "e": "Crowdtesting platforms connect testers with short test cycles across devices, countries, and products. The course uses examples such as TesterWork, Test IO, Digivante, and BugFinders; platform availability, eligibility, payment rules, and project volume can change over time. Success depends on reading cycle instructions carefully, matching required devices/locations, avoiding duplicate defects, providing reproducible evidence, respecting confidentiality, and submitting within the requested scope.",
     "tags": [
@@ -3678,9 +12753,9 @@ const guideCoverageQuestionsV12 = [
     "q": "How should “Writing a QA CV and cover letter around evidence” be interpreted in practice?",
     "correct": "A QA CV should lead with target role, relevant years/level, core testing and automation tools, and evidence of impact. Separate professional experience from portfolio projects so recruiters can distinguish production work from self-directed learning.",
     "wrong": [
-      "A QA CV should not lead with target role, relevant years/level, core testing and automation tools, and evidence of impact.",
-      "Do not separate professional experience from portfolio projects so recruiters can distinguish production work from self-directed learning.",
-      "The tool or framework used for “Writing a QA CV and cover letter around evidence” should define the team's process; additional fields and ceremony are evidence of higher quality."
+      "The tool or framework used for “Writing a QA CV and cover letter around evidence” should define the team's process; additional fields and ceremony are evidence of higher quality.",
+      "For Writing a QA CV and cover letter around evidence, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Treat every scenario in Writing a QA CV and cover letter around evidence as equally important; prioritization by impact or likelihood would bias the test effort."
     ],
     "e": "A QA CV should lead with target role, relevant years/level, core testing and automation tools, and evidence of impact. Separate professional experience from portfolio projects so recruiters can distinguish production work from self-directed learning. Use bullets that describe what was tested or built, the tools/layers involved, and why the work mattered. Avoid skill dumps without evidence and avoid inflating seniority. Link a GitHub/portfolio when it demonstrates automation architecture, reports, CI, or documentation.",
     "tags": [
@@ -3718,9 +12793,9 @@ const guideCoverageQuestionsV12 = [
     "q": "If you had to build “Lab 1 — Manual QA: booking, to-do, e-commerce, and UI flows”, which approach would be appropriate?",
     "correct": "Choose a small public/demo application with forms, search, state changes, and navigation. Start from requirements you write yourself, then create a risk list, high-level scenarios, detailed test cases for critical flows, exploratory charters, and a defect report.",
     "wrong": [
-      "Do not choose a small public/demo application with forms, search, state changes, and navigation.",
-      "Do not start from requirements you write yourself, then create a risk list, high-level scenarios, detailed test cases for critical flows, exploratory charters, and a defect report.",
-      "Agile use of “Lab 1 — Manual QA: booking, to-do, e-commerce, and UI flows” means planning, documentation, traceability, and explicit acceptance criteria are no longer needed."
+      "Agile use of “Lab 1 — Manual QA: booking, to-do, e-commerce, and UI flows” means planning, documentation, traceability, and explicit acceptance criteria are no longer needed.",
+      "Consider a single successful execution sufficient evidence for Lab 1 — Manual QA: booking, to-do, e-commerce, and UI flows, without preserving environment, data, or build context.",
+      "Delay clarification of ambiguous requirements in Lab 1 — Manual QA: booking, to-do, e-commerce, and UI flows until after execution; guessing expected behavior keeps testing independent."
     ],
     "e": "Choose a small public/demo application with forms, search, state changes, and navigation. Start from requirements you write yourself, then create a risk list, high-level scenarios, detailed test cases for critical flows, exploratory charters, and a defect report. Use a spreadsheet for the first iteration if that keeps the workflow simple. Suggested columns: ID, requirement/risk, scenario, preconditions, data, steps, expected result, priority, execution status, defect link, and evidence.",
     "tags": [
@@ -3738,9 +12813,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which plan best implements “Lab 2 — API project: authenticated CRUD workflow in Postman”?",
     "correct": "Use a disposable training API or local service. Build a collection that authenticates, creates a resource, captures its ID, retrieves it, updates it, verifies persistence, and deletes it. Add negative and authorization tests.",
     "wrong": [
-      "Do not use a disposable training API or local service.",
-      "Do not build a collection that authenticates, creates a resource, captures its ID, retrieves it, updates it, verifies persistence, and deletes it.",
-      "Secrets used by “Lab 2 — API project: authenticated CRUD workflow in Postman” are safe as ordinary shared variables as long as the workspace or repository is private."
+      "Secrets used by “Lab 2 — API project: authenticated CRUD workflow in Postman” are safe as ordinary shared variables as long as the workspace or repository is private.",
+      "Validate only the happy-path endpoint in Lab 2 — API project: authenticated CRUD workflow in Postman; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
+      "Treat the client-visible response as the entire contract for Lab 2 — API project: authenticated CRUD workflow in Postman; downstream state and emitted events do not need verification."
     ],
     "e": "Use a disposable training API or local service. Build a collection that authenticates, creates a resource, captures its ID, retrieves it, updates it, verifies persistence, and deletes it. Add negative and authorization tests. Use environment variables for base URL/configuration and collection variables for dynamic IDs. Validate status codes, headers, schema, key business fields, error formats, and final state. Export/share only non-secret configuration.",
     "tags": [
@@ -3758,9 +12833,9 @@ const guideCoverageQuestionsV12 = [
     "q": "For a practical exercise on “Lab 3 — JMeter performance test from script to analysis”, which approach is the strongest?",
     "correct": "Define a target SLO and workload before opening JMeter. Create a small Test Plan with one Thread Group, HTTP defaults, requests, assertions, realistic test data, and timers. Debug with one or two users.",
     "wrong": [
-      "Do not define a target SLO and workload before opening JMeter.",
-      "Do not create a small Test Plan with one Thread Group, HTTP defaults, requests, assertions, realistic test data, and timers.",
-      "Realistic pacing is unnecessary in “Lab 3 — JMeter performance test from script to analysis”; removing think time always produces a more representative workload."
+      "Realistic pacing is unnecessary in “Lab 3 — JMeter performance test from script to analysis”; removing think time always produces a more representative workload.",
+      "Judge Lab 3 — JMeter performance test from script to analysis from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes.",
+      "Run Lab 3 — JMeter performance test from script to analysis only after functional testing is complete, because non-functional risks cannot affect architecture or release planning."
     ],
     "e": "Define a target SLO and workload before opening JMeter. Create a small Test Plan with one Thread Group, HTTP defaults, requests, assertions, realistic test data, and timers. Debug with one or two users. Parameterize users, correlate dynamic tokens/IDs, then run non-GUI load with a controlled ramp-up and steady state. Capture JMeter results plus application CPU, memory, database, queue, and error metrics.",
     "tags": [
@@ -3778,9 +12853,9 @@ const guideCoverageQuestionsV12 = [
     "q": "Which implementation would best demonstrate “Lab 4 — Java + Selenium + TestNG automation” in a portfolio or interview?",
     "correct": "Create a Maven project and add Selenium and TestNG. Implement a small Page Object layer, explicit waits, isolated setup/teardown, and tests for login plus one table/form workflow.",
     "wrong": [
-      "Do not create a Maven project and add Selenium and TestNG.",
-      "Do not run the suite from the command line, then configure testng.xml or Maven test execution.",
-      "The best way to scale “Lab 4 — Java + Selenium + TestNG automation” is to make tests depend on a fixed execution order so later tests can reuse earlier state."
+      "The best way to scale “Lab 4 — Java + Selenium + TestNG automation” is to make tests depend on a fixed execution order so later tests can reuse earlier state.",
+      "Change configuration files dynamically inside the pipeline for Lab 4 — Java + Selenium + TestNG automation instead of mapping stable parameters to commands.",
+      "Increase retries for Lab 4 — Java + Selenium + TestNG automation until CI is green rather than preserving first-attempt failures and classifying recurring flakes."
     ],
     "e": "Create a Maven project and add Selenium and TestNG. Implement a small Page Object layer, explicit waits, isolated setup/teardown, and tests for login plus one table/form workflow. Run the suite from the command line, then configure testng.xml or Maven test execution. Add screenshots/logs on failure and one data-driven test. Avoid ordering dependencies.",
     "tags": [
@@ -3801,7 +12876,7 @@ const guideCoverageQuestionsV12 = [
     "wrong": [
       "Zephyr Scale is most useful when every test is duplicated per release so historical cycles never reuse shared cases.",
       "Traceability is unnecessary once a case has a pass/fail status; links to requirements, defects, or releases only add maintenance cost.",
-      "Parameterized or reusable cases should be avoided because explicit duplication produces clearer reporting."
+      "Treat Lab 5 — Test-management workflow in Qase or Zephyr Scale as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value."
     ],
     "e": "Create a small test repository grouped by feature, link cases to requirements/issues, parameterize one reusable test, and create a test cycle for a release candidate. Execute the cycle and create at least one linked defect. Add one BDD/Gherkin case, one data-driven case, and a test plan that groups multiple cycles or configurations. Generate a report showing progress, pass/fail/blocked state, and traceability.",
     "tags": [
@@ -3855,10 +12930,115 @@ const guideCoverageQuestionsV12 = [
     ],
     "guide": "learning-guide.html#quick-checklists",
     "topic": "Compact checklists for common QA scenarios"
+  },
+  {
+    "r": "qa",
+    "q": "How would you turn a small booking, to-do, or e-commerce demo into a manual QA project?",
+    "correct": "Start with requirements and risk, create critical scenarios and detailed cases, run exploratory charters, report reproducible defects, and summarize release risk.",
+    "wrong": [
+      "Write automated scripts first and skip requirement analysis.",
+      "Test only the happy path because demo applications have no risk.",
+      "Report defects without environment, evidence, or expected behavior."
+    ],
+    "e": "A credible manual QA project demonstrates the complete quality loop: understanding behavior, designing coverage, gathering evidence, tracking defects, and communicating residual risk.",
+    "tags": [
+      "Quality Assurance",
+      "Manual Testing",
+      "Test Planning",
+      "Test Strategy",
+      "Exploratory Testing",
+      "Defect Tracking"
+    ],
+    "guide": "learning-guide.html#qa-design",
+    "topic": "Manual QA project workflow"
+  },
+  {
+    "r": "engineering",
+    "q": "How would you design an authenticated CRUD API project in Postman?",
+    "correct": "Model login and resource lifecycle requests in a collection, use scoped variables and scripts to pass tokens and IDs, assert contracts and business data, then run it with controlled environment data.",
+    "wrong": [
+      "Put every token and ID directly into each request.",
+      "Check only that every response returns HTTP 200.",
+      "Use Production credentials so the collection feels realistic."
+    ],
+    "e": "A useful Postman project demonstrates authentication, request chaining, reusable variables, assertions, negative paths, and safe environment separation.",
+    "tags": [
+      "API Testing",
+      "Postman",
+      "REST APIs",
+      "API Integration",
+      "JSON",
+      "Authentication Testing"
+    ],
+    "guide": "learning-guide.html#postman-collections",
+    "topic": "Authenticated CRUD API workflow"
+  },
+  {
+    "r": "qa",
+    "q": "How would you build a JMeter performance test from script to analysis?",
+    "correct": "Define an SLO and workload profile, parameterize realistic users and data, correlate dynamic values, run controlled load stages, and interpret client, service, and infrastructure metrics together.",
+    "wrong": [
+      "Increase virtual users until the laptop becomes unresponsive.",
+      "Use one average response-time number as the only result.",
+      "Record a browser script and run it unchanged against Production."
+    ],
+    "e": "Performance testing is an experiment. A useful result connects workload, response-time percentiles, errors, saturation signals, and the systems behavior under test.",
+    "tags": [
+      "Performance Testing",
+      "JMeter",
+      "Observability",
+      "Test Strategy",
+      "Data Analysis"
+    ],
+    "guide": "learning-guide.html#performance-jmeter-bootcamp",
+    "topic": "JMeter performance project"
+  },
+  {
+    "r": "playwright",
+    "q": "How would you structure a Java Selenium and TestNG automation project?",
+    "correct": "Use Maven dependencies, focused page objects, explicit synchronization, isolated setup and teardown, clear test data, failure evidence, and command-line execution in CI.",
+    "wrong": [
+      "Put locators, assertions, data, and driver setup in one long test method.",
+      "Use Thread.sleep after every interaction.",
+      "Make every test depend on the previous tests completion."
+    ],
+    "e": "The project should demonstrate reliable automation engineering: separation of concerns, deterministic waits, isolation, reporting, and repeatable CI execution.",
+    "tags": [
+      "Test Automation",
+      "Selenium",
+      "Java",
+      "TestNG",
+      "Maven",
+      "Page Object Model",
+      "CI/CD"
+    ],
+    "guide": "learning-guide.html#selenium-webdriver-basics",
+    "topic": "Selenium TestNG automation project"
+  },
+  {
+    "r": "qa",
+    "q": "How would you run a test-management project in Qase or Zephyr Scale?",
+    "correct": "Organize cases by feature, link them to requirements and defects, parameterize reusable cases, execute release cycles, and report pass, fail, blocked, and traceability status.",
+    "wrong": [
+      "Store all test cases in one unstructured document.",
+      "Delete execution history after each release.",
+      "Treat a test-management tool as a replacement for test design."
+    ],
+    "e": "Test-management tools support visibility and traceability; their value comes from a maintainable information model and evidence-based release reporting.",
+    "tags": [
+      "Quality Assurance",
+      "Test Traceability",
+      "Test Reporting",
+      "Defect Tracking",
+      "BDD",
+      "Test Planning"
+    ],
+    "guide": "learning-guide.html#test-management-ecosystem",
+    "topic": "Test management project workflow"
   }
 ];
 
-function addCoverageQuestionV12(item) {
+function addCompleteQuestion(item) {
   const correctIndex = (questions.length * 3) % 4;
   const answers = [...item.wrong];
   answers.splice(correctIndex, 0, item.correct);
@@ -3869,382 +13049,70 @@ function addCoverageQuestionV12(item) {
     a: answers,
     c: correctIndex,
     e: item.e,
-    tags: [...new Set(item.tags)],
-    guide: item.guide,
-    guideTopic: item.topic
+    tags: [...new Set(item.tags || [])],
+    ...(item.guide ? { guide: item.guide } : {}),
+    ...(item.topic ? { guideTopic: item.topic } : {})
   });
 }
 
-guideCoverageQuestionsV12.forEach(addCoverageQuestionV12);
+completeQuestionBank.forEach(addCompleteQuestion);
 
-// Keep the UI in sync because app.js initializes filters and metrics before this file loads.
-const allQuestionTags = [...new Set(questions.flatMap(item => item.tags))].sort();
-const existingTagValues = new Set([...tagFilter.options].map(option => option.value));
-allQuestionTags.forEach(tag => {
-  if (!existingTagValues.has(tag)) {
-    tagFilter.add(new Option(tag, tag));
-    existingTagValues.add(tag);
-  }
-});
+// Rebuild the topic filter from the authoritative bank.
+if (typeof tagFilter !== 'undefined' && tagFilter) {
+  [...tagFilter.options]
+    .filter(option => option.value !== 'all')
+    .forEach(option => option.remove());
 
-const totalQuestionsV12 = questions.length;
-const metricStrongV12 = document.querySelector('.metrics strong');
-if (metricStrongV12) metricStrongV12.textContent = totalQuestionsV12;
-
-const heroCopyV12 = document.querySelector('.hero > p');
-if (heroCopyV12) {
-  heroCopyV12.textContent = `Practice ${totalQuestionsV12} explained questions across five learning paths, then use the complete Learning Guide to study every concept in depth.`;
+  const allQuestionTags = [...new Set(questions.flatMap(item => item.tags))].sort();
+  allQuestionTags.forEach(tag => tagFilter.add(new Option(tag, tag)));
+  tagFilter.value = 'all';
 }
 
-const metricBlocksV12 = document.querySelectorAll('.metrics > div');
-if (metricBlocksV12.length >= 3) {
-  metricBlocksV12[2].querySelector('strong').textContent = '100+';
-  metricBlocksV12[2].querySelector('span').textContent = 'questions in every path';
+// Keep totals and the "All" question-count option synchronized with the bank.
+const completeQuestionCount = questions.length;
+const completeMetric = document.querySelector('.metrics strong');
+if (completeMetric) completeMetric.textContent = completeQuestionCount;
+
+const completeHeroCopy = document.querySelector('.hero > p');
+if (completeHeroCopy) {
+  completeHeroCopy.textContent = `Practice ${completeQuestionCount} explained questions across five learning paths, then use the complete Learning Guide to study every concept in depth.`;
 }
 
-const countSelectV12 = document.querySelector('#questionCount');
+const completeMetricBlocks = document.querySelectorAll('.metrics > div');
+if (completeMetricBlocks.length >= 3) {
+  const strong = completeMetricBlocks[2].querySelector('strong');
+  const span = completeMetricBlocks[2].querySelector('span');
+  if (strong) strong.textContent = '100+';
+  if (span) span.textContent = 'questions in every path';
+}
 
-// Add a study link to newly-added questions after feedback is rendered.
-const answerBeforeV12 = answer;
-answer = function(choice) {
-  const current = active[index];
-  answerBeforeV12(choice);
+if (typeof questionCount !== 'undefined' && questionCount) {
+  [...questionCount.options]
+    .filter(option => option.textContent.startsWith('All ('))
+    .forEach(option => option.remove());
+  questionCount.add(new Option(`All (${completeQuestionCount})`, String(completeQuestionCount)));
+  questionCount.value = String(completeQuestionCount);
+}
 
-  if (current && current.guide) {
-    const explanation = document.querySelector('#feedback .explanation');
-    if (explanation && !explanation.querySelector('.guide-link-v12')) {
-      const link = document.createElement('p');
-      link.className = 'guide-link-v12';
-      link.innerHTML = `<a href="${current.guide}">Study this topic in the Learning Guide →</a>`;
-      explanation.append(link);
+// Add a Learning Guide link when a question has a guide target.
+if (typeof answer === 'function') {
+  const completeQuestionBankAnswer = answer;
+  answer = function(choice) {
+    const current = active[index];
+    completeQuestionBankAnswer(choice);
+
+    if (current && current.guide) {
+      const explanation = document.querySelector('#feedback .explanation');
+      if (explanation && !explanation.querySelector('.guide-link-question-bank')) {
+        const link = document.createElement('p');
+        link.className = 'guide-link-question-bank';
+        link.innerHTML = `<a href="${current.guide}">Study this topic in the Learning Guide →</a>`;
+        explanation.append(link);
+      }
     }
-  }
-};
-
-// Practice-project scenarios retained as interview questions after the lab chapter was removed.
-const handsOnProjectQuestions = [
-  {r:'qa',q:'How would you turn a small booking, to-do, or e-commerce demo into a manual QA project?',correct:'Start with requirements and risk, create critical scenarios and detailed cases, run exploratory charters, report reproducible defects, and summarize release risk.',wrong:['Write automated scripts first and skip requirement analysis.','Test only the happy path because demo applications have no risk.','Report defects without environment, evidence, or expected behavior.'],e:'A credible manual QA project demonstrates the complete quality loop: understanding behavior, designing coverage, gathering evidence, tracking defects, and communicating residual risk.',tags:['Quality Assurance','Manual Testing','Test Planning','Test Strategy','Exploratory Testing','Defect Tracking'],guide:'learning-guide.html#qa-design',topic:'Manual QA project workflow'},
-  {r:'engineering',q:'How would you design an authenticated CRUD API project in Postman?',correct:'Model login and resource lifecycle requests in a collection, use scoped variables and scripts to pass tokens and IDs, assert contracts and business data, then run it with controlled environment data.',wrong:['Put every token and ID directly into each request.','Check only that every response returns HTTP 200.','Use Production credentials so the collection feels realistic.'],e:'A useful Postman project demonstrates authentication, request chaining, reusable variables, assertions, negative paths, and safe environment separation.',tags:['API Testing','Postman','REST APIs','API Integration','JSON','Authentication Testing'],guide:'learning-guide.html#postman-collections',topic:'Authenticated CRUD API workflow'},
-  {r:'qa',q:'How would you build a JMeter performance test from script to analysis?',correct:'Define an SLO and workload profile, parameterize realistic users and data, correlate dynamic values, run controlled load stages, and interpret client, service, and infrastructure metrics together.',wrong:['Increase virtual users until the laptop becomes unresponsive.','Use one average response-time number as the only result.','Record a browser script and run it unchanged against Production.'],e:'Performance testing is an experiment. A useful result connects workload, response-time percentiles, errors, saturation signals, and the systems behavior under test.',tags:['Performance Testing','JMeter','Observability','Test Strategy','Data Analysis'],guide:'learning-guide.html#performance-jmeter-bootcamp',topic:'JMeter performance project'},
-  {r:'playwright',q:'How would you structure a Java Selenium and TestNG automation project?',correct:'Use Maven dependencies, focused page objects, explicit synchronization, isolated setup and teardown, clear test data, failure evidence, and command-line execution in CI.',wrong:['Put locators, assertions, data, and driver setup in one long test method.','Use Thread.sleep after every interaction.','Make every test depend on the previous tests completion.'],e:'The project should demonstrate reliable automation engineering: separation of concerns, deterministic waits, isolation, reporting, and repeatable CI execution.',tags:['Test Automation','Selenium','Java','TestNG','Maven','Page Object Model','CI/CD'],guide:'learning-guide.html#selenium-webdriver-basics',topic:'Selenium TestNG automation project'},
-  {r:'qa',q:'How would you run a test-management project in Qase or Zephyr Scale?',correct:'Organize cases by feature, link them to requirements and defects, parameterize reusable cases, execute release cycles, and report pass, fail, blocked, and traceability status.',wrong:['Store all test cases in one unstructured document.','Delete execution history after each release.','Treat a test-management tool as a replacement for test design.'],e:'Test-management tools support visibility and traceability; their value comes from a maintainable information model and evidence-based release reporting.',tags:['Quality Assurance','Test Traceability','Test Reporting','Defect Tracking','BDD','Test Planning'],guide:'learning-guide.html#test-management-ecosystem',topic:'Test management project workflow'}
-];
-handsOnProjectQuestions.forEach(addCoverageQuestionV12);
-const handsOnTags = [...new Set(handsOnProjectQuestions.flatMap(item => item.tags))];
-handsOnTags.forEach(tag => { if (![...tagFilter.options].some(option => option.value === tag)) tagFilter.add(new Option(tag, tag)); });
-const totalWithHandsOn = questions.length;
-if (metricStrongV12) metricStrongV12.textContent = totalWithHandsOn;
-if (heroCopyV12) heroCopyV12.textContent = `Practice ${totalWithHandsOn} explained questions across five learning paths, then use the complete Learning Guide to study every concept in depth.`;
-if (countSelectV12) { [...countSelectV12.options].filter(option => option.textContent.startsWith("All (")).forEach(option => option.remove()); countSelectV12.add(new Option(`All (${totalWithHandsOn})`, String(totalWithHandsOn))); countSelectV12.value = String(totalWithHandsOn); }
-
-// Replace the original app.js fallback distractors with question-aware alternatives.
-// app.js used the same three wrong answers for every question created through add().
-const legacyFallbackDistractorsV12Fix = new Set([
-  'Rely on fixed sleeps and assumptions',
-  'Ignore the evidence and rerun without investigating',
-  'Treat it as a UI-only concern'
-]);
-
-function legacyHashV12Fix(value) {
-  let hash = 2166136261;
-  for (let i = 0; i < value.length; i++) {
-    hash ^= value.charCodeAt(i);
-    hash = Math.imul(hash, 16777619);
-  }
-  return hash >>> 0;
+  };
 }
-
-function legacyContextV12Fix(question) {
-  const text = question.q.replace(/\s+/g, ' ').trim();
-  const patterns = [
-    [/^What is the strongest first step when validating (.+)\?$/i, 'initial validation'],
-    [/^Which practice makes (.+)\?$/i, 'reliable practice'],
-    [/^How would you make (.+)\?$/i, 'implementation'],
-    [/^What should a production-ready approach to (.+)\?$/i, 'production readiness'],
-    [/^How do you evaluate whether (.+)\?$/i, 'evaluation'],
-    [/^What is the main goal of (.+)\?$/i, 'purpose'],
-    [/^What is the difference between (.+)\?$/i, 'comparison'],
-    [/^What is (.+)\?$/i, 'definition'],
-    [/^Why (?:is|are|does|do|can|should) (.+)\?$/i, 'reasoning'],
-    [/^How (?:do|does|would|should|can) (.+)\?$/i, 'implementation'],
-    [/^Which (.+)\?$/i, 'selection']
-  ];
-  for (const [pattern, phase] of patterns) {
-    const match = text.match(pattern);
-    if (match) {
-      return { topic: match[1].replace(/[?.]+$/g, '').trim(), phase };
-    }
-  }
-  return { topic: text.replace(/[?.]+$/g, ''), phase: 'analysis' };
-}
-
-const legacyDistractorPoolsV12Fix = {
-  docker: [
-    (t,p)=>`For ${p} of ${t}, treat a container as healthy as soon as its process is running; application readiness does not need a separate check.`,
-    (t,p)=>`For ${p} of ${t}, validate only that the image builds successfully; runtime networking, volumes, permissions, and health checks can be ignored.`,
-    (t,p)=>`For ${p} of ${t}, prefer unpinned latest images so every run silently picks up dependency changes.`,
-    (t,p)=>`For ${p} of ${t}, keep durable application data only in the container writable layer because recreation preserves it automatically.`,
-    (t,p)=>`For ${p} of ${t}, bake credentials into the image so configuration is identical in every environment.`,
-    (t,p)=>`For ${p} of ${t}, use a fixed sleep as the readiness check because process startup time is a reliable proxy for service health.`,
-    (t,p)=>`For ${p} of ${t}, expose every service port directly on the host; internal container networking adds no useful isolation.`,
-    (t,p)=>`For ${p} of ${t}, run the application as root by default because the container boundary makes user permissions irrelevant.`,
-    (t,p)=>`For ${p} of ${t}, preserve disposable test volumes between runs so hidden state can make later executions faster.`,
-    (t,p)=>`For ${p} of ${t}, assume a successful Docker build proves the application will behave correctly in the target runtime.`
-  ],
-  browser: [
-    (t,p)=>`For ${p} of ${t}, prefer deep CSS or absolute XPath selectors because they describe the DOM more precisely than semantic locators.`,
-    (t,p)=>`For ${p} of ${t}, add fixed sleeps after interactions instead of waiting for the observable state the user depends on.`,
-    (t,p)=>`For ${p} of ${t}, reuse one browser session and mutable account across unrelated tests so setup cost stays low.`,
-    (t,p)=>`For ${p} of ${t}, make tests depend on execution order so later cases can reuse state created by earlier ones.`,
-    (t,p)=>`For ${p} of ${t}, retry failures until they pass and discard the failed attempts from the report.`,
-    (t,p)=>`For ${p} of ${t}, treat a visible UI change as sufficient evidence without checking network, state, or persisted data.`,
-    (t,p)=>`For ${p} of ${t}, keep locators, setup, test data, assertions, and reporting in one large test method to reduce abstraction.`,
-    (t,p)=>`For ${p} of ${t}, share mutable fixtures between parallel workers because browser isolation prevents all cross-test interference.`,
-    (t,p)=>`For ${p} of ${t}, use the first matching element whenever a locator is ambiguous instead of narrowing it by business context.`,
-    (t,p)=>`For ${p} of ${t}, collect screenshots only after successful runs; failing runs do not need traces, logs, or network evidence.`
-  ],
-  api: [
-    (t,p)=>`For ${p} of ${t}, consider the check complete when the HTTP status is successful; response schema, business values, and side effects are secondary.`,
-    (t,p)=>`For ${p} of ${t}, hard-code tokens and resource IDs directly in requests so chained workflows remain simple.`,
-    (t,p)=>`For ${p} of ${t}, test only valid requests because malformed, unauthorized, duplicate, and boundary inputs are client responsibilities.`,
-    (t,p)=>`For ${p} of ${t}, assume retries are harmless even when the operation has side effects and no idempotency protection.`,
-    (t,p)=>`For ${p} of ${t}, validate only the response body and ignore headers, status semantics, persistence, and downstream effects.`,
-    (t,p)=>`For ${p} of ${t}, use production credentials and data because synthetic environments cannot reveal meaningful API defects.`,
-    (t,p)=>`For ${p} of ${t}, treat a documented schema as proof that runtime responses always satisfy the contract.`,
-    (t,p)=>`For ${p} of ${t}, accept internal stack traces in error responses because they make client-side debugging easier.`,
-    (t,p)=>`For ${p} of ${t}, share one mutable resource across parallel tests instead of creating isolated test data.`,
-    (t,p)=>`For ${p} of ${t}, check only one happy-path example and infer that pagination, rate limits, authorization, and failures behave consistently.`
-  ],
-  sql: [
-    (t,p)=>`For ${p} of ${t}, run destructive write queries in shared environments whenever they make the test easier to set up.`,
-    (t,p)=>`For ${p} of ${t}, compare only the row count; keys, joins, nullability, timestamps, and business invariants do not need separate validation.`,
-    (t,p)=>`For ${p} of ${t}, concatenate user-controlled values into SQL strings instead of using parameters so the query is easier to read.`,
-    (t,p)=>`For ${p} of ${t}, assume database order is deterministic even when the query has no explicit ORDER BY.`,
-    (t,p)=>`For ${p} of ${t}, treat an index as universally beneficial and add one to every filtered column regardless of write cost or selectivity.`,
-    (t,p)=>`For ${p} of ${t}, ignore transaction boundaries because each SQL statement is independent from application behavior.`,
-    (t,p)=>`For ${p} of ${t}, validate UI values directly against any database replica without considering caching, lag, or transformation layers.`,
-    (t,p)=>`For ${p} of ${t}, keep database connections open across the whole test suite because cleanup has no effect on reliability.`,
-    (t,p)=>`For ${p} of ${t}, infer referential integrity from matching column names rather than checking keys and constraints.`,
-    (t,p)=>`For ${p} of ${t}, use production tables for test setup so test data always matches real customer states.`
-  ],
-  git: [
-    (t,p)=>`For ${p} of ${t}, resolve conflicts by always taking one side of the diff without understanding the intended combined behavior.`,
-    (t,p)=>`For ${p} of ${t}, rebase shared public history freely because commit identities remain unchanged.`,
-    (t,p)=>`For ${p} of ${t}, stage the entire working tree before reviewing the diff so no local change is accidentally omitted.`,
-    (t,p)=>`For ${p} of ${t}, treat fetch and pull as identical operations with the same effect on the current branch.`,
-    (t,p)=>`For ${p} of ${t}, use force-push as the normal way to synchronize a branch after any conflict.`,
-    (t,p)=>`For ${p} of ${t}, combine unrelated changes and generated files in one large commit because history is only archival.`,
-    (t,p)=>`For ${p} of ${t}, skip tests after resolving a merge conflict because Git guarantees the merged behavior is valid.`,
-    (t,p)=>`For ${p} of ${t}, commit secrets temporarily and remove them in a later commit because deleted history is inaccessible.`,
-    (t,p)=>`For ${p} of ${t}, merge whichever branch is newer without inspecting the actual file-level changes.`,
-    (t,p)=>`For ${p} of ${t}, treat branch naming and commit messages as substitutes for reviewing the resulting code.`
-  ],
-  ci: [
-    (t,p)=>`For ${p} of ${t}, rerun a failing pipeline until it becomes green instead of preserving and comparing the failed environment evidence.`,
-    (t,p)=>`For ${p} of ${t}, solve CI-only failures primarily by increasing timeouts rather than comparing versions, resources, data, and configuration.`,
-    (t,p)=>`For ${p} of ${t}, keep build agents permanently stateful so cached files and previous workspaces can influence later jobs.`,
-    (t,p)=>`For ${p} of ${t}, publish reports only on successful runs because failed pipelines already provide enough information in the exit code.`,
-    (t,p)=>`For ${p} of ${t}, put credentials directly in the workflow file so every runner receives exactly the same configuration.`,
-    (t,p)=>`For ${p} of ${t}, run every test at the slowest end-to-end layer because CI parallelism removes the cost difference.`,
-    (t,p)=>`For ${p} of ${t}, allow deployment to continue after a failed quality gate when the failure is intermittent.`,
-    (t,p)=>`For ${p} of ${t}, use different unpinned runtime versions locally and in CI and treat any resulting mismatch as test flakiness.`,
-    (t,p)=>`For ${p} of ${t}, share mutable test accounts among concurrent jobs so setup remains centralized.`,
-    (t,p)=>`For ${p} of ${t}, optimize for a green dashboard even if retries hide recurring flakes and failed attempts.`
-  ],
-  security: [
-    (t,p)=>`For ${p} of ${t}, treat authentication as sufficient authorization; once identity is known, resource-level permission checks are unnecessary.`,
-    (t,p)=>`For ${p} of ${t}, log full tokens and credentials because security incidents require complete request evidence.`,
-    (t,p)=>`For ${p} of ${t}, trust client-side validation to block unauthorized or malformed requests before they reach the server.`,
-    (t,p)=>`For ${p} of ${t}, return detailed internal errors and stack traces to untrusted clients so failures are easier to diagnose.`,
-    (t,p)=>`For ${p} of ${t}, use one long-lived credential in every environment to reduce secret-rotation complexity.`,
-    (t,p)=>`For ${p} of ${t}, infer access control from hidden UI elements instead of testing the underlying API permissions directly.`,
-    (t,p)=>`For ${p} of ${t}, store secrets in versioned configuration as long as the repository is intended for internal use.`,
-    (t,p)=>`For ${p} of ${t}, disable rate limits in authentication flows because they can interfere with automated tests.`,
-    (t,p)=>`For ${p} of ${t}, assume encrypted transport makes input validation and least privilege unnecessary.`,
-    (t,p)=>`For ${p} of ${t}, reuse production credentials in test automation so permission coverage matches real users exactly.`
-  ],
-  performance: [
-    (t,p)=>`For ${p} of ${t}, increase load until the generator machine becomes saturated and use that point as the systems capacity.`,
-    (t,p)=>`For ${p} of ${t}, report only average response time; percentiles, throughput, errors, and saturation signals add little value.`,
-    (t,p)=>`For ${p} of ${t}, run the heaviest workload first without a warm-up, baseline, or defined service objective.`,
-    (t,p)=>`For ${p} of ${t}, use identical cached requests and data for every virtual user because realism is less important than request volume.`,
-    (t,p)=>`For ${p} of ${t}, treat client-side timing as sufficient evidence and ignore service and infrastructure telemetry.`,
-    (t,p)=>`For ${p} of ${t}, compare runs with different datasets and environments without recording those differences.`,
-    (t,p)=>`For ${p} of ${t}, assume a zero-error run is acceptable even when latency violates the user-facing SLO.`,
-    (t,p)=>`For ${p} of ${t}, use production at peak traffic for unscheduled stress tests because synthetic environments are less representative.`,
-    (t,p)=>`For ${p} of ${t}, omit think time and pacing so the workload represents the fastest possible user behavior.`,
-    (t,p)=>`For ${p} of ${t}, diagnose a slowdown only from the test tool report without correlating CPU, memory, queues, databases, or downstream services.`
-  ],
-  rag: [
-    (t,p)=>`For ${p} of ${t}, judge retrieval quality only by whether the final answer sounds fluent; source relevance does not need separate measurement.`,
-    (t,p)=>`For ${p} of ${t}, retrieve the largest possible number of chunks because more context always improves model accuracy.`,
-    (t,p)=>`For ${p} of ${t}, use one embedding and chunking strategy for every document type without evaluating recall or precision.`,
-    (t,p)=>`For ${p} of ${t}, let the model answer from memory whenever retrieval returns weak evidence instead of exposing uncertainty.`,
-    (t,p)=>`For ${p} of ${t}, treat vector similarity as proof that a passage is factually sufficient to support the answer.`,
-    (t,p)=>`For ${p} of ${t}, omit metadata and access filters because semantic similarity should determine every retrieved document.`,
-    (t,p)=>`For ${p} of ${t}, evaluate only generated answers and skip retrieval-specific datasets, relevance labels, and citation checks.`,
-    (t,p)=>`For ${p} of ${t}, re-embed the corpus with a different model without rebuilding or versioning the existing index.`,
-    (t,p)=>`For ${p} of ${t}, combine unrelated documents into very large chunks so the model receives maximum context per retrieval.`,
-    (t,p)=>`For ${p} of ${t}, assume a higher cosine-similarity score always means the retrieved passage is the correct business source.`
-  ],
-  mcp: [
-    (t,p)=>`For ${p} of ${t}, expose every backend capability as a tool and let the model decide authorization at call time.`,
-    (t,p)=>`For ${p} of ${t}, put secrets and privileged internal state directly into model-visible tool descriptions.`,
-    (t,p)=>`For ${p} of ${t}, treat tool names and natural-language descriptions as sufficient validation for arguments and permissions.`,
-    (t,p)=>`For ${p} of ${t}, make tools perform broad hidden side effects so the model needs fewer calls.`,
-    (t,p)=>`For ${p} of ${t}, skip schema validation because the MCP client already generated the tool call.`,
-    (t,p)=>`For ${p} of ${t}, return entire backend records by default rather than the minimum context needed for the task.`,
-    (t,p)=>`For ${p} of ${t}, let resources and tools use the same unrestricted write permissions because both are model-facing capabilities.`,
-    (t,p)=>`For ${p} of ${t}, retry non-idempotent tool calls automatically whenever the model reports uncertainty.`,
-    (t,p)=>`For ${p} of ${t}, assume an MCP transport connection proves the calling user is authorized for every exposed action.`,
-    (t,p)=>`For ${p} of ${t}, hide tool failures from the model and return a generic success response to keep the conversation flowing.`
-  ],
-  ai: [
-    (t,p)=>`For ${p} of ${t}, rely on prompt wording alone instead of enforcing schemas, permissions, validation, and tool-side constraints.`,
-    (t,p)=>`For ${p} of ${t}, let the model execute high-impact actions directly whenever its confidence appears high.`,
-    (t,p)=>`For ${p} of ${t}, evaluate only a few hand-picked successful examples and treat them as representative of production behavior.`,
-    (t,p)=>`For ${p} of ${t}, give the model every available tool and the full data context so it never needs to ask for missing information.`,
-    (t,p)=>`For ${p} of ${t}, treat model output as trusted structured data without parsing or runtime validation.`,
-    (t,p)=>`For ${p} of ${t}, use one model and one prompt for every task even when latency, cost, risk, and capability requirements differ.`,
-    (t,p)=>`For ${p} of ${t}, hide uncertainty and tool errors from users so the agent appears more decisive.`,
-    (t,p)=>`For ${p} of ${t}, store complete conversation and tool payloads indefinitely by default because more memory always improves agents.`,
-    (t,p)=>`For ${p} of ${t}, allow retrieved or user-provided instructions to override system and tool-security boundaries.`,
-    (t,p)=>`For ${p} of ${t}, measure quality only with model self-ratings and skip deterministic checks or human review for high-risk cases.`
-  ],
-  iot: [
-    (t,p)=>`For ${p} of ${t}, treat a single sensor reading as authoritative without checking freshness, calibration, units, or device availability.`,
-    (t,p)=>`For ${p} of ${t}, use retained MQTT commands for every actuator so reconnecting devices automatically repeat the last action.`,
-    (t,p)=>`For ${p} of ${t}, assume Wi-Fi or broker connectivity proves the physical device actually performed the requested action.`,
-    (t,p)=>`For ${p} of ${t}, mix device identity, measurement type, and command semantics into ad-hoc MQTT topics without a stable convention.`,
-    (t,p)=>`For ${p} of ${t}, trigger physical automation directly from one noisy measurement without hysteresis, debounce, or safety limits.`,
-    (t,p)=>`For ${p} of ${t}, store timestamps only on the dashboard side because device and ingestion timing cannot affect diagnosis.`,
-    (t,p)=>`For ${p} of ${t}, make cloud access mandatory for local safety actions even when the controller and sensor are on the same network.`,
-    (t,p)=>`For ${p} of ${t}, treat unavailable sensor values as zero so automations can continue without special error states.`,
-    (t,p)=>`For ${p} of ${t}, share one device credential across all sensors and actuators so provisioning remains simple.`,
-    (t,p)=>`For ${p} of ${t}, validate only the Home Assistant entity state and ignore whether the physical environment changed accordingly.`
-  ],
-  ops: [
-    (t,p)=>`For ${p} of ${t}, optimize for the largest possible number of alerts rather than actionable signals tied to user impact.`,
-    (t,p)=>`For ${p} of ${t}, treat a green process or host check as proof that the user-facing service is healthy.`,
-    (t,p)=>`For ${p} of ${t}, investigate incidents by changing several variables at once so the system returns to normal faster.`,
-    (t,p)=>`For ${p} of ${t}, keep runbooks informal and dependent on whoever usually handles the incident.`,
-    (t,p)=>`For ${p} of ${t}, retain only aggregate dashboards and discard logs, traces, request IDs, and event timelines after recovery.`,
-    (t,p)=>`For ${p} of ${t}, define reliability only from infrastructure uptime without measuring user-visible success or latency.`,
-    (t,p)=>`For ${p} of ${t}, use the same alert threshold for every environment and traffic level regardless of normal baseline behavior.`,
-    (t,p)=>`For ${p} of ${t}, treat backups as proven recovery until a real disaster requires the first restore attempt.`,
-    (t,p)=>`For ${p} of ${t}, close the incident as soon as service returns and skip follow-up ownership for recurrence prevention.`,
-    (t,p)=>`For ${p} of ${t}, hide degraded dependencies from service health checks so the top-level dashboard stays stable.`
-  ],
-  programming: [
-    (t,p)=>`For ${p} of ${t}, choose the implementation that produces the expected sample output even if it relies on hidden mutation or undefined edge cases.`,
-    (t,p)=>`For ${p} of ${t}, ignore input constraints and complexity because interview and test data are always small.`,
-    (t,p)=>`For ${p} of ${t}, use shared mutable global state so helper functions need fewer parameters.`,
-    (t,p)=>`For ${p} of ${t}, catch every exception and return a default value so callers never need to handle failures.`,
-    (t,p)=>`For ${p} of ${t}, prefer type assertions or unchecked casts over validation whenever the compiler reports a mismatch.`,
-    (t,p)=>`For ${p} of ${t}, optimize for the shortest code even when ownership, error handling, and contracts become ambiguous.`,
-    (t,p)=>`For ${p} of ${t}, assume collection or map iteration order is a stable business contract unless a test happens to fail.`,
-    (t,p)=>`For ${p} of ${t}, use inheritance for every reuse case instead of composition or small explicit interfaces.`,
-    (t,p)=>`For ${p} of ${t}, treat concurrency as safe whenever individual operations work correctly in a single-threaded test.`,
-    (t,p)=>`For ${p} of ${t}, skip boundary, null, empty, duplicate, and overflow cases once the nominal example passes.`
-  ],
-  frontend: [
-    (t,p)=>`For ${p} of ${t}, validate only one desktop viewport because responsive behavior is a styling concern rather than functional behavior.`,
-    (t,p)=>`For ${p} of ${t}, use DOM structure as the primary contract and ignore semantic HTML, keyboard behavior, and accessible names.`,
-    (t,p)=>`For ${p} of ${t}, assume a rendered component is ready as soon as its container exists, regardless of asynchronous state or data loading.`,
-    (t,p)=>`For ${p} of ${t}, test only visual appearance and ignore routing, forms, client-side caching, and state transitions.`,
-    (t,p)=>`For ${p} of ${t}, make CSS selectors depend on generated class names because they reflect the exact implementation.`,
-    (t,p)=>`For ${p} of ${t}, treat touch, zoom, orientation, and reduced viewport space as equivalent to shrinking a desktop screenshot.`,
-    (t,p)=>`For ${p} of ${t}, rely on client-side validation as proof that invalid data cannot reach backend services.`,
-    (t,p)=>`For ${p} of ${t}, use component internals as the test oracle instead of the behavior visible to users.`,
-    (t,p)=>`For ${p} of ${t}, ignore loading and error states because successful data fetches represent normal production behavior.`,
-    (t,p)=>`For ${p} of ${t}, treat accessibility checks as optional once the visual design matches the reference.`
-  ],
-  qa: [
-    (t,p)=>`For ${p} of ${t}, validate only the happy path and infer that negative, boundary, permission, and state-transition behavior will follow the same rule.`,
-    (t,p)=>`For ${p} of ${t}, measure confidence mainly by the number of executed test cases rather than the risks and behaviors they cover.`,
-    (t,p)=>`For ${p} of ${t}, treat a single successful run as sufficient evidence without recording environment, data, build, or reproducibility details.`,
-    (t,p)=>`For ${p} of ${t}, postpone requirement and risk analysis until after execution so testing remains independent from product decisions.`,
-    (t,p)=>`For ${p} of ${t}, classify every unexpected result as a product defect before checking requirements, data, environment, or test behavior.`,
-    (t,p)=>`For ${p} of ${t}, give every test equal priority regardless of business impact, change risk, or failure likelihood.`,
-    (t,p)=>`For ${p} of ${t}, close intermittent failures that cannot be reproduced immediately because they do not provide deterministic evidence.`,
-    (t,p)=>`For ${p} of ${t}, use pass rate as the release decision even when critical risks are untested or assertions are weak.`,
-    (t,p)=>`For ${p} of ${t}, separate defects from their evidence and environment details so reports stay concise.`,
-    (t,p)=>`For ${p} of ${t}, treat exploratory testing as unscripted clicking without a mission, notes, or learning loop.`
-  ],
-  engineering: [
-    (t,p)=>`For ${p} of ${t}, validate only the visible happy path and assume dependencies, data, errors, and operational behavior will follow automatically.`,
-    (t,p)=>`For ${p} of ${t}, prefer implicit environment state and undocumented defaults over explicit configuration because there is less setup code.`,
-    (t,p)=>`For ${p} of ${t}, judge success from one local execution without checking repeatability in a clean environment.`,
-    (t,p)=>`For ${p} of ${t}, optimize implementation speed first and add observability, failure handling, and ownership only after a production incident.`,
-    (t,p)=>`For ${p} of ${t}, share mutable test data and dependencies across parallel work so all checks observe the same state.`,
-    (t,p)=>`For ${p} of ${t}, treat documentation as the runtime source of truth even when the deployed behavior provides conflicting evidence.`,
-    (t,p)=>`For ${p} of ${t}, suppress errors and return generic success values so downstream components remain simple.`,
-    (t,p)=>`For ${p} of ${t}, choose the most feature-rich tool even when a smaller solution better matches the requirement and operating cost.`,
-    (t,p)=>`For ${p} of ${t}, couple business logic directly to transport, storage, and UI details so fewer interfaces are needed.`,
-    (t,p)=>`For ${p} of ${t}, treat a passing implementation test as proof that security, reliability, and maintainability requirements are satisfied.`
-  ]
-};
-
-function legacyPoolKeyV12Fix(question) {
-  const haystack = `${question.q} ${(question.tags || []).join(' ')} ${question.e || ''}`.toLowerCase();
-  if (/docker|container|compose/.test(haystack)) return 'docker';
-  if (/selenium|webdriver|playwright|browser|locator|xpath|iframe|page object|pom\b|testng/.test(haystack)) return 'browser';
-  if (/postman|rest assured|\bapi\b|http|json|webhook|bearer|endpoint/.test(haystack)) return 'api';
-  if (/\bsql\b|jdbc|database|transaction|indexing|primary key|foreign key|query/.test(haystack)) return 'sql';
-  if (/\bgit\b|merge|rebase|commit|branch|pull versus fetch|push/.test(haystack)) return 'git';
-  if (/jenkins|github actions|ci\/cd|pipeline|build agent|deployment/.test(haystack)) return 'ci';
-  if (/security|authentication|authorization|permission|credential|secret|token|tls|rate limit/.test(haystack)) return 'security';
-  if (/performance|load test|jmeter|capacity|throughput|latency|percentile/.test(haystack)) return 'performance';
-  if (/\brag\b|retrieval|embedding|vector search|vector database|chunking/.test(haystack)) return 'rag';
-  if (/\bmcp\b|model context protocol/.test(haystack)) return 'mcp';
-  if (/agent|llm|prompt|tool calling|function calling|langgraph|langchain|crewai|n8n|structured output|model routing/.test(haystack)) return 'ai';
-  if (/mqtt|home assistant|\biot\b|sensor|actuator|time-series/.test(haystack)) return 'iot';
-  if (/incident|slo|sli|error budget|alert|logging|tracing|runbook|reliability|backup|disaster recovery|root cause|on-call|monitoring/.test(haystack)) return 'ops';
-  if (/html|css|react|responsive|frontend|accessibility|semantic html/.test(haystack)) return 'frontend';
-  if (/java|javascript|typescript|python|hashmap|linked list|string|array|singleton|exception|oop|solid|stream|concurrency|closure|generic|type narrowing/.test(haystack)) return 'programming';
-  if (question.r === 'qa') return 'qa';
-  if (question.r === 'playwright') return 'browser';
-  if (question.r === 'ai') return 'ai';
-  if (question.r === 'ops') return 'ops';
-  return 'engineering';
-}
-
-function legacyBuildDistractorsV12Fix(question) {
-  const context = legacyContextV12Fix(question);
-  const key = legacyPoolKeyV12Fix(question);
-  const pool = legacyDistractorPoolsV12Fix[key] || legacyDistractorPoolsV12Fix.engineering;
-  const seed = legacyHashV12Fix(`${question.r}|${question.q}`);
-  const chosen = [];
-  let cursor = seed % pool.length;
-  let step = ((seed >>> 8) % (pool.length - 1)) + 1;
-  let attempts = 0;
-  while (chosen.length < 3 && attempts < pool.length * 2) {
-    const text = pool[cursor](context.topic, context.phase);
-    if (!chosen.includes(text)) chosen.push(text);
-    cursor = (cursor + step) % pool.length;
-    attempts++;
-  }
-  // Defensive fallback for pools whose step does not traverse three distinct entries.
-  while (chosen.length < 3) {
-    chosen.push(`For ${context.phase} of ${context.topic}, use an unverified assumption instead of checking the observable behavior required by the question (alternative ${chosen.length + 1}).`);
-  }
-  return chosen;
-}
-
-let legacyDistractorsRewrittenV12Fix = 0;
-questions.forEach(question => {
-  if (!Array.isArray(question.a) || question.a.length !== 4 || !Number.isInteger(question.c)) return;
-  const wrong = question.a.filter((_, index) => index !== question.c);
-  if (!wrong.length || !wrong.every(answer => legacyFallbackDistractorsV12Fix.has(answer))) return;
-
-  const correct = question.a[question.c];
-  const replacements = legacyBuildDistractorsV12Fix(question);
-  const answers = [...replacements];
-  answers.splice(question.c, 0, correct);
-  question.a = answers;
-  legacyDistractorsRewrittenV12Fix++;
-});
 
 if (typeof console !== 'undefined' && console.info) {
-  console.info(`[question-bank] Replaced generic fallback distractors in ${legacyDistractorsRewrittenV12Fix} legacy questions.`);
+  console.info(`[question-bank] Loaded ${completeQuestionCount} explicit questions.`);
 }
