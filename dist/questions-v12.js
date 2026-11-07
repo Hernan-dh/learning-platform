@@ -3751,9 +3751,6 @@ if (metricBlocksV12.length >= 3) {
 }
 
 const countSelectV12 = document.querySelector('#questionCount');
-if (countSelectV12 && ![...countSelectV12.options].some(option => Number(option.value) === totalQuestionsV12)) {
-  countSelectV12.add(new Option(`All (${totalQuestionsV12})`, String(totalQuestionsV12)));
-}
 
 // Add a study link to newly-added questions after feedback is rendered.
 const answerBeforeV12 = answer;
@@ -3786,4 +3783,4 @@ handsOnTags.forEach(tag => { if (![...tagFilter.options].some(option => option.v
 const totalWithHandsOn = questions.length;
 if (metricStrongV12) metricStrongV12.textContent = totalWithHandsOn;
 if (heroCopyV12) heroCopyV12.textContent = `Practice ${totalWithHandsOn} explained questions across five learning paths, then use the complete Learning Guide to study every concept in depth.`;
-if (countSelectV12 && ![...countSelectV12.options].some(option => Number(option.value) === totalWithHandsOn)) countSelectV12.add(new Option(`All (${totalWithHandsOn})`, String(totalWithHandsOn)));
+if (countSelectV12) { [...countSelectV12.options].filter(option => option.textContent.startsWith("All (")).forEach(option => option.remove()); countSelectV12.add(new Option(`All (${totalWithHandsOn})`, String(totalWithHandsOn))); countSelectV12.value = String(totalWithHandsOn); }
