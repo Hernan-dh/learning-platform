@@ -42,6 +42,7 @@ This plan defines the quality strategy for QA & AI Learning Platform. The scope 
 | Layer | Tool | Purpose | Trigger |
 | --- | --- | --- | --- |
 | Static verification | `python scripts/verify.py` | Required files, local references, and JavaScript syntax. | Every local verification and CI run. |
+| Content QA | `npm run test:content` | Question quality, answer structure, guide-link integrity, and answer-position distribution. | Every CI run and question-bank change. |
 | End-to-end | Playwright | User-visible behavior, navigation, filters, local progress, and Learning Guide access. | Local development and CI. |
 | Responsive smoke | Playwright device projects | Desktop Chrome and Pixel 5 rendering and core interaction. | CI. |
 
@@ -87,6 +88,8 @@ The automated suite lives in `tests/e2e/learning-platform.spec.js`. It validates
 4. Tag-filtered practice and answer explanations.
 5. Local progress persistence and explicit clearing.
 6. Never-answered and never-answered-correctly filtering.
+
+The content validator fails CI for duplicate questions or options, a correct answer repeated as a distractor, reused distractor triples or suspiciously identical prefixes, extreme correct-answer length outliers, skewed A/B/C/D distribution, malformed question structure, and Learning Guide anchors that do not exist. It also reports editorial warnings for heavily reused correct answers and negation wording that deserves human review.
 
 Run it locally:
 

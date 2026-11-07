@@ -31,6 +31,7 @@ Run the project check before sharing changes:
 
 ```powershell
 python scripts/verify.py
+npm.cmd run test:content
 ```
 
 ## GitHub Pages
@@ -55,5 +56,7 @@ python scripts/install_hooks.py
 ```
 
 `prepare_commit.py` validates the working tree and suggests a Conventional Commit without writing Git state. `publish.py` can use Gemini, OpenRouter, or Groq to propose a commit message from local changes, then asks the repository owner to explicitly type `PUBLISH` before it stages, commits, or pushes. It never initializes a repository.
+
+`npm.cmd run test:content` runs the content QA validator. It checks question and answer integrity, detects likely distractor-quality issues, validates Learning Guide links, and fails when blocking content defects are found.
 
 Update `docs/ARCHITECTURE.md` when changing product behavior or structure. Update `docs/OPERATIONS.md` when changing validation, documentation, or deployment behavior.

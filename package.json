@@ -5,6 +5,7 @@
   "description": "QA & AI Learning Platform end-to-end quality checks.",
   "scripts": {
     "verify": "python scripts/verify.py",
+    "test:content": "node scripts/validate-question-bank.js",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",

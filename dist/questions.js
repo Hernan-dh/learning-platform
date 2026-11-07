@@ -13057,6 +13057,27 @@ function addCompleteQuestion(item) {
 
 completeQuestionBank.forEach(addCompleteQuestion);
 
+// Keep distractors unique across the reviewed bank. Some legacy topic templates
+// produced the same three plausible-but-wrong choices for different scenarios.
+const usedDistractorTriples = new Set();
+questions.forEach(question => {
+  const wrongIndexes = question.a.map((_, index) => index).filter(index => index !== question.c);
+  const triple = () => wrongIndexes.map(index => question.a[index].toLowerCase().replace(/\s+/g, ' ').trim()).sort().join('|');
+  if (usedDistractorTriples.has(triple())) {
+    const replacementIndex = wrongIndexes[wrongIndexes.length - 1];
+    question.a[replacementIndex] = `Assume the answer to “${question.q}” follows a generic rule without checking its stated constraints.`;
+  }
+  usedDistractorTriples.add(triple());
+});
+
+// Keep historical links aligned with the current Learning Guide section IDs.
+questions.forEach(question => {
+  if (!question.guide) return;
+  question.guide = question.guide
+    .replace('#agent-course-projects-v9', '#agent-guide-projects-v9')
+    .replace('#performance-jmeter-bootcamp', '#performance-jmeter-foundation');
+});
+
 // Rebuild the topic filter from the authoritative bank.
 if (typeof tagFilter !== 'undefined' && tagFilter) {
   [...tagFilter.options]
