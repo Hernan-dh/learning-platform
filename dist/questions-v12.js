@@ -3784,3 +3784,314 @@ const totalWithHandsOn = questions.length;
 if (metricStrongV12) metricStrongV12.textContent = totalWithHandsOn;
 if (heroCopyV12) heroCopyV12.textContent = `Practice ${totalWithHandsOn} explained questions across five learning paths, then use the complete Learning Guide to study every concept in depth.`;
 if (countSelectV12) { [...countSelectV12.options].filter(option => option.textContent.startsWith("All (")).forEach(option => option.remove()); countSelectV12.add(new Option(`All (${totalWithHandsOn})`, String(totalWithHandsOn))); countSelectV12.value = String(totalWithHandsOn); }
+
+// Replace the original app.js fallback distractors with question-aware alternatives.
+// app.js used the same three wrong answers for every question created through add().
+const legacyFallbackDistractorsV12Fix = new Set([
+  'Rely on fixed sleeps and assumptions',
+  'Ignore the evidence and rerun without investigating',
+  'Treat it as a UI-only concern'
+]);
+
+function legacyHashV12Fix(value) {
+  let hash = 2166136261;
+  for (let i = 0; i < value.length; i++) {
+    hash ^= value.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function legacyContextV12Fix(question) {
+  const text = question.q.replace(/\s+/g, ' ').trim();
+  const patterns = [
+    [/^What is the strongest first step when validating (.+)\?$/i, 'initial validation'],
+    [/^Which practice makes (.+)\?$/i, 'reliable practice'],
+    [/^How would you make (.+)\?$/i, 'implementation'],
+    [/^What should a production-ready approach to (.+)\?$/i, 'production readiness'],
+    [/^How do you evaluate whether (.+)\?$/i, 'evaluation'],
+    [/^What is the main goal of (.+)\?$/i, 'purpose'],
+    [/^What is the difference between (.+)\?$/i, 'comparison'],
+    [/^What is (.+)\?$/i, 'definition'],
+    [/^Why (?:is|are|does|do|can|should) (.+)\?$/i, 'reasoning'],
+    [/^How (?:do|does|would|should|can) (.+)\?$/i, 'implementation'],
+    [/^Which (.+)\?$/i, 'selection']
+  ];
+  for (const [pattern, phase] of patterns) {
+    const match = text.match(pattern);
+    if (match) {
+      return { topic: match[1].replace(/[?.]+$/g, '').trim(), phase };
+    }
+  }
+  return { topic: text.replace(/[?.]+$/g, ''), phase: 'analysis' };
+}
+
+const legacyDistractorPoolsV12Fix = {
+  docker: [
+    (t,p)=>`For ${p} of ${t}, treat a container as healthy as soon as its process is running; application readiness does not need a separate check.`,
+    (t,p)=>`For ${p} of ${t}, validate only that the image builds successfully; runtime networking, volumes, permissions, and health checks can be ignored.`,
+    (t,p)=>`For ${p} of ${t}, prefer unpinned latest images so every run silently picks up dependency changes.`,
+    (t,p)=>`For ${p} of ${t}, keep durable application data only in the container writable layer because recreation preserves it automatically.`,
+    (t,p)=>`For ${p} of ${t}, bake credentials into the image so configuration is identical in every environment.`,
+    (t,p)=>`For ${p} of ${t}, use a fixed sleep as the readiness check because process startup time is a reliable proxy for service health.`,
+    (t,p)=>`For ${p} of ${t}, expose every service port directly on the host; internal container networking adds no useful isolation.`,
+    (t,p)=>`For ${p} of ${t}, run the application as root by default because the container boundary makes user permissions irrelevant.`,
+    (t,p)=>`For ${p} of ${t}, preserve disposable test volumes between runs so hidden state can make later executions faster.`,
+    (t,p)=>`For ${p} of ${t}, assume a successful Docker build proves the application will behave correctly in the target runtime.`
+  ],
+  browser: [
+    (t,p)=>`For ${p} of ${t}, prefer deep CSS or absolute XPath selectors because they describe the DOM more precisely than semantic locators.`,
+    (t,p)=>`For ${p} of ${t}, add fixed sleeps after interactions instead of waiting for the observable state the user depends on.`,
+    (t,p)=>`For ${p} of ${t}, reuse one browser session and mutable account across unrelated tests so setup cost stays low.`,
+    (t,p)=>`For ${p} of ${t}, make tests depend on execution order so later cases can reuse state created by earlier ones.`,
+    (t,p)=>`For ${p} of ${t}, retry failures until they pass and discard the failed attempts from the report.`,
+    (t,p)=>`For ${p} of ${t}, treat a visible UI change as sufficient evidence without checking network, state, or persisted data.`,
+    (t,p)=>`For ${p} of ${t}, keep locators, setup, test data, assertions, and reporting in one large test method to reduce abstraction.`,
+    (t,p)=>`For ${p} of ${t}, share mutable fixtures between parallel workers because browser isolation prevents all cross-test interference.`,
+    (t,p)=>`For ${p} of ${t}, use the first matching element whenever a locator is ambiguous instead of narrowing it by business context.`,
+    (t,p)=>`For ${p} of ${t}, collect screenshots only after successful runs; failing runs do not need traces, logs, or network evidence.`
+  ],
+  api: [
+    (t,p)=>`For ${p} of ${t}, consider the check complete when the HTTP status is successful; response schema, business values, and side effects are secondary.`,
+    (t,p)=>`For ${p} of ${t}, hard-code tokens and resource IDs directly in requests so chained workflows remain simple.`,
+    (t,p)=>`For ${p} of ${t}, test only valid requests because malformed, unauthorized, duplicate, and boundary inputs are client responsibilities.`,
+    (t,p)=>`For ${p} of ${t}, assume retries are harmless even when the operation has side effects and no idempotency protection.`,
+    (t,p)=>`For ${p} of ${t}, validate only the response body and ignore headers, status semantics, persistence, and downstream effects.`,
+    (t,p)=>`For ${p} of ${t}, use production credentials and data because synthetic environments cannot reveal meaningful API defects.`,
+    (t,p)=>`For ${p} of ${t}, treat a documented schema as proof that runtime responses always satisfy the contract.`,
+    (t,p)=>`For ${p} of ${t}, accept internal stack traces in error responses because they make client-side debugging easier.`,
+    (t,p)=>`For ${p} of ${t}, share one mutable resource across parallel tests instead of creating isolated test data.`,
+    (t,p)=>`For ${p} of ${t}, check only one happy-path example and infer that pagination, rate limits, authorization, and failures behave consistently.`
+  ],
+  sql: [
+    (t,p)=>`For ${p} of ${t}, run destructive write queries in shared environments whenever they make the test easier to set up.`,
+    (t,p)=>`For ${p} of ${t}, compare only the row count; keys, joins, nullability, timestamps, and business invariants do not need separate validation.`,
+    (t,p)=>`For ${p} of ${t}, concatenate user-controlled values into SQL strings instead of using parameters so the query is easier to read.`,
+    (t,p)=>`For ${p} of ${t}, assume database order is deterministic even when the query has no explicit ORDER BY.`,
+    (t,p)=>`For ${p} of ${t}, treat an index as universally beneficial and add one to every filtered column regardless of write cost or selectivity.`,
+    (t,p)=>`For ${p} of ${t}, ignore transaction boundaries because each SQL statement is independent from application behavior.`,
+    (t,p)=>`For ${p} of ${t}, validate UI values directly against any database replica without considering caching, lag, or transformation layers.`,
+    (t,p)=>`For ${p} of ${t}, keep database connections open across the whole test suite because cleanup has no effect on reliability.`,
+    (t,p)=>`For ${p} of ${t}, infer referential integrity from matching column names rather than checking keys and constraints.`,
+    (t,p)=>`For ${p} of ${t}, use production tables for test setup so test data always matches real customer states.`
+  ],
+  git: [
+    (t,p)=>`For ${p} of ${t}, resolve conflicts by always taking one side of the diff without understanding the intended combined behavior.`,
+    (t,p)=>`For ${p} of ${t}, rebase shared public history freely because commit identities remain unchanged.`,
+    (t,p)=>`For ${p} of ${t}, stage the entire working tree before reviewing the diff so no local change is accidentally omitted.`,
+    (t,p)=>`For ${p} of ${t}, treat fetch and pull as identical operations with the same effect on the current branch.`,
+    (t,p)=>`For ${p} of ${t}, use force-push as the normal way to synchronize a branch after any conflict.`,
+    (t,p)=>`For ${p} of ${t}, combine unrelated changes and generated files in one large commit because history is only archival.`,
+    (t,p)=>`For ${p} of ${t}, skip tests after resolving a merge conflict because Git guarantees the merged behavior is valid.`,
+    (t,p)=>`For ${p} of ${t}, commit secrets temporarily and remove them in a later commit because deleted history is inaccessible.`,
+    (t,p)=>`For ${p} of ${t}, merge whichever branch is newer without inspecting the actual file-level changes.`,
+    (t,p)=>`For ${p} of ${t}, treat branch naming and commit messages as substitutes for reviewing the resulting code.`
+  ],
+  ci: [
+    (t,p)=>`For ${p} of ${t}, rerun a failing pipeline until it becomes green instead of preserving and comparing the failed environment evidence.`,
+    (t,p)=>`For ${p} of ${t}, solve CI-only failures primarily by increasing timeouts rather than comparing versions, resources, data, and configuration.`,
+    (t,p)=>`For ${p} of ${t}, keep build agents permanently stateful so cached files and previous workspaces can influence later jobs.`,
+    (t,p)=>`For ${p} of ${t}, publish reports only on successful runs because failed pipelines already provide enough information in the exit code.`,
+    (t,p)=>`For ${p} of ${t}, put credentials directly in the workflow file so every runner receives exactly the same configuration.`,
+    (t,p)=>`For ${p} of ${t}, run every test at the slowest end-to-end layer because CI parallelism removes the cost difference.`,
+    (t,p)=>`For ${p} of ${t}, allow deployment to continue after a failed quality gate when the failure is intermittent.`,
+    (t,p)=>`For ${p} of ${t}, use different unpinned runtime versions locally and in CI and treat any resulting mismatch as test flakiness.`,
+    (t,p)=>`For ${p} of ${t}, share mutable test accounts among concurrent jobs so setup remains centralized.`,
+    (t,p)=>`For ${p} of ${t}, optimize for a green dashboard even if retries hide recurring flakes and failed attempts.`
+  ],
+  security: [
+    (t,p)=>`For ${p} of ${t}, treat authentication as sufficient authorization; once identity is known, resource-level permission checks are unnecessary.`,
+    (t,p)=>`For ${p} of ${t}, log full tokens and credentials because security incidents require complete request evidence.`,
+    (t,p)=>`For ${p} of ${t}, trust client-side validation to block unauthorized or malformed requests before they reach the server.`,
+    (t,p)=>`For ${p} of ${t}, return detailed internal errors and stack traces to untrusted clients so failures are easier to diagnose.`,
+    (t,p)=>`For ${p} of ${t}, use one long-lived credential in every environment to reduce secret-rotation complexity.`,
+    (t,p)=>`For ${p} of ${t}, infer access control from hidden UI elements instead of testing the underlying API permissions directly.`,
+    (t,p)=>`For ${p} of ${t}, store secrets in versioned configuration as long as the repository is intended for internal use.`,
+    (t,p)=>`For ${p} of ${t}, disable rate limits in authentication flows because they can interfere with automated tests.`,
+    (t,p)=>`For ${p} of ${t}, assume encrypted transport makes input validation and least privilege unnecessary.`,
+    (t,p)=>`For ${p} of ${t}, reuse production credentials in test automation so permission coverage matches real users exactly.`
+  ],
+  performance: [
+    (t,p)=>`For ${p} of ${t}, increase load until the generator machine becomes saturated and use that point as the systems capacity.`,
+    (t,p)=>`For ${p} of ${t}, report only average response time; percentiles, throughput, errors, and saturation signals add little value.`,
+    (t,p)=>`For ${p} of ${t}, run the heaviest workload first without a warm-up, baseline, or defined service objective.`,
+    (t,p)=>`For ${p} of ${t}, use identical cached requests and data for every virtual user because realism is less important than request volume.`,
+    (t,p)=>`For ${p} of ${t}, treat client-side timing as sufficient evidence and ignore service and infrastructure telemetry.`,
+    (t,p)=>`For ${p} of ${t}, compare runs with different datasets and environments without recording those differences.`,
+    (t,p)=>`For ${p} of ${t}, assume a zero-error run is acceptable even when latency violates the user-facing SLO.`,
+    (t,p)=>`For ${p} of ${t}, use production at peak traffic for unscheduled stress tests because synthetic environments are less representative.`,
+    (t,p)=>`For ${p} of ${t}, omit think time and pacing so the workload represents the fastest possible user behavior.`,
+    (t,p)=>`For ${p} of ${t}, diagnose a slowdown only from the test tool report without correlating CPU, memory, queues, databases, or downstream services.`
+  ],
+  rag: [
+    (t,p)=>`For ${p} of ${t}, judge retrieval quality only by whether the final answer sounds fluent; source relevance does not need separate measurement.`,
+    (t,p)=>`For ${p} of ${t}, retrieve the largest possible number of chunks because more context always improves model accuracy.`,
+    (t,p)=>`For ${p} of ${t}, use one embedding and chunking strategy for every document type without evaluating recall or precision.`,
+    (t,p)=>`For ${p} of ${t}, let the model answer from memory whenever retrieval returns weak evidence instead of exposing uncertainty.`,
+    (t,p)=>`For ${p} of ${t}, treat vector similarity as proof that a passage is factually sufficient to support the answer.`,
+    (t,p)=>`For ${p} of ${t}, omit metadata and access filters because semantic similarity should determine every retrieved document.`,
+    (t,p)=>`For ${p} of ${t}, evaluate only generated answers and skip retrieval-specific datasets, relevance labels, and citation checks.`,
+    (t,p)=>`For ${p} of ${t}, re-embed the corpus with a different model without rebuilding or versioning the existing index.`,
+    (t,p)=>`For ${p} of ${t}, combine unrelated documents into very large chunks so the model receives maximum context per retrieval.`,
+    (t,p)=>`For ${p} of ${t}, assume a higher cosine-similarity score always means the retrieved passage is the correct business source.`
+  ],
+  mcp: [
+    (t,p)=>`For ${p} of ${t}, expose every backend capability as a tool and let the model decide authorization at call time.`,
+    (t,p)=>`For ${p} of ${t}, put secrets and privileged internal state directly into model-visible tool descriptions.`,
+    (t,p)=>`For ${p} of ${t}, treat tool names and natural-language descriptions as sufficient validation for arguments and permissions.`,
+    (t,p)=>`For ${p} of ${t}, make tools perform broad hidden side effects so the model needs fewer calls.`,
+    (t,p)=>`For ${p} of ${t}, skip schema validation because the MCP client already generated the tool call.`,
+    (t,p)=>`For ${p} of ${t}, return entire backend records by default rather than the minimum context needed for the task.`,
+    (t,p)=>`For ${p} of ${t}, let resources and tools use the same unrestricted write permissions because both are model-facing capabilities.`,
+    (t,p)=>`For ${p} of ${t}, retry non-idempotent tool calls automatically whenever the model reports uncertainty.`,
+    (t,p)=>`For ${p} of ${t}, assume an MCP transport connection proves the calling user is authorized for every exposed action.`,
+    (t,p)=>`For ${p} of ${t}, hide tool failures from the model and return a generic success response to keep the conversation flowing.`
+  ],
+  ai: [
+    (t,p)=>`For ${p} of ${t}, rely on prompt wording alone instead of enforcing schemas, permissions, validation, and tool-side constraints.`,
+    (t,p)=>`For ${p} of ${t}, let the model execute high-impact actions directly whenever its confidence appears high.`,
+    (t,p)=>`For ${p} of ${t}, evaluate only a few hand-picked successful examples and treat them as representative of production behavior.`,
+    (t,p)=>`For ${p} of ${t}, give the model every available tool and the full data context so it never needs to ask for missing information.`,
+    (t,p)=>`For ${p} of ${t}, treat model output as trusted structured data without parsing or runtime validation.`,
+    (t,p)=>`For ${p} of ${t}, use one model and one prompt for every task even when latency, cost, risk, and capability requirements differ.`,
+    (t,p)=>`For ${p} of ${t}, hide uncertainty and tool errors from users so the agent appears more decisive.`,
+    (t,p)=>`For ${p} of ${t}, store complete conversation and tool payloads indefinitely by default because more memory always improves agents.`,
+    (t,p)=>`For ${p} of ${t}, allow retrieved or user-provided instructions to override system and tool-security boundaries.`,
+    (t,p)=>`For ${p} of ${t}, measure quality only with model self-ratings and skip deterministic checks or human review for high-risk cases.`
+  ],
+  iot: [
+    (t,p)=>`For ${p} of ${t}, treat a single sensor reading as authoritative without checking freshness, calibration, units, or device availability.`,
+    (t,p)=>`For ${p} of ${t}, use retained MQTT commands for every actuator so reconnecting devices automatically repeat the last action.`,
+    (t,p)=>`For ${p} of ${t}, assume Wi-Fi or broker connectivity proves the physical device actually performed the requested action.`,
+    (t,p)=>`For ${p} of ${t}, mix device identity, measurement type, and command semantics into ad-hoc MQTT topics without a stable convention.`,
+    (t,p)=>`For ${p} of ${t}, trigger physical automation directly from one noisy measurement without hysteresis, debounce, or safety limits.`,
+    (t,p)=>`For ${p} of ${t}, store timestamps only on the dashboard side because device and ingestion timing cannot affect diagnosis.`,
+    (t,p)=>`For ${p} of ${t}, make cloud access mandatory for local safety actions even when the controller and sensor are on the same network.`,
+    (t,p)=>`For ${p} of ${t}, treat unavailable sensor values as zero so automations can continue without special error states.`,
+    (t,p)=>`For ${p} of ${t}, share one device credential across all sensors and actuators so provisioning remains simple.`,
+    (t,p)=>`For ${p} of ${t}, validate only the Home Assistant entity state and ignore whether the physical environment changed accordingly.`
+  ],
+  ops: [
+    (t,p)=>`For ${p} of ${t}, optimize for the largest possible number of alerts rather than actionable signals tied to user impact.`,
+    (t,p)=>`For ${p} of ${t}, treat a green process or host check as proof that the user-facing service is healthy.`,
+    (t,p)=>`For ${p} of ${t}, investigate incidents by changing several variables at once so the system returns to normal faster.`,
+    (t,p)=>`For ${p} of ${t}, keep runbooks informal and dependent on whoever usually handles the incident.`,
+    (t,p)=>`For ${p} of ${t}, retain only aggregate dashboards and discard logs, traces, request IDs, and event timelines after recovery.`,
+    (t,p)=>`For ${p} of ${t}, define reliability only from infrastructure uptime without measuring user-visible success or latency.`,
+    (t,p)=>`For ${p} of ${t}, use the same alert threshold for every environment and traffic level regardless of normal baseline behavior.`,
+    (t,p)=>`For ${p} of ${t}, treat backups as proven recovery until a real disaster requires the first restore attempt.`,
+    (t,p)=>`For ${p} of ${t}, close the incident as soon as service returns and skip follow-up ownership for recurrence prevention.`,
+    (t,p)=>`For ${p} of ${t}, hide degraded dependencies from service health checks so the top-level dashboard stays stable.`
+  ],
+  programming: [
+    (t,p)=>`For ${p} of ${t}, choose the implementation that produces the expected sample output even if it relies on hidden mutation or undefined edge cases.`,
+    (t,p)=>`For ${p} of ${t}, ignore input constraints and complexity because interview and test data are always small.`,
+    (t,p)=>`For ${p} of ${t}, use shared mutable global state so helper functions need fewer parameters.`,
+    (t,p)=>`For ${p} of ${t}, catch every exception and return a default value so callers never need to handle failures.`,
+    (t,p)=>`For ${p} of ${t}, prefer type assertions or unchecked casts over validation whenever the compiler reports a mismatch.`,
+    (t,p)=>`For ${p} of ${t}, optimize for the shortest code even when ownership, error handling, and contracts become ambiguous.`,
+    (t,p)=>`For ${p} of ${t}, assume collection or map iteration order is a stable business contract unless a test happens to fail.`,
+    (t,p)=>`For ${p} of ${t}, use inheritance for every reuse case instead of composition or small explicit interfaces.`,
+    (t,p)=>`For ${p} of ${t}, treat concurrency as safe whenever individual operations work correctly in a single-threaded test.`,
+    (t,p)=>`For ${p} of ${t}, skip boundary, null, empty, duplicate, and overflow cases once the nominal example passes.`
+  ],
+  frontend: [
+    (t,p)=>`For ${p} of ${t}, validate only one desktop viewport because responsive behavior is a styling concern rather than functional behavior.`,
+    (t,p)=>`For ${p} of ${t}, use DOM structure as the primary contract and ignore semantic HTML, keyboard behavior, and accessible names.`,
+    (t,p)=>`For ${p} of ${t}, assume a rendered component is ready as soon as its container exists, regardless of asynchronous state or data loading.`,
+    (t,p)=>`For ${p} of ${t}, test only visual appearance and ignore routing, forms, client-side caching, and state transitions.`,
+    (t,p)=>`For ${p} of ${t}, make CSS selectors depend on generated class names because they reflect the exact implementation.`,
+    (t,p)=>`For ${p} of ${t}, treat touch, zoom, orientation, and reduced viewport space as equivalent to shrinking a desktop screenshot.`,
+    (t,p)=>`For ${p} of ${t}, rely on client-side validation as proof that invalid data cannot reach backend services.`,
+    (t,p)=>`For ${p} of ${t}, use component internals as the test oracle instead of the behavior visible to users.`,
+    (t,p)=>`For ${p} of ${t}, ignore loading and error states because successful data fetches represent normal production behavior.`,
+    (t,p)=>`For ${p} of ${t}, treat accessibility checks as optional once the visual design matches the reference.`
+  ],
+  qa: [
+    (t,p)=>`For ${p} of ${t}, validate only the happy path and infer that negative, boundary, permission, and state-transition behavior will follow the same rule.`,
+    (t,p)=>`For ${p} of ${t}, measure confidence mainly by the number of executed test cases rather than the risks and behaviors they cover.`,
+    (t,p)=>`For ${p} of ${t}, treat a single successful run as sufficient evidence without recording environment, data, build, or reproducibility details.`,
+    (t,p)=>`For ${p} of ${t}, postpone requirement and risk analysis until after execution so testing remains independent from product decisions.`,
+    (t,p)=>`For ${p} of ${t}, classify every unexpected result as a product defect before checking requirements, data, environment, or test behavior.`,
+    (t,p)=>`For ${p} of ${t}, give every test equal priority regardless of business impact, change risk, or failure likelihood.`,
+    (t,p)=>`For ${p} of ${t}, close intermittent failures that cannot be reproduced immediately because they do not provide deterministic evidence.`,
+    (t,p)=>`For ${p} of ${t}, use pass rate as the release decision even when critical risks are untested or assertions are weak.`,
+    (t,p)=>`For ${p} of ${t}, separate defects from their evidence and environment details so reports stay concise.`,
+    (t,p)=>`For ${p} of ${t}, treat exploratory testing as unscripted clicking without a mission, notes, or learning loop.`
+  ],
+  engineering: [
+    (t,p)=>`For ${p} of ${t}, validate only the visible happy path and assume dependencies, data, errors, and operational behavior will follow automatically.`,
+    (t,p)=>`For ${p} of ${t}, prefer implicit environment state and undocumented defaults over explicit configuration because there is less setup code.`,
+    (t,p)=>`For ${p} of ${t}, judge success from one local execution without checking repeatability in a clean environment.`,
+    (t,p)=>`For ${p} of ${t}, optimize implementation speed first and add observability, failure handling, and ownership only after a production incident.`,
+    (t,p)=>`For ${p} of ${t}, share mutable test data and dependencies across parallel work so all checks observe the same state.`,
+    (t,p)=>`For ${p} of ${t}, treat documentation as the runtime source of truth even when the deployed behavior provides conflicting evidence.`,
+    (t,p)=>`For ${p} of ${t}, suppress errors and return generic success values so downstream components remain simple.`,
+    (t,p)=>`For ${p} of ${t}, choose the most feature-rich tool even when a smaller solution better matches the requirement and operating cost.`,
+    (t,p)=>`For ${p} of ${t}, couple business logic directly to transport, storage, and UI details so fewer interfaces are needed.`,
+    (t,p)=>`For ${p} of ${t}, treat a passing implementation test as proof that security, reliability, and maintainability requirements are satisfied.`
+  ]
+};
+
+function legacyPoolKeyV12Fix(question) {
+  const haystack = `${question.q} ${(question.tags || []).join(' ')} ${question.e || ''}`.toLowerCase();
+  if (/docker|container|compose/.test(haystack)) return 'docker';
+  if (/selenium|webdriver|playwright|browser|locator|xpath|iframe|page object|pom\b|testng/.test(haystack)) return 'browser';
+  if (/postman|rest assured|\bapi\b|http|json|webhook|bearer|endpoint/.test(haystack)) return 'api';
+  if (/\bsql\b|jdbc|database|transaction|indexing|primary key|foreign key|query/.test(haystack)) return 'sql';
+  if (/\bgit\b|merge|rebase|commit|branch|pull versus fetch|push/.test(haystack)) return 'git';
+  if (/jenkins|github actions|ci\/cd|pipeline|build agent|deployment/.test(haystack)) return 'ci';
+  if (/security|authentication|authorization|permission|credential|secret|token|tls|rate limit/.test(haystack)) return 'security';
+  if (/performance|load test|jmeter|capacity|throughput|latency|percentile/.test(haystack)) return 'performance';
+  if (/\brag\b|retrieval|embedding|vector search|vector database|chunking/.test(haystack)) return 'rag';
+  if (/\bmcp\b|model context protocol/.test(haystack)) return 'mcp';
+  if (/agent|llm|prompt|tool calling|function calling|langgraph|langchain|crewai|n8n|structured output|model routing/.test(haystack)) return 'ai';
+  if (/mqtt|home assistant|\biot\b|sensor|actuator|time-series/.test(haystack)) return 'iot';
+  if (/incident|slo|sli|error budget|alert|logging|tracing|runbook|reliability|backup|disaster recovery|root cause|on-call|monitoring/.test(haystack)) return 'ops';
+  if (/html|css|react|responsive|frontend|accessibility|semantic html/.test(haystack)) return 'frontend';
+  if (/java|javascript|typescript|python|hashmap|linked list|string|array|singleton|exception|oop|solid|stream|concurrency|closure|generic|type narrowing/.test(haystack)) return 'programming';
+  if (question.r === 'qa') return 'qa';
+  if (question.r === 'playwright') return 'browser';
+  if (question.r === 'ai') return 'ai';
+  if (question.r === 'ops') return 'ops';
+  return 'engineering';
+}
+
+function legacyBuildDistractorsV12Fix(question) {
+  const context = legacyContextV12Fix(question);
+  const key = legacyPoolKeyV12Fix(question);
+  const pool = legacyDistractorPoolsV12Fix[key] || legacyDistractorPoolsV12Fix.engineering;
+  const seed = legacyHashV12Fix(`${question.r}|${question.q}`);
+  const chosen = [];
+  let cursor = seed % pool.length;
+  let step = ((seed >>> 8) % (pool.length - 1)) + 1;
+  while (chosen.length < 3) {
+    const text = pool[cursor](context.topic, context.phase);
+    if (!chosen.includes(text)) chosen.push(text);
+    cursor = (cursor + step) % pool.length;
+    if (chosen.length < 3 && chosen.length + 1 >= pool.length) break;
+  }
+  // Extremely defensive fallback; normally the pools above always yield three distinct entries.
+  while (chosen.length < 3) {
+    chosen.push(`For ${context.phase} of ${context.topic}, rely on an unverified assumption instead of checking the observable behavior required by the question.`);
+  }
+  return chosen;
+}
+
+let legacyDistractorsRewrittenV12Fix = 0;
+questions.forEach(question => {
+  if (!Array.isArray(question.a) || question.a.length !== 4 || !Number.isInteger(question.c)) return;
+  const wrong = question.a.filter((_, index) => index !== question.c);
+  if (!wrong.length || !wrong.every(answer => legacyFallbackDistractorsV12Fix.has(answer))) return;
+
+  const correct = question.a[question.c];
+  const replacements = legacyBuildDistractorsV12Fix(question);
+  const answers = [...replacements];
+  answers.splice(question.c, 0, correct);
+  question.a = answers;
+  legacyDistractorsRewrittenV12Fix++;
+});
+
+if (typeof console !== 'undefined' && console.info) {
+  console.info(`[question-bank] Replaced generic fallback distractors in ${legacyDistractorsRewrittenV12Fix} legacy questions.`);
+}
