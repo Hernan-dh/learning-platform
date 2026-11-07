@@ -15,7 +15,7 @@ const completeQuestionBank = [
     "e": "Regression testing protects previously working behavior from side effects introduced by a change.",
     "wrong": [
       "Delay clarification of ambiguous requirements in regression testing until after execution; guessing expected behavior keeps testing independent.",
-      "For regression testing, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Use the number of executed cases as the main measure of confidence in regression testing, even if several cases exercise the same behavior and important risks remain uncovered."
     ],
     "tags": [
@@ -30,9 +30,9 @@ const completeQuestionBank = [
     "correct": "Describe product context, quality risks, your ownership, tools, and measurable outcomes.",
     "e": "A strong answer connects your day-to-day work to customer value, risk reduction, and collaboration.",
     "wrong": [
-      "For explain your current project and responsibilities in an interview, answer with generic strengths rather than one concrete example, trade-off, or result that can be discussed in follow-up questions.",
-      "For explain your current project and responsibilities in an interview, describe only what the team did collectively so the interviewer cannot tell which responsibilities or results were yours.",
-      "For explain your current project and responsibilities in an interview, focus on implementation details and omit business context, quality risks, collaboration, and what changed because of your work."
+      "Answer with generic strengths rather than one concrete example, trade-off, or result that can be discussed in follow-up questions.",
+      "Describe only what the team did collectively so the interviewer cannot tell which responsibilities or results were yours.",
+      "Focus on implementation details and omit business context, quality risks, collaboration, and what changed because of your work."
     ],
     "tags": [
       "Quality Assurance",
@@ -111,9 +111,9 @@ const completeQuestionBank = [
     "correct": "Attempt login with an invalid password and verify a safe error without revealing sensitive details.",
     "e": "Negative cases validate error handling, security, rate limiting, and that the user cannot enter an authenticated state.",
     "wrong": [
-      "For a useful negative login test, allow unlimited rapid attempts because rate limiting can interfere with legitimate negative tests.",
-      "For a useful negative login test, treat possession of a username or email as sufficient identity proof when the password or token is invalid.",
-      "For a useful negative login test, log the submitted password or token with the failed request so authentication problems are easier to reproduce."
+      "Allow unlimited rapid attempts because rate limiting can interfere with legitimate negative tests.",
+      "Treat possession of a username or email as sufficient identity proof when the password or token is invalid.",
+      "Log the submitted password or token with the failed request so authentication problems are easier to reproduce."
     ],
     "tags": [
       "Quality Assurance",
@@ -128,9 +128,9 @@ const completeQuestionBank = [
     "correct": "Happy paths, validation, failures, state changes, boundaries, accessibility, and security-sensitive behavior.",
     "e": "Critical flows need both success coverage and failure behavior, especially duplicate payment prevention and data integrity.",
     "wrong": [
-      "For what should login, payment, and search/filter scenarios cover, log the submitted password or token with the failed request so authentication problems are easier to reproduce.",
-      "For what should login, payment, and search/filter scenarios cover, treat possession of a username or email as sufficient identity proof when the password or token is invalid.",
-      "For what should login, payment, and search/filter scenarios cover, return a different detailed error for unknown users and wrong passwords so users receive more precise feedback."
+      "Log the submitted password or token with the failed request so authentication problems are easier to reproduce.",
+      "Treat possession of a username or email as sufficient identity proof when the password or token is invalid.",
+      "Return a different detailed error for unknown users and wrong passwords so users receive more precise feedback."
     ],
     "tags": [
       "Quality Assurance",
@@ -144,7 +144,7 @@ const completeQuestionBank = [
     "correct": "Preserve evidence, capture context and telemetry, narrow variables, and keep investigating without closing it as invalid.",
     "e": "Logs, timestamps, user/session identifiers, browser data, and network traces often turn an intermittent report into a reproducible case.",
     "wrong": [
-      "For handle a non-reproducible bug, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
+      "Close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
       "Keep handle a non-reproducible bug reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written.",
       "Prioritize handle a non-reproducible bug only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision."
     ],
@@ -196,7 +196,7 @@ const completeQuestionBank = [
     "wrong": [
       "Design exploratory testing around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
       "Treat every scenario in exploratory testing as equally important; prioritization by impact or likelihood would bias the test effort.",
-      "For exploratory testing, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
     ],
     "tags": [
       "Quality Assurance",
@@ -227,7 +227,7 @@ const completeQuestionBank = [
     "correct": "They represent how users and assistive technology perceive the interface.",
     "e": "Semantic locators are more resilient to markup changes and encourage accessible UI design.",
     "wrong": [
-      "For role- or label-based Playwright locators, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Treat browser automation timing in role- or label-based Playwright locators as independent of network, rendering, and application state, so those signals do not need inspection.",
       "Use the first matching element in role- or label-based Playwright locators whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
     ],
@@ -294,7 +294,7 @@ const completeQuestionBank = [
     "e": "Avoid absolute XPath; target a semantic container and a stable attribute so layout changes do not break the locator.",
     "wrong": [
       "When a robust dynamic XPath approach for a product rating becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
-      "For a robust dynamic XPath approach for a product rating, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Treat browser automation timing in a robust dynamic XPath approach for a product rating as independent of network, rendering, and application state, so those signals do not need inspection."
     ],
     "tags": [
@@ -328,7 +328,7 @@ const completeQuestionBank = [
     "correct": "Page Object Model organizes UI interactions; pom.xml defines Maven project dependencies and build configuration.",
     "e": "They solve different problems: POM improves test maintainability, while pom.xml manages Java project builds.",
     "wrong": [
-      "For POM versus pom.xml, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "When POM versus pom.xml becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
       "Assume element references remain valid after dynamic DOM updates in POM versus pom.xml; re-locating elements only adds unnecessary work."
     ],
@@ -398,7 +398,7 @@ const completeQuestionBank = [
     "wrong": [
       "Persist every piece of browser state for what makes an automation framework safe for parallel execution between runs, including stale sessions and temporary data, to maximize realism.",
       "Treat a stored authentication state in what makes an automation framework safe for parallel execution as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
-      "For what makes an automation framework safe for parallel execution, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
     ],
     "tags": [
       "Test Automation",
@@ -461,7 +461,7 @@ const completeQuestionBank = [
     "correct": "Use APIs for fast business-rule coverage and UI for critical user journeys and integration confidence.",
     "e": "The test pyramid keeps feedback fast while reserving expensive end-to-end flows for high-value behavior.",
     "wrong": [
-      "For uI automation versus API automation, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "When uI automation versus API automation becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
       "Assume element references remain valid after dynamic DOM updates in uI automation versus API automation; re-locating elements only adds unnecessary work."
     ],
@@ -478,9 +478,9 @@ const completeQuestionBank = [
     "correct": "Use interfaces for contracts and multiple capabilities; abstract classes for shared state or partial implementation.",
     "e": "The choice is about reuse and design boundaries, not syntax alone.",
     "wrong": [
-      "For interface versus abstract class in Java, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For interface versus abstract class in Java, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For interface versus abstract class in Java, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
     ],
     "tags": [
       "Software Engineering",
@@ -496,7 +496,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat one successful local execution as proof that how do OOP concepts appear in a test framework satisfies reliability, security, scale, and recovery requirements.",
       "Postpone observability and failure handling in how do OOP concepts appear in a test framework until the first production incident provides real requirements.",
-      "For how do OOP concepts appear in a test framework, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
     ],
     "tags": [
       "Software Engineering",
@@ -510,9 +510,9 @@ const completeQuestionBank = [
     "correct": "Immutability enables safe sharing, predictable hashing, security, and string-pool reuse.",
     "e": "Methods that appear to modify a String create a new object, which matters for performance and correctness.",
     "wrong": [
-      "For string immutable in Java, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For string immutable in Java, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For string immutable in Java, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
     ],
     "tags": [
       "Software Engineering",
@@ -527,9 +527,9 @@ const completeQuestionBank = [
     "correct": "Count characters, track the two highest distinct frequencies, and define behavior for ties.",
     "e": "A correct solution clarifies edge cases such as no second frequency, case sensitivity, and whitespace.",
     "wrong": [
-      "For find the second most frequent character, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For find the second most frequent character, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For find the second most frequent character, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "tags": [
       "Software Engineering"
@@ -542,9 +542,9 @@ const completeQuestionBank = [
     "correct": "Partition characters into three groups while preserving the intended order, then concatenate them.",
     "e": "This is a stable grouping problem; define whether digits are special characters before coding.",
     "wrong": [
-      "For move vowels left, consonants middle, and special characters right, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For move vowels left, consonants middle, and special characters right, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For move vowels left, consonants middle, and special characters right, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
     ],
     "tags": [
       "Software Engineering"
@@ -557,9 +557,9 @@ const completeQuestionBank = [
     "correct": "Iterate from the final index to zero and append each character to a buffer.",
     "e": "This demonstrates indexing, time complexity, and an understanding that String concatenation in a loop can be inefficient.",
     "wrong": [
-      "For reverse a string without built-in reverse methods, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For reverse a string without built-in reverse methods, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For reverse a string without built-in reverse methods, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering",
@@ -574,9 +574,9 @@ const completeQuestionBank = [
     "correct": "Checked exceptions require handling or declaration; unchecked exceptions extend RuntimeException.",
     "e": "Use checked exceptions for recoverable conditions callers should address, and unchecked exceptions for programming or invariant failures.",
     "wrong": [
-      "For checked versus unchecked exceptions, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For checked versus unchecked exceptions, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For checked versus unchecked exceptions, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -590,9 +590,9 @@ const completeQuestionBank = [
     "correct": "Use a sliding window and a map of the latest index for each character.",
     "e": "Move the left boundary past a duplicate and track the largest window for O(n) time.",
     "wrong": [
-      "For find the longest substring without repeated characters, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For find the longest substring without repeated characters, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For find the longest substring without repeated characters, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
     ],
     "tags": [
       "Software Engineering",
@@ -606,9 +606,9 @@ const completeQuestionBank = [
     "correct": "Use fast and slow pointers; if they meet, a cycle exists.",
     "e": "Floyds algorithm detects a cycle in O(n) time and O(1) extra space.",
     "wrong": [
-      "For detect a cycle in a linked list, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For detect a cycle in a linked list, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For detect a cycle in a linked list, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
     ],
     "tags": [
       "Software Engineering",
@@ -622,9 +622,9 @@ const completeQuestionBank = [
     "correct": "Count frequencies, then scan again in original order for count one.",
     "e": "Two passes preserve the order requirement and make the rule explicit.",
     "wrong": [
-      "For find the first non-repeating character, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For find the first non-repeating character, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For find the first non-repeating character, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering"
@@ -637,9 +637,9 @@ const completeQuestionBank = [
     "correct": "Use an in-place technique only if mutation and value constraints are acceptable.",
     "e": "For example, sort in place then compare neighbors; always state the trade-off of modifying input.",
     "wrong": [
-      "For find duplicates in an array without an additional data structure, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For find duplicates in an array without an additional data structure, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For find duplicates in an array without an additional data structure, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
     ],
     "tags": [
       "Software Engineering"
@@ -652,7 +652,7 @@ const completeQuestionBank = [
     "correct": "Count frequencies and use a heap or bucket strategy appropriate to the input size.",
     "e": "The solution should explain the complexity trade-off between sorting, heaps, and buckets.",
     "wrong": [
-      "For find the top K frequent elements, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Use implicit defaults and undocumented environment state in find the top K frequent elements; explicit contracts only add configuration overhead.",
       "Treat one successful local execution as proof that find the top K frequent elements satisfies reliability, security, scale, and recovery requirements."
     ],
@@ -667,9 +667,9 @@ const completeQuestionBank = [
     "correct": "It hashes a key to a bucket, compares keys for collisions, and may treeify heavily-collided buckets.",
     "e": "Correct equals and hashCode implementations are essential for retrieval correctness and performance.",
     "wrong": [
-      "For how does HashMap work internally in Java, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For how does HashMap work internally in Java, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For how does HashMap work internally in Java, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
     ],
     "tags": [
       "Software Engineering",
@@ -685,9 +685,9 @@ const completeQuestionBank = [
     "correct": "Use an enum singleton or double-checked locking with a volatile instance.",
     "e": "These approaches avoid unsafe publication and protect against concurrent initialization.",
     "wrong": [
-      "For implement a thread-safe Singleton, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For implement a thread-safe Singleton, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For implement a thread-safe Singleton, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering",
@@ -701,9 +701,9 @@ const completeQuestionBank = [
     "correct": "HashMap is not thread-safe; ConcurrentHashMap supports concurrent access with atomic operations and no null keys or values.",
     "e": "Choose ConcurrentHashMap when shared mutable map access is required across threads.",
     "wrong": [
-      "For HashMap versus ConcurrentHashMap, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For HashMap versus ConcurrentHashMap, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For HashMap versus ConcurrentHashMap, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
     ],
     "tags": [
       "Software Engineering",
@@ -717,7 +717,7 @@ const completeQuestionBank = [
     "correct": "At minimum: 200/201/204 success, 400/401/403/404 client errors, and 409/429/500/503 important cases.",
     "e": "Status codes communicate protocol outcomes, but assertions must also validate business data and contracts.",
     "wrong": [
-      "For HTTP status codes, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
       "Validate only the happy-path endpoint in HTTP status codes; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
       "Use production credentials and real customer data for HTTP status codes because synthetic environments cannot reveal API defects."
     ],
@@ -751,7 +751,7 @@ const completeQuestionBank = [
     "wrong": [
       "Hard-code tokens, IDs, and environment URLs directly into what does a basic Rest Assured validation include so every request is self-contained.",
       "Treat the client-visible response as the entire contract for what does a basic Rest Assured validation include; downstream state and emitted events do not need verification.",
-      "For what does a basic Rest Assured validation include, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "tags": [
       "Software Engineering",
@@ -768,7 +768,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use production credentials and real customer data for investigate HTTP 200 with incorrect business data because synthetic environments cannot reveal API defects.",
       "Validate only the happy-path endpoint in investigate HTTP 200 with incorrect business data; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
-      "For investigate HTTP 200 with incorrect business data, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "tags": [
       "Software Engineering",
@@ -800,7 +800,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat the client-visible response as the entire contract for test API idempotency; downstream state and emitted events do not need verification.",
       "Assume retries are safe for test API idempotency even when operations are not idempotent; duplicate side effects can be cleaned up later.",
-      "For test API idempotency, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "tags": [
       "Software Engineering",
@@ -814,9 +814,9 @@ const completeQuestionBank = [
     "correct": "Use a controlled stub or fault injection and verify timeout, fallback, error mapping, and observability.",
     "e": "The service should fail safely with useful behavior instead of leaking internal errors.",
     "wrong": [
-      "For test a downstream-service outage, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For test a downstream-service outage, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For test a downstream-service outage, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
     ],
     "tags": [
       "Software Engineering"
@@ -845,7 +845,7 @@ const completeQuestionBank = [
     "correct": "Send controlled traffic until the threshold and verify status, headers, reset behavior, fairness, and recovery.",
     "e": "Rate limiting should protect the service while communicating a usable retry contract to clients.",
     "wrong": [
-      "For test API rate limiting, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
       "Hard-code tokens, IDs, and environment URLs directly into test API rate limiting so every request is self-contained.",
       "Validate only the happy-path endpoint in test API rate limiting; authorization, malformed input, rate limits, and dependency failures belong to separate systems."
     ],
@@ -878,7 +878,7 @@ const completeQuestionBank = [
     "e": "Fetching first gives you a chance to inspect incoming work before merging or rebasing.",
     "wrong": [
       "Stage every changed file during pull versus fetch and rely on the commit message to explain unrelated modifications.",
-      "For pull versus fetch, resolve conflicts by choosing one side wholesale; understanding both changes is unnecessary if the branch compiles.",
+      "Resolve conflicts by choosing one side wholesale; understanding both changes is unnecessary if the branch compiles.",
       "Use force push as the normal recovery mechanism for pull versus fetch instead of checking branch state and coordinating rewritten history."
     ],
     "tags": [
@@ -927,7 +927,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use arbitrary sleeps for dependency startup in tests pass locally but fail randomly in Jenkins; readiness checks and retryable connection logic add unnecessary complexity.",
       "Assume local success proves tests pass locally but fail randomly in Jenkins will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
-      "For tests pass locally but fail randomly in Jenkins, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant."
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant."
     ],
     "tags": [
       "Software Engineering",
@@ -941,7 +941,7 @@ const completeQuestionBank = [
     "correct": "The suite may miss critical risks, have weak assertions, test the wrong layer, or lack realistic data and observability.",
     "e": "Pass rate is not quality; coverage must be tied to business risk and defect escape analysis.",
     "wrong": [
-      "For a 98 percent pass rate still allow critical production bugs, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Postpone observability and failure handling in a 98 percent pass rate still allow critical production bugs until the first production incident provides real requirements.",
       "Keep business logic coupled directly to transport, storage, and UI details in a 98 percent pass rate still allow critical production bugs so fewer interfaces need maintenance."
     ],
@@ -1018,7 +1018,7 @@ const completeQuestionBank = [
     "correct": "Establish the source of truth, trace timestamps and transformations across each boundary, and inspect caching or eventual consistency.",
     "e": "Layer disagreement usually reveals a mapping, freshness, contract, or ownership problem.",
     "wrong": [
-      "For database, API, and UI show three different values. Where do you start, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Consider a single successful execution sufficient evidence for database, API, and UI show three different values. Where do you start, without preserving environment, data, or build context.",
       "Treat database, API, and UI show three different values. Where do you start as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value."
     ],
@@ -1055,7 +1055,7 @@ const completeQuestionBank = [
     "e": "MCP creates explicit, discoverable integration boundaries between an AI client and external capabilities.",
     "wrong": [
       "Treat tool results in what role does MCP play in an agentic system as trusted instructions because they came from an approved integration rather than from the user.",
-      "For what role does MCP play in an agentic system, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Give what role does MCP play in an agentic system access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
     ],
     "tags": [
@@ -1089,7 +1089,7 @@ const completeQuestionBank = [
     "correct": "Create a semantic-equivalence hypothesis: have an independent model or reviewer reconstruct the manual case from the generated test, compare goals, preconditions, actions, assertions, and risks, then measure agreement on a sampled set.",
     "e": "There is no universal metric for semantic equivalence. A strong answer states an assumption, explains why reconstruction may expose meaning drift, and defines how to validate or reject it with human-reviewed samples.",
     "wrong": [
-      "For check whether an LLM-generated automated test means the same thing as its original…, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
       "Treat a successful workflow execution in check whether an LLM-generated automated test means the same thing as its original… as proof that partial writes, duplicate events, retries, and resume behavior are correct.",
       "Share the same credentials, data, and state between test and production for check whether an LLM-generated automated test means the same thing as its original… so configuration remains simple."
     ],
@@ -1105,9 +1105,9 @@ const completeQuestionBank = [
     "correct": "Provide the user story, acceptance criteria, domain glossary, actors, business rules, relevant UI or API behavior, step-definition catalog, data constraints, and an explicit output schema.",
     "e": "Gherkin generation needs both the behavior contract and the available implementation vocabulary. That context constrains invention, reduces duplicate steps, and makes scenarios executable and reviewable.",
     "wrong": [
-      "For LLM-generated Gherkin tests, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once.",
-      "For LLM-generated Gherkin tests, give the model only a persona and let it infer the business rules, evidence sources, and output format from context.",
-      "For LLM-generated Gherkin tests, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself."
+      "Change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once.",
+      "Give the model only a persona and let it infer the business rules, evidence sources, and output format from context.",
+      "Mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself."
     ],
     "tags": [
       "AI Automation",
@@ -1121,9 +1121,9 @@ const completeQuestionBank = [
     "correct": "Start with a scoped hypothesis: classify reusable steps, prioritize high-risk flows, generate against an approved subset, validate compilation and execution in stages, quarantine stale tests, and review ambiguous mappings.",
     "e": "The constraint calls for triage rather than wholesale regeneration. Track step reuse, invalid output, execution reliability, review effort, and defect value; then adjust retrieval, prompts, or scope from evidence.",
     "wrong": [
-      "For design an AI test-generation pipeline with about 1,000 existing step definitions,…, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
-      "For design an AI test-generation pipeline with about 1,000 existing step definitions,…, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
-      "For design an AI test-generation pipeline with about 1,000 existing step definitions,…, give the model only a persona and let it infer the business rules, evidence sources, and output format from context."
+      "Mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "Omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "Give the model only a persona and let it infer the business rules, evidence sources, and output format from context."
     ],
     "tags": [
       "AI Automation",
@@ -1140,9 +1140,9 @@ const completeQuestionBank = [
     "correct": "Define measurable hypotheses and a labeled evaluation set, then compare semantic agreement, step reuse, compile rate, execution reliability, reviewer acceptance, cost, and latency across controlled changes.",
     "e": "A pipeline is a product: establish a baseline, change one variable, compare against a control, inspect failure categories, and retain only improvements that hold on representative data.",
     "wrong": [
-      "For measure and improve an LLM-assisted test-generation pipeline without guessing, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
-      "For measure and improve an LLM-assisted test-generation pipeline without guessing, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
-      "For measure and improve an LLM-assisted test-generation pipeline without guessing, rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively."
+      "Omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "Mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "Rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively."
     ],
     "tags": [
       "AI Automation",
@@ -1158,7 +1158,7 @@ const completeQuestionBank = [
     "e": "Useful alerts reduce time to mitigation; noisy alerts create fatigue and hide real incidents.",
     "wrong": [
       "Sample telemetry in what makes an alert useful rather than noisy without checking whether rare errors and slow requests remain observable.",
-      "For what makes an alert useful rather than noisy, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Log full secrets and payloads during what makes an alert useful rather than noisy because debugging value outweighs redaction when access is restricted."
     ],
     "tags": [
@@ -1208,9 +1208,9 @@ const completeQuestionBank = [
     "correct": "Lists are mutable; tuples are immutable sequences.",
     "e": "Choose tuples for fixed data and lists when in-place changes are required.",
     "wrong": [
-      "For a Python list and a tuple, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For a Python list and a tuple, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For a Python list and a tuple, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
     ],
     "tags": [
       "Software Engineering",
@@ -1224,9 +1224,9 @@ const completeQuestionBank = [
     "correct": "They yield values lazily instead of materializing the entire result.",
     "e": "Generators reduce memory usage and compose well in streaming pipelines.",
     "wrong": [
-      "For how do Python generators help with large data sets, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For how do Python generators help with large data sets, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For how do Python generators help with large data sets, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering",
@@ -1242,9 +1242,9 @@ const completeQuestionBank = [
     "correct": "It isolates project dependencies from the system interpreter and other projects.",
     "e": "Dependency isolation makes builds reproducible and prevents version conflicts.",
     "wrong": [
-      "For a Python virtual environment, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For a Python virtual environment, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For a Python virtual environment, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
     ],
     "tags": [
       "Software Engineering",
@@ -1258,9 +1258,9 @@ const completeQuestionBank = [
     "correct": "It wraps or transforms a callable while preserving a reusable definition.",
     "e": "Decorators are useful for cross-cutting behavior such as logging, authorization, or retries.",
     "wrong": [
-      "For what does a Python decorator do, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For what does a Python decorator do, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For what does a Python decorator do, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
     ],
     "tags": [
       "Software Engineering",
@@ -1276,9 +1276,9 @@ const completeQuestionBank = [
     "correct": "Catch specific exceptions, add context, recover when possible, and never silently swallow errors.",
     "e": "Specific handling preserves debuggability and prevents accidental masking of defects.",
     "wrong": [
-      "For how should Python exceptions be handled in production code, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For how should Python exceptions be handled in production code, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For how should Python exceptions be handled in production code, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1293,9 +1293,9 @@ const completeQuestionBank = [
     "correct": "It guarantees setup and cleanup around a block, commonly through the with statement.",
     "e": "Context managers safely release files, locks, network connections, and similar resources.",
     "wrong": [
-      "For the purpose of a Python context manager, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For the purpose of a Python context manager, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For the purpose of a Python context manager, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
     ],
     "tags": [
       "Software Engineering",
@@ -1309,9 +1309,9 @@ const completeQuestionBank = [
     "correct": "It limits concurrent execution of Python bytecode in the standard CPython interpreter.",
     "e": "It affects CPU-bound threading; processes or native extensions may be better for parallel CPU work.",
     "wrong": [
-      "For the Python GIL, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For the Python GIL, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For the Python GIL, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1325,9 +1325,9 @@ const completeQuestionBank = [
     "correct": "Define typed models and validate incoming data against them at the application boundary.",
     "e": "Typed validation turns untrusted payloads into predictable objects with useful error messages.",
     "wrong": [
-      "For validate API data with Pydantic in Python, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For validate API data with Pydantic in Python, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For validate API data with Pydantic in Python, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1342,9 +1342,9 @@ const completeQuestionBank = [
     "correct": "A shallow copy shares nested objects; a deep copy recursively copies them.",
     "e": "The distinction matters whenever nested mutable data is modified after copying.",
     "wrong": [
-      "For shallow and deep copy in Python, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For shallow and deep copy in Python, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For shallow and deep copy in Python, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1374,9 +1374,9 @@ const completeQuestionBank = [
     "correct": "var is function-scoped; let and const are block-scoped, with const preventing reassignment.",
     "e": "Prefer const by default and let only when reassignment is intentional.",
     "wrong": [
-      "For var, let, and const in JavaScript, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For var, let, and const in JavaScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For var, let, and const in JavaScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1390,9 +1390,9 @@ const completeQuestionBank = [
     "correct": "It schedules synchronous work, queued tasks, and microtasks around the call stack.",
     "e": "Understanding the event loop explains timing behavior for promises, timers, and UI responsiveness.",
     "wrong": [
-      "For the JavaScript event loop, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For the JavaScript event loop, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For the JavaScript event loop, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering",
@@ -1407,9 +1407,9 @@ const completeQuestionBank = [
     "correct": "async and await provide syntax over promises that makes asynchronous control flow easier to read.",
     "e": "Both use promises; await should still be paired with deliberate error handling and concurrency choices.",
     "wrong": [
-      "For promise versus async/await in JavaScript, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For promise versus async/await in JavaScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For promise versus async/await in JavaScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1423,9 +1423,9 @@ const completeQuestionBank = [
     "correct": "A function paired with access to variables from its lexical scope after the outer function returns.",
     "e": "Closures power encapsulation, callbacks, factories, and can also retain memory unexpectedly.",
     "wrong": [
-      "For a JavaScript closure, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For a JavaScript closure, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For a JavaScript closure, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering",
@@ -1439,9 +1439,9 @@ const completeQuestionBank = [
     "correct": "== coerces types; === compares both value and type without coercion.",
     "e": "Use strict equality to avoid surprising conversions in application and test code.",
     "wrong": [
-      "For == and === in JavaScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For == and === in JavaScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For == and === in JavaScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
     ],
     "tags": [
       "Software Engineering",
@@ -1455,9 +1455,9 @@ const completeQuestionBank = [
     "correct": "Use try and catch around awaited operations or return a promise chain with catch.",
     "e": "Errors must be surfaced with context so failures do not become silent rejected promises.",
     "wrong": [
-      "For how should JavaScript errors be handled in async code, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For how should JavaScript errors be handled in async code, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For how should JavaScript errors be handled in async code, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering",
@@ -1471,9 +1471,9 @@ const completeQuestionBank = [
     "correct": "They define explicit imports and exports to organize code and control dependencies.",
     "e": "Modules improve reuse, testability, bundling, and dependency boundaries.",
     "wrong": [
-      "For what are JavaScript modules used for, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For what are JavaScript modules used for, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For what are JavaScript modules used for, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering",
@@ -1487,9 +1487,9 @@ const completeQuestionBank = [
     "correct": "A new array produced by applying a transformation to every input element.",
     "e": "Use map for transformations, not for side effects such as logging or mutation.",
     "wrong": [
-      "For Array.map, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For Array.map, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For Array.map, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
     ],
     "tags": [
       "Software Engineering",
@@ -1504,9 +1504,9 @@ const completeQuestionBank = [
     "correct": "Favor immutable updates, clear ownership, and narrow function inputs and outputs.",
     "e": "Reducing shared mutation makes asynchronous and test behavior more predictable.",
     "wrong": [
-      "For how can JavaScript code avoid shared mutable state, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For how can JavaScript code avoid shared mutable state, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For how can JavaScript code avoid shared mutable state, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1520,9 +1520,9 @@ const completeQuestionBank = [
     "correct": "A parent listener handles events from matching child elements through event bubbling.",
     "e": "It reduces listeners and supports dynamic content when used with careful target matching.",
     "wrong": [
-      "For event delegation in JavaScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For event delegation in JavaScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For event delegation in JavaScript, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1536,9 +1536,9 @@ const completeQuestionBank = [
     "correct": "It adds static types, safer refactoring, and clearer contracts while compiling to JavaScript.",
     "e": "TypeScript catches many integration mistakes before runtime without replacing runtime validation.",
     "wrong": [
-      "For why use TypeScript instead of plain JavaScript for a large codebase, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For why use TypeScript instead of plain JavaScript for a large codebase, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For why use TypeScript instead of plain JavaScript for a large codebase, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
     ],
     "tags": [
       "Software Engineering",
@@ -1553,9 +1553,9 @@ const completeQuestionBank = [
     "correct": "Both describe shapes, but interfaces support declaration merging while type aliases are more flexible for unions and compositions.",
     "e": "Choose the construct that communicates intent; both can model most object contracts.",
     "wrong": [
-      "For an interface and a type alias in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For an interface and a type alias in TypeScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For an interface and a type alias in TypeScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1569,9 +1569,9 @@ const completeQuestionBank = [
     "correct": "unknown requires narrowing before a value can be used, while any disables type checking.",
     "e": "Use unknown for untrusted input so validation and guards remain explicit.",
     "wrong": [
-      "For what does unknown provide over any in TypeScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For what does unknown provide over any in TypeScript, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For what does unknown provide over any in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
     ],
     "tags": [
       "Software Engineering",
@@ -1585,9 +1585,9 @@ const completeQuestionBank = [
     "correct": "It lets functions, classes, and types preserve relationships between input and output types.",
     "e": "Generics provide reusable abstractions without discarding compile-time type information.",
     "wrong": [
-      "For a TypeScript generic, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For a TypeScript generic, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For a TypeScript generic, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
     ],
     "tags": [
       "Software Engineering",
@@ -1601,9 +1601,9 @@ const completeQuestionBank = [
     "correct": "A shared literal field lets the compiler safely narrow each variant in conditional logic.",
     "e": "They make state machines and API result handling exhaustive and readable.",
     "wrong": [
-      "For how do discriminated unions improve TypeScript code, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For how do discriminated unions improve TypeScript code, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For how do discriminated unions improve TypeScript code, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering",
@@ -1618,9 +1618,9 @@ const completeQuestionBank = [
     "correct": "It refines a broad type after checks such as typeof, in, equality, or custom guards.",
     "e": "Narrowing lets code handle unions safely without unsafe assertions.",
     "wrong": [
-      "For type narrowing in TypeScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For type narrowing in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For type narrowing in TypeScript, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1634,9 +1634,9 @@ const completeQuestionBank = [
     "correct": "Assertions can silence the compiler without proving the runtime value is valid.",
     "e": "Prefer parsing, validation, and type guards at boundaries instead of forced casts.",
     "wrong": [
-      "For why avoid excessive TypeScript type assertions, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For why avoid excessive TypeScript type assertions, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For why avoid excessive TypeScript type assertions, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
     ],
     "tags": [
       "Software Engineering",
@@ -1650,9 +1650,9 @@ const completeQuestionBank = [
     "correct": "It prevents mutation through that reference at compile time.",
     "e": "Readonly documents ownership expectations and reduces accidental changes, though it is not runtime immutability.",
     "wrong": [
-      "For what does readonly communicate in TypeScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For what does readonly communicate in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For what does readonly communicate in TypeScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1666,9 +1666,9 @@ const completeQuestionBank = [
     "correct": "Use optional properties or explicit union types, then handle the absent case before use.",
     "e": "Accurate optionality prevents undefined errors and mirrors the actual contract.",
     "wrong": [
-      "For how should optional API fields be modeled in TypeScript, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For how should optional API fields be modeled in TypeScript, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For how should optional API fields be modeled in TypeScript, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
     ],
     "tags": [
       "Software Engineering",
@@ -1683,9 +1683,9 @@ const completeQuestionBank = [
     "correct": "It enables stronger checks such as strict null handling and safer inference.",
     "e": "Strict settings expose unsafe assumptions early and improve refactoring confidence.",
     "wrong": [
-      "For the benefit of strict mode in TypeScript, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For the benefit of strict mode in TypeScript, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For the benefit of strict mode in TypeScript, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "tags": [
       "Software Engineering",
@@ -1715,9 +1715,9 @@ const completeQuestionBank = [
     "correct": "Reverse the digits and compare with the original, while defining behavior for negatives and overflow.",
     "e": "A good answer preserves the original value and explains the trade-off of numeric versus string reversal.",
     "wrong": [
-      "For check a palindrome number such as 121 or 123, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For check a palindrome number such as 121 or 123, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For check a palindrome number such as 121 or 123, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "tags": [
       "Software Engineering",
@@ -1733,7 +1733,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use the first matching element in fix StaleElementReferenceException in Selenium whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
       "Assume element references remain valid after dynamic DOM updates in fix StaleElementReferenceException in Selenium; re-locating elements only adds unnecessary work.",
-      "For fix StaleElementReferenceException in Selenium, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "tags": [
       "Test Automation",
@@ -1835,7 +1835,7 @@ const completeQuestionBank = [
     "correct": "Filter joined_at against the current date minus an interval, using the correct database dialect and timezone.",
     "e": "For PostgreSQL, for example, compare joined_at to CURRENT_DATE minus INTERVAL 30 DAY.",
     "wrong": [
-      "For what SQL finds employees who joined in the last 30 days, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
+      "Infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
       "Ignore database dialect and timezone semantics in what SQL finds employees who joined in the last 30 days; date arithmetic and isolation behavior are portable enough to assume.",
       "Run destructive queries for what SQL finds employees who joined in the last 30 days in shared environments as long as the transaction can theoretically be rolled back."
     ],
@@ -1868,7 +1868,7 @@ const completeQuestionBank = [
     "e": "This is O(n) time and O(1) extra space; state whether input mutation is allowed.",
     "wrong": [
       "Keep business logic coupled directly to transport, storage, and UI details in reverse [1,2,3,4] in place so fewer interfaces need maintenance.",
-      "For reverse [1,2,3,4] in place, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Optimize reverse [1,2,3,4] in place for the normal path and assume rare dependency failures, retries, or partial state can be handled manually."
     ],
     "tags": [
@@ -1884,7 +1884,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat browser automation timing in switch multi-tabs with driver.getWindowHandles in Selenium as independent of network, rendering, and application state, so those signals do not need inspection.",
       "Prefer absolute XPath or deep CSS structure in switch multi-tabs with driver.getWindowHandles in Selenium; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
-      "For switch multi-tabs with driver.getWindowHandles in Selenium, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "tags": [
       "Test Automation",
@@ -1899,7 +1899,7 @@ const completeQuestionBank = [
     "correct": "It gives each thread its own WebDriver, waits, and mutable state, then removes them during teardown.",
     "e": "It prevents browser-state sharing but does not solve shared accounts or shared test data.",
     "wrong": [
-      "For ThreadLocal, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
       "Skip cleanup in ThreadLocal; independent tests should adapt to whatever state earlier tests leave behind.",
       "Make ThreadLocal depend on the previous test's output; execution order is a convenient way to avoid repeated setup."
     ],
@@ -1915,7 +1915,7 @@ const completeQuestionBank = [
     "correct": "Use an ITestListener or hook to capture the current driver before teardown and attach a uniquely named file to the report.",
     "e": "Failure evidence needs test name, worker, timestamp, and build context to be useful.",
     "wrong": [
-      "For capture screenshots automatically on TestNG failure, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables.",
+      "Treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables.",
       "Change configuration files dynamically inside the pipeline for capture screenshots automatically on TestNG failure instead of mapping stable parameters to commands.",
       "Keep reports for capture screenshots automatically on TestNG failure to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read."
     ],
@@ -1964,7 +1964,7 @@ const completeQuestionBank = [
     "correct": "Compare versions, configuration, data, parallelism, resources, network, timezone, and artifacts, then reproduce the smallest difference.",
     "e": "Do not respond with blind waits or retries; CI failures signal an environment or isolation difference.",
     "wrong": [
-      "For debug a local pass but CI-node failure, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
       "Bake environment-specific secrets and credentials into the artifact used by debug a local pass but CI-node failure so every deployment receives identical configuration.",
       "Persist test state across runs in debug a local pass but CI-node failure by default; reusing volumes makes integration tests more realistic than clean startup."
     ],
@@ -1979,7 +1979,7 @@ const completeQuestionBank = [
     "correct": "Understand both changes, edit the intended result, verify it, stage it, and continue or abort the rebase.",
     "e": "Rebase rewrites history, so do not use it carelessly on shared public branches.",
     "wrong": [
-      "For resolve a Git rebase merge conflict, resolve conflicts by choosing one side wholesale; understanding both changes is unnecessary if the branch compiles.",
+      "Resolve conflicts by choosing one side wholesale; understanding both changes is unnecessary if the branch compiles.",
       "Stage every changed file during resolve a Git rebase merge conflict and rely on the commit message to explain unrelated modifications.",
       "Push first and inspect the diff afterward in resolve a Git rebase merge conflict; remote history is the best place to notice accidental files or secrets."
     ],
@@ -2012,7 +2012,7 @@ const completeQuestionBank = [
     "wrong": [
       "Delay clarification of ambiguous requirements in risk-based testing until after execution; guessing expected behavior keeps testing independent.",
       "Use the number of executed cases as the main measure of confidence in risk-based testing, even if several cases exercise the same behavior and important risks remain uncovered.",
-      "For risk-based testing, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
     ],
     "e": "Risk-based testing prioritizes coverage using impact and likelihood, so the most damaging or probable failures receive attention before low-value permutations. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -2058,7 +2058,7 @@ const completeQuestionBank = [
     "q": "Which explanation of equivalence partitioning is technically sound?",
     "correct": "Equivalence partitioning groups inputs expected to behave the same so representative values can cover a class without exhaustively testing every member.",
     "wrong": [
-      "For equivalence partitioning, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Consider a single successful execution sufficient evidence for equivalence partitioning, without preserving environment, data, or build context.",
       "Use the number of executed cases as the main measure of confidence in equivalence partitioning, even if several cases exercise the same behavior and important risks remain uncovered."
     ],
@@ -2074,7 +2074,7 @@ const completeQuestionBank = [
     "q": "What is the core idea behind state transition testing?",
     "correct": "State-transition testing verifies how behavior changes with current state, including allowed transitions, forbidden transitions, repeated events, and resulting side effects.",
     "wrong": [
-      "For state transition testing, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Design state transition testing around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
       "Delay clarification of ambiguous requirements in state transition testing until after execution; guessing expected behavior keeps testing independent."
     ],
@@ -2090,7 +2090,7 @@ const completeQuestionBank = [
     "q": "What should a practitioner understand first about decision tables?",
     "correct": "Decision tables are useful when outcomes depend on combinations of conditions because they expose missing, contradictory, or redundant business-rule combinations.",
     "wrong": [
-      "For decision tables, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Design decision tables around the easiest data to obtain rather than around business risk, because representative data mainly affects convenience.",
       "Consider a single successful execution sufficient evidence for decision tables, without preserving environment, data, or build context."
     ],
@@ -2154,7 +2154,7 @@ const completeQuestionBank = [
     "q": "Which explanation of defect reporting is technically sound?",
     "correct": "A useful defect report makes the problem reproducible and actionable by capturing expected versus actual behavior, environment, build, data, steps, evidence, and impact.",
     "wrong": [
-      "For defect reporting, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
+      "Close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
       "Resolve duplicates in defect reporting by discarding the newer report and its evidence, because one issue should have only one source of information.",
       "Keep defect reporting reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written."
     ],
@@ -2170,7 +2170,7 @@ const completeQuestionBank = [
     "q": "Which explanation of defect triage is technically sound?",
     "correct": "Defect triage determines whether an issue is a defect, its severity and priority, ownership, release impact, and the next action using evidence and business context.",
     "wrong": [
-      "For defect triage, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
+      "Close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
       "Prioritize defect triage only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision.",
       "Keep defect triage reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written."
     ],
@@ -2188,7 +2188,7 @@ const completeQuestionBank = [
     "wrong": [
       "Keep test data management static once written, even when scope, environment, dependencies, or release context changes.",
       "Use the same detail and metrics for every audience in test data management, regardless of whether they need diagnostic evidence or a risk decision.",
-      "For test data management, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
     ],
     "e": "Test data management creates controlled, representative, isolated, and privacy-safe data that lets tests run repeatably without corrupting shared environments. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -2204,7 +2204,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat a green automated check as proof that cross-browser testing is acceptable for every user and operating condition.",
       "Judge cross-browser testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes.",
-      "For cross-browser testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
+      "Test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
     ],
     "e": "Cross-browser testing targets meaningful differences in browser engines, versions, rendering, APIs, permissions, and user populations rather than duplicating every test everywhere. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -2267,7 +2267,7 @@ const completeQuestionBank = [
     "q": "Which statement best describes performance testing?",
     "correct": "Performance testing measures behavior under a defined workload and service objective, including latency distributions, throughput, errors, saturation, and resource use.",
     "wrong": [
-      "For performance testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
       "Use production-like scale or sensitive data immediately for performance testing without first validating the test design in a controlled environment.",
       "Treat a green automated check as proof that performance testing is acceptable for every user and operating condition."
     ],
@@ -2303,7 +2303,7 @@ const completeQuestionBank = [
     "wrong": [
       "Hide untested areas in UAT collaboration so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
       "Keep UAT collaboration static once written, even when scope, environment, dependencies, or release context changes.",
-      "For UAT collaboration, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
     ],
     "e": "User Acceptance Testing validates business suitability with product owners or representative users and should focus on real workflows and acceptance decisions rather than duplicating the entire QA suite. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -2335,7 +2335,7 @@ const completeQuestionBank = [
     "wrong": [
       "Keep test reporting static once written, even when scope, environment, dependencies, or release context changes.",
       "Hide untested areas in test reporting so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
-      "For test reporting, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
     ],
     "e": "Test reporting should communicate what was tested, on which build/environment, what passed or failed, known defects, residual risk, evidence, and the resulting recommendation. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -2382,7 +2382,7 @@ const completeQuestionBank = [
     "correct": "Data validation checks structure, types, ranges, uniqueness, referential rules, business invariants, freshness, and reconciliation across system boundaries.",
     "wrong": [
       "Delay clarification of ambiguous requirements in data validation until after execution; guessing expected behavior keeps testing independent.",
-      "For data validation, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Treat every scenario in data validation as equally important; prioritization by impact or likelihood would bias the test effort."
     ],
     "e": "Data validation checks structure, types, ranges, uniqueness, referential rules, business invariants, freshness, and reconciliation across system boundaries. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -2398,7 +2398,7 @@ const completeQuestionBank = [
     "correct": "Review requirements with product and engineering before execution, record assumptions and open questions, and trace each important rule to one or more tests.",
     "wrong": [
       "Use the number of executed cases as the main measure of confidence in requirements analysis, even if several cases exercise the same behavior and important risks remain uncovered.",
-      "For requirements analysis, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Consider a single successful execution sufficient evidence for requirements analysis, without preserving environment, data, or build context."
     ],
     "e": "Review requirements with product and engineering before execution, record assumptions and open questions, and trace each important rule to one or more tests. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -2447,7 +2447,7 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for boundary value analysis?",
     "correct": "Identify each ordered input range and test values such as minimum, just above minimum, nominal, just below maximum, maximum, and immediately outside the allowed range when meaningful.",
     "wrong": [
-      "For boundary value analysis, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Treat boundary value analysis as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
       "Assume one representative input is enough for boundary value analysis even when valid and invalid partitions, boundaries, or states have different rules."
     ],
@@ -2464,7 +2464,7 @@ const completeQuestionBank = [
     "correct": "Define valid and invalid partitions from business rules, select representative members from each, and combine the technique with boundary testing where partitions have numeric or ordered edges.",
     "wrong": [
       "Delay clarification of ambiguous requirements in equivalence partitioning until after execution; guessing expected behavior keeps testing independent.",
-      "For equivalence partitioning, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Consider a single successful execution sufficient evidence for equivalence partitioning, without preserving environment, data, or build context."
     ],
     "e": "Define valid and invalid partitions from business rules, select representative members from each, and combine the technique with boundary testing where partitions have numeric or ordered edges. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -2577,7 +2577,7 @@ const completeQuestionBank = [
     "correct": "Consider user impact, frequency, workaround, data/security implications, affected scope, regulatory concerns, and proximity to release instead of debating labels in isolation.",
     "wrong": [
       "Keep defect triage reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written.",
-      "For defect triage, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
+      "Close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable.",
       "Prioritize defect triage only by technical severity; business urgency, affected users, workarounds, and release timing should not influence the decision."
     ],
     "e": "Consider user impact, frequency, workaround, data/security implications, affected scope, regulatory concerns, and proximity to release instead of debating labels in isolation. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -2595,7 +2595,7 @@ const completeQuestionBank = [
     "correct": "Prefer API or fixture-based setup, unique identifiers, deterministic seeds, clear ownership, and cleanup; mask or synthesize sensitive production data before reuse.",
     "wrong": [
       "Hide untested areas in test data management so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
-      "For test data management, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
       "Assume more test cases always improve test data management; duplicated or low-value checks should count the same as critical coverage."
     ],
     "e": "Prefer API or fixture-based setup, unique identifiers, deterministic seeds, clear ownership, and cleanup; mask or synthesize sensitive production data before reuse. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -2628,7 +2628,7 @@ const completeQuestionBank = [
     "correct": "Combine responsive-browser checks with real-device or emulator coverage for capabilities that browser emulation cannot reproduce faithfully, such as native permissions or OS lifecycle events.",
     "wrong": [
       "Assume tooling can fully validate mobile testing automatically; manual judgment and real-world scenarios only duplicate scanner or benchmark output.",
-      "For mobile testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
       "Treat a green automated check as proof that mobile testing is acceptable for every user and operating condition."
     ],
     "e": "Combine responsive-browser checks with real-device or emulator coverage for capabilities that browser emulation cannot reproduce faithfully, such as native permissions or OS lifecycle events. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -2678,7 +2678,7 @@ const completeQuestionBank = [
     "wrong": [
       "Judge performance testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes.",
       "Assume tooling can fully validate performance testing automatically; manual judgment and real-world scenarios only duplicate scanner or benchmark output.",
-      "For performance testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
+      "Test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
     ],
     "e": "Model realistic traffic, data, concurrency, ramp patterns, think time, and critical transactions; debug scripts at low load before running controlled larger tests. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -2729,7 +2729,7 @@ const completeQuestionBank = [
     "wrong": [
       "Hide untested areas in release readiness so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
       "Treat release readiness as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
-      "For release readiness, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
     ],
     "e": "Summarize critical coverage, blockers, open defects, environment differences, monitoring, deployment plan, rollback, and business approvals before recommending go/no-go. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -2779,7 +2779,7 @@ const completeQuestionBank = [
     "correct": "Prefer reproducible setup through containers, infrastructure/configuration as code, seeded data, and explicit versioning, while documenting differences from production.",
     "wrong": [
       "Assume more test cases always improve test environment management; duplicated or low-value checks should count the same as critical coverage.",
-      "For test environment management, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
       "Use the same detail and metrics for every audience in test environment management, regardless of whether they need diagnostic evidence or a risk decision."
     ],
     "e": "Prefer reproducible setup through containers, infrastructure/configuration as code, seeded data, and explicit versioning, while documenting differences from production. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -2927,7 +2927,7 @@ const completeQuestionBank = [
     "correct": "Track actual effort and causes of variance so future estimates improve, and renegotiate scope explicitly when fixed dates make the original coverage impossible.",
     "wrong": [
       "Treat test estimation as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
-      "For test estimation, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
       "Keep test estimation static once written, even when scope, environment, dependencies, or release context changes."
     ],
     "e": "Track actual effort and causes of variance so future estimates improve, and renegotiate scope explicitly when fixed dates make the original coverage impossible. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -2944,7 +2944,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use the same detail and metrics for every audience in test planning, regardless of whether they need diagnostic evidence or a risk decision.",
       "Keep test planning static once written, even when scope, environment, dependencies, or release context changes.",
-      "For test planning, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
     ],
     "e": "Review the plan as conditions change and verify that execution evidence, blocked work, and residual risks still align with the agreed objectives. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -2960,7 +2960,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use the same detail and metrics for every audience in test strategy, regardless of whether they need diagnostic evidence or a risk decision.",
       "Hide untested areas in test strategy so stakeholders receive a simpler status; residual risk can be inferred from the overall score.",
-      "For test strategy, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
     ],
     "e": "Evaluate the strategy by defect escapes, feedback speed, flakiness, risk coverage, and maintainability rather than by raw test-count growth. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -2992,7 +2992,7 @@ const completeQuestionBank = [
     "wrong": [
       "Keep defect triage reports concise by omitting build, environment, timestamps, identifiers, and supporting evidence once steps are written.",
       "Resolve duplicates in defect triage by discarding the newer report and its evidence, because one issue should have only one source of information.",
-      "For defect triage, close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable."
+      "Close an intermittent issue if it cannot be reproduced immediately; nondeterministic evidence is not actionable."
     ],
     "e": "Record the triage decision and rationale, link duplicates without discarding unique evidence, and revisit priority if impact or release context changes. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -3022,7 +3022,7 @@ const completeQuestionBank = [
     "q": "What evidence best validates cross-browser testing?",
     "correct": "When failures differ by browser, compare engine/version, feature support, CSS/layout, timing, storage, permissions, and network behavior before treating the issue as generic flakiness.",
     "wrong": [
-      "For cross-browser testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
       "Treat a green automated check as proof that cross-browser testing is acceptable for every user and operating condition.",
       "Judge cross-browser testing from a single average metric or pass/fail result instead of distributions, edge cases, and user-impacting failure modes."
     ],
@@ -3040,7 +3040,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use production-like scale or sensitive data immediately for mobile testing without first validating the test design in a controlled environment.",
       "Treat a green automated check as proof that mobile testing is acceptable for every user and operating condition.",
-      "For mobile testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
+      "Test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
     ],
     "e": "Verify critical journeys under rotation, background/foreground transitions, slow or interrupted networks, different input methods, and constrained screen space. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -3088,7 +3088,7 @@ const completeQuestionBank = [
     "correct": "Interpret response-time percentiles together with server and infrastructure metrics so a slowdown can be linked to the actual bottleneck rather than only a client-side average.",
     "wrong": [
       "Use production-like scale or sensitive data immediately for performance testing without first validating the test design in a controlled environment.",
-      "For performance testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
       "Assume tooling can fully validate performance testing automatically; manual judgment and real-world scenarios only duplicate scanner or benchmark output."
     ],
     "e": "Interpret response-time percentiles together with server and infrastructure metrics so a slowdown can be linked to the actual bottleneck rather than only a client-side average. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -3105,7 +3105,7 @@ const completeQuestionBank = [
     "correct": "Validate security controls at the authoritative backend boundary and confirm logs and error messages provide evidence without leaking secrets or internal details.",
     "wrong": [
       "Use production-like scale or sensitive data immediately for security testing without first validating the test design in a controlled environment.",
-      "For security testing, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
+      "Test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks.",
       "Treat a green automated check as proof that security testing is acceptable for every user and operating condition."
     ],
     "e": "Validate security controls at the authoritative backend boundary and confirm logs and error messages provide evidence without leaking secrets or internal details. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -3121,7 +3121,7 @@ const completeQuestionBank = [
     "q": "What evidence best validates UAT collaboration?",
     "correct": "Close UAT with explicit acceptance, unresolved business issues, and ownership for follow-up so informal feedback does not become an ambiguous release signal.",
     "wrong": [
-      "For UAT collaboration, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
       "Use the same detail and metrics for every audience in UAT collaboration, regardless of whether they need diagnostic evidence or a risk decision.",
       "Treat UAT collaboration as a documentation exercise performed after testing rather than a decision input that should change scope or release actions."
     ],
@@ -3139,7 +3139,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat release readiness as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
       "Assume more test cases always improve release readiness; duplicated or low-value checks should count the same as critical coverage.",
-      "For release readiness, use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open."
     ],
     "e": "Make untested or partially tested risks explicit and verify that owners understand the consequence of accepting them. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -3154,7 +3154,7 @@ const completeQuestionBank = [
     "correct": "Prefer trend and risk information over raw counts, and ensure a failed run can be investigated from retained evidence without requiring an immediate local rerun.",
     "wrong": [
       "Assume more test cases always improve test reporting; duplicated or low-value checks should count the same as critical coverage.",
-      "For test reporting, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
       "Use the same detail and metrics for every audience in test reporting, regardless of whether they need diagnostic evidence or a risk decision."
     ],
     "e": "Prefer trend and risk information over raw counts, and ensure a failed run can be investigated from retained evidence without requiring an immediate local rerun. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -3169,7 +3169,7 @@ const completeQuestionBank = [
     "q": "What evidence best validates quality metrics?",
     "correct": "Review metric incentives and context because rising test counts or pass percentages can coexist with poor assertions and critical untested behavior.",
     "wrong": [
-      "For quality metrics, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
       "Treat quality metrics as a documentation exercise performed after testing rather than a decision input that should change scope or release actions.",
       "Use the same detail and metrics for every audience in quality metrics, regardless of whether they need diagnostic evidence or a risk decision."
     ],
@@ -3186,7 +3186,7 @@ const completeQuestionBank = [
     "correct": "When local and CI results disagree, compare environment state systematically before changing tests or increasing timeouts.",
     "wrong": [
       "Use the same detail and metrics for every audience in test environment management, regardless of whether they need diagnostic evidence or a risk decision.",
-      "For test environment management, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
       "Hide untested areas in test environment management so stakeholders receive a simpler status; residual risk can be inferred from the overall score."
     ],
     "e": "When local and CI results disagree, compare environment state systematically before changing tests or increasing timeouts. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -3267,7 +3267,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use the number of executed cases as the main measure of confidence in boundary value analysis, even if several cases exercise the same behavior and important risks remain uncovered.",
       "Consider a single successful execution sufficient evidence for boundary value analysis, without preserving environment, data, or build context.",
-      "For boundary value analysis, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
     ],
     "e": "For boundary value analysis, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
     "tags": [
@@ -3282,7 +3282,7 @@ const completeQuestionBank = [
     "correct": "For equivalence partitioning, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
     "wrong": [
       "Treat every scenario in equivalence partitioning as equally important; prioritization by impact or likelihood would bias the test effort.",
-      "For equivalence partitioning, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Use the number of executed cases as the main measure of confidence in equivalence partitioning, even if several cases exercise the same behavior and important risks remain uncovered."
     ],
     "e": "For equivalence partitioning, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -3314,7 +3314,7 @@ const completeQuestionBank = [
     "correct": "For decision tables, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
     "wrong": [
       "Delay clarification of ambiguous requirements in decision tables until after execution; guessing expected behavior keeps testing independent.",
-      "For decision tables, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Treat decision tables as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value."
     ],
     "e": "For decision tables, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -3330,7 +3330,7 @@ const completeQuestionBank = [
     "correct": "For test estimation, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
     "wrong": [
       "Use the same detail and metrics for every audience in test estimation, regardless of whether they need diagnostic evidence or a risk decision.",
-      "For test estimation, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
       "Assume more test cases always improve test estimation; duplicated or low-value checks should count the same as critical coverage."
     ],
     "e": "For test estimation, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary. The answer should connect the technique to observable behavior, risk, and evidence rather than to test-count volume.",
@@ -3345,7 +3345,7 @@ const completeQuestionBank = [
     "q": "How should test planning be operated beyond the happy path?",
     "correct": "For test planning, production readiness means keeping coverage tied to risk, preserving evidence, and making untested behavior and residual risk explicit rather than relying on a single pass/fail summary.",
     "wrong": [
-      "For test planning, use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
+      "Use raw pass rate as the release decision even when critical risks are untested or known defects remain open.",
       "Keep test planning static once written, even when scope, environment, dependencies, or release context changes.",
       "Treat test planning as a documentation exercise performed after testing rather than a decision input that should change scope or release actions."
     ],
@@ -3379,7 +3379,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat a stored authentication state in test fixtures as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
       "Skip cleanup in test fixtures; independent tests should adapt to whatever state earlier tests leave behind.",
-      "For test fixtures, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
     ],
     "e": "Fixtures define reusable setup, dependencies, and cleanup with explicit scope, making test prerequisites visible and composable. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -3393,7 +3393,7 @@ const completeQuestionBank = [
     "q": "What should a practitioner understand first about Page Object Model?",
     "correct": "Page Object Model centralizes knowledge of UI structure and interactions behind domain-oriented methods so tests express intent without duplicating locator details.",
     "wrong": [
-      "For Page Object Model, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "When Page Object Model becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
       "Prefer absolute XPath or deep CSS structure in Page Object Model; selectors tied closely to the current DOM are more precise and therefore more maintainable."
     ],
@@ -3410,7 +3410,7 @@ const completeQuestionBank = [
     "correct": "Network interception lets tests observe, modify, block, or fulfill browser requests so dependency behavior and failure modes can be exercised deterministically.",
     "wrong": [
       "Treat browser automation timing in network interception as independent of network, rendering, and application state, so those signals do not need inspection.",
-      "For network interception, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Assume element references remain valid after dynamic DOM updates in network interception; re-locating elements only adds unnecessary work."
     ],
     "e": "Network interception lets tests observe, modify, block, or fulfill browser requests so dependency behavior and failure modes can be exercised deterministically. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -3442,7 +3442,7 @@ const completeQuestionBank = [
     "q": "What is the core idea behind visual snapshots?",
     "correct": "Visual snapshots compare rendered output with a baseline and are useful when layout or appearance is part of the contract, not as a substitute for functional assertions.",
     "wrong": [
-      "For visual snapshots, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Prefer absolute XPath or deep CSS structure in visual snapshots; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
       "When visual snapshots becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
     ],
@@ -3458,9 +3458,9 @@ const completeQuestionBank = [
     "q": "What should a practitioner understand first about accessibility scans?",
     "correct": "Automated accessibility scans detect many rule-based issues, but they cannot prove that a workflow is understandable or operable with keyboard and assistive technologies.",
     "wrong": [
-      "For accessibility scans, test only one viewport and zoom level because reflow and magnification affect layout rather than accessibility behavior.",
+      "Test only one viewport and zoom level because reflow and magnification affect layout rather than accessibility behavior.",
       "Use aria-label everywhere in accessibility scans even when visible native labels already provide the correct accessible name.",
-      "For accessibility scans, treat a clean automated scan as proof that keyboard navigation, focus order, labels, reading order, and screen-reader interaction are all correct."
+      "Treat a clean automated scan as proof that keyboard navigation, focus order, labels, reading order, and screen-reader interaction are all correct."
     ],
     "e": "Automated accessibility scans detect many rule-based issues, but they cannot prove that a workflow is understandable or operable with keyboard and assistive technologies. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -3476,7 +3476,7 @@ const completeQuestionBank = [
     "correct": "Cross-browser execution verifies behavior across Chromium, Firefox, and WebKit where engine differences can affect rendering, APIs, timing, storage, and permissions.",
     "wrong": [
       "Treat browser automation timing in cross-browser execution as independent of network, rendering, and application state, so those signals do not need inspection.",
-      "For cross-browser execution, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Prefer absolute XPath or deep CSS structure in cross-browser execution; selectors tied closely to the current DOM are more precise and therefore more maintainable."
     ],
     "e": "Cross-browser execution verifies behavior across Chromium, Firefox, and WebKit where engine differences can affect rendering, APIs, timing, storage, and permissions. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -3590,7 +3590,7 @@ const completeQuestionBank = [
     "wrong": [
       "Prefer absolute XPath or deep CSS structure in download testing; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
       "Assume element references remain valid after dynamic DOM updates in download testing; re-locating elements only adds unnecessary work.",
-      "For download testing, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "Download testing should validate that the expected download event occurs and, when business value requires it, verify filename, type, size, and file contents. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -3621,7 +3621,7 @@ const completeQuestionBank = [
     "correct": "Iframes create separate document contexts, so automation must target the correct frame before locating elements inside it.",
     "wrong": [
       "Treat browser automation timing in iframes as independent of network, rendering, and application state, so those signals do not need inspection.",
-      "For iframes, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Prefer absolute XPath or deep CSS structure in iframes; selectors tied closely to the current DOM are more precise and therefore more maintainable."
     ],
     "e": "Iframes create separate document contexts, so automation must target the correct frame before locating elements inside it. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -3636,7 +3636,7 @@ const completeQuestionBank = [
     "q": "What should a practitioner understand first about dialogs?",
     "correct": "Browser dialogs such as alert, confirm, and prompt block page interaction until they are accepted or dismissed, so tests must handle the dialog event deliberately.",
     "wrong": [
-      "For dialogs, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Use the first matching element in dialogs whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
       "Assume element references remain valid after dynamic DOM updates in dialogs; re-locating elements only adds unnecessary work."
     ],
@@ -3655,7 +3655,7 @@ const completeQuestionBank = [
     "correct": "Browser permissions such as geolocation, notifications, camera, or clipboard should be granted or denied explicitly in the test context so behavior is deterministic.",
     "wrong": [
       "Prefer absolute XPath or deep CSS structure in browser permissions; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
-      "For browser permissions, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Use the first matching element in browser permissions whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
     ],
     "e": "Browser permissions such as geolocation, notifications, camera, or clipboard should be granted or denied explicitly in the test context so behavior is deterministic. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -3755,7 +3755,7 @@ const completeQuestionBank = [
     "correct": "A maintainable automation framework separates test intent, domain helpers, page/API adapters, fixtures, data builders, assertions, configuration, and reporting with clear ownership.",
     "wrong": [
       "Use the first matching element in framework architecture whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
-      "For framework architecture, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Prefer absolute XPath or deep CSS structure in framework architecture; selectors tied closely to the current DOM are more precise and therefore more maintainable."
     ],
     "e": "A maintainable automation framework separates test intent, domain helpers, page/API adapters, fixtures, data builders, assertions, configuration, and reporting with clear ownership. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -3773,7 +3773,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat a stored authentication state in browser contexts as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
       "Share writable test data across parallel workers in browser contexts; collisions are acceptable because retries can recover from them.",
-      "For browser contexts, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
     ],
     "e": "Create a fresh context per independent test or worker-owned scenario, and reuse storageState only for controlled authentication setup rather than reusing mutable live context state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -3804,7 +3804,7 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for Page Object Model?",
     "correct": "Keep page objects focused, expose meaningful actions rather than raw locators everywhere, avoid deep inheritance, and keep assertions in the layer that best expresses business intent.",
     "wrong": [
-      "For Page Object Model, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Treat browser automation timing in Page Object Model as independent of network, rendering, and application state, so those signals do not need inspection.",
       "When Page Object Model becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
     ],
@@ -3822,7 +3822,7 @@ const completeQuestionBank = [
     "wrong": [
       "When network interception becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
       "Treat browser automation timing in network interception as independent of network, rendering, and application state, so those signals do not need inspection.",
-      "For network interception, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "Use interception for controlled edge cases such as 4xx/5xx responses or latency, but retain real integration coverage so mocks do not become the only evidence that contracts work. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -3856,7 +3856,7 @@ const completeQuestionBank = [
     "correct": "Stabilize viewport, fonts, animations, data, time, and dynamic regions before taking snapshots, and prefer focused component/page regions over giant unstable captures.",
     "wrong": [
       "When visual snapshots becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
-      "For visual snapshots, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Assume element references remain valid after dynamic DOM updates in visual snapshots; re-locating elements only adds unnecessary work."
     ],
     "e": "Stabilize viewport, fonts, animations, data, time, and dynamic regions before taking snapshots, and prefer focused component/page regions over giant unstable captures. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -3872,7 +3872,7 @@ const completeQuestionBank = [
     "correct": "Run automated checks alongside semantic locator use, keyboard navigation, focus checks, labels, error messaging, contrast/zoom review, and targeted screen-reader testing.",
     "wrong": [
       "Exclude keyboard-only interaction from accessibility scans; browser automation already proves that controls can be clicked with a mouse.",
-      "For accessibility scans, ignore focus visibility and error announcements as long as the page has no automated WCAG violations.",
+      "Ignore focus visibility and error announcements as long as the page has no automated WCAG violations.",
       "Use aria-label everywhere in accessibility scans even when visible native labels already provide the correct accessible name."
     ],
     "e": "Run automated checks alongside semantic locator use, keyboard navigation, focus checks, labels, error messaging, contrast/zoom review, and targeted screen-reader testing. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -3922,7 +3922,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume a test that passes once locally proves test sharding is deterministic enough for parallel or cross-browser CI execution.",
       "Keep reports for test sharding to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read.",
-      "For test sharding, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
+      "Treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
     ],
     "e": "Balance shards by test count or historical duration, give each shard isolated data and environment resources, and merge reports/artifacts after execution. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -3937,7 +3937,7 @@ const completeQuestionBank = [
     "q": "Which practice is most appropriate when using parallel workers?",
     "correct": "Assign unique accounts/data or worker-owned pools, avoid global mutable variables, and make setup/cleanup deterministic so worker order cannot affect results.",
     "wrong": [
-      "For parallel workers, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
       "Treat a stored authentication state in parallel workers as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
       "Share writable test data across parallel workers in parallel workers; collisions are acceptable because retries can recover from them."
     ],
@@ -3955,7 +3955,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume element references remain valid after dynamic DOM updates in test tagging; re-locating elements only adds unnecessary work.",
       "Use the first matching element in test tagging whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
-      "For test tagging, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "Use a small stable taxonomy such as smoke, regression, payments, or accessibility, document tag meaning, and combine tags with projects or grep filters for CI selection. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -3972,7 +3972,7 @@ const completeQuestionBank = [
     "wrong": [
       "Increase retries for trace analysis until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
       "Let parallel shards in trace analysis share the same mutable data and filesystem because CI will merge their results afterward.",
-      "For trace analysis, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
+      "Treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
     ],
     "e": "Capture traces on failure or retry according to storage needs, then inspect the first divergence between expected and actual state rather than only the final exception. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -4020,7 +4020,7 @@ const completeQuestionBank = [
     "correct": "Use controlled fixture files with known contents, exercise valid and invalid cases, and confirm the resulting server or UI state after upload.",
     "wrong": [
       "Assume element references remain valid after dynamic DOM updates in upload testing; re-locating elements only adds unnecessary work.",
-      "For upload testing, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "When upload testing becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
     ],
     "e": "Use controlled fixture files with known contents, exercise valid and invalid cases, and confirm the resulting server or UI state after upload. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -4035,7 +4035,7 @@ const completeQuestionBank = [
     "q": "What is a maintainable way to work with iframes?",
     "correct": "Prefer frameLocator for stable nested-frame interactions or switch deliberately through frame levels, and wait for frame availability when content loads asynchronously.",
     "wrong": [
-      "For iframes, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Assume element references remain valid after dynamic DOM updates in iframes; re-locating elements only adds unnecessary work.",
       "When iframes becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition."
     ],
@@ -4051,7 +4051,7 @@ const completeQuestionBank = [
     "q": "How should dialogs be applied in practice?",
     "correct": "Register the dialog handler before the action that opens it, assert message/type where relevant, and choose accept, dismiss, or prompt text according to expected behavior.",
     "wrong": [
-      "For dialogs, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Assume element references remain valid after dynamic DOM updates in dialogs; re-locating elements only adds unnecessary work.",
       "Use the first matching element in dialogs whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
     ],
@@ -4153,7 +4153,7 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for CI execution?",
     "correct": "Install dependencies deterministically, cache only safe reusable assets, publish reports/traces/screenshots, and map CI parameters to stable Playwright commands.",
     "wrong": [
-      "For CI execution, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables.",
+      "Treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables.",
       "Increase retries for CI execution until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
       "Assume a test that passes once locally proves CI execution is deterministic enough for parallel or cross-browser CI execution."
     ],
@@ -4249,7 +4249,7 @@ const completeQuestionBank = [
     "q": "Which check gives the strongest evidence for authentication state?",
     "correct": "Validate that expired sessions, logout, role changes, and parallel execution behave correctly instead of assuming a stored state remains valid forever.",
     "wrong": [
-      "For authentication state, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
       "Skip cleanup in authentication state; independent tests should adapt to whatever state earlier tests leave behind.",
       "Share writable test data across parallel workers in authentication state; collisions are acceptable because retries can recover from them."
     ],
@@ -4282,9 +4282,9 @@ const completeQuestionBank = [
     "q": "Which check gives the strongest evidence for accessibility scans?",
     "correct": "Treat zero automated violations as partial evidence and verify critical tasks manually because context, reading order, and interaction quality often require human judgment.",
     "wrong": [
-      "For accessibility scans, ignore focus visibility and error announcements as long as the page has no automated WCAG violations.",
-      "For accessibility scans, test only one viewport and zoom level because reflow and magnification affect layout rather than accessibility behavior.",
-      "For accessibility scans, treat a clean automated scan as proof that keyboard navigation, focus order, labels, reading order, and screen-reader interaction are all correct."
+      "Ignore focus visibility and error announcements as long as the page has no automated WCAG violations.",
+      "Test only one viewport and zoom level because reflow and magnification affect layout rather than accessibility behavior.",
+      "Treat a clean automated scan as proof that keyboard navigation, focus order, labels, reading order, and screen-reader interaction are all correct."
     ],
     "e": "Treat zero automated violations as partial evidence and verify critical tasks manually because context, reading order, and interaction quality often require human judgment. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -4318,7 +4318,7 @@ const completeQuestionBank = [
     "wrong": [
       "When mobile emulation becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
       "Use the first matching element in mobile emulation whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
-      "For mobile emulation, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "Verify orientation, touch targets, virtual-keyboard effects, responsive layout, permissions, and constrained viewport behavior instead of checking only that the page loads. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -4333,7 +4333,7 @@ const completeQuestionBank = [
     "correct": "Check that sharding does not change outcomes by comparing retries, shared-resource contention, report identity, and total executed tests against an unsharded baseline.",
     "wrong": [
       "Keep reports for test sharding to pass/fail totals only; traces, screenshots, logs, and run metadata make failures harder to read.",
-      "For test sharding, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables.",
+      "Treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables.",
       "Increase retries for test sharding until CI is green rather than preserving first-attempt failures and classifying recurring flakes."
     ],
     "e": "Check that sharding does not change outcomes by comparing retries, shared-resource contention, report identity, and total executed tests against an unsharded baseline. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -4350,7 +4350,7 @@ const completeQuestionBank = [
     "wrong": [
       "Persist every piece of browser state for parallel workers between runs, including stale sessions and temporary data, to maximize realism.",
       "Treat a stored authentication state in parallel workers as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage.",
-      "For parallel workers, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state."
     ],
     "e": "Stress the suite with different worker counts and repeat runs to expose hidden coupling, race conditions, and resource saturation. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -4382,7 +4382,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume a test that passes once locally proves trace analysis is deterministic enough for parallel or cross-browser CI execution.",
       "Let parallel shards in trace analysis share the same mutable data and filesystem because CI will merge their results afterward.",
-      "For trace analysis, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
+      "Treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
     ],
     "e": "Correlate trace events with application logs, request IDs, screenshots, and test data to distinguish product defects from synchronization or environment issues. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -4414,7 +4414,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use the first matching element in download testing whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works.",
       "When download testing becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
-      "For download testing, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "Confirm the downloaded content matches the operation and current data rather than treating the presence of any file as success. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -4428,7 +4428,7 @@ const completeQuestionBank = [
     "q": "How should upload testing be verified or evaluated?",
     "correct": "Check duplicate uploads, malformed files, boundary sizes, permissions, and cleanup because a successful file-picker interaction does not prove backend acceptance.",
     "wrong": [
-      "For upload testing, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Treat browser automation timing in upload testing as independent of network, rendering, and application state, so those signals do not need inspection.",
       "Assume element references remain valid after dynamic DOM updates in upload testing; re-locating elements only adds unnecessary work."
     ],
@@ -4462,7 +4462,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat browser automation timing in dialogs as independent of network, rendering, and application state, so those signals do not need inspection.",
       "Assume element references remain valid after dynamic DOM updates in dialogs; re-locating elements only adds unnecessary work.",
-      "For dialogs, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "Test both confirmation and cancellation paths when they change business state rather than always auto-accepting every dialog. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -4494,7 +4494,7 @@ const completeQuestionBank = [
     "correct": "Assert status, headers, schema, business values, and side effects; a successful HTTP code alone is not enough evidence.",
     "wrong": [
       "Persist every piece of browser state for API request context between runs, including stale sessions and temporary data, to maximize realism.",
-      "For API request context, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
       "Treat a stored authentication state in API request context as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage."
     ],
     "e": "Assert status, headers, schema, business values, and side effects; a successful HTTP code alone is not enough evidence. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -4511,7 +4511,7 @@ const completeQuestionBank = [
     "correct": "Track retry frequency and compare first-attempt versus final-pass rates so instability remains visible in quality reporting.",
     "wrong": [
       "When test retries becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
-      "For test retries, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Prefer absolute XPath or deep CSS structure in test retries; selectors tied closely to the current DOM are more precise and therefore more maintainable."
     ],
     "e": "Track retry frequency and compare first-attempt versus final-pass rates so instability remains visible in quality reporting. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -4542,7 +4542,7 @@ const completeQuestionBank = [
     "q": "How should test isolation be verified or evaluated?",
     "correct": "Prove isolation by shuffling order, running single tests, enabling parallelism, and repeating failures without requiring a preceding scenario.",
     "wrong": [
-      "For test isolation, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
       "Persist every piece of browser state for test isolation between runs, including stale sessions and temporary data, to maximize realism.",
       "Treat a stored authentication state in test isolation as permanently valid, so expiry, revocation, role changes, and account mutation do not need coverage."
     ],
@@ -4591,7 +4591,7 @@ const completeQuestionBank = [
     "correct": "For browser contexts, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
     "wrong": [
       "Share writable test data across parallel workers in browser contexts; collisions are acceptable because retries can recover from them.",
-      "For browser contexts, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
       "Skip cleanup in browser contexts; independent tests should adapt to whatever state earlier tests leave behind."
     ],
     "e": "For browser contexts, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -4654,7 +4654,7 @@ const completeQuestionBank = [
     "q": "Which production concern is most important for authentication state?",
     "correct": "For authentication state, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
     "wrong": [
-      "For authentication state, reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
+      "Reuse one mutable browser session and one shared account across tests so setup is faster and all scenarios see the same state.",
       "Skip cleanup in authentication state; independent tests should adapt to whatever state earlier tests leave behind.",
       "Persist every piece of browser state for authentication state between runs, including stale sessions and temporary data, to maximize realism."
     ],
@@ -4688,8 +4688,8 @@ const completeQuestionBank = [
     "correct": "For accessibility scans, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
     "wrong": [
       "Exclude keyboard-only interaction from accessibility scans; browser automation already proves that controls can be clicked with a mouse.",
-      "For accessibility scans, prefer CSS structure over semantic roles and labels because accessibility metadata is less stable than the DOM.",
-      "For accessibility scans, test only one viewport and zoom level because reflow and magnification affect layout rather than accessibility behavior."
+      "Prefer CSS structure over semantic roles and labels because accessibility metadata is less stable than the DOM.",
+      "Test only one viewport and zoom level because reflow and magnification affect layout rather than accessibility behavior."
     ],
     "e": "For accessibility scans, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
     "tags": [
@@ -4705,7 +4705,7 @@ const completeQuestionBank = [
     "correct": "For cross-browser execution, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state.",
     "wrong": [
       "When cross-browser execution becomes flaky, increase global timeouts first and keep rerunning until it passes instead of identifying the missing observable condition.",
-      "For cross-browser execution, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state.",
       "Use the first matching element in cross-browser execution whenever a locator is ambiguous; semantic narrowing is unnecessary if one element eventually works."
     ],
     "e": "For cross-browser execution, production-ready automation must remain deterministic under retries, parallelism, and CI, with useful failure evidence and no hidden dependence on shared mutable state. The goal is deterministic, diagnosable automation that still proves the user- or system-level behavior.",
@@ -4752,9 +4752,9 @@ const completeQuestionBank = [
     "q": "What is the core idea behind Java collections?",
     "correct": "Choose Java collection types by semantics: List for ordered duplicates, Set for uniqueness, Map for key-value lookup, and specialized implementations for ordering, concurrency, or performance needs.",
     "wrong": [
-      "For Java collections, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For Java collections, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For Java collections, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "e": "Choose Java collection types by semantics: List for ordered duplicates, Set for uniqueness, Map for key-value lookup, and specialized implementations for ordering, concurrency, or performance needs. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -4769,9 +4769,9 @@ const completeQuestionBank = [
     "q": "What is the core idea behind Java streams?",
     "correct": "Java Streams express bulk transformations such as filter, map, reduce, and grouping over data sources without requiring manual iteration state.",
     "wrong": [
-      "For Java streams, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For Java streams, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For Java streams, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit."
     ],
     "e": "Java Streams express bulk transformations such as filter, map, reduce, and grouping over data sources without requiring manual iteration state. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -4785,9 +4785,9 @@ const completeQuestionBank = [
     "q": "Which explanation of Java concurrency is technically sound?",
     "correct": "Java concurrency requires explicit control of shared mutable state, visibility, atomicity, ordering, and resource ownership across threads.",
     "wrong": [
-      "For Java concurrency, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For Java concurrency, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For Java concurrency, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically."
     ],
     "e": "Java concurrency requires explicit control of shared mutable state, visibility, atomicity, ordering, and resource ownership across threads. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -4802,7 +4802,7 @@ const completeQuestionBank = [
     "correct": "Object-oriented design uses encapsulation, abstraction, composition, and polymorphism to model responsibilities and reduce coupling, not merely to create class hierarchies.",
     "wrong": [
       "Optimize object-oriented design for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
-      "For object-oriented design, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Treat one successful local execution as proof that object-oriented design satisfies reliability, security, scale, and recovery requirements."
     ],
     "e": "Object-oriented design uses encapsulation, abstraction, composition, and polymorphism to model responsibilities and reduce coupling, not merely to create class hierarchies. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -4816,7 +4816,7 @@ const completeQuestionBank = [
     "q": "What is the core idea behind SOLID principles?",
     "correct": "SOLID is a set of design heuristics—single responsibility, open/closed, Liskov substitution, interface segregation, and dependency inversion—used to manage change and coupling.",
     "wrong": [
-      "For SOLID principles, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Use implicit defaults and undocumented environment state in SOLID principles; explicit contracts only add configuration overhead.",
       "Postpone observability and failure handling in SOLID principles until the first production incident provides real requirements."
     ],
@@ -4833,7 +4833,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat one successful local execution as proof that design patterns satisfies reliability, security, scale, and recovery requirements.",
       "Optimize design patterns for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
-      "For design patterns, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
     ],
     "e": "Design patterns are reusable solution structures for recurring design problems, but they are vocabulary and guidance rather than requirements to add abstraction. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -4881,7 +4881,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume indexes always improve indexing; write cost, selectivity, query plans, and storage overhead do not need measurement.",
       "Run destructive queries for indexing in shared environments as long as the transaction can theoretically be rolled back.",
-      "For indexing, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys."
+      "Infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys."
     ],
     "e": "Database indexes trade additional storage and write cost for faster access paths on queries that match the indexed keys and selectivity. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -4945,7 +4945,7 @@ const completeQuestionBank = [
     "correct": "Authentication establishes who or what a caller is; it does not by itself decide what that identity is allowed to do.",
     "wrong": [
       "Put authorization rules for authentication only in the UI so prohibited actions are hidden from ordinary users.",
-      "For authentication, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Trust any authenticated caller to access all related resources; authentication already proves authorization.",
       "Treat public or model-generated identifiers in authentication as sufficient proof that the caller owns the referenced object."
     ],
     "e": "Authentication establishes who or what a caller is; it does not by itself decide what that identity is allowed to do. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -4962,7 +4962,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume TLS or a private network makes authorization safe from application-level privilege and input-validation failures.",
       "Put authorization rules for authorization only in the UI so prohibited actions are hidden from ordinary users.",
-      "For authorization, trust any authenticated caller to access all related resources; authentication already proves authorization."
+      "Trust any authenticated caller to access all related resources; authentication already proves authorization."
     ],
     "e": "Authorization determines whether an authenticated identity may perform a specific action on a specific resource, role, tenant, or data scope. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5010,7 +5010,7 @@ const completeQuestionBank = [
     "wrong": [
       "Bake environment-specific secrets and credentials into the artifact used by Docker Compose so every deployment receives identical configuration.",
       "Assume local success proves Docker Compose will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
-      "For Docker Compose, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant."
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant."
     ],
     "e": "Docker Compose defines a multi-service environment—such as application, database, cache, and broker—but startup ordering is not the same as application readiness. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5025,7 +5025,7 @@ const completeQuestionBank = [
     "q": "What is the core idea behind GitHub Actions?",
     "correct": "GitHub Actions workflows react to events and run jobs made of steps on isolated runners, with matrices, artifacts, caches, environments, and concurrency controls for delivery automation.",
     "wrong": [
-      "For GitHub Actions, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
       "Give every service in GitHub Actions broad network and filesystem access so configuration problems cannot block the workflow.",
       "Assume local success proves GitHub Actions will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored."
     ],
@@ -5041,7 +5041,7 @@ const completeQuestionBank = [
     "q": "Which explanation of Jenkins pipelines is technically sound?",
     "correct": "Jenkins pipelines encode build and delivery stages in a Jenkinsfile so checkout, build, tests, artifacts, gates, and deployment behavior are repeatable and reviewable.",
     "wrong": [
-      "For Jenkins pipelines, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
       "Bake environment-specific secrets and credentials into the artifact used by Jenkins pipelines so every deployment receives identical configuration.",
       "Use arbitrary sleeps for dependency startup in Jenkins pipelines; readiness checks and retryable connection logic add unnecessary complexity."
     ],
@@ -5105,7 +5105,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use implicit defaults and undocumented environment state in error handling; explicit contracts only add configuration overhead.",
       "Postpone observability and failure handling in error handling until the first production incident provides real requirements.",
-      "For error handling, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
     ],
     "e": "Good error handling preserves useful context, distinguishes expected from unexpected failure, and returns a safe contract without silently converting failures into success. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5118,7 +5118,7 @@ const completeQuestionBank = [
     "q": "What should a practitioner understand first about code review?",
     "correct": "Code review is a risk-reduction and knowledge-sharing activity that checks correctness, maintainability, security, tests, and design—not just style.",
     "wrong": [
-      "For code review, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Keep business logic coupled directly to transport, storage, and UI details in code review so fewer interfaces need maintenance.",
       "Optimize code review for the normal path and assume rare dependency failures, retries, or partial state can be handled manually."
     ],
@@ -5135,7 +5135,7 @@ const completeQuestionBank = [
     "correct": "System design balances functional requirements with scale, reliability, consistency, security, cost, operability, and changeability across clear component boundaries.",
     "wrong": [
       "Keep business logic coupled directly to transport, storage, and UI details in system design so fewer interfaces need maintenance.",
-      "For system design, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Optimize system design for the normal path and assume rare dependency failures, retries, or partial state can be handled manually."
     ],
     "e": "System design balances functional requirements with scale, reliability, consistency, security, cost, operability, and changeability across clear component boundaries. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -5150,9 +5150,9 @@ const completeQuestionBank = [
     "q": "Which practice is most appropriate when using Java collections?",
     "correct": "Program to interfaces where practical, select implementations deliberately, and avoid exposing mutable collections when callers should not own the underlying state.",
     "wrong": [
-      "For Java collections, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For Java collections, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For Java collections, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter."
     ],
     "e": "Program to interfaces where practical, select implementations deliberately, and avoid exposing mutable collections when callers should not own the underlying state. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5166,9 +5166,9 @@ const completeQuestionBank = [
     "q": "How should Java streams be applied in practice?",
     "correct": "Keep stream pipelines side-effect-light, use terminal operations intentionally, and prefer ordinary loops when control flow or mutation would make the stream harder to understand.",
     "wrong": [
-      "For Java streams, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For Java streams, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For Java streams, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
     ],
     "e": "Keep stream pipelines side-effect-light, use terminal operations intentionally, and prefer ordinary loops when control flow or mutation would make the stream harder to understand. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5183,9 +5183,9 @@ const completeQuestionBank = [
     "q": "What is a maintainable way to work with Java concurrency?",
     "correct": "Prefer immutable data, thread-safe collections, executors, locks or atomic primitives only where needed, and avoid ad-hoc thread creation for managed workloads.",
     "wrong": [
-      "For Java concurrency, assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
-      "For Java concurrency, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For Java concurrency, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+      "Assume language features have identical semantics across runtimes and versions, so environment or implementation details never matter.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
     ],
     "e": "Prefer immutable data, thread-safe collections, executors, locks or atomic primitives only where needed, and avoid ad-hoc thread creation for managed workloads. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5214,7 +5214,7 @@ const completeQuestionBank = [
     "q": "Which practice is most appropriate when using SOLID principles?",
     "correct": "Apply the principles to concrete design problems rather than mechanically adding interfaces or classes; the goal is clearer boundaries and safer evolution.",
     "wrong": [
-      "For SOLID principles, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Optimize SOLID principles for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
       "Treat one successful local execution as proof that SOLID principles satisfies reliability, security, scale, and recovery requirements."
     ],
@@ -5260,7 +5260,7 @@ const completeQuestionBank = [
     "q": "What is a maintainable way to work with database transactions?",
     "correct": "Keep transactions as short as practical, define isolation according to contention and correctness needs, and avoid external network calls inside long transactions when possible.",
     "wrong": [
-      "For database transactions, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
+      "Infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
       "Assume indexes always improve database transactions; write cost, selectivity, query plans, and storage overhead do not need measurement.",
       "Treat application code as the only source of integrity for database transactions; keys, constraints, and transaction boundaries only duplicate validation."
     ],
@@ -5309,7 +5309,7 @@ const completeQuestionBank = [
     "correct": "Model stable resource URLs, choose methods by semantics and idempotency, return useful errors, support pagination/filtering where needed, and keep contracts consistent across endpoints.",
     "wrong": [
       "Treat the client-visible response as the entire contract for REST design; downstream state and emitted events do not need verification.",
-      "For REST design, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
       "Use production credentials and real customer data for REST design because synthetic environments cannot reveal API defects."
     ],
     "e": "Model stable resource URLs, choose methods by semantics and idempotency, return useful errors, support pagination/filtering where needed, and keep contracts consistent across endpoints. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -5341,7 +5341,7 @@ const completeQuestionBank = [
     "correct": "Use proven identity protocols, protect credentials and sessions, rotate secrets, handle expiry and revocation, and separate service identity from end-user identity where appropriate.",
     "wrong": [
       "Put authorization rules for authentication only in the UI so prohibited actions are hidden from ordinary users.",
-      "For authentication, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Trust any authenticated caller to access all related resources; authentication already proves authorization.",
       "Log full tokens, credentials, or personal data during authentication to simplify debugging; operational access is already trusted."
     ],
     "e": "Use proven identity protocols, protect credentials and sessions, rotate secrets, handle expiry and revocation, and separate service identity from end-user identity where appropriate. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -5356,7 +5356,7 @@ const completeQuestionBank = [
     "q": "How should authorization be applied in practice?",
     "correct": "Enforce authorization server-side at every protected boundary using least privilege and object-level checks instead of trusting UI visibility or client-supplied role data.",
     "wrong": [
-      "For authorization, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Trust any authenticated caller to access all related resources; authentication already proves authorization.",
       "Put authorization rules for authorization only in the UI so prohibited actions are hidden from ordinary users.",
       "Treat public or model-generated identifiers in authorization as sufficient proof that the caller owns the referenced object."
     ],
@@ -5437,7 +5437,7 @@ const completeQuestionBank = [
     "q": "Which practice is most appropriate when using Jenkins pipelines?",
     "correct": "Keep agents reproducible, credentials scoped, stages observable, and shared libraries versioned; publish failure evidence instead of rerunning until green.",
     "wrong": [
-      "For Jenkins pipelines, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
       "Persist test state across runs in Jenkins pipelines by default; reusing volumes makes integration tests more realistic than clean startup.",
       "Assume local success proves Jenkins pipelines will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored."
     ],
@@ -5502,7 +5502,7 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for error handling?",
     "correct": "Catch errors at boundaries that can add context or recover, propagate or wrap them deliberately, log once at the appropriate layer, and keep user-facing messages separate from internal details.",
     "wrong": [
-      "For error handling, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Use implicit defaults and undocumented environment state in error handling; explicit contracts only add configuration overhead.",
       "Treat one successful local execution as proof that error handling satisfies reliability, security, scale, and recovery requirements."
     ],
@@ -5534,7 +5534,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat one successful local execution as proof that system design satisfies reliability, security, scale, and recovery requirements.",
       "Use implicit defaults and undocumented environment state in system design; explicit contracts only add configuration overhead.",
-      "For system design, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
     ],
     "e": "Start from workloads and failure modes, define data ownership and APIs, choose state and communication models deliberately, and design observability, recovery, and capacity alongside the happy path. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5548,9 +5548,9 @@ const completeQuestionBank = [
     "q": "What evidence best validates Java collections?",
     "correct": "Validate collection behavior around nulls, duplicates, ordering, equality/hashCode, mutation, and concurrent access because implementation choice changes those contracts.",
     "wrong": [
-      "For Java collections, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For Java collections, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
-      "For Java collections, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics.",
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics."
     ],
     "e": "Validate collection behavior around nulls, duplicates, ordering, equality/hashCode, mutation, and concurrent access because implementation choice changes those contracts. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5564,9 +5564,9 @@ const completeQuestionBank = [
     "q": "Which check gives the strongest evidence for Java streams?",
     "correct": "Check correctness with empty inputs, ordering requirements, duplicate values, parallel execution assumptions, and reductions that need associative operations.",
     "wrong": [
-      "For Java streams, infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
-      "For Java streams, optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
-      "For Java streams, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
+      "Infer the language rule from how one sample happens to behave and ignore the specification around scope, mutability, equality, typing, or runtime semantics.",
+      "Optimize for clever syntax instead of making ownership, edge cases, and observable behavior explicit.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples."
     ],
     "e": "Check correctness with empty inputs, ordering requirements, duplicate values, parallel execution assumptions, and reductions that need associative operations. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5580,9 +5580,9 @@ const completeQuestionBank = [
     "q": "Which check gives the strongest evidence for Java concurrency?",
     "correct": "Test race-prone code repeatedly under contention and verify invariants rather than assuming a single successful run proves thread safety.",
     "wrong": [
-      "For Java concurrency, treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
-      "For Java concurrency, ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
-      "For Java concurrency, choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
+      "Treat compile-time or type-system guarantees as if they also validate untrusted runtime data automatically.",
+      "Ignore the distinction between creating a new value and mutating an existing value because both produce the same visible result in simple examples.",
+      "Choose an abstraction because it uses fewer lines, even if it changes mutation, ordering, error, or concurrency semantics."
     ],
     "e": "Test race-prone code repeatedly under contention and verify invariants rather than assuming a single successful run proves thread safety. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5628,7 +5628,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use implicit defaults and undocumented environment state in design patterns; explicit contracts only add configuration overhead.",
       "Treat one successful local execution as proof that design patterns satisfies reliability, security, scale, and recovery requirements.",
-      "For design patterns, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
     ],
     "e": "Review whether the pattern simplifies change and testing; if it adds indirection without solving a recurring problem, a simpler design is usually better. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5658,7 +5658,7 @@ const completeQuestionBank = [
     "correct": "Test rollback, concurrent updates, duplicate requests, deadlocks or retries, and partial-failure scenarios to verify that durable state preserves business invariants.",
     "wrong": [
       "Assume indexes always improve database transactions; write cost, selectivity, query plans, and storage overhead do not need measurement.",
-      "For database transactions, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
+      "Infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
       "Use string-built SQL for database transactions whenever values are dynamic; parameterization only affects style, not correctness or security."
     ],
     "e": "Test rollback, concurrent updates, duplicate requests, deadlocks or retries, and partial-failure scenarios to verify that durable state preserves business invariants. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -5707,7 +5707,7 @@ const completeQuestionBank = [
     "correct": "Evaluate the API with normal, invalid, unauthorized, repeated, concurrent, and partial-failure requests while checking both protocol responses and durable side effects.",
     "wrong": [
       "Use production credentials and real customer data for REST design because synthetic environments cannot reveal API defects.",
-      "For REST design, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
       "Assume retries are safe for REST design even when operations are not idempotent; duplicate side effects can be cleaned up later."
     ],
     "e": "Evaluate the API with normal, invalid, unauthorized, repeated, concurrent, and partial-failure requests while checking both protocol responses and durable side effects. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -5739,7 +5739,7 @@ const completeQuestionBank = [
     "correct": "Test valid login, invalid credentials, lockout or rate limiting, expiry, logout, session fixation, token theft scenarios, and recovery without leaking sensitive information.",
     "wrong": [
       "Use long-lived shared credentials for authentication; rotation and scoped identity increase the chance of configuration mistakes.",
-      "For authentication, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Trust any authenticated caller to access all related resources; authentication already proves authorization.",
       "Assume TLS or a private network makes authentication safe from application-level privilege and input-validation failures."
     ],
     "e": "Test valid login, invalid credentials, lockout or rate limiting, expiry, logout, session fixation, token theft scenarios, and recovery without leaking sensitive information. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -5755,7 +5755,7 @@ const completeQuestionBank = [
     "correct": "Test horizontal and vertical privilege escalation, tenant isolation, direct-object access, role changes, and denied actions while confirming no unauthorized side effect occurs.",
     "wrong": [
       "Log full tokens, credentials, or personal data during authorization to simplify debugging; operational access is already trusted.",
-      "For authorization, trust any authenticated caller to access all related resources; authentication already proves authorization.",
+      "Trust any authenticated caller to access all related resources; authentication already proves authorization.",
       "Put authorization rules for authorization only in the UI so prohibited actions are hidden from ordinary users."
     ],
     "e": "Test horizontal and vertical privilege escalation, tenant isolation, direct-object access, role changes, and denied actions while confirming no unauthorized side effect occurs. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -5787,7 +5787,7 @@ const completeQuestionBank = [
     "correct": "Validate startup, health, logs, ports, environment variables, volume behavior, dependency connectivity, resource limits, and shutdown/restart behavior instead of checking only container status.",
     "wrong": [
       "Use arbitrary sleeps for dependency startup in Docker containers; readiness checks and retryable connection logic add unnecessary complexity.",
-      "For Docker containers, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
       "Give every service in Docker containers broad network and filesystem access so configuration problems cannot block the workflow."
     ],
     "e": "Validate startup, health, logs, ports, environment variables, volume behavior, dependency connectivity, resource limits, and shutdown/restart behavior instead of checking only container status. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -5802,7 +5802,7 @@ const completeQuestionBank = [
     "q": "What evidence best validates Docker Compose?",
     "correct": "Bring the environment up from a clean machine and verify health, service discovery, data lifecycle, failure/restart behavior, and teardown without relying on manual local state.",
     "wrong": [
-      "For Docker Compose, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
       "Give every service in Docker Compose broad network and filesystem access so configuration problems cannot block the workflow.",
       "Use arbitrary sleeps for dependency startup in Docker Compose; readiness checks and retryable connection logic add unnecessary complexity."
     ],
@@ -5818,7 +5818,7 @@ const completeQuestionBank = [
     "q": "Which validation approach provides the strongest evidence for GitHub Actions?",
     "correct": "Test pull-request and protected-branch behavior, matrix combinations, failed jobs, canceled runs, concurrency rules, and artifact/report availability.",
     "wrong": [
-      "For GitHub Actions, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
       "Assume local success proves GitHub Actions will behave the same in CI; image architecture, resources, networking, and environment differences can be ignored.",
       "Persist test state across runs in GitHub Actions by default; reusing volumes makes integration tests more realistic than clean startup."
     ],
@@ -5853,7 +5853,7 @@ const completeQuestionBank = [
     "correct": "Confirm the fix by reproducing the original failure condition and checking that services, resources, and logs return to expected behavior without introducing a new issue.",
     "wrong": [
       "Persist test state across runs in Linux troubleshooting by default; reusing volumes makes integration tests more realistic than clean startup.",
-      "For Linux troubleshooting, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant.",
       "Use arbitrary sleeps for dependency startup in Linux troubleshooting; readiness checks and retryable connection logic add unnecessary complexity."
     ],
     "e": "Confirm the fix by reproducing the original failure condition and checking that services, resources, and logs return to expected behavior without introducing a new issue. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
@@ -5886,7 +5886,7 @@ const completeQuestionBank = [
     "wrong": [
       "Optimize logging for the normal path and assume rare dependency failures, retries, or partial state can be handled manually.",
       "Treat one successful local execution as proof that logging satisfies reliability, security, scale, and recovery requirements.",
-      "For logging, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
     ],
     "e": "Verify that a production failure can be traced across services from logs and that expected high-volume paths do not create excessive cost or hide important events. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5903,7 +5903,7 @@ const completeQuestionBank = [
     "wrong": [
       "Keep business logic coupled directly to transport, storage, and UI details in error handling so fewer interfaces need maintenance.",
       "Treat one successful local execution as proof that error handling satisfies reliability, security, scale, and recovery requirements.",
-      "For error handling, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
     ],
     "e": "Test invalid input, dependency failures, timeouts, retries, partial work, and cleanup to ensure the system fails safely and observably. The trade-off should be explicit so the design can be tested, operated, and changed without relying on hidden assumptions.",
     "tags": [
@@ -5931,7 +5931,7 @@ const completeQuestionBank = [
     "q": "Which validation approach provides the strongest evidence for system design?",
     "correct": "Evaluate the design with concrete scenarios such as traffic spikes, dependency outages, retries, data loss, regional failure, schema evolution, and security boundaries.",
     "wrong": [
-      "For system design, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale.",
       "Keep business logic coupled directly to transport, storage, and UI details in system design so fewer interfaces need maintenance.",
       "Treat one successful local execution as proof that system design satisfies reliability, security, scale, and recovery requirements."
     ],
@@ -5947,9 +5947,9 @@ const completeQuestionBank = [
     "q": "Which explanation of prompt design is technically sound?",
     "correct": "Prompt design should define the task, context, constraints, evidence, output contract, and failure behavior clearly enough that the model does not have to infer critical policy.",
     "wrong": [
-      "For prompt design, accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review.",
-      "For prompt design, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once.",
-      "For prompt design, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself."
+      "Accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review.",
+      "Change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once.",
+      "Mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself."
     ],
     "e": "Prompt design should define the task, context, constraints, evidence, output contract, and failure behavior clearly enough that the model does not have to infer critical policy. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -5982,7 +5982,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat tool results in tool calling as trusted instructions because they came from an approved integration rather than from the user.",
       "Retry every tool call in tool calling automatically, including non-idempotent actions, until the model receives a successful response.",
-      "For tool calling, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "Tool calling lets a model request a named capability with structured arguments, but the application remains responsible for validating, authorizing, executing, and returning tool results. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6015,7 +6015,7 @@ const completeQuestionBank = [
     "correct": "An MCP server exposes well-described tools, resources, or prompts through a standard protocol, but protocol compatibility does not replace application-level authorization and domain contracts.",
     "wrong": [
       "Give MCP server design access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
-      "For MCP server design, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Return ambiguous free-form success text from tools used by MCP server design; structured results and explicit errors reduce model creativity."
     ],
     "e": "An MCP server exposes well-described tools, resources, or prompts through a standard protocol, but protocol compatibility does not replace application-level authorization and domain contracts. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6052,7 +6052,7 @@ const completeQuestionBank = [
     "wrong": [
       "Return ambiguous free-form success text from tools used by MCP tools; structured results and explicit errors reduce model creativity.",
       "Expose broad, generic tools for MCP tools with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
-      "For MCP tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "MCP tools are callable capabilities exposed by a server with names, descriptions, and schemas that help an AI client decide when and how to invoke them. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6068,7 +6068,7 @@ const completeQuestionBank = [
     "correct": "Agent planning decomposes a goal into explicit steps or subgoals, but plans should remain revisable as evidence changes rather than becoming an unquestioned script.",
     "wrong": [
       "Return ambiguous free-form success text from tools used by agent planning; structured results and explicit errors reduce model creativity.",
-      "For agent planning, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Retry every tool call in agent planning automatically, including non-idempotent actions, until the model receives a successful response."
     ],
     "e": "Agent planning decomposes a goal into explicit steps or subgoals, but plans should remain revisable as evidence changes rather than becoming an unquestioned script. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6136,7 +6136,7 @@ const completeQuestionBank = [
     "q": "Which statement best describes RAG retrieval?",
     "correct": "RAG retrieval selects relevant source passages at query time so model answers can be grounded in current or domain-specific evidence without retraining the model.",
     "wrong": [
-      "For RAG retrieval, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
+      "Retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
       "Use one fixed chunk size for every document type in RAG retrieval; headings, tables, code, and page structure do not affect retrieval.",
       "Evaluate RAG retrieval only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement."
     ],
@@ -6155,7 +6155,7 @@ const completeQuestionBank = [
     "wrong": [
       "Evaluate vector search only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement.",
       "Append updated documents in vector search without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
-      "For vector search, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary."
+      "Retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary."
     ],
     "e": "Vector search retrieves semantically similar items by comparing embeddings, making it useful when wording differs but meaning is related. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6204,7 +6204,7 @@ const completeQuestionBank = [
     "correct": "AI safety controls reduce harmful, unauthorized, deceptive, or unreliable behavior through layered policy, validation, permissions, monitoring, and human oversight.",
     "wrong": [
       "Use only average scores for AI safety; failure categories and worst-case examples are too noisy to guide engineering.",
-      "For AI safety, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
       "Accept format-valid output as success for AI safety; factuality, task completion, safety, and downstream effects can be checked later."
     ],
     "e": "AI safety controls reduce harmful, unauthorized, deceptive, or unreliable behavior through layered policy, validation, permissions, monitoring, and human oversight. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6219,9 +6219,9 @@ const completeQuestionBank = [
     "q": "Which statement best describes prompt injection defense?",
     "correct": "Prompt injection occurs when untrusted content attempts to override instructions or manipulate tool use, so retrieved text and user data must be treated as data rather than trusted policy.",
     "wrong": [
-      "For prompt injection defense, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
-      "For prompt injection defense, rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively.",
-      "For prompt injection defense, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once."
+      "Omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "Rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively.",
+      "Change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once."
     ],
     "e": "Prompt injection occurs when untrusted content attempts to override instructions or manipulate tool use, so retrieved text and user data must be treated as data rather than trusted policy. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6290,7 +6290,7 @@ const completeQuestionBank = [
     "wrong": [
       "Keep n8n orchestration as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
       "Skip human approval in n8n orchestration whenever the generated text sounds plausible; approval gates mainly reduce automation value.",
-      "For n8n orchestration, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps."
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps."
     ],
     "e": "n8n orchestrates workflows as connected nodes that exchange items, invoke integrations, run code, branch, retry, and call AI components or sub-workflows. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6357,7 +6357,7 @@ const completeQuestionBank = [
     "correct": "Agent observability should connect the user request to model calls, retrieval, tool invocations, handoffs, errors, and final outcome using consistent run or trace identifiers.",
     "wrong": [
       "Treat tool results in observability for agents as trusted instructions because they came from an approved integration rather than from the user.",
-      "For observability for agents, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Give observability for agents access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
     ],
     "e": "Agent observability should connect the user request to model calls, retrieval, tool invocations, handoffs, errors, and final outcome using consistent run or trace identifiers. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6375,9 +6375,9 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for prompt design?",
     "correct": "Separate trusted instructions from untrusted user or retrieved content, include representative examples where ambiguity exists, and keep prompts versioned so changes can be evaluated.",
     "wrong": [
-      "For prompt design, give the model only a persona and let it infer the business rules, evidence sources, and output format from context.",
-      "For prompt design, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
-      "For prompt design, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer."
+      "Give the model only a persona and let it infer the business rules, evidence sources, and output format from context.",
+      "Mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "Omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer."
     ],
     "e": "Separate trusted instructions from untrusted user or retrieved content, include representative examples where ambiguity exists, and keep prompts versioned so changes can be evaluated. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6393,7 +6393,7 @@ const completeQuestionBank = [
     "correct": "Use JSON Schema, Pydantic, Zod, or equivalent typed contracts for classifications, plans, tool inputs, and handoffs, then validate again at the application boundary.",
     "wrong": [
       "Keep structured outputs as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
-      "For structured outputs, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
       "Skip human approval in structured outputs whenever the generated text sounds plausible; approval gates mainly reduce automation value."
     ],
     "e": "Use JSON Schema, Pydantic, Zod, or equivalent typed contracts for classifications, plans, tool inputs, and handoffs, then validate again at the application boundary. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6447,7 +6447,7 @@ const completeQuestionBank = [
     "wrong": [
       "Retry every tool call in MCP server design automatically, including non-idempotent actions, until the model receives a successful response.",
       "Give MCP server design access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
-      "For MCP server design, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "Design narrow capabilities with typed inputs, meaningful descriptions, least privilege, stable errors, idempotency where relevant, and clear tenancy or data-scope boundaries. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6479,7 +6479,7 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for MCP tools?",
     "correct": "Keep tools narrow, validate every argument, enforce permissions inside the server, and return structured results or explicit errors rather than relying on the model to infer success.",
     "wrong": [
-      "For MCP tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Retry every tool call in MCP tools automatically, including non-idempotent actions, until the model receives a successful response.",
       "Give MCP tools access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
     ],
@@ -6498,7 +6498,7 @@ const completeQuestionBank = [
     "wrong": [
       "Expose broad, generic tools for agent planning with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
       "Retry every tool call in agent planning automatically, including non-idempotent actions, until the model receives a successful response.",
-      "For agent planning, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "Represent plans in structured state, bound the number of steps, define completion criteria, and re-plan only when new information or failure justifies it. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6530,7 +6530,7 @@ const completeQuestionBank = [
     "q": "What is a maintainable way to work with multi-agent coordination?",
     "correct": "Give each agent a bounded responsibility, explicit inputs and outputs, independent tools or context where useful, and a coordinator that knows when work is complete.",
     "wrong": [
-      "For multi-agent coordination, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Return ambiguous free-form success text from tools used by multi-agent coordination; structured results and explicit errors reduce model creativity.",
       "Retry every tool call in multi-agent coordination automatically, including non-idempotent actions, until the model receives a successful response."
     ],
@@ -6633,7 +6633,7 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for AI safety?",
     "correct": "Constrain tools, separate trusted instructions from untrusted content, validate structured outputs, protect sensitive data, and require approval for high-impact actions.",
     "wrong": [
-      "For AI safety, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
       "Change prompts, models, and tools together in AI safety so evaluation captures the full improvement rather than isolating variables.",
       "Use only average scores for AI safety; failure categories and worst-case examples are too noisy to guide engineering."
     ],
@@ -6649,9 +6649,9 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for prompt injection defense?",
     "correct": "Separate instruction channels, minimize tool privilege, filter or label untrusted context, validate tool arguments, and enforce authorization outside the model.",
     "wrong": [
-      "For prompt injection defense, accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review.",
-      "For prompt injection defense, give the model only a persona and let it infer the business rules, evidence sources, and output format from context.",
-      "For prompt injection defense, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself."
+      "Accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review.",
+      "Give the model only a persona and let it infer the business rules, evidence sources, and output format from context.",
+      "Mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself."
     ],
     "e": "Separate instruction channels, minimize tool privilege, filter or label untrusted context, validate tool arguments, and enforce authorization outside the model. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6668,7 +6668,7 @@ const completeQuestionBank = [
     "q": "Which practice is most appropriate when using model routing?",
     "correct": "Define routing rules from measured task classes and fallbacks rather than provider marketing tiers, and keep the application behind a stable provider abstraction.",
     "wrong": [
-      "For model routing, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
       "Treat an LLM grader in model routing as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
       "Use only average scores for model routing; failure categories and worst-case examples are too noisy to guide engineering."
     ],
@@ -6684,7 +6684,7 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for token budgets?",
     "correct": "Allocate budget across instructions, conversation, retrieval, tool results, and output; summarize or offload large artifacts instead of allowing unbounded context growth.",
     "wrong": [
-      "For token budgets, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
       "Change prompts, models, and tools together in token budgets so evaluation captures the full improvement rather than isolating variables.",
       "Treat an LLM grader in token budgets as a deterministic oracle once temperature is low, so calibration against human labels is optional."
     ],
@@ -6704,7 +6704,7 @@ const completeQuestionBank = [
     "wrong": [
       "Let the LLM perform deterministic checks in workflow automation, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually.",
       "Share the same credentials, data, and state between test and production for workflow automation so configuration remains simple.",
-      "For workflow automation, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps."
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps."
     ],
     "e": "Keep business-critical state and permissions in the workflow/application layer, use idempotent operations, explicit error paths, and narrow AI steps with structured outputs. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6735,7 +6735,7 @@ const completeQuestionBank = [
     "correct": "Define a typed state schema, make node responsibilities narrow, use checkpoints for durable execution when needed, and keep routing conditions explicit and testable.",
     "wrong": [
       "Treat tool results in LangGraph state as trusted instructions because they came from an approved integration rather than from the user.",
-      "For LangGraph state, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Retry every tool call in LangGraph state automatically, including non-idempotent actions, until the model receives a successful response."
     ],
     "e": "Define a typed state schema, make node responsibilities narrow, use checkpoints for durable execution when needed, and keep routing conditions explicit and testable. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6751,7 +6751,7 @@ const completeQuestionBank = [
     "correct": "Keep tools small, typed, observable, and permission-aware; separate domain services from LangChain-specific wrappers so business logic remains testable without the framework.",
     "wrong": [
       "Return ambiguous free-form success text from tools used by LangChain tools; structured results and explicit errors reduce model creativity.",
-      "For LangChain tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Give LangChain tools access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
     ],
     "e": "Keep tools small, typed, observable, and permission-aware; separate domain services from LangChain-specific wrappers so business logic remains testable without the framework. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6767,7 +6767,7 @@ const completeQuestionBank = [
     "correct": "Give specialists clear responsibilities, limit unnecessary shared context, use structured task outputs, and keep a manager or workflow responsible for completion and policy.",
     "wrong": [
       "Treat tool results in CrewAI delegation as trusted instructions because they came from an approved integration rather than from the user.",
-      "For CrewAI delegation, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Expose broad, generic tools for CrewAI delegation with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
     ],
     "e": "Give specialists clear responsibilities, limit unnecessary shared context, use structured task outputs, and keep a manager or workflow responsible for completion and policy. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6783,7 +6783,7 @@ const completeQuestionBank = [
     "correct": "Record model and prompt versions, tool arguments/results with redaction, latency, token use, errors, and important decisions while protecting sensitive data.",
     "wrong": [
       "Expose broad, generic tools for observability for agents with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
-      "For observability for agents, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Give observability for agents access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
     ],
     "e": "Record model and prompt versions, tool arguments/results with redaction, latency, token use, errors, and important decisions while protecting sensitive data. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6801,9 +6801,9 @@ const completeQuestionBank = [
     "q": "Which check gives the strongest evidence for prompt design?",
     "correct": "Evaluate prompts on a fixed representative set plus adversarial cases, tracking task success, refusal quality, format validity, cost, and regressions rather than judging one impressive example.",
     "wrong": [
-      "For prompt design, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
-      "For prompt design, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
-      "For prompt design, accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review."
+      "Omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "Mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "Accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review."
     ],
     "e": "Evaluate prompts on a fixed representative set plus adversarial cases, tracking task success, refusal quality, format validity, cost, and regressions rather than judging one impressive example. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -6818,7 +6818,7 @@ const completeQuestionBank = [
     "q": "Which validation approach provides the strongest evidence for structured outputs?",
     "correct": "Test missing fields, invalid enums, nested structures, refusals, partial outputs, and schema changes to ensure downstream code fails safely rather than accepting malformed data.",
     "wrong": [
-      "For structured outputs, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
       "Keep structured outputs as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
       "Share the same credentials, data, and state between test and production for structured outputs so configuration remains simple."
     ],
@@ -6835,7 +6835,7 @@ const completeQuestionBank = [
     "correct": "Test invalid arguments, unauthorized calls, repeated calls, tool failures, timeouts, and malicious content in tool results so the agent cannot turn a tool into an uncontrolled action channel.",
     "wrong": [
       "Retry every tool call in tool calling automatically, including non-idempotent actions, until the model receives a successful response.",
-      "For tool calling, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Expose broad, generic tools for tool calling with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
     ],
     "e": "Test invalid arguments, unauthorized calls, repeated calls, tool failures, timeouts, and malicious content in tool results so the agent cannot turn a tool into an uncontrolled action channel. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6869,7 +6869,7 @@ const completeQuestionBank = [
     "correct": "Test discovery, valid and invalid calls, permissions, retries, malformed clients, transport failures, and business behavior independently of the MCP transport itself.",
     "wrong": [
       "Return ambiguous free-form success text from tools used by MCP server design; structured results and explicit errors reduce model creativity.",
-      "For MCP server design, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Treat tool results in MCP server design as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "Test discovery, valid and invalid calls, permissions, retries, malformed clients, transport failures, and business behavior independently of the MCP transport itself. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6885,7 +6885,7 @@ const completeQuestionBank = [
     "q": "Which validation approach provides the strongest evidence for MCP resources?",
     "correct": "Verify authorization, missing resources, stale versions, large content, and concurrent updates, and ensure sensitive resources are not exposed merely because the client can discover the server.",
     "wrong": [
-      "For MCP resources, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Expose broad, generic tools for MCP resources with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
       "Return ambiguous free-form success text from tools used by MCP resources; structured results and explicit errors reduce model creativity."
     ],
@@ -6921,7 +6921,7 @@ const completeQuestionBank = [
     "correct": "Evaluate planning by task completion, unnecessary steps, recovery from failed assumptions, cost, and whether the plan respects tool and safety constraints.",
     "wrong": [
       "Give agent planning access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
-      "For agent planning, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Treat tool results in agent planning as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "Evaluate planning by task completion, unnecessary steps, recovery from failed assumptions, cost, and whether the plan respects tool and safety constraints. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6938,7 +6938,7 @@ const completeQuestionBank = [
     "correct": "Test cross-user isolation, stale memories, conflicting facts, sensitive-data retention, retrieval relevance, and how the agent behaves when memory is missing or wrong.",
     "wrong": [
       "Retry every tool call in agent memory automatically, including non-idempotent actions, until the model receives a successful response.",
-      "For agent memory, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Treat tool results in agent memory as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "Test cross-user isolation, stale memories, conflicting facts, sensitive-data retention, retrieval relevance, and how the agent behaves when memory is missing or wrong. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6974,7 +6974,7 @@ const completeQuestionBank = [
     "correct": "Test approval, rejection, timeout, changed data after approval, duplicate actions, and unauthorized approvers so the review step is a real control rather than a conversational suggestion.",
     "wrong": [
       "Let the LLM perform deterministic checks in human-in-the-loop review, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually.",
-      "For human-in-the-loop review, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
       "Skip human approval in human-in-the-loop review whenever the generated text sounds plausible; approval gates mainly reduce automation value."
     ],
     "e": "Test approval, rejection, timeout, changed data after approval, duplicate actions, and unauthorized approvers so the review step is a real control rather than a conversational suggestion. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -6991,7 +6991,7 @@ const completeQuestionBank = [
     "correct": "Evaluate retrieval separately from generation using known queries and expected sources, then inspect missed evidence, noisy chunks, permission filtering, freshness, and answer citation accuracy.",
     "wrong": [
       "Evaluate RAG retrieval only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement.",
-      "For RAG retrieval, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
+      "Retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
       "Append updated documents in RAG retrieval without stable IDs, deduplication, or deletion; older chunks provide useful historical context."
     ],
     "e": "Evaluate retrieval separately from generation using known queries and expected sources, then inspect missed evidence, noisy chunks, permission filtering, freshness, and answer citation accuracy. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -7009,7 +7009,7 @@ const completeQuestionBank = [
     "wrong": [
       "Append updated documents in vector search without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
       "Treat embedding similarity in vector search as an authorization mechanism, so metadata filters and tenant boundaries are unnecessary.",
-      "For vector search, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary."
+      "Retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary."
     ],
     "e": "Measure recall and ranking on representative queries, including near-duplicates, rare terms, permission boundaries, and domain-specific language instead of assuming similarity scores imply relevance. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7025,7 +7025,7 @@ const completeQuestionBank = [
     "correct": "Evaluate nearest-neighbor relevance, difficult negatives, multilingual or domain cases, and downstream retrieval metrics rather than relying only on generic benchmark claims.",
     "wrong": [
       "Append updated documents in embedding quality without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
-      "For embedding quality, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
+      "Retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
       "Use one fixed chunk size for every document type in embedding quality; headings, tables, code, and page structure do not affect retrieval."
     ],
     "e": "Evaluate nearest-neighbor relevance, difficult negatives, multilingual or domain cases, and downstream retrieval metrics rather than relying only on generic benchmark claims. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -7076,9 +7076,9 @@ const completeQuestionBank = [
     "q": "What evidence best validates prompt injection defense?",
     "correct": "Test malicious webpages, documents, emails, tool results, and indirect instructions to ensure the agent cannot leak secrets, change policy, or perform unauthorized actions.",
     "wrong": [
-      "For prompt injection defense, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once.",
-      "For prompt injection defense, rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively.",
-      "For prompt injection defense, give the model only a persona and let it infer the business rules, evidence sources, and output format from context."
+      "Change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once.",
+      "Rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively.",
+      "Give the model only a persona and let it infer the business rules, evidence sources, and output format from context."
     ],
     "e": "Test malicious webpages, documents, emails, tool results, and indirect instructions to ensure the agent cannot leak secrets, change policy, or perform unauthorized actions. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7096,7 +7096,7 @@ const completeQuestionBank = [
     "wrong": [
       "Accept format-valid output as success for model routing; factuality, task completion, safety, and downstream effects can be checked later.",
       "Treat an LLM grader in model routing as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
-      "For model routing, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "Evaluate each route on representative workloads and monitor quality, latency, errors, and cost so routing can be changed when model behavior or pricing evolves. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7111,7 +7111,7 @@ const completeQuestionBank = [
     "q": "What evidence best validates token budgets?",
     "correct": "Monitor token use per task, truncation, lost critical context, cost spikes, and quality changes when compaction or retrieval policies are adjusted.",
     "wrong": [
-      "For token budgets, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
       "Change prompts, models, and tools together in token budgets so evaluation captures the full improvement rather than isolating variables.",
       "Accept format-valid output as success for token budgets; factuality, task completion, safety, and downstream effects can be checked later."
     ],
@@ -7129,7 +7129,7 @@ const completeQuestionBank = [
     "q": "Which check gives the strongest evidence for workflow automation?",
     "correct": "Test duplicate events, retries, dependency outages, malformed inputs, partial execution, and resume behavior so the workflow remains correct under failure.",
     "wrong": [
-      "For workflow automation, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
       "Keep workflow automation as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
       "Skip human approval in workflow automation whenever the generated text sounds plausible; approval gates mainly reduce automation value."
     ],
@@ -7163,7 +7163,7 @@ const completeQuestionBank = [
     "wrong": [
       "Expose broad, generic tools for LangGraph state with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
       "Treat tool results in LangGraph state as trusted instructions because they came from an approved integration rather than from the user.",
-      "For LangGraph state, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "Test branching, retries, interrupted runs, concurrent updates, replay, and checkpoint recovery to ensure state transitions remain deterministic enough to operate. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7179,7 +7179,7 @@ const completeQuestionBank = [
     "correct": "Test tool schema generation, bad arguments, exceptions, timeouts, repeated calls, and model selection errors while verifying the underlying service independently.",
     "wrong": [
       "Treat tool results in LangChain tools as trusted instructions because they came from an approved integration rather than from the user.",
-      "For LangChain tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Return ambiguous free-form success text from tools used by LangChain tools; structured results and explicit errors reduce model creativity."
     ],
     "e": "Test tool schema generation, bad arguments, exceptions, timeouts, repeated calls, and model selection errors while verifying the underlying service independently. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -7197,7 +7197,7 @@ const completeQuestionBank = [
     "wrong": [
       "Return ambiguous free-form success text from tools used by CrewAI delegation; structured results and explicit errors reduce model creativity.",
       "Treat tool results in CrewAI delegation as trusted instructions because they came from an approved integration rather than from the user.",
-      "For CrewAI delegation, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "Evaluate delegated tasks for duplicated work, circular handoffs, inconsistent conclusions, latency, and cost compared with a simpler coordinated workflow. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7230,9 +7230,9 @@ const completeQuestionBank = [
     "q": "What matters most when taking prompt design into production?",
     "correct": "For prompt design, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
-      "For prompt design, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
-      "For prompt design, rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively.",
-      "For prompt design, accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review."
+      "Mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "Rely on one successful example instead of a representative evaluation set because prompt quality is best judged qualitatively.",
+      "Accept generated tests or decisions once they are syntactically valid; semantic equivalence and business intent do not need independent review."
     ],
     "e": "For prompt design, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7248,7 +7248,7 @@ const completeQuestionBank = [
     "correct": "For structured outputs, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
       "Share the same credentials, data, and state between test and production for structured outputs so configuration remains simple.",
-      "For structured outputs, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
       "Let the LLM perform deterministic checks in structured outputs, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually."
     ],
     "e": "For structured outputs, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -7263,7 +7263,7 @@ const completeQuestionBank = [
     "q": "What matters most when taking tool calling into production?",
     "correct": "For tool calling, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
-      "For tool calling, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Expose broad, generic tools for tool calling with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
       "Treat tool results in tool calling as trusted instructions because they came from an approved integration rather than from the user."
     ],
@@ -7282,7 +7282,7 @@ const completeQuestionBank = [
     "wrong": [
       "Give function calling access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
       "Retry every tool call in function calling automatically, including non-idempotent actions, until the model receives a successful response.",
-      "For function calling, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "For function calling, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7314,7 +7314,7 @@ const completeQuestionBank = [
     "q": "Which statement best reflects production-ready use of MCP resources?",
     "correct": "For MCP resources, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
-      "For MCP resources, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Expose broad, generic tools for MCP resources with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
       "Retry every tool call in MCP resources automatically, including non-idempotent actions, until the model receives a successful response."
     ],
@@ -7331,7 +7331,7 @@ const completeQuestionBank = [
     "q": "How should MCP tools be operated beyond the happy path?",
     "correct": "For MCP tools, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
-      "For MCP tools, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Expose broad, generic tools for MCP tools with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
       "Give MCP tools access to all available credentials and capabilities so it can choose the least-privileged action dynamically."
     ],
@@ -7349,7 +7349,7 @@ const completeQuestionBank = [
     "correct": "For agent planning, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
       "Expose broad, generic tools for agent planning with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy.",
-      "For agent planning, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Return ambiguous free-form success text from tools used by agent planning; structured results and explicit errors reduce model creativity."
     ],
     "e": "For agent planning, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -7367,7 +7367,7 @@ const completeQuestionBank = [
     "wrong": [
       "Give agent memory access to all available credentials and capabilities so it can choose the least-privileged action dynamically.",
       "Return ambiguous free-form success text from tools used by agent memory; structured results and explicit errors reduce model creativity.",
-      "For agent memory, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "For agent memory, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7434,7 +7434,7 @@ const completeQuestionBank = [
     "correct": "For vector search, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
       "Append updated documents in vector search without stable IDs, deduplication, or deletion; older chunks provide useful historical context.",
-      "For vector search, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
+      "Retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary.",
       "Evaluate vector search only from final answer quality; retrieval recall, source accuracy, freshness, and permission filtering do not need separate measurement."
     ],
     "e": "For vector search, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -7469,7 +7469,7 @@ const completeQuestionBank = [
     "wrong": [
       "Accept format-valid output as success for LLM evaluation; factuality, task completion, safety, and downstream effects can be checked later.",
       "Treat an LLM grader in LLM evaluation as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
-      "For LLM evaluation, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "For LLM evaluation, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7499,9 +7499,9 @@ const completeQuestionBank = [
     "q": "How should prompt injection defense be operated beyond the happy path?",
     "correct": "For prompt injection defense, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
-      "For prompt injection defense, omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
-      "For prompt injection defense, mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
-      "For prompt injection defense, change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once."
+      "Omit uncertainty and failure behavior from the prompt; a capable model should always produce a definitive answer.",
+      "Mix trusted instructions and retrieved or user-provided text in one undifferentiated prompt so the model can resolve conflicts itself.",
+      "Change prompt, model, retrieval, and tools together whenever quality is poor so the next result benefits from all improvements at once."
     ],
     "e": "For prompt injection defense, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
     "tags": [
@@ -7565,7 +7565,7 @@ const completeQuestionBank = [
     "q": "How should n8n orchestration be operated beyond the happy path?",
     "correct": "For n8n orchestration, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
-      "For n8n orchestration, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
       "Keep n8n orchestration as one monolithic workflow even when sub-workflows would clarify inputs, outputs, ownership, and error handling.",
       "Let the LLM perform deterministic checks in n8n orchestration, such as permissions, deduplication, audit writes, and blocked-recipient rules, because it can adapt them contextually."
     ],
@@ -7582,7 +7582,7 @@ const completeQuestionBank = [
     "correct": "For LangGraph state, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response.",
     "wrong": [
       "Retry every tool call in LangGraph state automatically, including non-idempotent actions, until the model receives a successful response.",
-      "For LangGraph state, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Treat tool results in LangGraph state as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "For LangGraph state, production use requires evaluation, observability, bounded permissions, failure recovery, and cost/data controls in addition to a successful model response. The model is only one component; application controls, evaluation, and tool/data boundaries determine whether the system is dependable.",
@@ -7616,7 +7616,7 @@ const completeQuestionBank = [
     "correct": "A Service Level Indicator (SLI) is the quantitative measurement used to assess a service behavior, such as availability, latency, freshness, or correctness.",
     "wrong": [
       "Use averages as the main signal in service level indicators; percentiles, error ratios, and burn rates add unnecessary complexity.",
-      "For service level indicators, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
       "Keep service level indicators targets static even when measurement definitions or user journeys change, so historical graphs remain comparable."
     ],
     "e": "A Service Level Indicator (SLI) is the quantitative measurement used to assess a service behavior, such as availability, latency, freshness, or correctness. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -7703,7 +7703,7 @@ const completeQuestionBank = [
     "wrong": [
       "Sample telemetry in application logging without checking whether rare errors and slow requests remain observable.",
       "Log full secrets and payloads during application logging because debugging value outweighs redaction when access is restricted.",
-      "For application logging, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
     ],
     "e": "Application logs should capture structured events with enough context to diagnose behavior while avoiding sensitive data and uncontrolled volume. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -7719,7 +7719,7 @@ const completeQuestionBank = [
     "correct": "Distributed tracing follows a request or job across service boundaries using trace and span identifiers, revealing latency and failure propagation that isolated logs can miss.",
     "wrong": [
       "Treat logs, metrics, and traces in distributed tracing as separate systems that do not need shared request or trace identifiers.",
-      "For distributed tracing, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Log full secrets and payloads during distributed tracing because debugging value outweighs redaction when access is restricted."
     ],
     "e": "Distributed tracing follows a request or job across service boundaries using trace and span identifiers, revealing latency and failure propagation that isolated logs can miss. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -7738,7 +7738,7 @@ const completeQuestionBank = [
     "correct": "Metrics dashboards summarize trends and current health, but they are useful only when the selected metrics answer operational questions rather than displaying every available signal.",
     "wrong": [
       "Log full secrets and payloads during metrics dashboards because debugging value outweighs redaction when access is restricted.",
-      "For metrics dashboards, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Use dashboards for metrics dashboards as decoration rather than linking panels to user impact, dependencies, and recent changes."
     ],
     "e": "Metrics dashboards summarize trends and current health, but they are useful only when the selected metrics answer operational questions rather than displaying every available signal. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -7805,7 +7805,7 @@ const completeQuestionBank = [
     "wrong": [
       "Automate destructive recovery steps in disaster recovery without approval or verification because speed is the primary objective.",
       "Treat failover as complete for disaster recovery once infrastructure is running, without verifying data integrity or user-facing service.",
-      "For disaster recovery, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
+      "Consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
     ],
     "e": "Disaster recovery prepares for large-scale loss of infrastructure, data, or region availability with explicit recovery priorities, dependencies, RTOs, and RPOs. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -7819,9 +7819,9 @@ const completeQuestionBank = [
     "q": "Which explanation of secrets management is technically sound?",
     "correct": "Secrets management protects credentials, tokens, keys, and certificates through controlled storage, scoped access, rotation, auditing, and short-lived identity where possible.",
     "wrong": [
-      "For secrets management, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
-      "For secrets management, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
-      "For secrets management, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted."
+      "Use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "Assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
+      "Log full authorization headers and private keys when troubleshooting because network-layer access is already restricted."
     ],
     "e": "Secrets management protects credentials, tokens, keys, and certificates through controlled storage, scoped access, rotation, auditing, and short-lived identity where possible. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -7836,9 +7836,9 @@ const completeQuestionBank = [
     "q": "Which explanation of reverse proxies is technically sound?",
     "correct": "A reverse proxy accepts client connections and forwards traffic to upstream services, often handling TLS, routing, headers, authentication integration, limits, and access logging.",
     "wrong": [
-      "For reverse proxies, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
-      "For reverse proxies, expose upstream services directly as well as through the proxy so operators have more paths during incidents.",
-      "For reverse proxies, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
+      "Use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "Expose upstream services directly as well as through the proxy so operators have more paths during incidents.",
+      "Trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
     ],
     "e": "A reverse proxy accepts client connections and forwards traffic to upstream services, often handling TLS, routing, headers, authentication integration, limits, and access logging. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -7854,9 +7854,9 @@ const completeQuestionBank = [
     "q": "What is the core idea behind TLS certificates?",
     "correct": "TLS certificates bind identities to public keys so clients can authenticate endpoints and establish encrypted connections; validity, trust chain, hostname, and expiry all matter.",
     "wrong": [
-      "For TLS certificates, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
-      "For TLS certificates, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
-      "For TLS certificates, expose upstream services directly as well as through the proxy so operators have more paths during incidents."
+      "Treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "Use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "Expose upstream services directly as well as through the proxy so operators have more paths during incidents."
     ],
     "e": "TLS certificates bind identities to public keys so clients can authenticate endpoints and establish encrypted connections; validity, trust chain, hostname, and expiry all matter. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -7890,7 +7890,7 @@ const completeQuestionBank = [
     "correct": "Infrastructure monitoring observes hosts, networks, storage, cloud resources, and dependencies that application health depends on.",
     "wrong": [
       "Assume a green dashboard proves infrastructure monitoring is healthy even when customer-facing failures are reported elsewhere.",
-      "For infrastructure monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Log full secrets and payloads during infrastructure monitoring because debugging value outweighs redaction when access is restricted."
     ],
     "e": "Infrastructure monitoring observes hosts, networks, storage, cloud resources, and dependencies that application health depends on. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -7958,7 +7958,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use one unvalidated sensor reading to trigger irreversible behavior in time-series data, because filtering and plausibility checks only delay automation.",
       "Assume a successful command in time-series data proves the physical actuator changed state; independent feedback is unnecessary.",
-      "For time-series data, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning."
+      "Treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning."
     ],
     "e": "Time-series data is ordered by time and requires careful treatment of timestamps, sampling intervals, gaps, aggregation, retention, and timezone semantics. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -7974,7 +7974,7 @@ const completeQuestionBank = [
     "wrong": [
       "Define RTO and RPO for data retention after a disaster occurs, when actual business tolerance is easier to measure.",
       "Treat failover as complete for data retention once infrastructure is running, without verifying data integrity or user-facing service.",
-      "For data retention, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
+      "Consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
     ],
     "e": "Data retention defines how long different data classes are kept and should balance operational, legal, analytical, privacy, and storage requirements. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -7988,7 +7988,7 @@ const completeQuestionBank = [
     "q": "What is the core idea behind root cause analysis?",
     "correct": "Root cause analysis seeks the system conditions and contributing factors that allowed an incident, with the goal of preventing recurrence rather than assigning blame.",
     "wrong": [
-      "For root cause analysis, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
       "Use averages as the main signal in root cause analysis; percentiles, error ratios, and burn rates add unnecessary complexity.",
       "Define root cause analysis from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability."
     ],
@@ -8024,7 +8024,7 @@ const completeQuestionBank = [
     "wrong": [
       "Define service level objectives from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
       "Keep service level objectives targets static even when measurement definitions or user journeys change, so historical graphs remain comparable.",
-      "For service level objectives, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
     ],
     "e": "Define SLOs from user outcomes, pair them with measurable SLIs and an evaluation window, and avoid choosing targets only because they are easy to measure. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8056,7 +8056,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use averages as the main signal in error budgets; percentiles, error ratios, and burn rates add unnecessary complexity.",
       "Define error budgets from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
-      "For error budgets, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
     ],
     "e": "Track budget consumption over the SLO window, distinguish slow burn from rapid burn, and use agreed policies for when reliability work should take precedence over risky changes. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8073,7 +8073,7 @@ const completeQuestionBank = [
     "wrong": [
       "Automate destructive recovery steps in incident response without approval or verification because speed is the primary objective.",
       "Keep recovery procedures for incident response undocumented so responders can adapt to the exact incident instead of following stale steps.",
-      "For incident response, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
+      "Consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
     ],
     "e": "Establish roles, severity, communication channels, mitigation options, decision logs, and escalation paths before incidents occur, then keep updates factual and time-bounded. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8090,7 +8090,7 @@ const completeQuestionBank = [
     "wrong": [
       "Define on-call handoffs from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
       "Use averages as the main signal in on-call handoffs; percentiles, error ratios, and burn rates add unnecessary complexity.",
-      "For on-call handoffs, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
     ],
     "e": "Include unresolved alerts, recent deployments, temporary mitigations, known noisy signals, pending changes, and contact/escalation information in a concise structured handoff. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8106,7 +8106,7 @@ const completeQuestionBank = [
     "correct": "Keep runbooks close to the systems they describe, automate safe mechanical steps, and include decision points rather than only command lists.",
     "wrong": [
       "Treat failover as complete for runbooks once infrastructure is running, without verifying data integrity or user-facing service.",
-      "For runbooks, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
       "Store all recovery copies for runbooks in the same failure domain as the primary system to simplify access."
     ],
     "e": "Keep runbooks close to the systems they describe, automate safe mechanical steps, and include decision points rather than only command lists. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -8140,7 +8140,7 @@ const completeQuestionBank = [
     "q": "Which practice is most appropriate when using distributed tracing?",
     "correct": "Propagate trace context across HTTP, queues, and background jobs, create spans around meaningful operations, and attach useful attributes without leaking secrets.",
     "wrong": [
-      "For distributed tracing, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Sample telemetry in distributed tracing without checking whether rare errors and slow requests remain observable.",
       "Treat logs, metrics, and traces in distributed tracing as separate systems that do not need shared request or trace identifiers."
     ],
@@ -8162,7 +8162,7 @@ const completeQuestionBank = [
     "wrong": [
       "Sample telemetry in metrics dashboards without checking whether rare errors and slow requests remain observable.",
       "Log full secrets and payloads during metrics dashboards because debugging value outweighs redaction when access is restricted.",
-      "For metrics dashboards, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
     ],
     "e": "Organize dashboards around user impact, service health, dependencies, saturation, and recent changes, with consistent units and time windows. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8176,7 +8176,7 @@ const completeQuestionBank = [
     "q": "Which implementation approach is strongest for alert tuning?",
     "correct": "Set thresholds from SLOs, baselines, and failure modes; use duration, grouping, deduplication, and severity to reduce transient or redundant alerts.",
     "wrong": [
-      "For alert tuning, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Treat logs, metrics, and traces in alert tuning as separate systems that do not need shared request or trace identifiers.",
       "Log full secrets and payloads during alert tuning because debugging value outweighs redaction when access is restricted."
     ],
@@ -8193,7 +8193,7 @@ const completeQuestionBank = [
     "q": "What is a maintainable way to work with capacity planning?",
     "correct": "Use historical demand, forecasts, headroom, load tests, resource saturation, and scaling limits rather than sizing from average traffic alone.",
     "wrong": [
-      "For capacity planning, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
       "Keep capacity planning targets static even when measurement definitions or user journeys change, so historical graphs remain comparable.",
       "Treat unused error budget in capacity planning as permission to create failures intentionally before the measurement window closes."
     ],
@@ -8211,7 +8211,7 @@ const completeQuestionBank = [
     "correct": "Set retention, encryption, off-site or independent copies, restore procedures, and RPO/RTO targets according to business needs.",
     "wrong": [
       "Store all recovery copies for backup recovery in the same failure domain as the primary system to simplify access.",
-      "For backup recovery, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
       "Define RTO and RPO for backup recovery after a disaster occurs, when actual business tolerance is easier to measure."
     ],
     "e": "Set retention, encryption, off-site or independent copies, restore procedures, and RPO/RTO targets according to business needs. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -8242,9 +8242,9 @@ const completeQuestionBank = [
     "q": "Which practice is most appropriate when using secrets management?",
     "correct": "Use a secret manager or protected runtime store, grant least privilege, avoid embedding secrets in code/images/config history, and rotate or revoke compromised values.",
     "wrong": [
-      "For secrets management, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
-      "For secrets management, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
-      "For secrets management, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness."
+      "Treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "Use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "Assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness."
     ],
     "e": "Use a secret manager or protected runtime store, grant least privilege, avoid embedding secrets in code/images/config history, and rotate or revoke compromised values. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8260,9 +8260,9 @@ const completeQuestionBank = [
     "q": "How should reverse proxies be applied in practice?",
     "correct": "Configure trusted upstreams, forwarded headers, timeouts, body limits, websocket or streaming behavior, and health handling explicitly rather than relying on defaults.",
     "wrong": [
-      "For reverse proxies, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant.",
-      "For reverse proxies, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
-      "For reverse proxies, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness."
+      "Trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant.",
+      "Treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "Assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness."
     ],
     "e": "Configure trusted upstreams, forwarded headers, timeouts, body limits, websocket or streaming behavior, and health handling explicitly rather than relying on defaults. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8276,9 +8276,9 @@ const completeQuestionBank = [
     "q": "Which practice is most appropriate when using TLS certificates?",
     "correct": "Automate issuance and renewal where possible, monitor expiry, protect private keys, and configure supported protocol/cipher versions according to current platform guidance.",
     "wrong": [
-      "For TLS certificates, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
-      "For TLS certificates, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
-      "For TLS certificates, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct."
+      "Assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
+      "Use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "Treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct."
     ],
     "e": "Automate issuance and renewal where possible, monitor expiry, protect private keys, and configure supported protocol/cipher versions according to current platform guidance. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8293,7 +8293,7 @@ const completeQuestionBank = [
     "q": "How should container monitoring be applied in practice?",
     "correct": "Collect container and host metrics together, set resource requests/limits deliberately, and distinguish crash loops from healthy restarts or autoscaling.",
     "wrong": [
-      "For container monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Sample telemetry in container monitoring without checking whether rare errors and slow requests remain observable.",
       "Log full secrets and payloads during container monitoring because debugging value outweighs redaction when access is restricted."
     ],
@@ -8313,7 +8313,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume a green dashboard proves infrastructure monitoring is healthy even when customer-facing failures are reported elsewhere.",
       "Sample telemetry in infrastructure monitoring without checking whether rare errors and slow requests remain observable.",
-      "For infrastructure monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
     ],
     "e": "Track saturation, errors, capacity, availability, and configuration changes with labels that let responders map infrastructure signals to affected services. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8331,7 +8331,7 @@ const completeQuestionBank = [
     "wrong": [
       "Use one unvalidated sensor reading to trigger irreversible behavior in Home Assistant, because filtering and plausibility checks only delay automation.",
       "Assume a successful command in Home Assistant proves the physical actuator changed state; independent feedback is unnecessary.",
-      "For Home Assistant, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning."
+      "Treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning."
     ],
     "e": "Use stable entity IDs, explicit automation conditions, useful availability signals, and local protocols or integrations where appropriate; separate device state from assumptions about physical outcome. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8432,7 +8432,7 @@ const completeQuestionBank = [
     "wrong": [
       "Define RTO and RPO for post-incident actions after a disaster occurs, when actual business tolerance is easier to measure.",
       "Treat failover as complete for post-incident actions once infrastructure is running, without verifying data integrity or user-facing service.",
-      "For post-incident actions, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
+      "Consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary."
     ],
     "e": "Prioritize actions that reduce recurrence or impact, such as guardrails, tests, observability, automation, capacity, runbook changes, or architecture improvements. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8552,7 +8552,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume a green dashboard proves application logging is healthy even when customer-facing failures are reported elsewhere.",
       "Log full secrets and payloads during application logging because debugging value outweighs redaction when access is restricted.",
-      "For application logging, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
     ],
     "e": "Test whether a real failure can be traced from logs alone to the affected request or job, and verify rotation, retention, and ingestion continue under high volume. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8621,7 +8621,7 @@ const completeQuestionBank = [
     "correct": "Validate plans against peak scenarios, dependency quotas, failure of one zone or node, and time-to-scale so capacity remains adequate under realistic stress.",
     "wrong": [
       "Define capacity planning from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability.",
-      "For capacity planning, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
       "Judge capacity planning from one dashboard without validating that severe incidents actually move the chosen indicators."
     ],
     "e": "Validate plans against peak scenarios, dependency quotas, failure of one zone or node, and time-to-scale so capacity remains adequate under realistic stress. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -8669,9 +8669,9 @@ const completeQuestionBank = [
     "q": "Which check gives the strongest evidence for secrets management?",
     "correct": "Test secret expiry, rotation, missing access, audit trails, and redaction in logs, traces, crash dumps, and backups so operational tooling does not become a leakage path.",
     "wrong": [
-      "For secrets management, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
-      "For secrets management, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
-      "For secrets management, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
+      "Treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "Use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "Trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
     ],
     "e": "Test secret expiry, rotation, missing access, audit trails, and redaction in logs, traces, crash dumps, and backups so operational tooling does not become a leakage path. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8687,9 +8687,9 @@ const completeQuestionBank = [
     "q": "Which check gives the strongest evidence for reverse proxies?",
     "correct": "Test redirects, certificate behavior, large requests, upstream failures, client IP/scheme preservation, and malicious forwarded headers to verify the proxy boundary.",
     "wrong": [
-      "For reverse proxies, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted.",
-      "For reverse proxies, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant.",
-      "For reverse proxies, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness."
+      "Log full authorization headers and private keys when troubleshooting because network-layer access is already restricted.",
+      "Trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant.",
+      "Assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness."
     ],
     "e": "Test redirects, certificate behavior, large requests, upstream failures, client IP/scheme preservation, and malicious forwarded headers to verify the proxy boundary. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8703,9 +8703,9 @@ const completeQuestionBank = [
     "q": "Which validation approach provides the strongest evidence for TLS certificates?",
     "correct": "Test hostname mismatch, expired or untrusted certificates, renewal, intermediate-chain delivery, redirects, and service restart behavior before an expiry becomes an outage.",
     "wrong": [
-      "For TLS certificates, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
-      "For TLS certificates, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted.",
-      "For TLS certificates, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
+      "Use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic.",
+      "Log full authorization headers and private keys when troubleshooting because network-layer access is already restricted.",
+      "Trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
     ],
     "e": "Test hostname mismatch, expired or untrusted certificates, renewal, intermediate-chain delivery, redirects, and service restart behavior before an expiry becomes an outage. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8722,7 +8722,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume a green dashboard proves container monitoring is healthy even when customer-facing failures are reported elsewhere.",
       "Use dashboards for container monitoring as decoration rather than linking panels to user impact, dependencies, and recent changes.",
-      "For container monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis."
     ],
     "e": "Correlate container signals with service latency and errors so a resource spike can be linked to user impact and the responsible workload. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8772,7 +8772,7 @@ const completeQuestionBank = [
     "correct": "Test reconnects, duplicate or delayed delivery, retained stale state, wildcard subscriptions, QoS behavior, and unauthorized publishing before relying on MQTT for automation.",
     "wrong": [
       "Treat dashboards in MQTT topics as the source of truth even when device telemetry and physical outcomes disagree.",
-      "For MQTT topics, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning.",
+      "Treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning.",
       "Share unrestricted broker or device credentials across MQTT topics; per-topic or per-device access control complicates provisioning."
     ],
     "e": "Test reconnects, duplicate or delayed delivery, retained stale state, wildcard subscriptions, QoS behavior, and unauthorized publishing before relying on MQTT for automation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -8788,7 +8788,7 @@ const completeQuestionBank = [
     "q": "Which check gives the strongest evidence for IoT sensors?",
     "correct": "Test disconnected, stuck, noisy, out-of-range, and implausibly fast-changing sensors and compare against a reference when calibration or drift matters.",
     "wrong": [
-      "For IoT sensors, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning.",
+      "Treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning.",
       "Ignore reconnects, duplicate messages, retained state, and clock drift in IoT sensors; reliable networks make those edge cases negligible.",
       "Use one unvalidated sensor reading to trigger irreversible behavior in IoT sensors, because filtering and plausibility checks only delay automation."
     ],
@@ -8822,7 +8822,7 @@ const completeQuestionBank = [
     "correct": "Test deletion end to end, including indexes, caches, backups, and derived stores, and verify expired data is not silently reintroduced by restore or synchronization.",
     "wrong": [
       "Store all recovery copies for data retention in the same failure domain as the primary system to simplify access.",
-      "For data retention, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
       "Keep recovery procedures for data retention undocumented so responders can adapt to the exact incident instead of following stale steps."
     ],
     "e": "Test deletion end to end, including indexes, caches, backups, and derived stores, and verify expired data is not silently reintroduced by restore or synchronization. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -8838,7 +8838,7 @@ const completeQuestionBank = [
     "correct": "Follow up on actions and verify they reduce recurrence risk; a document that identifies 'human error' without changing the system is not a complete RCA.",
     "wrong": [
       "Use averages as the main signal in root cause analysis; percentiles, error ratios, and burn rates add unnecessary complexity.",
-      "For root cause analysis, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
       "Judge root cause analysis from one dashboard without validating that severe incidents actually move the chosen indicators."
     ],
     "e": "Follow up on actions and verify they reduce recurrence risk; a document that identifies 'human error' without changing the system is not a complete RCA. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -8854,7 +8854,7 @@ const completeQuestionBank = [
     "correct": "Track actions to completion and verify their effectiveness through drills, regression tests, or monitoring rather than closing them when a ticket is merely created.",
     "wrong": [
       "Store all recovery copies for post-incident actions in the same failure domain as the primary system to simplify access.",
-      "For post-incident actions, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
       "Treat failover as complete for post-incident actions once infrastructure is running, without verifying data integrity or user-facing service."
     ],
     "e": "Track actions to completion and verify their effectiveness through drills, regression tests, or monitoring rather than closing them when a ticket is merely created. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -8888,7 +8888,7 @@ const completeQuestionBank = [
     "wrong": [
       "Judge service level indicators from one dashboard without validating that severe incidents actually move the chosen indicators.",
       "Use averages as the main signal in service level indicators; percentiles, error ratios, and burn rates add unnecessary complexity.",
-      "For service level indicators, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed."
     ],
     "e": "For service level indicators, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -8903,7 +8903,7 @@ const completeQuestionBank = [
     "correct": "For error budgets, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
       "Use averages as the main signal in error budgets; percentiles, error ratios, and burn rates add unnecessary complexity.",
-      "For error budgets, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
       "Keep error budgets targets static even when measurement definitions or user journeys change, so historical graphs remain comparable."
     ],
     "e": "For error budgets, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -8919,7 +8919,7 @@ const completeQuestionBank = [
     "q": "Which statement best reflects production-ready use of incident response?",
     "correct": "For incident response, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
-      "For incident response, consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
+      "Consider a successful backup, deployment, or restart enough evidence; restore, failover, and recovery drills are unnecessary.",
       "Define RTO and RPO for incident response after a disaster occurs, when actual business tolerance is easier to measure.",
       "Store all recovery copies for incident response in the same failure domain as the primary system to simplify access."
     ],
@@ -8969,7 +8969,7 @@ const completeQuestionBank = [
     "q": "Which statement best reflects production-ready use of application logging?",
     "correct": "For application logging, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
-      "For application logging, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Sample telemetry in application logging without checking whether rare errors and slow requests remain observable.",
       "Log full secrets and payloads during application logging because debugging value outweighs redaction when access is restricted."
     ],
@@ -8986,7 +8986,7 @@ const completeQuestionBank = [
     "q": "How should distributed tracing be operated beyond the happy path?",
     "correct": "For distributed tracing, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
-      "For distributed tracing, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Assume a green dashboard proves distributed tracing is healthy even when customer-facing failures are reported elsewhere.",
       "Treat logs, metrics, and traces in distributed tracing as separate systems that do not need shared request or trace identifiers."
     ],
@@ -9020,7 +9020,7 @@ const completeQuestionBank = [
     "correct": "For alert tuning, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
       "Log full secrets and payloads during alert tuning because debugging value outweighs redaction when access is restricted.",
-      "For alert tuning, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Use dashboards for alert tuning as decoration rather than linking panels to user impact, dependencies, and recent changes."
     ],
     "e": "For alert tuning, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -9036,7 +9036,7 @@ const completeQuestionBank = [
     "q": "Which production concern is most important for capacity planning?",
     "correct": "For capacity planning, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
-      "For capacity planning, alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
+      "Alert on every threshold crossing regardless of user impact so no abnormal signal is ever missed.",
       "Use averages as the main signal in capacity planning; percentiles, error ratios, and burn rates add unnecessary complexity.",
       "Define capacity planning from infrastructure convenience rather than user-visible behavior; CPU and memory are direct substitutes for service reliability."
     ],
@@ -9085,9 +9085,9 @@ const completeQuestionBank = [
     "q": "Which production concern is most important for secrets management?",
     "correct": "For secrets management, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
-      "For secrets management, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted.",
-      "For secrets management, treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
-      "For secrets management, use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic."
+      "Log full authorization headers and private keys when troubleshooting because network-layer access is already restricted.",
+      "Treat successful TLS negotiation as proof that application authorization, request limits, and upstream failure handling are correct.",
+      "Use long-lived shared credentials and broad access rules so rotation or least-privilege policy cannot interrupt traffic."
     ],
     "e": "For secrets management, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -9102,9 +9102,9 @@ const completeQuestionBank = [
     "q": "Which production concern is most important for reverse proxies?",
     "correct": "For reverse proxies, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
-      "For reverse proxies, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant.",
-      "For reverse proxies, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
-      "For reverse proxies, log full authorization headers and private keys when troubleshooting because network-layer access is already restricted."
+      "Trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant.",
+      "Assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
+      "Log full authorization headers and private keys when troubleshooting because network-layer access is already restricted."
     ],
     "e": "For reverse proxies, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -9118,9 +9118,9 @@ const completeQuestionBank = [
     "q": "How should TLS certificates be operated beyond the happy path?",
     "correct": "For TLS certificates, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
-      "For TLS certificates, expose upstream services directly as well as through the proxy so operators have more paths during incidents.",
-      "For TLS certificates, assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
-      "For TLS certificates, trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
+      "Expose upstream services directly as well as through the proxy so operators have more paths during incidents.",
+      "Assume automatic certificate issuance eliminates the need to monitor expiry, renewal, chain delivery, or hostname correctness.",
+      "Trust forwarded identity and client-IP headers from any source; a reverse proxy or private network makes spoofing irrelevant."
     ],
     "e": "For TLS certificates, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -9153,7 +9153,7 @@ const completeQuestionBank = [
     "correct": "For infrastructure monitoring, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation.",
     "wrong": [
       "Treat logs, metrics, and traces in infrastructure monitoring as separate systems that do not need shared request or trace identifiers.",
-      "For infrastructure monitoring, collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
+      "Collect as much telemetry as possible without defining questions, retention, labels, or cost; more data always improves diagnosis.",
       "Sample telemetry in infrastructure monitoring without checking whether rare errors and slow requests remain observable."
     ],
     "e": "For infrastructure monitoring, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
@@ -9170,7 +9170,7 @@ const completeQuestionBank = [
     "wrong": [
       "Share unrestricted broker or device credentials across Home Assistant; per-topic or per-device access control complicates provisioning.",
       "Treat dashboards in Home Assistant as the source of truth even when device telemetry and physical outcomes disagree.",
-      "For Home Assistant, treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning."
+      "Treat the last reported device state as current indefinitely; stale timestamps and sensor availability do not change its meaning."
     ],
     "e": "For Home Assistant, production readiness requires clear ownership, monitoring, recovery procedures, and evidence that the system behaves correctly during degradation as well as normal operation. Operational decisions should be tied to user impact, measurable signals, ownership, and recoverable failure modes.",
     "tags": [
@@ -9297,7 +9297,7 @@ const completeQuestionBank = [
     "wrong": [
       "QA should not understand async rendering, routing, forms, client-side caching, and state transitions because they influence synchronization and debugging.",
       "Using a prototype-friendly framework in “HTML, CSS, responsive design, and React” removes the need for authentication, validation, logging, deployment controls, and observability.",
-      "For HTML, CSS, responsive design, and React, select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
+      "Select the most feature-rich architecture first and fit the requirements to it afterward; simpler alternatives are unlikely to scale."
     ],
     "e": "HTML provides semantic structure; CSS controls presentation. Responsive design adapts layout and interaction to available space, orientation, touch, and zoom rather than merely targeting named devices. React composes UI from components and state. QA should understand async rendering, routing, forms, client-side caching, and state transitions because they influence synchronization and debugging. Semantic HTML also improves accessibility and Playwright locator stability.",
     "tags": [
@@ -9472,7 +9472,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume a test that passes once locally proves Lists, dropdowns, radio buttons, checkboxes, attributes, hidden elements, and autosuggest controls is deterministic enough for parallel or cross-browser CI execution.",
       "Increase retries for Lists, dropdowns, radio buttons, checkboxes, attributes, hidden elements, and autosuggest controls until CI is green rather than preserving first-attempt failures and classifying recurring flakes.",
-      "For Lists, dropdowns, radio buttons, checkboxes, attributes, hidden elements, and autosuggest controls, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
+      "Treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
     ],
     "e": "A modern automation suite must handle collections and stateful controls without assuming DOM order. When a locator matches multiple elements, use semantic filtering, filter() , nth() only when order is genuinely the contract, or iterate over the collection after asserting the expected count. Use selectOption() for native <select> elements. Custom dropdowns and autosuggest components are usually combinations of textbox/listbox/option semantics, so interact with them as the user would rather than forcing values into the DOM.",
     "tags": [
@@ -9511,7 +9511,7 @@ const completeQuestionBank = [
     "wrong": [
       "With “Playwright Inspector, UI Mode, Codegen, VS Code debugging, and traces”, increasing retries and timeouts until failures disappear is an adequate substitute for investigating synchronization and state.",
       "Prefer absolute XPath or deep CSS structure in Playwright Inspector, UI Mode, Codegen, VS Code debugging, and traces; selectors tied closely to the current DOM are more precise and therefore more maintainable.",
-      "For Playwright Inspector, UI Mode, Codegen, VS Code debugging, and traces, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "Playwright Inspector is an interactive debugger opened with --debug ; it lets you step through API calls, inspect actionability logs, and experiment with locators. UI Mode provides test discovery, watch mode, a timeline, DOM snapshots, network/console data, attachments, and trace-oriented debugging. Codegen records browser interactions and generates starter test code. It prioritizes role, text, and test-id locators, but generated code is still a draft: refactor naming, test data, setup, assertions, and page objects before treating it as a framework.",
     "tags": [
@@ -9550,7 +9550,7 @@ const completeQuestionBank = [
     "wrong": [
       "The best way to scale “ExcelJS, spreadsheet-driven workflows, file downloads, uploads” is to make tests depend on a fixed execution order so later tests can reuse earlier state.",
       "Treat browser automation timing in ExcelJS, spreadsheet-driven workflows, file downloads, uploads, and artifact validation as independent of network, rendering, and application state, so those signals do not need inspection.",
-      "For ExcelJS, spreadsheet-driven workflows, file downloads, uploads, and artifact validation, use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
+      "Use fixed sleeps after interactions because elapsed time is more deterministic than waiting for the actual browser or application state."
     ],
     "e": "The course uses ExcelJS , a Node.js library for reading and writing XLSX workbooks, to demonstrate external data manipulation. Spreadsheet-driven test data can be useful when the business genuinely exchanges spreadsheets, but JSON/CSV/builders are usually simpler for ordinary automated test configuration. For downloads, wait for the download event before triggering the action, then validate the suggested filename and—where business value requires it—the content.",
     "tags": [
@@ -9628,7 +9628,7 @@ const completeQuestionBank = [
     "wrong": [
       "Artifacts for “Cucumber.js with Playwright” should be captured indiscriminately on every step; diagnostic relevance and report size do not matter.",
       "Assume a test that passes once locally proves Cucumber.js with Playwright: World, hooks, tags, Scenario Outline, parallelism, reports, and reruns is deterministic enough for parallel or cross-browser CI execution.",
-      "For Cucumber.js with Playwright: World, hooks, tags, Scenario Outline, parallelism, reports, and reruns, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
+      "Treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
     ],
     "e": "Cucumber.js maps Gherkin feature scenarios to JavaScript/TypeScript step definitions. The World is the scenario-scoped context used to share runtime state—such as a browser context, page, API client, or domain object—between steps without global variables. Hooks such as Before and After manage scenario setup and teardown. Tags select scenarios and can also scope hooks. Scenario Outline expands one scenario template with an Examples table into multiple independently executed examples.",
     "tags": [
@@ -9890,7 +9890,7 @@ const completeQuestionBank = [
     "wrong": [
       "A matrix in GitHub Actions runs different steps inside one shared runner process, so matrix jobs can safely depend on the same filesystem state.",
       "Caches and artifacts are equivalent; both are intended to be restored as dependencies in later unrelated runs.",
-      "For GitHub Actions: workflows, matrices, caching, artifacts, environments, and concurrency, treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant."
+      "Treat a running process or successful container start as proof that the application is ready; health checks and dependency probes are redundant."
     ],
     "e": "A GitHub Actions workflow is triggered by events and contains jobs made of steps. Jobs normally run on isolated runners and can depend on other jobs. Use a matrix to run the same job across browsers, Node/Python versions, operating systems, or test shards. Caching stores reusable dependencies to speed future jobs; artifacts preserve outputs of a specific run such as Playwright traces, reports, screenshots, or build packages. They solve different problems.",
     "tags": [
@@ -9966,7 +9966,7 @@ const completeQuestionBank = [
     "correct": "Provider APIs evolve quickly. Keep your application code behind a small adapter so model names, endpoints, conversation state, and tool-call formats can change without rewriting domain logic.",
     "wrong": [
       "For OpenAI specifically, current 2026 guidance does not use the Responses API for new integrations; the older Assistants API was retired in August 2026.",
-      "For OpenAI API and current agent integration patterns, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
       "Treat a successful workflow execution in OpenAI API and current agent integration patterns as proof that partial writes, duplicate events, retries, and resume behavior are correct."
     ],
     "e": "Provider APIs evolve quickly. Keep your application code behind a small adapter so model names, endpoints, conversation state, and tool-call formats can change without rewriting domain logic. For OpenAI specifically, current 2026 guidance uses the Responses API for new integrations; the older Assistants API was retired in August 2026. The durable engineering lesson is to separate prompt/configuration, conversation state, orchestration, tools, and business policy.",
@@ -10026,7 +10026,7 @@ const completeQuestionBank = [
     "wrong": [
       "Compatibility is equivalence: supported parameters, tool semantics, streaming, structured output, and error behavior can differ.",
       "Accept format-valid output as success for Provider abstraction, OpenAI-compatible APIs, Claude, Gemini, Groq, Ollama, and local models; factuality, task completion, safety, and downstream effects can be checked later.",
-      "For Provider abstraction, OpenAI-compatible APIs, Claude, Gemini, Groq, Ollama, and local models, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "Agent systems should separate the model-provider adapter from business logic. Provider choice affects model quality, context window, tool calling, structured output, latency, cost, data policy, and regional availability. Many providers expose an OpenAI-compatible API , allowing similar client code with a different base URL and credential. Compatibility is not equivalence: supported parameters, tool semantics, streaming, structured output, and error behavior can differ.",
     "tags": [
@@ -10048,7 +10048,7 @@ const completeQuestionBank = [
     "wrong": [
       "Human approval for “LLM-as-a-judge as an orchestration component” is best implemented by asking the model itself whether approval is needed instead of enforcing approval in application logic.",
       "Treat an LLM grader in LLM-as-a-judge as an orchestration component as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
-      "For LLM-as-a-judge as an orchestration component, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "An LLM judge evaluates another model's output against a rubric. It can rank candidate answers, score dimensions, classify failures, or provide feedback to an orchestrator. Judges introduce their own bias, stochasticity, model dependency, and position/style preferences. Calibrate them against human labels, randomize candidate order when comparing outputs, use structured rubrics, and track agreement over time.",
     "tags": [
@@ -10088,7 +10088,7 @@ const completeQuestionBank = [
     "correct": "Gradio can expose a Python function or agent through a lightweight web UI, while Hugging Face Spaces can host Gradio, Docker, or static demo applications from Git-backed repositories. Production-like deployments still need pinned dependencies and platform-managed secrets.",
     "wrong": [
       "Return ambiguous free-form success text from tools used by Gradio agent UIs and deployment to Hugging Face Spaces; structured results and explicit errors reduce model creativity.",
-      "For Gradio agent UIs and deployment to Hugging Face Spaces, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Treat tool results in Gradio agent UIs and deployment to Hugging Face Spaces as trusted instructions because they came from an approved integration rather than from the user."
     ],
     "e": "Gradio can expose a Python function or agent through a lightweight web UI, making it useful for demos, internal tools, and evaluation interfaces. Hugging Face Spaces hosts demo applications from Git-backed repositories and supports Gradio, Docker, and static applications. A deployment should pin dependencies, define secrets through the platform settings, and avoid committing API keys.",
@@ -10196,7 +10196,7 @@ const completeQuestionBank = [
     "wrong": [
       "A planner should not output a structured research plan.",
       "Retry every tool call in Deep research agent architecture: planner, search/retrieval workers, writer, evaluator, and delivery automatically, including non-idempotent actions, until the model receives a successful response.",
-      "For Deep research agent architecture: planner, search/retrieval workers, writer, evaluator, and delivery, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "A deep-research workflow decomposes an open-ended question into subquestions, collects evidence, tracks source provenance, synthesizes findings, and evaluates gaps before producing a final report. A planner should output a structured research plan. Search/retrieval workers gather evidence independently. A writer synthesizes only supported claims, while an evaluator checks completeness, contradictions, and citation coverage.",
     "tags": [
@@ -10283,7 +10283,7 @@ const completeQuestionBank = [
     "wrong": [
       "Direct model invocation is not appropriate for simple calls.",
       "Treat tool results in LangChain agent primitives: model invocation, streaming, tools, structured outputs, and create_agent as trusted instructions because they came from an approved integration rather than from the user.",
-      "For LangChain agent primitives: model invocation, streaming, tools, structured outputs, and create_agent, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "LangChain provides model/provider integrations, message abstractions, tools, structured output, retrieval components, middleware, and agent-building APIs. Direct model invocation is appropriate for simple calls. Binding tools lets the model request capabilities. Structured outputs constrain results to application schemas. Streaming exposes intermediate model output/events for responsive UIs.",
     "tags": [
@@ -10389,7 +10389,7 @@ const completeQuestionBank = [
     "wrong": [
       "It does not support model providers, custom/built-in tools, MCP, structured outputs, session/conversation management, hooks, and multi-agent patterns such as swarms, graphs, workflows, and agents-as-tools.",
       "Treat tool results in Strands Agents SDK: provider-neutral agents, tools, MCP, multi-agent patterns, and observability as trusted instructions because they came from an approved integration rather than from the user.",
-      "For Strands Agents SDK: provider-neutral agents, tools, MCP, multi-agent patterns, and observability, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning."
     ],
     "e": "Strands Agents is an open-source agent SDK available in Python and TypeScript. It runs in your application process rather than requiring a hosted control plane. It supports model providers, custom/built-in tools, MCP, structured outputs, session/conversation management, hooks, and multi-agent patterns such as swarms, graphs, workflows, and agents-as-tools.",
     "tags": [
@@ -10472,7 +10472,7 @@ const completeQuestionBank = [
     "correct": "Mastra is a TypeScript framework for AI applications and agents. It supports agents, tools, workflows, model routing, memory/evaluation capabilities, and an interactive development environment called Mastra Studio.",
     "wrong": [
       "Treat tool results in Mastra: TypeScript-native agents, workflows, tools, Studio, model routing, and MCP as trusted instructions because they came from an approved integration rather than from the user.",
-      "For Mastra: TypeScript-native agents, workflows, tools, Studio, model routing, and MCP, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Expose broad, generic tools for Mastra: TypeScript-native agents, workflows, tools, Studio, model routing, and MCP with free-form arguments so the model has maximum flexibility and fewer schemas to satisfy."
     ],
     "e": "Mastra is a TypeScript framework for AI applications and agents. It supports agents, tools, workflows, model routing, memory/evaluation capabilities, and an interactive development environment called Mastra Studio. Mastra is useful when the application stack is already TypeScript/Node and the team wants agent/workflow primitives without moving the orchestration layer to Python.",
@@ -10576,7 +10576,7 @@ const completeQuestionBank = [
     "q": "Which statement best captures the design principle behind “Researcher-as-tool and multi-MCP orchestration”?",
     "correct": "A specialist agent can be exposed to a parent as a tool . The parent sends a bounded task and receives a structured result rather than sharing the specialist's entire internal conversation.",
     "wrong": [
-      "For Researcher-as-tool and multi-MCP orchestration, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Retry every tool call in Researcher-as-tool and multi-MCP orchestration automatically, including non-idempotent actions, until the model receives a successful response.",
       "Treat tool results in Researcher-as-tool and multi-MCP orchestration as trusted instructions because they came from an approved integration rather than from the user."
     ],
@@ -10599,7 +10599,7 @@ const completeQuestionBank = [
     "wrong": [
       "Treat an LLM grader in Shipping agent applications: FastAPI backend, React frontend, traces, feedback, and operational controls as a deterministic oracle once temperature is low, so calibration against human labels is optional.",
       "Use only average scores for Shipping agent applications: FastAPI backend, React frontend, traces, feedback, and operational controls; failure categories and worst-case examples are too noisy to guide engineering.",
-      "For Shipping agent applications: FastAPI backend, React frontend, traces, feedback, and operational controls, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "A production agent app is still a software system. A FastAPI backend can own authentication, agent sessions, tool credentials, long-running jobs, streaming, and audit logs. A React frontend presents conversation/task state without exposing provider secrets. Expose a stable job/session API instead of keeping all state inside a single HTTP request. Long tasks need cancellation, retry/resume, timeouts, and progress events.",
     "tags": [
@@ -10643,7 +10643,7 @@ const completeQuestionBank = [
     "q": "Which description of “Agent observability, evaluation, feedback loops, and production learning” is technically accurate?",
     "correct": "Agent observability should connect user request → model turns → retrieval → tool calls → handoffs/subagents → final outcome. Preserve trace/run IDs across backend logs and external tool calls.",
     "wrong": [
-      "For Agent observability, evaluation, feedback loops, and production learning, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good.",
       "Accept format-valid output as success for Agent observability, evaluation, feedback loops, and production learning; factuality, task completion, safety, and downstream effects can be checked later.",
       "Change prompts, models, and tools together in Agent observability, evaluation, feedback loops, and production learning so evaluation captures the full improvement rather than isolating variables."
     ],
@@ -10667,7 +10667,7 @@ const completeQuestionBank = [
     "wrong": [
       "Zapier does not use trigger/action workflows (Zaps) and increasingly combines visual automation with AI and code.",
       "The most maintainable way to implement “Automation platform landscape” is to put substantial business logic inside deeply nested expressions rather than code nodes or explicit sub-workflows.",
-      "For Automation platform landscape: n8n, Make, Zapier, Flowise, and code-first frameworks, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps."
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps."
     ],
     "e": "Automation platforms sit on a spectrum. n8n emphasizes visual workflows plus code, APIs, self-hosting, AI nodes, MCP, and custom integrations. Make uses visual scenarios made of modules, routers, filters, schedules, and webhooks. Zapier uses trigger/action workflows (Zaps) and increasingly combines visual automation with AI and code. Flowise historically provided a visual low-code environment for LLM chains and agents. However, Flowise announced a wind-down in 2026 and froze active feature development on July 29, 2026.",
     "tags": [
@@ -10938,7 +10938,7 @@ const completeQuestionBank = [
     "q": "Which option avoids a common misconception about “Prompt engineering for automation: role, objective, evidence, tool policy, output contract, and failure behavior”?",
     "correct": "Automation prompts should define the objective and decision boundary, not merely a persona. Include the allowed evidence, tool rules, output schema, uncertainty behavior, escalation conditions, and examples of ambiguous cases.",
     "wrong": [
-      "For Prompt engineering for automation: role, objective, evidence, tool policy, output contract, and failure behavior, let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
+      "Let the model decide whether it is authorized to call a tool; application-side permission checks duplicate the model's reasoning.",
       "Treat tool results in Prompt engineering for automation: role, objective, evidence, tool policy, output contract, and failure behavior as trusted instructions because they came from an approved integration rather than from the user.",
       "Retry every tool call in Prompt engineering for automation: role, objective, evidence, tool policy, output contract, and failure behavior automatically, including non-idempotent actions, until the model receives a successful response."
     ],
@@ -11133,7 +11133,7 @@ const completeQuestionBank = [
     "correct": "n8n is fair-code , not conventional OSI open source. The self-hosted Community edition uses the Sustainable Use License (SUL), while Cloud and commercial offerings have separate terms.",
     "wrong": [
       "If data used by “n8n licensing and selling workflows/services” was publicly accessible, it can be scraped, enriched, stored, and contacted without considering purpose, platform terms, or applicable law.",
-      "For n8n licensing and selling workflows/services: Sustainable Use License boundaries, put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
+      "Put substantial business logic inside model prompts or deeply nested expressions so the workflow contains fewer explicit steps.",
       "Treat a successful workflow execution in n8n licensing and selling workflows/services: Sustainable Use License boundaries as proof that partial writes, duplicate events, retries, and resume behavior are correct."
     ],
     "e": "n8n is fair-code , not conventional OSI open source. The self-hosted Community edition uses the Sustainable Use License (SUL), while Cloud and commercial offerings have separate terms. Current n8n guidance states that you can build and run workflows for clients on your own instance and charge for that work, including letting clients connect their own accounts, provided clients cannot access/build/configure the workflow logic. Giving external users automation-building/configuration capability, white-labeling, or providing n8n itself as a service can require a commercial license.",
@@ -11195,7 +11195,7 @@ const completeQuestionBank = [
     "wrong": [
       "Markdown output is not useful for RAG because it strips much visual boilerplate while preserving headings, links, lists, and content structure.",
       "Use one fixed chunk size for every document type in Firecrawl for web ingestion: scrape, crawl, map, Markdown, structured extraction, and RAG; headings, tables, code, and page structure do not affect retrieval.",
-      "For Firecrawl for web ingestion: scrape, crawl, map, Markdown, structured extraction, and RAG, retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary."
+      "Retrieve the largest possible amount of context and let the model decide what is relevant; ranking and token budget are secondary."
     ],
     "e": "Firecrawl is a web extraction service designed to turn websites into LLM-friendly data. Scrape processes one page, Crawl recursively processes multiple pages, and Map discovers URLs. Markdown output is useful for RAG because it strips much visual boilerplate while preserving headings, links, lists, and content structure. Structured extraction can produce JSON when the use case is field extraction rather than document retrieval.",
     "tags": [
@@ -11298,7 +11298,7 @@ const completeQuestionBank = [
     "wrong": [
       "CPRA replaced the CCPA with an unrelated statute, so CCPA terminology and rights are no longer relevant.",
       "Using an AI model automatically converts every disclosure of personal information into a permitted internal use.",
-      "For CCPA/CPRA privacy requirements for AI automation, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "CCPA is the California Consumer Privacy Act. CPRA amended and expanded the CCPA rather than creating a completely separate replacement law. Relevant rights include knowing/accessing certain personal-information practices, deletion subject to exceptions, opting out of sale/sharing, correction, limiting certain uses of sensitive personal information, and non-discrimination for exercising rights.",
     "tags": [
@@ -11339,7 +11339,7 @@ const completeQuestionBank = [
     "wrong": [
       "Prefer reducing these differences to a single 'censorship score'.",
       "Change prompts, models, and tools together in Alignment, censorship, bias, evaluation, and provider differences so evaluation captures the full improvement rather than isolating variables.",
-      "For Alignment, censorship, bias, evaluation, and provider differences, judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
+      "Judge quality from a few hand-picked examples; representative datasets and regression evaluation are unnecessary once the demo looks good."
     ],
     "e": "Different models can refuse, frame, or prioritize content differently because of training data, fine-tuning, system policies, regional/legal requirements, and product safety choices. Avoid reducing these differences to a single 'censorship score'. Define the application's required behavior and evaluate consistency, factuality, refusal appropriateness, demographic disparities, language performance, and failure modes.",
     "tags": [
@@ -11697,7 +11697,7 @@ const completeQuestionBank = [
     "q": "When working with “XML, JSON, SOAP, and REST-style web services”, which practice is technically sound?",
     "correct": "XML (Extensible Markup Language) represents hierarchical structured data using tagged elements and attributes. JSON (JavaScript Object Notation) represents objects, arrays, strings, numbers, booleans, and null in a compact syntax widely used by web APIs.",
     "wrong": [
-      "For XML, JSON, SOAP, and REST-style web services, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
       "Treat the client-visible response as the entire contract for XML, JSON, SOAP, and REST-style web services; downstream state and emitted events do not need verification.",
       "Use production credentials and real customer data for XML, JSON, SOAP, and REST-style web services because synthetic environments cannot reveal API defects."
     ],
@@ -11719,7 +11719,7 @@ const completeQuestionBank = [
     "wrong": [
       "With “Postman environments, authentication, assertions, dynamic data”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation.",
       "Validate only the happy-path endpoint in Postman environments, authentication, assertions, dynamic data, and scheduled execution; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
-      "For Postman environments, authentication, assertions, dynamic data, and scheduled execution, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "A maintainable Postman project separates requests from environment-specific values. Store base URLs, non-secret identifiers, and environment configuration in variables; handle credentials using protected mechanisms rather than exporting them casually. Authentication may use API keys, Basic Auth, bearer tokens, OAuth, or application-specific schemes. Assertions should validate status, headers, schema, and meaningful body values. Extract dynamic values—such as IDs or tokens—from one response and reuse them in later requests.",
     "tags": [
@@ -11958,7 +11958,7 @@ const completeQuestionBank = [
     "correct": "pm.sendRequest() sends an HTTP request defined directly in script code. It is useful for auxiliary calls such as obtaining setup data or checking a secondary service.",
     "wrong": [
       "Client-side validation in “Sending requests from scripts” is sufficient protection for API inputs, so server-side validation would only duplicate work.",
-      "For Sending requests from scripts: pm.sendRequest() and pm.execution.runRequest(), consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
       "Assume retries are safe for Sending requests from scripts: pm.sendRequest() and pm.execution.runRequest() even when operations are not idempotent; duplicate side effects can be cleaned up later."
     ],
     "e": "pm.sendRequest() sends an HTTP request defined directly in script code. It is useful for auxiliary calls such as obtaining setup data or checking a secondary service. pm.execution.runRequest() executes a request already stored in a collection, avoiding duplication of its full request definition. Current Postman limits how often a referenced request can be executed from one script, so it is not a replacement for a normal collection workflow.",
@@ -11977,7 +11977,7 @@ const completeQuestionBank = [
     "correct": "Collection runs can execute the same scenario repeatedly using rows from CSV or JSON input. Values from iteration data are available through pm.iterationData and can drive request bodies, parameters, and expected results.",
     "wrong": [
       "With “Data-driven runs with CSV, JSON, iteration data”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation.",
-      "For Data-driven runs with CSV, JSON, iteration data, and current Postman datasets, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
       "Treat the client-visible response as the entire contract for Data-driven runs with CSV, JSON, iteration data, and current Postman datasets; downstream state and emitted events do not need verification."
     ],
     "e": "Collection runs can execute the same scenario repeatedly using rows from CSV or JSON input. Values from iteration data are available through pm.iterationData and can drive request bodies, parameters, and expected results. Data-driven tests are useful for boundary tables, roles, product combinations, and expected outcomes. Keep one row understandable as one scenario; a giant data file with hidden logic becomes harder to maintain than normal code.",
@@ -11998,7 +11998,7 @@ const completeQuestionBank = [
     "correct": "Collection Runner executes multiple requests in sequence, supports iterations, environment selection, run-order control, and test result aggregation. It is the bridge between an individually sent request and a repeatable API suite.",
     "wrong": [
       "A team workspace used for “Collection Runner, manual runs, scheduled runs, and monitors” automatically defines ownership and source of truth, so permissions and change-control decisions are unnecessary.",
-      "For Collection Runner, manual runs, scheduled runs, and monitors, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions.",
       "Validate only the happy-path endpoint in Collection Runner, manual runs, scheduled runs, and monitors; authorization, malformed input, rate limits, and dependency failures belong to separate systems."
     ],
     "e": "Collection Runner executes multiple requests in sequence, supports iterations, environment selection, run-order control, and test result aggregation. It is the bridge between an individually sent request and a repeatable API suite. Current Postman can schedule collection runs in the cloud. Scheduled functional runs are useful for recurring API regression without maintaining your own CI job.",
@@ -12019,7 +12019,7 @@ const completeQuestionBank = [
     "wrong": [
       "Newman supports every current Postman collection feature and format, so Postman CLI has no compatibility advantage for new workflows.",
       "Postman CLI can run only from the desktop app and therefore cannot be used in CI/CD.",
-      "For Postman CLI versus Newman, collection v3, environments, reporters, and CI, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "Postman CLI is the current official command-line tool for running and managing Postman assets. It can run collections locally or in CI and supports current Postman capabilities beyond collection execution. Newman remains the open-source command-line runner used by many existing pipelines. In Postman v12, Newman runs compatible collection v2.1 JSON exports but cannot run the newer v3 collection format. Postman recommends the Postman CLI for new CI/CD workflows.",
     "tags": [
@@ -12101,7 +12101,7 @@ const completeQuestionBank = [
     "wrong": [
       "The Postman Sandbox executes scripts with unrestricted access to the local filesystem and operating-system processes.",
       "Pre-request and post-response scripts run in exactly the same phase, so either can inspect a response before the HTTP request is sent.",
-      "For CSV responses, file outputs, and the boundary of the Postman Sandbox, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "Not every API returns JSON. For CSV responses, use pm.response.text() and parse the text with appropriate logic or a supported package. Assert headers, row counts, delimiters, encoding, and business values. The Postman Sandbox is restricted and should not be treated as unrestricted Node.js with arbitrary local filesystem access. Some external packages that depend on Node built-in modules may not work as they would in a normal Node process.",
     "tags": [
@@ -12121,7 +12121,7 @@ const completeQuestionBank = [
     "wrong": [
       "With “Reusing tests and helpers with collection scripts and the Postman Package Library”, copying scripts and assertions into every request is preferable to collection/folder scope or reusable helpers because duplication improves isolation.",
       "Assume retries are safe for Reusing tests and helpers with collection scripts and the Postman Package Library even when operations are not idempotent; duplicate side effects can be cleaned up later.",
-      "For Reusing tests and helpers with collection scripts and the Postman Package Library, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "The simplest reuse level is a collection- or folder-level pre-request/post-response script. Common checks applied at collection level run for every request inside the collection. For reusable JavaScript shared across multiple collections, current Postman provides a Package Library . Teams can publish internal packages containing helper functions and tests and import them into scripts.",
     "tags": [
@@ -12161,7 +12161,7 @@ const completeQuestionBank = [
     "wrong": [
       "Assume retries are safe for TDD and API-first testing with Postman even when operations are not idempotent; duplicate side effects can be cleaned up later.",
       "Treat the client-visible response as the entire contract for TDD and API-first testing with Postman; downstream state and emitted events do not need verification.",
-      "For TDD and API-first testing with Postman, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "TDD (Test-Driven Development) is the practice of writing a failing test first, implementing the smallest change that makes it pass, and then refactoring. Postman can participate in a TDD/API-first workflow when executable API expectations exist before the endpoint implementation. A Postman collection can encode examples and contract expectations early, while mock servers allow clients to work against agreed examples before the backend exists.",
     "tags": [
@@ -12201,7 +12201,7 @@ const completeQuestionBank = [
     "wrong": [
       "Validate only the happy-path endpoint in Capstone Postman lab: authenticated Trello-style API workflow with CI and mocks; authorization, malformed input, rate limits, and dependency failures belong to separate systems.",
       "Treat the client-visible response as the entire contract for Capstone Postman lab: authenticated Trello-style API workflow with CI and mocks; downstream state and emitted events do not need verification.",
-      "For Capstone Postman lab: authenticated Trello-style API workflow with CI and mocks, consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
+      "Consider any 2xx response sufficient; schema, business values, headers, side effects, and persistence do not need assertions."
     ],
     "e": "Build a collection around a disposable Trello-style or local training API. The workflow should authenticate, create a board, create TODO and DONE lists, create a card, move the card, retrieve it, verify state, and clean up every created resource. Use environment variables for deployment configuration, collection variables for workflow IDs, Vault/CI secrets for credentials, and CSV/JSON iteration data for at least one data-driven scenario.",
     "tags": [
@@ -12223,7 +12223,7 @@ const completeQuestionBank = [
     "wrong": [
       "Running “Response time, throughput, utilization, median, percentiles” directly against Production without traffic controls is preferable because lower environments can never provide useful performance evidence.",
       "Treat Response time, throughput, utilization, median, percentiles, and standard deviation as a happy-path exercise; once the nominal case passes, negative, boundary, permission, and state variations add little value.",
-      "For Response time, throughput, utilization, median, percentiles, and standard deviation, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
     ],
     "e": "Response time is the elapsed time observed for an operation. Throughput is work completed per unit of time. Utilization describes resource usage such as CPU, memory, connections, or disk. Robustness is the ability to remain correct and recover under unfavorable conditions. The arithmetic mean is sensitive to outliers; the median is the 50th percentile. Percentiles such as p90, p95, and p99 answer 'what response time was not exceeded by this percentage of observations?' Tail percentiles are often more useful than averages for user experience.",
     "tags": [
@@ -12321,7 +12321,7 @@ const completeQuestionBank = [
     "correct": "DBMS (Database Management System) is software that stores, retrieves, secures, and manages data. A relational DBMS organizes data into tables related through keys and queried with SQL.",
     "wrong": [
       "Run destructive queries for DBMS, relational databases, SQL command families, and CRUD in shared environments as long as the transaction can theoretically be rolled back.",
-      "For DBMS, relational databases, SQL command families, and CRUD, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
+      "Infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys.",
       "Use string-built SQL for DBMS, relational databases, SQL command families, and CRUD whenever values are dynamic; parameterization only affects style, not correctness or security."
     ],
     "e": "DBMS (Database Management System) is software that stores, retrieves, secures, and manages data. A relational DBMS organizes data into tables related through keys and queried with SQL. SQL (Structured Query Language) includes several families: DDL (Data Definition Language) such as CREATE/ALTER/DROP; DML (Data Manipulation Language) such as INSERT/UPDATE/DELETE; DQL (Data Query Language) , commonly SELECT; TCL (Transaction Control Language) such as COMMIT/ROLLBACK; and DCL (Data Control Language) such as GRANT/REVOKE.",
@@ -12379,7 +12379,7 @@ const completeQuestionBank = [
     "wrong": [
       "A successful transform in “ERD, entities, attributes, relationships, and cardinality” proves source and destination totals are consistent, so reconciliation checks are unnecessary.",
       "Treat application code as the only source of integrity for ERD, entities, attributes, relationships, and cardinality; keys, constraints, and transaction boundaries only duplicate validation.",
-      "For ERD, entities, attributes, relationships, and cardinality, infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys."
+      "Infer relational correctness from a plausible row count without checking join cardinality, unmatched records, nulls, or sample keys."
     ],
     "e": "ERD (Entity-Relationship Diagram) visualizes entities, their attributes, and relationships. An entity represents a thing such as Customer or Order; an attribute is a property such as email, status, or created_at. Cardinality describes how many instances can relate: one-to-one, one-to-many, or many-to-many. Many-to-many relationships are usually implemented through a junction/association table.",
     "tags": [
@@ -12437,7 +12437,7 @@ const completeQuestionBank = [
     "wrong": [
       "Other does not scope include suite, class, method, and groups—choose scope according to resource ownership. testng.xml can define suites, classes, groups, parameters, and parallel execution.",
       "In “TestNG annotations, suite configuration, priority, data, and parallelism”, browser automation should reproduce every setup action through the UI even when an API can create deterministic preconditions safely.",
-      "For TestNG annotations, suite configuration, priority, data, and parallelism, treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
+      "Treat CI as equivalent to the local machine; version, resource, filesystem, timezone, and network differences are not useful diagnostic variables."
     ],
     "e": "@Test marks tests; configuration annotations such as @BeforeTest and @AfterTest run around a TestNG test context. Other scopes include suite, class, method, and groups—choose scope according to resource ownership. testng.xml can define suites, classes, groups, parameters, and parallel execution. Priority controls order but should not be used to hide dependencies between tests. Prefer independent tests with explicit setup.",
     "tags": [
@@ -12555,7 +12555,7 @@ const completeQuestionBank = [
     "wrong": [
       "Analytics informs risk; it does replace designed testing.",
       "Interruptions, background/foreground transitions, rotation, permissions, and low-connectivity states are outside the scope of “Mobile analytics, performance, usability, and OS preferences”.",
-      "For Mobile analytics, performance, usability, and OS preferences, test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
+      "Test only one ideal environment; browser, device, load, accessibility, and security differences are implementation details rather than user risks."
     ],
     "e": "Use production analytics to prioritize device/OS coverage, common journeys, crash hotspots, network conditions, and performance problems. Analytics informs risk; it does not replace designed testing. Mobile usability includes touch-target size, one-handed interaction, keyboard avoidance, navigation conventions, readable content, orientation, accessibility, interruptions, and graceful handling of slow networks.",
     "tags": [
@@ -12596,7 +12596,7 @@ const completeQuestionBank = [
     "wrong": [
       "100% statement coverage automatically implies 100% decision/branch coverage.",
       "Coverage metrics prove the tested logic is correct even when assertions do not verify the resulting behavior.",
-      "For Statement coverage and decision/branch coverage, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product."
     ],
     "e": "Statement coverage measures whether executable statements were run. Decision coverage (often called branch coverage) checks whether each decision outcome such as true and false was exercised. 100% statement coverage does not imply 100% branch coverage. A line inside an if may execute while the false path is never tested. Coverage percentages reveal what executed, not whether assertions were correct.",
     "tags": [
@@ -12754,7 +12754,7 @@ const completeQuestionBank = [
     "correct": "A QA CV should lead with target role, relevant years/level, core testing and automation tools, and evidence of impact. Separate professional experience from portfolio projects so recruiters can distinguish production work from self-directed learning.",
     "wrong": [
       "The tool or framework used for “Writing a QA CV and cover letter around evidence” should define the team's process; additional fields and ceremony are evidence of higher quality.",
-      "For Writing a QA CV and cover letter around evidence, derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
+      "Derive the expected result from the current implementation instead of the requirement or business rule, so tests cannot disagree with the product.",
       "Treat every scenario in Writing a QA CV and cover letter around evidence as equally important; prioritization by impact or likelihood would bias the test effort."
     ],
     "e": "A QA CV should lead with target role, relevant years/level, core testing and automation tools, and evidence of impact. Separate professional experience from portfolio projects so recruiters can distinguish production work from self-directed learning. Use bullets that describe what was tested or built, the tools/layers involved, and why the work mattered. Avoid skill dumps without evidence and avoid inflating seniority. Link a GitHub/portfolio when it demonstrates automation architecture, reports, CI, or documentation.",
