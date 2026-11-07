@@ -1,4 +1,4 @@
-"""Validate the buildless Interview Lab without changing repository state."""
+"""Validate the buildless Learning Platform without changing repository state."""
 from __future__ import annotations
 
 import shutil
@@ -34,4 +34,4 @@ if node:
 else:
     print("Node not found: JavaScript syntax check skipped.")
 
-print("Interview Lab verification passed.")
+print("Learning Platform verification passed.")

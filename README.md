@@ -1,9 +1,9 @@
-# QA & AI Interview Lab
+# QA & AI Learning Platform
 
 ## Content and coverage
 
-- `dist/index.html`: main interview simulator.
-- `dist/app.js` and `dist/questions-v12.js`: **741 questions** with tags, filters, configurable sessions, and study links.
+- `dist/index.html`: main learning platform and practice lab.
+- `dist/app.js` and `dist/questions-v12.js`: **746 questions** with tags, filters, configurable sessions, explanations, and study links.
 - `dist/learning-guide.html`: Learning Guide v11 covering QA, automation, APIs, data, delivery, AI, operations, and IoT.
 - `QUESTION_COVERAGE_V12.csv`: auditable map between guide topics and the question bank.
 

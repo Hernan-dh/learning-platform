@@ -50,7 +50,7 @@ def validate(title: object, description: object) -> tuple[str, str]:
     return title, description
 
 def request(url: str, headers: dict[str, str], payload: dict[str, object]) -> dict[str, object]:
-    req = Request(url, data=json.dumps(payload).encode(), headers={"User-Agent": "qa-ai-interview-lab/1.0", **headers}, method="POST")
+    req = Request(url, data=json.dumps(payload).encode(), headers={"User-Agent": "learning-platform/1.0", **headers}, method="POST")
     try:
         with urlopen(req, timeout=int(os.getenv("COMMIT_GENERATION_TIMEOUT", "15"))) as response: return json.loads(response.read().decode())
     except HTTPError as error: raise RuntimeError(f"HTTP {error.code}") from error

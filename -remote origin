@@ -1,0 +1,16 @@
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'dist/app.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'dist/learning-guide.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'dist/questions-v12.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/ARCHITECTURE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/publish.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/verify.py', LF will be replaced by CRLF the next time Git touches it
+ README.md                | 6 [32m+++[m[31m---[m
+ dist/app.js              | 4 [32m++[m[31m--[m
+ dist/index.html          | 2 [32m+[m[31m-[m
+ dist/learning-guide.html | 8 [32m++++[m[31m----[m
+ dist/questions-v12.js    | 4 [32m++[m[31m--[m
+ docs/ARCHITECTURE.md     | 6 [32m+++[m[31m---[m
+ scripts/publish.py       | 2 [32m+[m[31m-[m
+ scripts/verify.py        | 4 [32m++[m[31m--[m
+ 8 files changed, 18 insertions(+), 18 deletions(-)
