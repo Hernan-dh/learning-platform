@@ -3741,7 +3741,7 @@ if (metricStrongV12) metricStrongV12.textContent = totalQuestionsV12;
 
 const heroCopyV12 = document.querySelector('.hero > p');
 if (heroCopyV12) {
-  heroCopyV12.textContent = `A ${totalQuestionsV12}-learning library for QA, automation, engineering, AI, and technical operations.`;
+  heroCopyV12.textContent = `Practice ${totalQuestionsV12} explained questions across five learning paths, then use the complete Learning Guide to study every concept in depth.`;
 }
 
 const metricBlocksV12 = document.querySelectorAll('.metrics > div');
@@ -3785,5 +3785,5 @@ const handsOnTags = [...new Set(handsOnProjectQuestions.flatMap(item => item.tag
 handsOnTags.forEach(tag => { if (![...tagFilter.options].some(option => option.value === tag)) tagFilter.add(new Option(tag, tag)); });
 const totalWithHandsOn = questions.length;
 if (metricStrongV12) metricStrongV12.textContent = totalWithHandsOn;
-if (heroCopyV12) heroCopyV12.textContent = `A ${totalWithHandsOn}-learning library for QA, automation, engineering, AI, and technical operations.`;
+if (heroCopyV12) heroCopyV12.textContent = `Practice ${totalWithHandsOn} explained questions across five learning paths, then use the complete Learning Guide to study every concept in depth.`;
 if (countSelectV12 && ![...countSelectV12.options].some(option => Number(option.value) === totalWithHandsOn)) countSelectV12.add(new Option(`All (${totalWithHandsOn})`, String(totalWithHandsOn)));
