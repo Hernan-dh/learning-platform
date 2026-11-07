@@ -1,3 +1,3 @@
 # Architecture Decision Records
 
-Los ADR registran decisiones que tienen alternativas relevantes. Creá un borrador con `python scripts/document.py decision "Título"` y completalo antes de aceptarlo.
+ADRs record decisions with meaningful alternatives. Create a draft with `python scripts/document.py decision "Decision title"`, then complete its context, decision, and consequences before accepting it.

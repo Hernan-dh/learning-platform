@@ -1,44 +1,59 @@
 # QA & AI Learning Platform
 
-## Content and coverage
+A static learning platform for QA, test automation, software engineering, AI automation, and technical operations. It combines a structured Learning Guide with an explained question-practice library.
 
-- `dist/index.html`: main learning platform and practice lab.
-- `dist/app.js` and `dist/questions-v12.js`: **746 questions** with tags, filters, configurable sessions, explanations, and study links.
-- `dist/learning-guide.html`: Learning Guide v11 covering QA, automation, APIs, data, delivery, AI, operations, and IoT.
-- `QUESTION_COVERAGE_V12.csv`: auditable map between guide topics and the question bank.
+## What it includes
 
-The v12 coverage expansion adds 182 dedicated questions for guide topics that lacked direct or equivalent coverage. New questions retain module and technology/skill tags and link from feedback to the corresponding Learning Guide section.
+- Five learning paths: QA & Testing, Playwright & Automation, Engineering, AI Automation, and Operations.
+- 746 explained multiple-choice questions, each tagged by skill, technology, language, or tool.
+- Configurable practice sessions, including a full-library option.
+- Filters by tag and progress: all questions, never answered, or never answered correctly.
+- Browser-local progress tracking with a clear-history control. No cookies, account, backend, or runtime API calls are used.
+- A complete Learning Guide covering the concepts behind the practice library, from fundamentals through advanced topics.
 
-The guide includes advanced Selenium/TestNG, Java and algorithms, JDBC/SQL, CI/CD, Playwright, AI agents, RAG, MCP, n8n, AI evaluation and safety, reliability, IoT, and QA professional-practice topics.
+## Project structure
 
-Simulador estático de entrevista técnica y formación para QA, Playwright, ingeniería, IA y operaciones.
+| Path | Purpose |
+| --- | --- |
+| `dist/index.html` | Platform entry point and practice experience. |
+| `dist/app.js` | Practice flow, scoring, filters, and local progress persistence. |
+| `dist/questions-v12.js` | Extended question bank, tags, and Learning Guide links. |
+| `dist/learning-guide.html` | Complete Learning Guide. |
+| `QUESTION_COVERAGE_V12.csv` | Auditable mapping between Learning Guide topics and questions. |
+| `docs/ARCHITECTURE.md` | Application structure and runtime design. |
+| `docs/OPERATIONS.md` | Validation, documentation, and deployment procedures. |
 
-## Desarrollo local
+## Local use
 
-El sitio no necesita dependencias: abrí `dist/index.html` en un navegador o servilo con la herramienta local de tu preferencia.
+The site has no dependency installation or build step. Open `dist/index.html` in a browser, or serve `dist/` with any local static-server tool.
 
-## Publicación en GitHub Pages
-
-El workflow `.github/workflows/pages.yml` valida y publica `dist/` cada vez que hay un push a `main`.
-
-1. Creá el repositorio remoto y subí este proyecto a la rama `main`.
-2. En GitHub, abrí **Settings → Pages** y elegí **GitHub Actions** como fuente.
-3. El primer workflow exitoso mostrará la URL pública en el resumen de Actions.
-
-También podés iniciarlo manualmente desde **Actions → Deploy GitHub Pages → Run workflow**. No requiere secretos para este sitio estático.
-
-## Automatización de documentación y entrega
+Run the project check before sharing changes:
 
 ```powershell
 python scripts/verify.py
+```
+
+## GitHub Pages
+
+The workflow at `.github/workflows/pages.yml` validates and deploys `dist/` when changes are pushed to `main`, or when it is started manually from GitHub Actions.
+
+1. In GitHub, open **Settings → Pages**.
+2. Select **GitHub Actions** as the source.
+3. Push the changes you want to deploy.
+
+The deployment URL is available in the successful workflow run. The static site does not require deployment secrets.
+
+## Documentation and commit helpers
+
+```powershell
 python scripts/document.py changelog
-python scripts/document.py decision "Decisión de arquitectura"
-python scripts/prepare_commit.py "feat(quiz): agrega una nueva ruta"
+python scripts/document.py decision "Architecture decision title"
+python scripts/prepare_commit.py "feat: add progress filter"
 python scripts/publish.py
-python scripts/publish.py --preview --title "feat(quiz): agrega una nueva ruta" --description "Incorpora preguntas y feedback para una ruta adicional."
+python scripts/publish.py --preview --title "feat: add progress filter" --description "Adds browser-local progress filtering to the practice library."
 python scripts/install_hooks.py
 ```
 
-`prepare_commit.py` solamente valida el árbol de trabajo y muestra el comando Conventional Commit sugerido. `publish.py` usa Gemini, OpenRouter o Groq para proponer el Conventional Commit desde los cambios locales. Copiá `.env.example` a `.env` y configurá una clave de proveedor. Luego verifica, lista los archivos y solicita que escribas `PUBLISH` antes de hacer stage, commit y push. Ninguno inicializa repositorios.
+`prepare_commit.py` validates the working tree and suggests a Conventional Commit without writing Git state. `publish.py` can use Gemini, OpenRouter, or Groq to propose a commit message from local changes, then asks the repository owner to explicitly type `PUBLISH` before it stages, commits, or pushes. It never initializes a repository.
 
-Los cambios funcionales deben actualizar `docs/ARCHITECTURE.md`; los cambios de verificación o entrega deben actualizar `docs/OPERATIONS.md`.
+Update `docs/ARCHITECTURE.md` when changing product behavior or structure. Update `docs/OPERATIONS.md` when changing validation, documentation, or deployment behavior.

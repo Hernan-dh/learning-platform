@@ -1,25 +1,35 @@
-# Arquitectura
+# Architecture
 
-## Propósito
+## Purpose
 
-QA & AI Learning Platform es una plataforma estática de aprendizaje. Integra rutas temáticas, una guía de estudio y una práctica de preguntas multiple choice con explicaciones.
+QA & AI Learning Platform is a static learning experience for QA, automation, engineering, AI, and operations. It brings together learning paths, an in-depth Learning Guide, and explained multiple-choice practice.
 
-## Componentes
+## Runtime model
 
-| Componente | Responsabilidad |
+The application is buildless and runs entirely in the browser. `index.html` loads `app.js` first and `questions-v12.js` second. The latter extends the base question bank, refreshes metrics, and adds Learning Guide references.
+
+Question progress is stored in browser `localStorage` under `qa-ai-learning-platform-progress-v1`. Each entry records attempts, whether the question has ever been answered correctly, and the latest answer timestamp. No progress data leaves the browser.
+
+## Components
+
+| Component | Responsibility |
 | --- | --- |
-| `dist/index.html` | Estructura, secciones de rutas y contenedor de práctica. |
-| `dist/styles.css` | Diseño responsive, tema visual y estados de respuestas. |
-| `dist/app.js` | Banco de preguntas, selección de ruta, evaluación, puntaje y feedback. |
-| `scripts/verify.py` | Verificación estructural sin dependencias externas. |
-| `scripts/document.py` | Generación local de changelog y borradores ADR. |
-| `scripts/prepare_commit.py` | Prepara una propuesta de commit Conventional Commit sin modificar Git. |
+| `dist/index.html` | Page structure, navigation, learning paths, controls, and practice container. |
+| `dist/styles.css` | Shared visual system, responsive layout, question states, and platform typography. |
+| `dist/filters.css` | Tag, session-size, and progress-filter controls. |
+| `dist/app.js` | Session selection, randomization, scoring, answer feedback, and local progress persistence. |
+| `dist/questions-v12.js` | Additional questions, tags, Learning Guide links, and final question-count configuration. |
+| `dist/learning-guide.html` | Standalone long-form reference guide. |
+| `scripts/verify.py` | Dependency-free structural verification. |
+| `scripts/document.py` | Local changelog and ADR-draft generation. |
+| `scripts/prepare_commit.py` | Read-only Conventional Commit suggestion. |
 
-## Flujo de una sesión
+## Practice flow
 
-1. La persona elige una ruta de aprendizaje o la práctica completa.
-2. El cliente filtra y mezcla las preguntas del banco local.
-3. Al responder, marca la opción correcta, muestra la explicación y actualiza el puntaje.
-4. Al terminar, presenta el resultado y permite repetir la ruta.
+1. The learner chooses a learning path, a skill or technology tag, a session size, and an optional progress filter.
+2. The browser filters and randomizes the local question bank.
+3. After an answer, the interface marks the result, explains the correct answer, and stores the outcome in `localStorage`.
+4. Previously encountered questions display a progress badge.
+5. The learner can clear local progress at any time from the filter controls.
 
-No existen servicios, almacenamiento persistente ni llamadas a APIs en tiempo de ejecución.
+There are no runtime services, user accounts, persistent server storage, analytics calls, or API calls.
