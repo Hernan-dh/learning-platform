@@ -60,7 +60,7 @@ This plan defines the quality strategy for QA & AI Learning Platform. The scope 
 | --- | --- |
 | Landing page | Correct title; exactly two primary CTAs; practice CTA reaches learning paths; guide CTA opens the guide. |
 | Learning paths | Five modules render; each module can launch a randomized session. |
-| Question counts | Standard sizes render; `All (746)` is the default full-library choice; obsolete totals do not appear. |
+| Question counts | Standard sizes render; `All (755)` is the default full-library choice; obsolete totals do not appear. |
 | Tags | Tags populate from the question bank; selecting a tag limits sessions to matching questions. |
 | Progress filters | All questions includes every match; never answered excludes saved records; never answered correctly excludes questions with any saved correct answer. |
 | Answer flow | Options disable after one choice; correct/wrong state is visible; explanation appears; score updates; next and completion actions work. |
@@ -73,7 +73,7 @@ This plan defines the quality strategy for QA & AI Learning Platform. The scope 
 | Category | Checks |
 | --- | --- |
 | Accessibility | Keyboard navigation, focus visibility, semantic controls, readable contrast, and no critical automated accessibility findings. |
-| Performance | Static assets load without blocking errors; no console errors; guide and practice interactions remain responsive with 746 questions. |
+| Performance | Static assets load without blocking errors; no console errors; guide and practice interactions remain responsive with 755 questions. |
 | Compatibility | Chromium desktop and Pixel 5 emulation on every CI run; Firefox and WebKit smoke checks before releases. |
 | Privacy | No question progress is transmitted. Confirm data stays in `localStorage` under `qa-ai-learning-platform-progress-v1`. |
 | Resilience | Missing or malformed saved progress does not prevent practice. |
@@ -84,7 +84,7 @@ The automated suite lives in `tests/e2e/learning-platform.spec.js`. It validates
 
 1. Landing-page identity and absence of obsolete CTAs.
 2. Learning-path and Learning Guide navigation.
-3. The `All (746)` count and the three progress-filter options.
+3. The `All (755)` count and the three progress-filter options.
 4. Tag-filtered practice and answer explanations.
 5. Local progress persistence and explicit clearing.
 6. Never-answered and never-answered-correctly filtering.

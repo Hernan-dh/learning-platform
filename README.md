@@ -5,7 +5,7 @@ A static learning platform for QA, test automation, software engineering, AI aut
 ## What it includes
 
 - Five learning paths: QA & Testing, Playwright & Automation, Engineering, AI Automation, and Operations.
-- 746 explained multiple-choice questions, each tagged by skill, technology, language, or tool.
+- 755 explained multiple-choice questions, each tagged by skill, technology, language, or tool.
 - Configurable practice sessions, including a full-library option.
 - Filters by tag and progress: all questions, never answered, or never answered correctly.
 - Browser-local progress tracking with a clear-history control. No cookies, account, backend, or runtime API calls are used.

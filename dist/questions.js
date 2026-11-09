@@ -1,5 +1,5 @@
 // Complete QA / AI Interview Lab question bank
-// Consolidated and reviewed: 746 explicit questions.
+// Consolidated and reviewed: 755 explicit questions.
 // This file is authoritative: it clears any legacy questions previously loaded by app.js.
 
 if (!Array.isArray(questions)) {
@@ -13037,6 +13037,137 @@ const completeQuestionBank = [
     "topic": "Test management project workflow"
   }
 ];
+
+const interviewRoundExpansion = [
+  {
+    r: 'playwright',
+    q: 'What is the practical difference between Selenium findElement() and findElements()? ',
+    correct: 'findElement() returns the first matching element or throws NoSuchElementException; findElements() returns a list and returns an empty list when nothing matches.',
+    wrong: [
+      'findElement() always returns every matching element, while findElements() returns only the first one.',
+      'Both methods return null when no element matches, so exception handling is unnecessary.',
+      'findElements() waits for a single match automatically, while findElement() cannot be used with waits.'
+    ],
+    e: 'Use findElement() when one required target is part of the contract, and use findElements() when zero, one, or many matches are valid and their count or contents must be inspected.',
+    tags: ['Selenium', 'Java', 'Test Automation', 'Locators'],
+    guide: 'learning-guide.html#selenium-locators-controls',
+    topic: 'findElement versus findElements'
+  },
+  {
+    r: 'playwright',
+    q: 'How should you choose between a CSS selector and XPath in Selenium?',
+    correct: 'Prefer a stable, readable locator—usually an ID, test attribute, or concise CSS selector—and use relative XPath when its text or relationship capabilities make the intent clearer.',
+    wrong: [
+      'Always use absolute XPath because it records the complete DOM path and therefore cannot become stale.',
+      'CSS selectors are only for visual styling and cannot locate elements in browser automation.',
+      'Choose whichever locator is longest because more DOM detail guarantees a more precise test.'
+    ],
+    e: 'CSS and XPath are both valid locator strategies. Maintainability depends on semantic intent and stability, not on a universal winner; avoid deep, layout-coupled selectors in either syntax.',
+    tags: ['Selenium', 'Locators', 'XPath', 'CSS', 'Test Automation'],
+    guide: 'learning-guide.html#selenium-locators-controls',
+    topic: 'CSS selectors versus XPath'
+  },
+  {
+    r: 'engineering',
+    q: 'How do final, static, and this serve different purposes in Java automation code?',
+    correct: 'final prevents reassignment or overriding as applicable, static belongs to the class rather than an instance, and this refers to the current object instance.',
+    wrong: [
+      'final creates a global variable, static makes an object immutable, and this imports another class.',
+      'They are interchangeable keywords for making Selenium tests run in parallel.',
+      'static and this both create a new object, while final deletes the object after a test.'
+    ],
+    e: 'Use these keywords deliberately: for example, a static factory may create drivers, final can protect an injected dependency reference, and this disambiguates an instance field from a constructor parameter.',
+    tags: ['Java', 'Object-Oriented Programming', 'Test Automation'],
+    guide: 'learning-guide.html#java-basics-testers',
+    topic: 'Java final static and this keywords'
+  },
+  {
+    r: 'engineering',
+    q: 'When are ArrayList and HashMap useful in an automation framework?',
+    correct: 'Use an ArrayList for ordered collections such as expected rows or test inputs, and use a HashMap for key-value data such as named test fields, headers, or environment values.',
+    wrong: [
+      'Use HashMap whenever order matters and ArrayList whenever values must be retrieved by a business key.',
+      'Both collections are only appropriate for storing WebDriver instances across all parallel tests.',
+      'Replace every test-data structure with a static global array so tests can share mutable state.'
+    ],
+    e: 'Choose a collection based on the access pattern and lifecycle. Keep mutable test data isolated per test or worker; the collection type does not remove concurrency or cleanup responsibilities.',
+    tags: ['Java', 'Collections', 'Test Data Management', 'Test Automation'],
+    guide: 'learning-guide.html#java-basics-testers',
+    topic: 'Java collections in test automation'
+  },
+  {
+    r: 'engineering',
+    q: 'What is a maintainable approach to data-driven testing with TestNG and spreadsheet data?',
+    correct: 'Use a TestNG DataProvider to supply small, validated scenario records; read spreadsheet data only when it is a real business interface, and keep parsing, test logic, and expected results separate.',
+    wrong: [
+      'Copy one test method per spreadsheet row so every input has independent automation code.',
+      'Read production spreadsheets directly in every test and change their contents whenever a run fails.',
+      'Use Excel files for all test configuration because typed JSON, builders, or in-code data cannot represent test cases.'
+    ],
+    e: 'Data-driven tests reduce duplicated scenario logic when each data row is understandable. Excel can be appropriate for spreadsheet-based business data, but it should be validated and not become a hidden test-programming language.',
+    tags: ['Java', 'TestNG', 'Data-Driven Testing', 'Test Data Management'],
+    guide: 'learning-guide.html#testng-framework',
+    topic: 'TestNG data driven testing with spreadsheet data'
+  },
+  {
+    r: 'qa',
+    q: 'How should a QA engineer decide which test cases to automate?',
+    correct: 'Prioritize stable, repeatable, high-risk or high-frequency checks with clear expected results and a favorable maintenance cost; leave exploratory, rapidly changing, or judgment-heavy work manual when appropriate.',
+    wrong: [
+      'Automate every test case immediately because manual testing has no unique value.',
+      'Automate only the shortest tests because execution time is the only selection criterion.',
+      'Choose cases based solely on how impressive their UI flow looks in a demo.'
+    ],
+    e: 'Automation is an investment decision. Consider business risk, repetition, data/setup cost, product stability, diagnosability, execution frequency, and the cost of maintaining the check.',
+    tags: ['Quality Assurance', 'Test Automation', 'Test Strategy', 'Risk-Based Testing'],
+    guide: 'learning-guide.html#auto-pyramid',
+    topic: 'automation candidate selection'
+  },
+  {
+    r: 'qa',
+    q: 'What makes a strong interview answer about finding a critical bug through automation?',
+    correct: 'Use a truthful STAR-style story: explain the risk and context, the automated evidence and investigation, the action taken with the team, and the verified outcome or prevention added afterward.',
+    wrong: [
+      'Claim that the automation suite guarantees no production defects without describing evidence or limits.',
+      'Focus only on the tool name and omit the impact, collaboration, diagnosis, and follow-up control.',
+      'Invent a severity level or business impact if the exact outcome is not known.'
+    ],
+    e: 'The interviewer is evaluating judgment as well as tooling. A credible answer makes your role, the evidence, the decision, the collaboration, and the result clear without exaggeration.',
+    tags: ['Interview Preparation', 'Defect Tracking', 'Test Automation', 'Communication'],
+    guide: 'learning-guide.html#interview-answer-framework',
+    topic: 'automation bug discovery interview story'
+  },
+  {
+    r: 'qa',
+    q: 'How should you answer an interview question about conflict with developers or a deadline?',
+    correct: 'Describe the facts and shared goal, communicate risk with evidence, propose prioritized options and trade-offs, agree on an owner or decision, and explain the outcome and learning without blaming people.',
+    wrong: [
+      'Present the disagreement as proof that QA must always block delivery regardless of risk or alternatives.',
+      'Avoid mentioning the conflict because interviewers only want a story in which every stakeholder agreed immediately.',
+      'Describe the other team as the problem and omit your communication, evidence, and resolution steps.'
+    ],
+    e: 'Good behavioral answers demonstrate professional collaboration under constraints. Explain how quality risk was made visible and how the team reached a defensible decision.',
+    tags: ['Interview Preparation', 'Stakeholder Communication', 'Risk Management', 'Quality Assurance'],
+    guide: 'learning-guide.html#interview-answer-framework',
+    topic: 'deadline and collaboration interview story'
+  },
+  {
+    r: 'qa',
+    q: 'How should you answer “Why do you want to join this company?” in an interview?',
+    correct: 'Connect verified facts about the employer, role, domain, engineering culture, and quality challenges to your relevant evidence and explain why the match is meaningful to you.',
+    wrong: [
+      'Use the same generic answer for every employer and mention only that the company is well known.',
+      'Claim knowledge of internal projects, benefits, or culture that you have not verified.',
+      'Repeat your CV without explaining the role, domain, or value you could bring.'
+    ],
+    e: 'A credible motivation answer is researched and specific without pretending insider knowledge. Adapt it to the job description and use your own real priorities and evidence.',
+    tags: ['Interview Preparation', 'Career Development', 'Technical Writing', 'Communication'],
+    guide: 'learning-guide.html#qa-cv-cover-letter',
+    topic: 'employer motivation interview answer'
+  }
+];
+
+completeQuestionBank.push(...interviewRoundExpansion);
 
 function addCompleteQuestion(item) {
   const correctIndex = (questions.length * 3) % 4;
