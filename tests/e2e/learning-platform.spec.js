@@ -46,9 +46,9 @@ test('opens the learning paths and the Learning Guide', async ({ page }) => {
 test('offers the full question bank and progress filters', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.locator(`${selectors.questionCount} option`, { hasText: 'All (755)' })).toHaveCount(1);
-  await expect(page.locator(`${selectors.questionCount} option`, { hasText: 'All (746)' })).toHaveCount(0);
-  await expect(page.locator(selectors.questionCount)).toHaveValue('755');
+  await expect(page.locator(`${selectors.questionCount} option`, { hasText: 'All (760)' })).toHaveCount(1);
+  await expect(page.locator(`${selectors.questionCount} option`, { hasText: 'All (755)' })).toHaveCount(0);
+  await expect(page.locator(selectors.questionCount)).toHaveValue('760');
   await expect(page.locator(selectors.progressFilter)).toHaveText(/All questions.*Never answered.*Never answered correctly/s);
 });
 

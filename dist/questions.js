@@ -1,5 +1,5 @@
 // Complete QA / AI Interview Lab question bank
-// Consolidated and reviewed: 755 explicit questions.
+// Consolidated and reviewed: 760 explicit questions.
 // This file is authoritative: it clears any legacy questions previously loaded by app.js.
 
 if (!Array.isArray(questions)) {
@@ -13041,6 +13041,20 @@ const completeQuestionBank = [
 const interviewRoundExpansion = [
   {
     r: 'playwright',
+    q: 'When is Selenium FluentWait appropriate, and how does it differ from implicit and explicit waits?',
+    correct: 'Use FluentWait when an explicit condition needs a custom timeout, polling interval, or ignored exception set; implicit waits apply broadly, while ordinary explicit waits wait for a named condition at a specific point.',
+    wrong: [
+      'Use FluentWait as a fixed sleep after every browser action so no condition needs to be observed.',
+      'Mix a long implicit wait with FluentWait because their delays always combine predictably.',
+      'Use FluentWait only to locate static elements that have a guaranteed load time.'
+    ],
+    e: 'All waits should reflect an observable condition. FluentWait is useful for controlled polling of dynamic state, but it is not a substitute for stable locators, readiness signals, or diagnosis of a flaky application.',
+    tags: ['Selenium', 'Synchronization', 'Explicit Waits', 'Test Automation'],
+    guide: 'learning-guide.html#selenium-waits-deep',
+    topic: 'Selenium FluentWait'
+  },
+  {
+    r: 'playwright',
     q: 'What is the practical difference between Selenium findElement() and findElements()? ',
     correct: 'findElement() returns the first matching element or throws NoSuchElementException; findElements() returns a list and returns an empty list when nothing matches.',
     wrong: [
@@ -13164,6 +13178,62 @@ const interviewRoundExpansion = [
     tags: ['Interview Preparation', 'Career Development', 'Technical Writing', 'Communication'],
     guide: 'learning-guide.html#qa-cv-cover-letter',
     topic: 'employer motivation interview answer'
+  },
+  {
+    r: 'engineering',
+    q: 'Which SQL pattern finds duplicate values in a column such as an email address?',
+    correct: 'Group by the target column and use HAVING COUNT(*) > 1, optionally excluding NULL values when the business rule treats them as unknown rather than duplicates.',
+    wrong: [
+      'Use ORDER BY email alone because sorted rows automatically identify duplicate database records.',
+      'Use DISTINCT email because removing duplicate output rows proves the stored data has no duplicates.',
+      'Use DELETE with a WHERE clause before inspecting the duplicate groups and their business keys.'
+    ],
+    e: 'A duplicate check must define the business key first. GROUP BY and HAVING identify repeated values; a safe remediation then needs row identifiers, referential checks, ownership, and a rollback-aware plan.',
+    tags: ['SQL', 'Database Testing', 'Data Validation', 'Data Quality'],
+    guide: 'learning-guide.html#sql-query-fundamentals',
+    topic: 'SQL duplicate-record query'
+  },
+  {
+    r: 'engineering',
+    q: 'How do you write SQL to find the maximum salary in each department?',
+    correct: 'Select the department and MAX(salary), grouping by department; use a window function or join back to that aggregate if every employee tied at the maximum must be returned.',
+    wrong: [
+      'Use MAX(salary) without GROUP BY because one maximum value represents every department.',
+      'Sort all salaries descending and assume the first row is the maximum for each department.',
+      'Use COUNT(salary) grouped by department because the most employees implies the highest salary.'
+    ],
+    e: 'The aggregate answer and the employee-row answer are different requirements. GROUP BY returns one aggregate per department; ties require a deliberate query design such as RANK() or a join to the grouped maximum.',
+    tags: ['SQL', 'Database Testing', 'Data Validation'],
+    guide: 'learning-guide.html#sql-query-fundamentals',
+    topic: 'SQL maximum salary by department'
+  },
+  {
+    r: 'qa',
+    q: 'How should QA validate a data migration or pipeline change?',
+    correct: 'Define source-to-target reconciliation rules, validate schema and transformations, sample high-risk records, compare counts and aggregates, test reruns and failures, preserve lineage, and obtain business sign-off on exceptions.',
+    wrong: [
+      'Validate only that the destination table has rows because any populated target proves the migration succeeded.',
+      'Test the migration once with production data and skip rollback or rerun behavior to avoid slowing delivery.',
+      'Compare only total record counts and ignore transformations, duplicates, missing keys, rejected records, and sensitive fields.'
+    ],
+    e: 'Migration quality is more than row count. Reconciliation must make the business rules, transformations, rejection handling, idempotency, audit evidence, and residual risk observable.',
+    tags: ['Data Pipelines', 'Data Validation', 'Data Quality', 'Integration Testing'],
+    guide: 'learning-guide.html#data-pipelines',
+    topic: 'data migration testing'
+  },
+  {
+    r: 'qa',
+    q: 'What is a credible answer to “What motivates you in a QA career?”?',
+    correct: 'Connect your genuine motivation to understanding user and business risk, improving feedback loops, collaborating on quality, and using evidence to make systems more reliable.',
+    wrong: [
+      'Say that QA is easier than development and does not require learning the product or collaborating with others.',
+      'List every testing tool you have heard of without connecting it to users, quality decisions, or your own experience.',
+      'Promise that QA can eliminate every defect and make releases risk-free.'
+    ],
+    e: 'A strong answer is personal but concrete. It should reflect your actual interests and show that QA is proactive quality engineering, not only pass/fail execution at the end of delivery.',
+    tags: ['Interview Preparation', 'Quality Assurance', 'Career Development', 'Communication'],
+    guide: 'learning-guide.html#qa-interview-preparation',
+    topic: 'QA career motivation interview answer'
   }
 ];
 
